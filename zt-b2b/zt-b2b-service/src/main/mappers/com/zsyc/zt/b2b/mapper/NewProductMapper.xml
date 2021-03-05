@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.NewProductMapper">
+    <select id="getNewProductList" resultType="com.zsyc.zt.b2b.vo.NewProductVo">
+        select
+        N.*,
+        M.USER_NAME as memberName
+        from NEW_PRODUCT N
+        left join MEMBER M on N.MEMBER_ID = M.ID
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="newProductVo.goodsName!=null and newProductVo.goodsName!=''">
+                and GOODS_NAME like '%'||#{newProductVo.goodsName}||'%'
+            </if>
+            <if test="newProductVo.approvedocno!=null and newProductVo.approvedocno!=''">
+                and APPROVEDOCNO = #{newProductVo.approvedocno}
+            </if>
+        </trim>
+        order by N.CREATE_TIME desc
+    </select>
+    <select id="getNewProducts" resultType="com.zsyc.zt.b2b.vo.NewProductVo">
+        select
+        N.*,
+        M.USER_NAME as memberName
+        from NEW_PRODUCT N
+        left join MEMBER M on N.MEMBER_ID = M.ID
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+                and MEMBER_ID = #{newProductVo.memberId}
+            <if test="newProductVo.goodsName!=null and newProductVo.goodsName!=''">
+                and GOODS_NAME like '%'||#{newProductVo.goodsName}||'%'
+            </if>
+            <if test="newProductVo.approvedocno!=null and newProductVo.approvedocno!=''">
+                and APPROVEDOCNO = #{newProductVo.approvedocno}
+            </if>
+        </trim>
+        order by N.CREATE_TIME desc
+    </select>
+    <select id="getNewProductExcel" resultType="com.zsyc.zt.b2b.vo.NewProductVo">
+        select * from NEW_PRODUCT
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="newProductVo.goodsName!=null and newProductVo.goodsName!=''">
+                and GOODS_NAME like '%'||#{newProductVo.goodsName}||'%'
+            </if>
+            <if test="newProductVo.approvedocno!=null and newProductVo.approvedocno!=''">
+                and APPROVEDOCNO = #{newProductVo.approvedocno}
+            </if>
+        </trim>
+        order by CREATE_TIME desc
+    </select>
+</mapper>

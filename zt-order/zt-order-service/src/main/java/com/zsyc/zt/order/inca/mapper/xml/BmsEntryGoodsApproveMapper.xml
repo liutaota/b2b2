@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsEntryGoodsApproveMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsEntryGoodsApprove">
+        <id column="APPROVEID" property="approveid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="GOODSUNIT" property="goodsunit" />
+        <result column="GOODSTYPE" property="goodstype" />
+        <result column="FACTORYID" property="factoryid" />
+        <result column="PRODAREA" property="prodarea" />
+        <result column="MEDICINETYPE" property="medicinetype" />
+        <result column="APPROVEDOCNO" property="approvedocno" />
+        <result column="STANDARDTYPE" property="standardtype" />
+        <result column="STORAGECONDITIONFLAG" property="storageconditionflag" />
+        <result column="IMPORTFLAG" property="importflag" />
+        <result column="BIOMEDFLAG" property="biomedflag" />
+        <result column="ISEGGPEPTIDEFLAG" property="iseggpeptideflag" />
+        <result column="DRUGFLAG" property="drugflag" />
+        <result column="EPHEDRINEFLAG" property="ephedrineflag" />
+        <result column="APPROVESTATUS" property="approvestatus" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="FUNCTION" property="function" />
+        <result column="QFUSESTATUS" property="qfusestatus" />
+        <result column="QFMEMO" property="qfmemo" />
+        <result column="QFLEVELID" property="qflevelid" />
+        <result column="QFAPPMANID" property="qfappmanid" />
+        <result column="QFAPPDATE" property="qfappdate" />
+        <result column="APPROVEMANID" property="approvemanid" />
+        <result column="APPROVEMEMO" property="approvememo" />
+        <result column="APPROVEDATE" property="approvedate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        APPROVEID, ENTRYID, GOODSID, GOODSNAME, GOODSUNIT, GOODSTYPE, FACTORYID, PRODAREA, MEDICINETYPE, APPROVEDOCNO, STANDARDTYPE, STORAGECONDITIONFLAG, IMPORTFLAG, BIOMEDFLAG, ISEGGPEPTIDEFLAG, DRUGFLAG, EPHEDRINEFLAG, APPROVESTATUS, CREDATE, INPUTMANID, FUNCTION, QFUSESTATUS, QFMEMO, QFLEVELID, QFAPPMANID, QFAPPDATE, APPROVEMANID, APPROVEMEMO, APPROVEDATE
+    </sql>
+
+</mapper>

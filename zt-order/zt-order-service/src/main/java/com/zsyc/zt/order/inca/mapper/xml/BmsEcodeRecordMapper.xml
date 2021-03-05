@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsEcodeRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsEcodeRecord">
+        <id column="RECORDID" property="recordid" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="ECODE" property="ecode" />
+        <result column="CREDATE" property="credate" />
+        <result column="EXPFLAG" property="expflag" />
+        <result column="SOURCEID" property="sourceid" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="EXPDATE" property="expdate" />
+        <result column="EXPMANID" property="expmanid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="MEMO" property="memo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        RECORDID, COMEFROM, ECODE, CREDATE, EXPFLAG, SOURCEID, INPUTMANID, EXPDATE, EXPMANID, GOODSID, ENTRYID, COMPANYID, MEMO
+    </sql>
+
+</mapper>

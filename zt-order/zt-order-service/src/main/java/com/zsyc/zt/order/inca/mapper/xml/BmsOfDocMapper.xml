@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsOfDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsOfDoc">
+        <id column="OFID" property="ofid" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="MEMO" property="memo" />
+        <result column="DTL_LINES" property="dtlLines" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="APPROVESTATUS" property="approvestatus" />
+        <result column="APPROVEMANID" property="approvemanid" />
+        <result column="APPROVEDATE" property="approvedate" />
+        <result column="APPROVEMEMO" property="approvememo" />
+        <result column="PRINTCOUNT" property="printcount" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="CONFIRMMANID" property="confirmmanid" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="PLACEPOINTID" property="placepointid" />
+        <result column="NOWMSFLAG" property="nowmsflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        OFID, CREDATE, INPUTMANID, MEMO, DTL_LINES, ENTRYID, APPROVESTATUS, APPROVEMANID, APPROVEDATE, APPROVEMEMO, PRINTCOUNT, PRINTMANID, PRINTDATE, USESTATUS, CONFIRMMANID, CONFIRMDATE, PLACEPOINTID, NOWMSFLAG
+    </sql>
+
+</mapper>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.BmsSaRecDocMapper">
+    <update id="upBmsSaRecDocMoney">
+    update BMS_SA_REC_DOC d
+        set d.total = #{total,jdbcType=NUMERIC}, d.premoney = #{premoney,jdbcType=NUMERIC}
+    where sarecid = #{sarecid,jdbcType=INTEGER}
+    </update>
+
+</mapper>

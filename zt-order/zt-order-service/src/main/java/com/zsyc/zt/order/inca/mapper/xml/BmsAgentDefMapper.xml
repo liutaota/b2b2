@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsAgentDefMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsAgentDef">
+        <id column="AGENTID" property="agentid" />
+        <result column="AGENTOPCODE" property="agentopcode" />
+        <result column="AGENTNAME" property="agentname" />
+        <result column="PINYIN" property="pinyin" />
+        <result column="SEX" property="sex" />
+        <result column="BIRTHDATE" property="birthdate" />
+        <result column="IDCARD" property="idcard" />
+        <result column="MEMO" property="memo" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="EMAIL" property="email" />
+        <result column="PHONE" property="phone" />
+        <result column="MOBILENO" property="mobileno" />
+        <result column="ADDRESS" property="address" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        AGENTID, AGENTOPCODE, AGENTNAME, PINYIN, SEX, BIRTHDATE, IDCARD, MEMO, USESTATUS, EMAIL, PHONE, MOBILENO, ADDRESS
+    </sql>
+
+</mapper>

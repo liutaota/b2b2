@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSaApproveMemoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSaApproveMemo">
+        <id column="APPROVEID" property="approveid" />
+        <result column="SOURCEID" property="sourceid" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="SAVEMEMO" property="savememo" />
+        <result column="APPROVEMEMO" property="approvememo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        APPROVEID, SOURCEID, COMEFROM, SAVEMEMO, APPROVEMEMO
+    </sql>
+
+</mapper>

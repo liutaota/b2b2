@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsGoodsSortMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsGoodsSort">
+        <id column="SORTID" property="sortid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="PLACEPOINTID" property="placepointid" />
+        <result column="SAQTY" property="saqty" />
+        <result column="SAMONEY" property="samoney" />
+        <result column="BATCHCOST" property="batchcost" />
+        <result column="STARTDATE" property="startdate" />
+        <result column="ENDDATE" property="enddate" />
+        <result column="SACONTRIREFGRADE" property="sacontrirefgrade" />
+        <result column="SACONTRIGRADE" property="sacontrigrade" />
+        <result column="GROSSCONTRIREFGRADE" property="grosscontrirefgrade" />
+        <result column="GROSSCONTRIGRADE" property="grosscontrigrade" />
+        <result column="GROSSREFGRADE" property="grossrefgrade" />
+        <result column="GROSSGRADE" property="grossgrade" />
+        <result column="BUSITYPE" property="busitype" />
+        <result column="STATICDATE" property="staticdate" />
+        <result column="STATICMANID" property="staticmanid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SORTID, ENTRYID, GOODSID, PLACEPOINTID, SAQTY, SAMONEY, BATCHCOST, STARTDATE, ENDDATE, SACONTRIREFGRADE, SACONTRIGRADE, GROSSCONTRIREFGRADE, GROSSCONTRIGRADE, GROSSREFGRADE, GROSSGRADE, BUSITYPE, STATICDATE, STATICMANID
+    </sql>
+
+</mapper>

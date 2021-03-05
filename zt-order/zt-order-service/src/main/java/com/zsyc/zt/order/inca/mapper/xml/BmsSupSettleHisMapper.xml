@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSupSettleHisMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSupSettleHis">
+        <result column="SUDOCDTLID" property="sudocdtlid" />
+        <result column="SUSETDTLID" property="susetdtlid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="TOTAL_LINE_NAT" property="totalLineNat" />
+        <result column="COSTINGMONEY_NAT" property="costingmoneyNat" />
+        <result column="COSTINGMONEY" property="costingmoney" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SUDOCDTLID, SUSETDTLID, GOODSQTY, TOTAL_LINE, TOTAL_LINE_NAT, COSTINGMONEY_NAT, COSTINGMONEY
+    </sql>
+
+</mapper>

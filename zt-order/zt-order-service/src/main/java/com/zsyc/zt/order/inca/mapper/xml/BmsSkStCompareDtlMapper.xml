@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSkStCompareDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSkStCompareDtl">
+        <id column="DTLID" property="dtlid" />
+        <result column="DOCID" property="docid" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="SOURCETABLE" property="sourcetable" />
+        <result column="SOURCEID" property="sourceid" />
+        <result column="STADDQTY" property="staddqty" />
+        <result column="STSUBQTY" property="stsubqty" />
+        <result column="SKADDQTY" property="skaddqty" />
+        <result column="SKSUBQTY" property="sksubqty" />
+        <result column="BALANCE" property="balance" />
+        <result column="COMEFROMSOURCEID" property="comefromsourceid" />
+        <result column="MEMO" property="memo" />
+        <result column="FLAG" property="flag" />
+        <result column="INOUTID" property="inoutid" />
+        <result column="SKSEQID" property="skseqid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DTLID, DOCID, COMEFROM, SOURCETABLE, SOURCEID, STADDQTY, STSUBQTY, SKADDQTY, SKSUBQTY, BALANCE, COMEFROMSOURCEID, MEMO, FLAG, INOUTID, SKSEQID
+    </sql>
+
+</mapper>

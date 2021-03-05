@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuSumlackMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuSumlack">
+        <result column="LACKID" property="lackid" />
+        <result column="CREDATE" property="credate" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="CONFIRMANID" property="confirmanid" />
+        <result column="MEMO" property="memo" />
+        <result column="MEMO1" property="memo1" />
+        <result column="MEMO2" property="memo2" />
+        <result column="MEMO3" property="memo3" />
+        <result column="MEMO4" property="memo4" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        LACKID, CREDATE, GOODSID, GOODSQTY, USESTATUS, CONFIRMANID, MEMO, MEMO1, MEMO2, MEMO3, MEMO4
+    </sql>
+
+</mapper>

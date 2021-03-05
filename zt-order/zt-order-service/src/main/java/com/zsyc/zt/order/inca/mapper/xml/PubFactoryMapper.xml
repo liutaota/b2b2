@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubFactoryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubFactory">
+        <id column="FACTORYID" property="factoryid" />
+        <result column="FACTORYOPCODE" property="factoryopcode" />
+        <result column="FACTORYNO" property="factoryno" />
+        <result column="FACTORYPINYIN" property="factorypinyin" />
+        <result column="FACTORYNAME" property="factoryname" />
+        <result column="CORPCODE" property="corpcode" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="MEMO" property="memo" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="GSPFLAG" property="gspflag" />
+        <result column="TAXNUMBER" property="taxnumber" />
+        <result column="ZONE" property="zone" />
+        <result column="LEGALPERSON" property="legalperson" />
+        <result column="SYS_MODIFYDATE" property="sysModifydate" />
+        <result column="TOWMSDATE" property="towmsdate" />
+        <result column="FINANCENO" property="financeno" />
+        <result column="POSSESSOR" property="possessor" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        FACTORYID, FACTORYOPCODE, FACTORYNO, FACTORYPINYIN, FACTORYNAME, CORPCODE, USESTATUS, MEMO, CREDATE, INPUTMANID, GSPFLAG, TAXNUMBER, ZONE, LEGALPERSON, SYS_MODIFYDATE, TOWMSDATE, FINANCENO, POSSESSOR
+    </sql>
+
+</mapper>

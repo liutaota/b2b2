@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsBusiParamDefMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsBusiParamDef">
+        <id column="SEQID" property="seqid" />
+        <result column="BUSIACCID" property="busiaccid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="SETLEVEL" property="setlevel" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="AVGCALCMETHOD" property="avgcalcmethod" />
+        <result column="ISRETURNQTY" property="isreturnqty" />
+        <result column="ROUNDMETHOD" property="roundmethod" />
+        <result column="ROUNDPRECISION" property="roundprecision" />
+        <result column="D1AVGSALEQTY" property="d1avgsaleqty" />
+        <result column="D1PROPORTION" property="d1proportion" />
+        <result column="D2AVGSALEQTY" property="d2avgsaleqty" />
+        <result column="D2PROPORTION" property="d2proportion" />
+        <result column="D3AVGSALEQTY" property="d3avgsaleqty" />
+        <result column="D3PROPORTION" property="d3proportion" />
+        <result column="D4AVGSALEQTY" property="d4avgsaleqty" />
+        <result column="D4PROPORTION" property="d4proportion" />
+        <result column="NDAYSNOCALC" property="ndaysnocalc" />
+        <result column="DEFAFULTUPDAYS" property="defafultupdays" />
+        <result column="DEFAFULTDOWNDAYS" property="defafultdowndays" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="COLLIGATEAVGSALERATIO" property="colligateavgsaleratio" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SEQID, BUSIACCID, GOODSID, SETLEVEL, ENTRYID, AVGCALCMETHOD, ISRETURNQTY, ROUNDMETHOD, ROUNDPRECISION, D1AVGSALEQTY, D1PROPORTION, D2AVGSALEQTY, D2PROPORTION, D3AVGSALEQTY, D3PROPORTION, D4AVGSALEQTY, D4PROPORTION, NDAYSNOCALC, DEFAFULTUPDAYS, DEFAFULTDOWNDAYS, INPUTMANID, CREDATE, COLLIGATEAVGSALERATIO
+    </sql>
+
+</mapper>

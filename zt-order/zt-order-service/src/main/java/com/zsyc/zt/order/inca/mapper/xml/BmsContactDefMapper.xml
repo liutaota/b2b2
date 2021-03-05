@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsContactDefMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsContactDef">
+        <id column="CONTACTID" property="contactid" />
+        <result column="CONTACTMAN" property="contactman" />
+        <result column="CONTACTOPCODE" property="contactopcode" />
+        <result column="IDCARD" property="idcard" />
+        <result column="SEX" property="sex" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="JOB" property="job" />
+        <result column="TELEPHONE" property="telephone" />
+        <result column="MOBILE" property="mobile" />
+        <result column="EMAIL" property="email" />
+        <result column="FAX" property="fax" />
+        <result column="POSTCODE" property="postcode" />
+        <result column="ADDRESS" property="address" />
+        <result column="MEMO" property="memo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CONTACTID, CONTACTMAN, CONTACTOPCODE, IDCARD, SEX, USESTATUS, JOB, TELEPHONE, MOBILE, EMAIL, FAX, POSTCODE, ADDRESS, MEMO
+    </sql>
+
+</mapper>

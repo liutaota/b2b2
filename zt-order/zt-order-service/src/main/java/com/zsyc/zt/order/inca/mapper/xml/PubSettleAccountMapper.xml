@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubSettleAccountMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubSettleAccount">
+        <id column="USEMM" property="usemm" />
+        <result column="USEYEAR" property="useyear" />
+        <result column="USEMONTH" property="usemonth" />
+        <result column="ENDDATE" property="enddate" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="MEMO" property="memo" />
+        <result column="ALLOWINIT" property="allowinit" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="LOGICMM" property="logicmm" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        USEMM, USEYEAR, USEMONTH, ENDDATE, USESTATUS, MEMO, ALLOWINIT, ENTRYID, LOGICMM
+    </sql>
+
+</mapper>

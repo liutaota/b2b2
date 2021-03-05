@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubDataExportMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubDataExport">
+        <id column="EXPORTID" property="exportid" />
+        <result column="OPID" property="opid" />
+        <result column="SHOWHEAD" property="showhead" />
+        <result column="EXPORTNUM" property="exportnum" />
+        <result column="SPLITCHAR" property="splitchar" />
+        <result column="PLAN" property="plan" />
+        <result column="EXPORTCLASSNAME" property="exportclassname" />
+        <result column="EXPORTTYPE" property="exporttype" />
+        <result column="CONFIGFILES" property="configfiles" />
+        <result column="ISEXPORTALL" property="isexportall" />
+        <result column="ISAUTOFILENAME" property="isautofilename" />
+        <result column="MDEEXPORTTYPE" property="mdeexporttype" />
+        <result column="EXPORTMODE" property="exportmode" />
+        <result column="ISAPPEND" property="isappend" />
+        <result column="DEFSHOWHEAD" property="defshowhead" />
+        <result column="TITLE" property="title" />
+        <result column="FILESUFFIX" property="filesuffix" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        OPID, SHOWHEAD, EXPORTNUM, SPLITCHAR, PLAN, EXPORTCLASSNAME, EXPORTTYPE, CONFIGFILES, EXPORTID, ISEXPORTALL, ISAUTOFILENAME, MDEEXPORTTYPE, EXPORTMODE, ISAPPEND, DEFSHOWHEAD, TITLE, FILESUFFIX
+    </sql>
+
+</mapper>

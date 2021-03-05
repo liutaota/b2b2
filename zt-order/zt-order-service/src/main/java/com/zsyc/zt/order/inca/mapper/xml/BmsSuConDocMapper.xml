@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuConDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuConDoc">
+        <id column="SUCONID" property="suconid" />
+        <result column="SUCONNO" property="suconno" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="SUPPLYNAME" property="supplyname" />
+        <result column="CONTRACTTYPE" property="contracttype" />
+        <result column="IMPORTFLAG" property="importflag" />
+        <result column="SIGNDATE" property="signdate" />
+        <result column="SIGNADDRESS" property="signaddress" />
+        <result column="PAPERNO" property="paperno" />
+        <result column="SIGNMAN" property="signman" />
+        <result column="VALIDBEGDATE" property="validbegdate" />
+        <result column="VALIDENDDATE" property="validenddate" />
+        <result column="SETTLETYPEID" property="settletypeid" />
+        <result column="PREPAY" property="prepay" />
+        <result column="OTHERMONEY" property="othermoney" />
+        <result column="AGENTFLAG" property="agentflag" />
+        <result column="CLAUSE" property="clause" />
+        <result column="SWITCHMODE" property="switchmode" />
+        <result column="TRANMETHOD" property="tranmethod" />
+        <result column="DESTPOSID" property="destposid" />
+        <result column="TRANCOSTRATE" property="trancostrate" />
+        <result column="PICKADDRESS" property="pickaddress" />
+        <result column="TOTAL" property="total" />
+        <result column="MEMO" property="memo" />
+        <result column="FINDATE" property="findate" />
+        <result column="DTL_LINES" property="dtlLines" />
+        <result column="PREPAYACC" property="prepayacc" />
+        <result column="FMID" property="fmid" />
+        <result column="EXCHANGE" property="exchange" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="SOURCETYPE" property="sourcetype" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="PRINTCOUNT" property="printcount" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="ADDRESS" property="address" />
+        <result column="WFUSESTATUS" property="wfusestatus" />
+        <result column="WFPROCESS" property="wfprocess" />
+        <result column="WFMEMO" property="wfmemo" />
+        <result column="AGENTID" property="agentid" />
+        <result column="SUCONNATURE" property="suconnature" />
+        <result column="RECORDNO" property="recordno" />
+        <result column="FILEGROUPID" property="filegroupid" />
+        <result column="NOWMSFLAG" property="nowmsflag" />
+        <result column="STORERID" property="storerid" />
+        <result column="PREPRINTCOUNT" property="preprintcount" />
+        <result column="PREPRINTMANID" property="preprintmanid" />
+        <result column="PREPRINTDATE" property="preprintdate" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="ZX_PREPAYFLAG" property="zxPrepayflag" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="ZX_SIGNMANID" property="zxSignmanid" />
+        <result column="ZX_SIGNMANNAME" property="zxSignmanname" />
+        <result column="ZX_SIGNDATE" property="zxSigndate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SUCONID, SUCONNO, SUPPLYID, SUPPLYNAME, CONTRACTTYPE, IMPORTFLAG, SIGNDATE, SIGNADDRESS, PAPERNO, SIGNMAN, VALIDBEGDATE, VALIDENDDATE, SETTLETYPEID, PREPAY, OTHERMONEY, AGENTFLAG, CLAUSE, SWITCHMODE, TRANMETHOD, DESTPOSID, TRANCOSTRATE, PICKADDRESS, TOTAL, MEMO, FINDATE, DTL_LINES, PREPAYACC, FMID, EXCHANGE, ENTRYID, SOURCETYPE, CREDATE, INPUTMANID, PRINTCOUNT, PRINTMANID, PRINTDATE, ADDRESS, WFUSESTATUS, WFPROCESS, WFMEMO, AGENTID, SUCONNATURE, RECORDNO, FILEGROUPID, NOWMSFLAG, STORERID, PREPRINTCOUNT, PREPRINTMANID, PREPRINTDATE, CONTACTID, ZX_PREPAYFLAG, STORAGEID, ZX_SIGNMANID, ZX_SIGNMANNAME, ZX_SIGNDATE
+    </sql>
+
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuSupplygoodsDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuSupplygoodsDtl">
+        <id column="SUPPLYGOODSDTLID" property="supplygoodsdtlid" />
+        <result column="SUPPLYGOODSDOCID" property="supplygoodsdocid" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="SETTLETYPEID" property="settletypeid" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="PRIORITY" property="priority" />
+        <result column="AGREEDOCFLAG" property="agreedocflag" />
+        <result column="LASTSUDATE" property="lastsudate" />
+        <result column="LASTPRICE" property="lastprice" />
+        <result column="HIGHESTPRICE" property="highestprice" />
+        <result column="LOWESTPRICE" property="lowestprice" />
+        <result column="AVGPRICE" property="avgprice" />
+        <result column="HIGHESTPRICEDATE" property="highestpricedate" />
+        <result column="LOWESTPRICEDATE" property="lowestpricedate" />
+        <result column="MAXPERIOD" property="maxperiod" />
+        <result column="MINPERIOD" property="minperiod" />
+        <result column="AVGPERIOD" property="avgperiod" />
+        <result column="SUTIMES" property="sutimes" />
+        <result column="SUGOODSQTYS" property="sugoodsqtys" />
+        <result column="SUMONEYS" property="sumoneys" />
+        <result column="SUBACKTIMES" property="subacktimes" />
+        <result column="SUBACKGOODSQTYS" property="subackgoodsqtys" />
+        <result column="SUBACKMONEYS" property="subackmoneys" />
+        <result column="PAYMETHOD" property="paymethod" />
+        <result column="PAYLIMIT" property="paylimit" />
+        <result column="SUDISCOUNT" property="sudiscount" />
+        <result column="ISTICKETFLAG" property="isticketflag" />
+        <result column="CREDITMONEY" property="creditmoney" />
+        <result column="CREDITDAY" property="creditday" />
+        <result column="MEMO" property="memo" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="STATUSDESC" property="statusdesc" />
+        <result column="REBATEPOLICY" property="rebatepolicy" />
+        <result column="RATING" property="rating" />
+        <result column="LASTSUPPLYID" property="lastsupplyid" />
+        <result column="LASTAGENTID" property="lastagentid" />
+        <result column="LASTCONTACTID" property="lastcontactid" />
+        <result column="LASTSUDOCID" property="lastsudocid" />
+        <result column="LASTSUQTY" property="lastsuqty" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SUPPLYGOODSDTLID, SUPPLYGOODSDOCID, SUPPLYID, AGENTID, SETTLETYPEID, CONTACTID, PRIORITY, AGREEDOCFLAG, LASTSUDATE, LASTPRICE, HIGHESTPRICE, LOWESTPRICE, AVGPRICE, HIGHESTPRICEDATE, LOWESTPRICEDATE, MAXPERIOD, MINPERIOD, AVGPERIOD, SUTIMES, SUGOODSQTYS, SUMONEYS, SUBACKTIMES, SUBACKGOODSQTYS, SUBACKMONEYS, PAYMETHOD, PAYLIMIT, SUDISCOUNT, ISTICKETFLAG, CREDITMONEY, CREDITDAY, MEMO, USESTATUS, STATUSDESC, REBATEPOLICY, RATING, LASTSUPPLYID, LASTAGENTID, LASTCONTACTID, LASTSUDOCID, LASTSUQTY
+    </sql>
+
+</mapper>

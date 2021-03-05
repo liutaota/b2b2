@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsPrAlterDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsPrAlterDoc">
+        <id column="ALTERDOCID" property="alterdocid" />
+        <result column="APPROVEDOCNO" property="approvedocno" />
+        <result column="ALTERTYPE" property="altertype" />
+        <result column="PLANEXEDATE" property="planexedate" />
+        <result column="MEMO" property="memo" />
+        <result column="APPROVEFLAG" property="approveflag" />
+        <result column="APPROVEMANID" property="approvemanid" />
+        <result column="APPROVEDATE" property="approvedate" />
+        <result column="EXECFLAG" property="execflag" />
+        <result column="EXECDATE" property="execdate" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="PRINTFLAG" property="printflag" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="AUTOEXECFLAG" property="autoexecflag" />
+        <result column="EXEMETHOD" property="exemethod" />
+        <result column="IMPORTID" property="importid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ALTERDOCID, APPROVEDOCNO, ALTERTYPE, PLANEXEDATE, MEMO, APPROVEFLAG, APPROVEMANID, APPROVEDATE, EXECFLAG, EXECDATE, CREDATE, INPUTMANID, PRINTFLAG, PRINTMANID, PRINTDATE, AUTOEXECFLAG, EXEMETHOD, IMPORTID
+    </sql>
+
+</mapper>

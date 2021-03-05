@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsPickShortInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsPickShortInfo">
+        <id column="INFOID" property="infoid" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="SOURCEID" property="sourceid" />
+        <result column="SOURCEDTLID" property="sourcedtlid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="COMPANYNAME" property="companyname" />
+        <result column="CREDATE" property="credate" />
+        <result column="CHECKDATE" property="checkdate" />
+        <result column="CHECKMANID" property="checkmanid" />
+        <result column="CHECKMANID2" property="checkmanid2" />
+        <result column="DESCKID" property="desckid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="LOTID" property="lotid" />
+        <result column="POSID" property="posid" />
+        <result column="OLDGOODSQTY" property="oldgoodsqty" />
+        <result column="TARGETGOODSQTY" property="targetgoodsqty" />
+        <result column="MEMO" property="memo" />
+        <result column="SHORTREASON" property="shortreason" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        INFOID, COMEFROM, SOURCEID, SOURCEDTLID, COMPANYID, COMPANYNAME, CREDATE, CHECKDATE, CHECKMANID, CHECKMANID2, DESCKID, GOODSID, GOODSDTLID, BATCHID, LOTID, POSID, OLDGOODSQTY, TARGETGOODSQTY, MEMO, SHORTREASON
+    </sql>
+
+</mapper>

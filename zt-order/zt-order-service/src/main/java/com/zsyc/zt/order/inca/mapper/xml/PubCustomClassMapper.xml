@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubCustomClassMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubCustomClass">
+        <id column="CLASSID" property="classid" />
+        <result column="CLASSTYPEID" property="classtypeid" />
+        <result column="CLASSNO" property="classno" />
+        <result column="CLASSNAME" property="classname" />
+        <result column="LEAFFLAG" property="leafflag" />
+        <result column="PARENTCLASSID" property="parentclassid" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CLASSID, CLASSTYPEID, CLASSNO, CLASSNAME, LEAFFLAG, PARENTCLASSID, INPUTMANID, CREDATE
+    </sql>
+
+</mapper>

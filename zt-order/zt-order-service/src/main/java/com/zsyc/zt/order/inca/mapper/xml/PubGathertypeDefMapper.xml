@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubGathertypeDefMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubGathertypeDef">
+        <id column="GATHERTYPEID" property="gathertypeid" />
+        <result column="GATHERTYPENAME" property="gathertypename" />
+        <result column="ISMODIFY" property="ismodify" />
+        <result column="INTYPE" property="intype" />
+        <result column="RETAVAILABLE" property="retavailable" />
+        <result column="ISCHANGEFLAG" property="ischangeflag" />
+        <result column="YBID" property="ybid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GATHERTYPEID, GATHERTYPENAME, ISMODIFY, INTYPE, RETAVAILABLE, ISCHANGEFLAG, YBID
+    </sql>
+
+</mapper>

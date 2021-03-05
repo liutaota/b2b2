@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStRgDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStRgDtl">
+        <result column="RGDTLID" property="rgdtlid" />
+        <result column="RGID" property="rgid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="WHOLEQTY" property="wholeqty" />
+        <result column="SCATTERQTY" property="scatterqty" />
+        <result column="UNWHOLEQTY" property="unwholeqty" />
+        <result column="UNSCATTERQTY" property="unscatterqty" />
+        <result column="UNINTRUSTWHOLEQTY" property="unintrustwholeqty" />
+        <result column="UNINTRUSTSCATTERQTY" property="unintrustscatterqty" />
+        <result column="UNREFUSEWHOLEQTY" property="unrefusewholeqty" />
+        <result column="UNREFUSESCATTERQTY" property="unrefusescatterqty" />
+        <result column="REGOODSQTY" property="regoodsqty" />
+        <result column="LOTID" property="lotid" />
+        <result column="PACKQUALITY" property="packquality" />
+        <result column="FACEQUALITY" property="facequality" />
+        <result column="TRANSPORTID" property="transportid" />
+        <result column="TRANMETHOD" property="tranmethod" />
+        <result column="STARTTEMPERATURE" property="starttemperature" />
+        <result column="REACHTEMPERATURE" property="reachtemperature" />
+        <result column="TEMPERATURESTATUS" property="temperaturestatus" />
+        <result column="STARTDATE" property="startdate" />
+        <result column="REACHDATE" property="reachdate" />
+        <result column="COLDEQUIP" property="coldequip" />
+        <result column="UNQUALIFIEDMEMO" property="unqualifiedmemo" />
+        <result column="REGISTEFLAG" property="registeflag" />
+        <result column="PASSGATEFLAG" property="passgateflag" />
+        <result column="IMPORTREPFLAG" property="importrepflag" />
+        <result column="RANDOMNUM" property="randomnum" />
+        <result column="RECHECKSTATUS" property="recheckstatus" />
+        <result column="RECHECKMANID" property="recheckmanid" />
+        <result column="RECHECKDATE" property="recheckdate" />
+        <result column="ASKCHKFLAG" property="askchkflag" />
+        <result column="IFCHECKFLAG" property="ifcheckflag" />
+        <result column="ASKCHECKID" property="askcheckid" />
+        <result column="CHECKDOCID" property="checkdocid" />
+        <result column="QUALITYCHECKMANID" property="qualitycheckmanid" />
+        <result column="QUALITYDATE" property="qualitydate" />
+        <result column="BATCHID" property="batchid" />
+        <result column="ELIGIBGOODSQTY" property="eligibgoodsqty" />
+        <result column="UNELIGIBGOODSQTY" property="uneligibgoodsqty" />
+        <result column="UNQUALIFIEDQTY" property="unqualifiedqty" />
+        <result column="UNINTRUSTQTY" property="unintrustqty" />
+        <result column="UNREFUSEQTY" property="unrefuseqty" />
+        <result column="RETINYID" property="retinyid" />
+        <result column="RGGOODSQTY" property="rggoodsqty" />
+        <result column="TARGETSOURCEID" property="targetsourceid" />
+        <result column="TARGETGOODSQTY" property="targetgoodsqty" />
+        <result column="INVDATE" property="invdate" />
+        <result column="INVNO" property="invno" />
+        <result column="INVCODE" property="invcode" />
+        <result column="INVTYPE" property="invtype" />
+        <result column="REWHOLEQTY" property="rewholeqty" />
+        <result column="RESCATTERQTY" property="rescatterqty" />
+        <result column="REUNWHOLEQTY" property="reunwholeqty" />
+        <result column="REUNSCATTERQTY" property="reunscatterqty" />
+        <result column="REUNINTRUSTWHOLEQTY" property="reunintrustwholeqty" />
+        <result column="REUNINTRUSTSCATTERQTY" property="reunintrustscatterqty" />
+        <result column="REUNREFUSEWHOLEQTY" property="reunrefusewholeqty" />
+        <result column="REUNREFUSESCATTERQTY" property="reunrefusescatterqty" />
+        <result column="POSID" property="posid" />
+        <result column="ZX_GOODSSTATUSID" property="zxGoodsstatusid" />
+        <result column="ZX_SENDWMSFLAG" property="zxSendwmsflag" />
+        <result column="ZX_SENDWMSDATE" property="zxSendwmsdate" />
+        <result column="ZX_WMSBACKDATE" property="zxWmsbackdate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        RGDTLID, RGID, GOODSDTLID, GOODSQTY, WHOLEQTY, SCATTERQTY, UNWHOLEQTY, UNSCATTERQTY, UNINTRUSTWHOLEQTY, UNINTRUSTSCATTERQTY, UNREFUSEWHOLEQTY, UNREFUSESCATTERQTY, REGOODSQTY, LOTID, PACKQUALITY, FACEQUALITY, TRANSPORTID, TRANMETHOD, STARTTEMPERATURE, REACHTEMPERATURE, TEMPERATURESTATUS, STARTDATE, REACHDATE, COLDEQUIP, UNQUALIFIEDMEMO, REGISTEFLAG, PASSGATEFLAG, IMPORTREPFLAG, RANDOMNUM, RECHECKSTATUS, RECHECKMANID, RECHECKDATE, ASKCHKFLAG, IFCHECKFLAG, ASKCHECKID, CHECKDOCID, QUALITYCHECKMANID, QUALITYDATE, BATCHID, ELIGIBGOODSQTY, UNELIGIBGOODSQTY, UNQUALIFIEDQTY, UNINTRUSTQTY, UNREFUSEQTY, RETINYID, RGGOODSQTY, TARGETSOURCEID, TARGETGOODSQTY, INVDATE, INVNO, INVCODE, INVTYPE, REWHOLEQTY, RESCATTERQTY, REUNWHOLEQTY, REUNSCATTERQTY, REUNINTRUSTWHOLEQTY, REUNINTRUSTSCATTERQTY, REUNREFUSEWHOLEQTY, REUNREFUSESCATTERQTY, POSID, ZX_GOODSSTATUSID, ZX_SENDWMSFLAG, ZX_SENDWMSDATE, ZX_WMSBACKDATE
+    </sql>
+
+</mapper>

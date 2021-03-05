@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsTrDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsTrDoc">
+        <id column="TRID" property="trid" />
+        <result column="CREDATE" property="credate" />
+        <result column="TARGETDATE" property="targetdate" />
+        <result column="TRANFLAG" property="tranflag" />
+        <result column="TRNO" property="trno" />
+        <result column="FROMCOMPANYID" property="fromcompanyid" />
+        <result column="TOCOMPANYID" property="tocompanyid" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="SOURCETABLE" property="sourcetable" />
+        <result column="SOURCEID" property="sourceid" />
+        <result column="TRANPRIORITY" property="tranpriority" />
+        <result column="URGENTFLAG" property="urgentflag" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="TRANMETHOD" property="tranmethod" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="TARGETPOSID" property="targetposid" />
+        <result column="MIDPOSID" property="midposid" />
+        <result column="SELFTRANTYPE" property="selftrantype" />
+        <result column="TRANSLINEID" property="translineid" />
+        <result column="COLDSTORAGEFLAG" property="coldstorageflag" />
+        <result column="AGENTID" property="agentid" />
+        <result column="ADDRESS" property="address" />
+        <result column="SALERID" property="salerid" />
+        <result column="SALESDEPTID" property="salesdeptid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="COLLECTIONFLAG" property="collectionflag" />
+        <result column="COLLECTMANID" property="collectmanid" />
+        <result column="COLLECTDATE" property="collectdate" />
+        <result column="PRINTCOUNT" property="printcount" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="CHECKSTATUS" property="checkstatus" />
+        <result column="CONTACTID" property="contactid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TRID, CREDATE, TARGETDATE, TRANFLAG, TRNO, FROMCOMPANYID, TOCOMPANYID, COMEFROM, SOURCETABLE, SOURCEID, TRANPRIORITY, URGENTFLAG, USESTATUS, TRANMETHOD, INPUTMANID, TARGETPOSID, MIDPOSID, SELFTRANTYPE, TRANSLINEID, COLDSTORAGEFLAG, AGENTID, ADDRESS, SALERID, SALESDEPTID, ENTRYID, COLLECTIONFLAG, COLLECTMANID, COLLECTDATE, PRINTCOUNT, PRINTDATE, PRINTMANID, CHECKSTATUS, CONTACTID
+    </sql>
+    <select id="selectListBy" resultType="com.zsyc.zt.order.entity.BmsTrDoc">
+         select    b.translineid,
+                   f.COLDSTORAGEFLAG,
+                   a.AGENTID,
+                   a.CONTACTID,
+                   b.address,
+                   a.SALERID,
+                   a.SALESDEPTID,
+                   a.ENTRYID,
+                   a.targetposid
+          from bms_sa_doc a,
+               bms_tr_pos_def b,
+               (select max(nvl(d.coldflag,0)) coldstorageflag, e.salesid
+                  from bms_sa_doc e, bms_sa_dtl c, pub_goods d
+                 where e.salesid = c.salesid
+                   and c.goodsid = d.goodsid
+                 group by e.salesid) f
+         where a.targetposid = b.tranposid(+)
+           and a.salesid = f.salesid(+)
+           and a.salesid =#{salesId}
+    </select>
+
+</mapper>

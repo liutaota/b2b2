@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSaSpecialCtrlDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSaSpecialCtrlDoc">
+        <id column="CTRLDOCID" property="ctrldocid" />
+        <result column="CUSTOMCLASSID" property="customclassid" />
+        <result column="CONTROLTYPE" property="controltype" />
+        <result column="MEMO" property="memo" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="ENTRYID" property="entryid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CTRLDOCID, CUSTOMCLASSID, CONTROLTYPE, MEMO, USESTATUS, ENTRYID
+    </sql>
+
+</mapper>

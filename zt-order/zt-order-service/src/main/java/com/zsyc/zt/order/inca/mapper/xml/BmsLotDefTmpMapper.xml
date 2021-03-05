@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsLotDefTmpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsLotDefTmp">
+        <id column="PKID" property="pkid" />
+        <result column="LOTID" property="lotid" />
+        <result column="LOTNO" property="lotno" />
+        <result column="KILLLOTNO" property="killlotno" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="PRODDATE" property="proddate" />
+        <result column="INVALIDDATE" property="invaliddate" />
+        <result column="LOTSORTNO" property="lotsortno" />
+        <result column="APPROVEDOCNO" property="approvedocno" />
+        <result column="REGISTDOCNO" property="registdocno" />
+        <result column="MEMO" property="memo" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="CONSERVEDATE" property="conservedate" />
+        <result column="CHECKNO" property="checkno" />
+        <result column="FACTORYNAME" property="factoryname" />
+        <result column="KILLDATE" property="killdate" />
+        <result column="CHECKNOMEMO" property="checknomemo" />
+        <result column="PRINTSET" property="printset" />
+        <result column="MODIFYOBJ" property="modifyobj" />
+        <result column="MODIFYCOLUMNS" property="modifycolumns" />
+        <result column="APPROVEFLAG" property="approveflag" />
+        <result column="APPROVEID" property="approveid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PKID, LOTID, LOTNO, KILLLOTNO, GOODSID, PRODDATE, INVALIDDATE, LOTSORTNO, APPROVEDOCNO, REGISTDOCNO, MEMO, INPUTMANID, CREDATE, CONSERVEDATE, CHECKNO, FACTORYNAME, KILLDATE, CHECKNOMEMO, PRINTSET, MODIFYOBJ, MODIFYCOLUMNS, APPROVEFLAG, APPROVEID
+    </sql>
+
+</mapper>

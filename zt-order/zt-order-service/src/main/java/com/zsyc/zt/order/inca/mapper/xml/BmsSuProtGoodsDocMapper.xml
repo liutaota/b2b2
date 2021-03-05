@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuProtGoodsDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuProtGoodsDoc">
+        <id column="PROTDOCID" property="protdocid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="STARTDATE" property="startdate" />
+        <result column="ENDDATE" property="enddate" />
+        <result column="EMPLOYEEID" property="employeeid" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="AGENTMANID" property="agentmanid" />
+        <result column="CLUES" property="clues" />
+        <result column="TYPE" property="type" />
+        <result column="FREQUENCY" property="frequency" />
+        <result column="FORM" property="form" />
+        <result column="LIMITCUSTOMERSETID" property="limitcustomersetid" />
+        <result column="CONFIGCLASS" property="configclass" />
+        <result column="CONTACTID" property="contactid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PROTDOCID, ENTRYID, COMPANYID, STARTDATE, ENDDATE, EMPLOYEEID, INPUTMANID, CREDATE, AGENTMANID, CLUES, TYPE, FREQUENCY, FORM, LIMITCUSTOMERSETID, CONFIGCLASS, CONTACTID
+    </sql>
+
+</mapper>

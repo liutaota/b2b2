@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsCreditdaysTmp3Mapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsCreditdaysTmp3">
+        <id column="SALERID" property="salerid" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="DAYS" property="days" />
+        <result column="EXEC_ORDER_ID" property="execOrderId" />
+        <result column="BEGINDATE" property="begindate" />
+        <result column="ENDDATE" property="enddate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SALERID, CUSTOMID, DAYS, EXEC_ORDER_ID, BEGINDATE, ENDDATE
+    </sql>
+
+</mapper>

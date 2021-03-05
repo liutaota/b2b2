@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsMediProcessDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsMediProcessDtl">
+        <id column="PROCESSDTLID" property="processdtlid" />
+        <result column="PROCESSDOCID" property="processdocid" />
+        <result column="FORMULADTLID" property="formuladtlid" />
+        <result column="COSTPRICE" property="costprice" />
+        <result column="REALUSEQTY" property="realuseqty" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="OUTTOTAL" property="outtotal" />
+        <result column="FROMSTOREID" property="fromstoreid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="MEMO" property="memo" />
+        <result column="BATCHID" property="batchid" />
+        <result column="LOTID" property="lotid" />
+        <result column="POSID" property="posid" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PROCESSDTLID, PROCESSDOCID, FORMULADTLID, COSTPRICE, REALUSEQTY, GOODSDTLID, GOODSID, OUTTOTAL, FROMSTOREID, STORAGEID, GOODSQTY, MEMO, BATCHID, LOTID, POSID, GOODSSTATUSID
+    </sql>
+
+</mapper>

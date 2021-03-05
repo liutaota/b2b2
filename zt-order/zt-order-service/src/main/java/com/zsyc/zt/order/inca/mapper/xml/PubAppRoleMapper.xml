@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubAppRoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubAppRole">
+        <id column="GROUPID" property="groupid" />
+        <result column="USERGROUP" property="usergroup" />
+        <result column="MESSAGE" property="message" />
+        <result column="REVENUE" property="revenue" />
+        <result column="STRUCT" property="struct" />
+        <result column="STORERANK" property="storerank" />
+        <result column="STOCK" property="stock" />
+        <result column="GOODSAGE" property="goodsage" />
+        <result column="INVALID" property="invalid" />
+        <result column="PROMOTION" property="promotion" />
+        <result column="PRESCRIPTION" property="prescription" />
+        <result column="STORERPOS" property="storerpos" />
+        <result column="REQSUPPLY" property="reqsupply" />
+        <result column="INSIDER" property="insider" />
+        <result column="ADDRESSBOOK" property="addressbook" />
+        <result column="SIGNIN" property="signin" />
+        <result column="SALERANK" property="salerank" />
+        <result column="INSHOPRANK" property="inshoprank" />
+        <result column="GOODSINFO" property="goodsinfo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GROUPID, USERGROUP, MESSAGE, REVENUE, STRUCT, STORERANK, STOCK, GOODSAGE, INVALID, PROMOTION, PRESCRIPTION, STORERPOS, REQSUPPLY, INSIDER, ADDRESSBOOK, SIGNIN, SALERANK, INSHOPRANK, GOODSINFO
+    </sql>
+
+</mapper>

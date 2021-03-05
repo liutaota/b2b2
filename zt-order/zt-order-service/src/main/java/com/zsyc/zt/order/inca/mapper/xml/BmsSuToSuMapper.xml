@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuToSuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuToSu">
+        <id column="SUDTLID1" property="sudtlid1" />
+        <result column="SUDTLID2" property="sudtlid2" />
+        <result column="GOODSQTY" property="goodsqty" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SUDTLID1, SUDTLID2, GOODSQTY
+    </sql>
+
+</mapper>

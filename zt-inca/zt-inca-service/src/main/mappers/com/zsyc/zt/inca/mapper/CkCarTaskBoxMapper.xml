@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.CkCarTaskBoxMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.inca.entity.CkCarTaskBox">
+        <id column="TASK_BOX_ID" property="taskBoxId" />
+        <result column="TASK_ID" property="taskId" />
+        <result column="TASK_DTL_ID" property="taskDtlId" />
+        <result column="SALES_ID_LIST" property="salesIdList" />
+        <result column="PACK_ID" property="packId" />
+        <result column="CREATE_DATE" property="createDate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TASK_BOX_ID, TASK_ID, TASK_DTL_ID, SALES_ID_LIST, PACK_ID, CREATE_DATE
+    </sql>
+    <insert id="insertTaskBox" parameterType="list">
+        <foreach collection="list" item="item" index="index" separator=";">
+        insert into ck_car_task_box(TASK_ID, TASK_DTL_ID, SALES_ID_LIST, PACK_ID, CREATE_DATE)
+        values(#{item.taskId},#{item.taskDtlId},#{item.salesIdList},#{item.packId},#{item.createDate})
+        </foreach>
+    </insert>
+
+    <select id="getCkCarTaskBoxByTaskDtlId" resultType="com.zsyc.zt.inca.vo.CkCarTaskBoxVo">
+         select
+            a.task_box_id,
+            a.sales_id_list,
+            a.pack_id,
+            a.task_id,
+            a.task_dtl_id,
+            a.create_date
+         from
+            ck_car_task_box a
+         where
+            a.task_dtl_id=#{taskDtlId}
+    </select>
+
+    <!--  查询是否录入箱号信息  -->
+    <select id="getBoxCount" parameterType="com.zsyc.zt.inca.dto.CkCarTaskBoxDto" resultType="java.lang.Integer">
+        select count(0) from ck_car_task_box a where a.task_box_id = #{ckCarTaskBoxDto.taskBoxId} and a.pack_id = #{ckCarTaskBoxDto.packId}
+    </select>
+
+    <!--  查询销售单号集合  -->
+    <select id="querySalesListByDtlId" resultType="java.lang.String">
+        select sales_id_list from ck_car_task_box where task_dtl_id = #{taskDtlId}
+    </select>
+
+    <!--  删除：根据细单ID删除箱号信息  -->
+    <delete id="deleteTaskBoxByTaskDtlId">
+        delete from ck_car_task_box a where a.task_dtl_id = #{taskDtlId} and exists(
+        select task_dtl_id from ck_car_task_dtl b where b.task_dtl_id = #{taskDtlId} and b.usestatus = 1
+        )
+    </delete>
+
+    <!--  删除：根据箱号信息ID，删除箱号信息  -->
+    <delete id="deleteTaskBoxByTaskBoxId">
+        delete from ck_car_task_box a where a.task_box_id = #{taskBoxId} and a.task_dtl_id = #{taskDtlId} and exists(
+        select task_dtl_id from ck_car_task_dtl b where b.task_dtl_id = #{taskDtlId} and b.usestatus = 1
+        )
+    </delete>
+
+    <!--  查询出车任务中指定客户订单对应的收款凭证信息  -->
+    <select id="getSalesAndReceiptList" resultType="com.zsyc.zt.inca.vo.others.CarTaskBmsDocVo">
+        select
+         rs.sourceid sales_id,
+         rs.dtlcost dtl_cost,
+         rs.xx_dtlcost xx_dtl_cost,
+         rs.jd_dtlcost jd_cost,
+         rs.b2b_dtlcost b2b_dtl_cost,
+         rs.zx_undeliflag zx_un_deli_flag,
+         rs.custom_id,
+         rs.custom_name,
+         listagg(rs.pack_id, ',') WITHIN GROUP (ORDER BY rs.pack_id) pack_id_list
+        from
+        (select a.sourceid, a.dtlcost,
+             (case
+               --销售单
+                 when a.sourcetype = 3 then
+                  case
+                    when (nvl(sa.zx_bh_flag,0)=11 and sa.b2b_pay_type='ON_LINE') or nvl(sa.zx_bh_flag,0)=4 then
+                     0
+                    else
+                     nvl(a.dtlcost, 0)
+                  end
+               --配送单
+                 when a.sourcetype = 16 then
+                  case
+                    when (nvl(sp.zx_bh_flag,0)=11 and sp.b2b_pay_type='ON_LINE') or nvl(sp.zx_bh_flag,0)=4 then
+                     0
+                    else
+                     nvl(a.dtlcost, 0)
+                  end
+               --赠品
+                 when a.sourcetype = 18 then
+                  case
+                    when (sp.zx_bh_flag = 4) then
+                     0
+                    else
+                     nvl(a.dtlcost, 0)
+                  end
+                 else
+                  0
+               end) xx_dtlcost, ---- lgc
+
+        --京东付款金额(不管京东是否在月结和在线支付，订单金额都是收款凭证上的“JD线上金额：”显示) s
+               (case
+                 when a.sourcetype = 3 then
+                  case
+                    when nvl(sa.zx_bh_flag,0) = 4 then
+                     nvl(a.dtlcost, 0)
+                    else
+                     0
+                  end
+                 when a.sourcetype = 16 then
+                  case
+                    when (sp.zx_bh_flag = 4) then
+                     nvl(a.dtlcost, 0)
+                    else
+                     0
+                  end
+
+                 when a.sourcetype = 18 then
+                  case
+                    when (sp.zx_bh_flag = 4) then
+                     nvl(a.dtlcost, 0)
+                    else
+                     0
+                  end
+                 else
+                  0
+               end) jd_dtlcost, ---lgc
+        --京东付款金额(不管京东是否在月结和在线支付，订单金额都是收款凭证上的“JD线上金额：”显示) e
+        --b2b付款金额 s
+               (case
+                 when a.sourcetype = 3 then
+                  case
+                    when (sa.zx_bh_flag = 11 and sa.b2b_pay_type='ON_LINE') then
+                     nvl(a.dtlcost, 0)
+                    else
+                     0
+                  end
+                 when a.sourcetype = 16 then
+                  case
+                    when (sp.zx_bh_flag = 11 and sp.b2b_pay_type='ON_LINE') then
+                     nvl(a.dtlcost, 0)
+                    else
+                     0
+                  end
+
+                 when a.sourcetype = 18 then
+                  case
+                    when (sp.zx_bh_flag = 11) then
+                     nvl(a.dtlcost, 0)
+                    else
+                     0
+                  end
+                 else
+                  0
+               end) b2b_dtlcost, ---lgc
+        --b2b付款金额 e
+
+                nvl(a.zx_undeliflag, 0) zx_undeliflag, --未送货标志  --sunbl 2018年10月25日10:08:27  移植4331功能
+               task.custom_id,
+               task.custom_name,
+               box.pack_id
+
+          from bms_transcontrol_dtl a,
+               bms_sa_doc sa, ------lgc
+               gpcs_placesupply sp, ------lgc-
+               pub_company b,
+               bms_tr_pos_def c,
+               pub_transline_def d,
+               (select cus.customid, cus.settletypeid
+                  from pub_entry_customer cus
+                 where cus.entryid = 1) e, --用客户运营参数取结算方式
+               ck_car_task_dtl task,
+               ck_car_task_box box
+         where a.companyid = b.companyid(+)
+               and a.tranposid = c.tranposid(+)
+               and a.companyid = e.customid(+)
+               and c.translineid = d.translineid(+)
+               and a.sourceid = sa.salesid(+) ---lgc
+               and a.sourceid = sp.placesupplyid(+) --lgc
+               and a.companyid = task.custom_id(+)
+               and task.task_dtl_id = box.task_dtl_id(+)
+               and a.sourcetype in (16,3,18)
+               and task.custom_id = #{customId}
+               and a.sourceid in
+                <foreach collection="salesIdList" item="id" index="index" open="(" close=")" separator=",">
+                    #{id}
+                </foreach>
+               ) rs
+         group by
+             rs.sourceid,
+             rs.dtlcost,
+             rs.xx_dtlcost,
+             rs.jd_dtlcost,
+             rs.b2b_dtlcost,
+             rs.zx_undeliflag,
+             rs.custom_id,
+             rs.custom_name
+    </select>
+
+    <!--  查询任务下未录入箱号集合  -->
+    <select id="selectNotInputPackId" resultType="java.lang.Long">
+        select
+           h.pack_id
+        from
+        (
+        select
+              a.erp_id,
+              a.pack_id,
+              b.salesid,
+              b.customid,
+              b.customname,
+              t.transortno,
+              b.credate
+          from nw_res_i a,
+              bms_sa_doc b,
+              bms_tr_pos_def t
+          where a.pack_id is not null and a.erp_id=b.salesid||'' and b.customid=t.companyid and b.credate>to_date('2020/12/21', 'YYYY/MM/DD')
+          and b.usestatus = 1
+          and not exists(
+              select
+               * from
+               ck_car_task_doc x ,   ck_car_task_dtl y  ,ck_car_task_box  z
+              where
+              x.task_id = y.task_id and y.task_dtl_id = z.task_dtl_id and z.pack_id = a.pack_id  and x.usestatus = 2
+          )
+          and b.customid = #{customId}
+          and a.pack_id not in(
+              select ex.pack_id from ck_car_task_box ex where ex.task_id = #{taskId}
+          )
+          group by
+              a.erp_id,
+              a.pack_id,
+              b.salesid,
+              b.customid,
+              b.customname,
+              t.transortno,
+              b.credate
+        ) h
+    </select>
+
+</mapper>

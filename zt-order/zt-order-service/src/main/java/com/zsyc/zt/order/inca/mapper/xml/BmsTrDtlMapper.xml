@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsTrDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsTrDtl">
+        <id column="TRDTLID" property="trdtlid" />
+        <result column="TRID" property="trid" />
+        <result column="PREPARESTATUS" property="preparestatus" />
+        <result column="CONFIGMANID" property="configmanid" />
+        <result column="CONFIGTIME" property="configtime" />
+        <result column="SIGNFLOWFLAG" property="signflowflag" />
+        <result column="CONSIGNMENTDATE" property="consignmentdate" />
+        <result column="CONSIGNMENTMANID" property="consignmentmanid" />
+        <result column="MEMO" property="memo" />
+        <result column="SIGNFORMMANNAME" property="signformmanname" />
+        <result column="SIGNFLOWTIME" property="signflowtime" />
+        <result column="ALLOWTIME" property="allowtime" />
+        <result column="SIGNFORMMAN" property="signformman" />
+        <result column="PRINTFLAG" property="printflag" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="ALLOWMANID" property="allowmanid" />
+        <result column="STORERID" property="storerid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="CHECKMANID" property="checkmanid" />
+        <result column="PICKBACKID" property="pickbackid" />
+        <result column="PICKBACKDATE" property="pickbackdate" />
+        <result column="CHECKMANID2" property="checkmanid2" />
+        <result column="WAVENO" property="waveno" />
+        <result column="GSPUNCONFIRMFLAG" property="gspunconfirmflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TRID, TRDTLID, PREPARESTATUS, CONFIGMANID, CONFIGTIME, SIGNFLOWFLAG, CONSIGNMENTDATE, CONSIGNMENTMANID, MEMO, SIGNFORMMANNAME, SIGNFLOWTIME, ALLOWTIME, SIGNFORMMAN, PRINTFLAG, PRINTMANID, PRINTDATE, ALLOWMANID, STORERID, STORAGEID, CHECKMANID, PICKBACKID, PICKBACKDATE, CHECKMANID2, WAVENO, GSPUNCONFIRMFLAG
+    </sql>
+
+</mapper>

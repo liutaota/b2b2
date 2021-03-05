@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubGoodsDetailMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubGoodsDetail">
+        <id column="GOODSDTLID" property="goodsdtlid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="PACKNAME" property="packname" />
+        <result column="PACKSIZE" property="packsize" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="COLORSTRING" property="colorstring" />
+        <result column="MODEL" property="model" />
+        <result column="GOODSLENGTH" property="goodslength" />
+        <result column="GOODSWIDTH" property="goodswidth" />
+        <result column="GOODSHEIGHT" property="goodsheight" />
+        <result column="GOODSUNITWEIGHT" property="goodsunitweight" />
+        <result column="GOODSUNITVOL" property="goodsunitvol" />
+        <result column="FACTORYID" property="factoryid" />
+        <result column="PRODAREA" property="prodarea" />
+        <result column="SYS_MODIFYDATE" property="sysModifydate" />
+        <result column="TOWMSDATE" property="towmsdate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GOODSID, GOODSDTLID, PACKNAME, PACKSIZE, USESTATUS, COLORSTRING, MODEL, GOODSLENGTH, GOODSWIDTH, GOODSHEIGHT, GOODSUNITWEIGHT, GOODSUNITVOL, FACTORYID, PRODAREA, SYS_MODIFYDATE, TOWMSDATE
+    </sql>
+
+</mapper>

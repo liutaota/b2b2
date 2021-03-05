@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubPrintpointDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubPrintpointDtl">
+        <id column="SEQID" property="seqid" />
+        <result column="FILENAME" property="filename" />
+        <result column="SQLRULES" property="sqlrules" />
+        <result column="PRINTPOINTID" property="printpointid" />
+        <result column="INCOLNAME" property="incolname" />
+        <result column="TABLENAME" property="tablename" />
+        <result column="DEFAULTPRINT" property="defaultprint" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SEQID, FILENAME, SQLRULES, PRINTPOINTID, INCOLNAME, TABLENAME, DEFAULTPRINT
+    </sql>
+
+</mapper>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubImpGoodsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubImpGoods">
+        <id column="DTLID" property="dtlid" />
+        <result column="DOCID" property="docid" />
+        <result column="IMPSTATUS" property="impstatus" />
+        <result column="ERRORMESSAGE" property="errormessage" />
+        <result column="NEWID" property="newid" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="CURRENCYNAME" property="currencyname" />
+        <result column="OPCODE" property="opcode" />
+        <result column="GOODSTYPE" property="goodstype" />
+        <result column="PRODAREA" property="prodarea" />
+        <result column="FACTORYNAME" property="factoryname" />
+        <result column="FACTORYOPCODE" property="factoryopcode" />
+        <result column="FACTORYPINYIN" property="factorypinyin" />
+        <result column="CORPCODE" property="corpcode" />
+        <result column="FACTORYNO" property="factoryno" />
+        <result column="FACTORYMEMO" property="factorymemo" />
+        <result column="BARCODE" property="barcode" />
+        <result column="STANDARDNO" property="standardno" />
+        <result column="TRADEMARK" property="trademark" />
+        <result column="GOODSSHORTNAME" property="goodsshortname" />
+        <result column="GOODSENGNAME" property="goodsengname" />
+        <result column="GOOODSFORMALNAME" property="gooodsformalname" />
+        <result column="GOODSPINYIN" property="goodspinyin" />
+        <result column="ALONEPACKFLAG" property="alonepackflag" />
+        <result column="GOODSUNIT" property="goodsunit" />
+        <result column="UNITWEIGHT" property="unitweight" />
+        <result column="UNITLENGTH" property="unitlength" />
+        <result column="UNITWIDTH" property="unitwidth" />
+        <result column="UNITHEIGHT" property="unitheight" />
+        <result column="UNITVOL" property="unitvol" />
+        <result column="MIDPACKNAME" property="midpackname" />
+        <result column="MIDPACKSIZE" property="midpacksize" />
+        <result column="MIDPACKWEIGHT" property="midpackweight" />
+        <result column="MIDPACKLENGTH" property="midpacklength" />
+        <result column="MIDPACKWIDTH" property="midpackwidth" />
+        <result column="MIDPACKHEIGHT" property="midpackheight" />
+        <result column="MIDPACKVOL" property="midpackvol" />
+        <result column="PACKNAME" property="packname" />
+        <result column="PACKSIZE" property="packsize" />
+        <result column="PACKWEIGHT" property="packweight" />
+        <result column="PACKLENGTH" property="packlength" />
+        <result column="PACKWIDTH" property="packwidth" />
+        <result column="PACKHEIGHT" property="packheight" />
+        <result column="PACKVOL" property="packvol" />
+        <result column="STORAGECONDITIONNAME" property="storageconditionname" />
+        <result column="TRANSCONDITIONNAME" property="transconditionname" />
+        <result column="VALIDPERIOD" property="validperiod" />
+        <result column="PERIODUNIT" property="periodunit" />
+        <result column="RESPPERIOD" property="respperiod" />
+        <result column="SUPPLYTAXRATE" property="supplytaxrate" />
+        <result column="SALESTAXRATE" property="salestaxrate" />
+        <result column="ACCFLAGNAME" property="accflagname" />
+        <result column="FUNCTION" property="function" />
+        <result column="GSPFLAG" property="gspflag" />
+        <result column="GSPCATEGORYNAME" property="gspcategoryname" />
+        <result column="STANDARDTYPE" property="standardtype" />
+        <result column="APPROVEDOCNO" property="approvedocno" />
+        <result column="REGISTDOCNO" property="registdocno" />
+        <result column="MEDICINETYPENAME" property="medicinetypename" />
+        <result column="BUSISCOPENAME" property="busiscopename" />
+        <result column="MEDICINESORTNAME" property="medicinesortname" />
+        <result column="OTCFLAGNAME" property="otcflagname" />
+        <result column="SECURITYFLAGNAME" property="securityflagname" />
+        <result column="SPECIALDRUGNAME" property="specialdrugname" />
+        <result column="SPECIALCTRLNAME" property="specialctrlname" />
+        <result column="IMPORTFLAG" property="importflag" />
+        <result column="ECODEFLAG" property="ecodeflag" />
+        <result column="GOODSNO" property="goodsno" />
+        <result column="MEMO" property="memo" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANNAME" property="inputmanname" />
+        <result column="ZXCOLUMN01" property="zxcolumn01" />
+        <result column="ZXCOLUMN02" property="zxcolumn02" />
+        <result column="ZXCOLUMN03" property="zxcolumn03" />
+        <result column="ZXCOLUMN04" property="zxcolumn04" />
+        <result column="ZXCOLUMN05" property="zxcolumn05" />
+        <result column="ZXCOLUMN06" property="zxcolumn06" />
+        <result column="ZXCOLUMN07" property="zxcolumn07" />
+        <result column="ZXCOLUMN08" property="zxcolumn08" />
+        <result column="ZXCOLUMN09" property="zxcolumn09" />
+        <result column="ZXCOLUMN10" property="zxcolumn10" />
+        <result column="ZXCOLUMN11" property="zxcolumn11" />
+        <result column="ZXCOLUMN12" property="zxcolumn12" />
+        <result column="ZXCOLUMN13" property="zxcolumn13" />
+        <result column="ZXCOLUMN14" property="zxcolumn14" />
+        <result column="ZXCOLUMN15" property="zxcolumn15" />
+        <result column="ZXCOLUMN16" property="zxcolumn16" />
+        <result column="ZXCOLUMN17" property="zxcolumn17" />
+        <result column="ZXCOLUMN18" property="zxcolumn18" />
+        <result column="ZXCOLUMN19" property="zxcolumn19" />
+        <result column="ZXCOLUMN20" property="zxcolumn20" />
+        <result column="USESTATUSNAME" property="usestatusname" />
+        <result column="COLDFLAG" property="coldflag" />
+        <result column="TEMPERATUREDOWN" property="temperaturedown" />
+        <result column="TEMPERATUREUP" property="temperatureup" />
+        <result column="TRANSPORTTIME" property="transporttime" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="FACTORYID" property="factoryid" />
+        <result column="STORAGECONDITION" property="storagecondition" />
+        <result column="TRANSCONDITION" property="transcondition" />
+        <result column="ACCFLAG" property="accflag" />
+        <result column="MEDICINETYPE" property="medicinetype" />
+        <result column="BUSISCOPE" property="busiscope" />
+        <result column="MEDICINESORT" property="medicinesort" />
+        <result column="OTCFLAG" property="otcflag" />
+        <result column="SECURITYFLAG" property="securityflag" />
+        <result column="SPECIALDRUG" property="specialdrug" />
+        <result column="SPECIALCTRL" property="specialctrl" />
+        <result column="GSPCATEGORYID" property="gspcategoryid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="GOODSUNITID" property="goodsunitid" />
+        <result column="MIDPACKID" property="midpackid" />
+        <result column="PACKID" property="packid" />
+        <result column="RETAILNOLOT" property="retailnolot" />
+        <result column="AGAINCHKFLAG" property="againchkflag" />
+        <result column="LOTFLAG" property="lotflag" />
+        <result column="FACTORYFLAG" property="factoryflag" />
+        <result column="PRODAREAFLAG" property="prodareaflag" />
+        <result column="TREATMENTVARIETY" property="treatmentvariety" />
+        <result column="USEDAYS" property="usedays" />
+        <result column="USETABOO" property="usetaboo" />
+        <result column="FOCUSDRUGS" property="focusdrugs" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DOCID, DTLID, IMPSTATUS, ERRORMESSAGE, NEWID, GOODSNAME, CURRENCYNAME, OPCODE, GOODSTYPE, PRODAREA, FACTORYNAME, FACTORYOPCODE, FACTORYPINYIN, CORPCODE, FACTORYNO, FACTORYMEMO, BARCODE, STANDARDNO, TRADEMARK, GOODSSHORTNAME, GOODSENGNAME, GOOODSFORMALNAME, GOODSPINYIN, ALONEPACKFLAG, GOODSUNIT, UNITWEIGHT, UNITLENGTH, UNITWIDTH, UNITHEIGHT, UNITVOL, MIDPACKNAME, MIDPACKSIZE, MIDPACKWEIGHT, MIDPACKLENGTH, MIDPACKWIDTH, MIDPACKHEIGHT, MIDPACKVOL, PACKNAME, PACKSIZE, PACKWEIGHT, PACKLENGTH, PACKWIDTH, PACKHEIGHT, PACKVOL, STORAGECONDITIONNAME, TRANSCONDITIONNAME, VALIDPERIOD, PERIODUNIT, RESPPERIOD, SUPPLYTAXRATE, SALESTAXRATE, ACCFLAGNAME, FUNCTION, GSPFLAG, GSPCATEGORYNAME, STANDARDTYPE, APPROVEDOCNO, REGISTDOCNO, MEDICINETYPENAME, BUSISCOPENAME, MEDICINESORTNAME, OTCFLAGNAME, SECURITYFLAGNAME, SPECIALDRUGNAME, SPECIALCTRLNAME, IMPORTFLAG, ECODEFLAG, GOODSNO, MEMO, CREDATE, INPUTMANNAME, ZXCOLUMN01, ZXCOLUMN02, ZXCOLUMN03, ZXCOLUMN04, ZXCOLUMN05, ZXCOLUMN06, ZXCOLUMN07, ZXCOLUMN08, ZXCOLUMN09, ZXCOLUMN10, ZXCOLUMN11, ZXCOLUMN12, ZXCOLUMN13, ZXCOLUMN14, ZXCOLUMN15, ZXCOLUMN16, ZXCOLUMN17, ZXCOLUMN18, ZXCOLUMN19, ZXCOLUMN20, USESTATUSNAME, COLDFLAG, TEMPERATUREDOWN, TEMPERATUREUP, TRANSPORTTIME, INPUTMANID, FACTORYID, STORAGECONDITION, TRANSCONDITION, ACCFLAG, MEDICINETYPE, BUSISCOPE, MEDICINESORT, OTCFLAG, SECURITYFLAG, SPECIALDRUG, SPECIALCTRL, GSPCATEGORYID, USESTATUS, GOODSUNITID, MIDPACKID, PACKID, RETAILNOLOT, AGAINCHKFLAG, LOTFLAG, FACTORYFLAG, PRODAREAFLAG, TREATMENTVARIETY, USEDAYS, USETABOO, FOCUSDRUGS
+    </sql>
+
+</mapper>

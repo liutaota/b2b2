@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsCreditdaysExecOrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsCreditdaysExecOrder">
+        <id column="ORDERID" property="orderid" />
+        <result column="ADJUST_DTL_ID" property="adjustDtlId" />
+        <result column="EXEC_DATE" property="execDate" />
+        <result column="PARENT_ORDER_ID" property="parentOrderId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ORDERID, ADJUST_DTL_ID, EXEC_DATE, PARENT_ORDER_ID
+    </sql>
+
+</mapper>

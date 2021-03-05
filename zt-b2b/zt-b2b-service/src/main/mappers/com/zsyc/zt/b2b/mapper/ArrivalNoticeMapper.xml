@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.ArrivalNoticeMapper">
+
+    <select id="getArrivalNoticeList" resultType="com.zsyc.zt.b2b.vo.ArrivalNoticeVo">
+        select an.*,m.erp_user_id,m.user_name from  ${b2b}.arrival_notice an
+        left join member m on m.id=an.member_id
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+
+            <if test="arrivalNoticeVo.memberId!=null">
+                an.MEMBER_ID = #{arrivalNoticeVo.memberId}
+            </if>
+            <if test="arrivalNoticeVo.erpUserId!=null">
+                and m.erp_user_id = #{arrivalNoticeVo.erpUserId}
+            </if>
+            <if test="arrivalNoticeVo.goodsId!=null">
+                and an.ERP_GOODS_ID = #{arrivalNoticeVo.goodsId}
+            </if>
+            <if test="arrivalNoticeVo.anStatus!=null and arrivalNoticeVo.anStatus!=''">
+                and an.AN_STATUS = #{arrivalNoticeVo.anStatus}
+            </if>
+            <if test="arrivalNoticeVo.goodsPinYin!=null and arrivalNoticeVo.goodsPinYin!=''">
+                and (
+                an.ERP_GOODS_ID like '%'||(#{arrivalNoticeVo.goodsPinYin})||'%'
+                or an.GOODS_NAME like '%'||#{arrivalNoticeVo.goodsPinYin}||'%')
+            </if>
+        </trim>
+        order by an.create_time desc
+    </select>
+    <select id="getMemberArrivalNoticeList" resultType="com.zsyc.zt.b2b.vo.ArrivalNoticeVo">
+        select an.*,
+        gv.classname,
+        gv.classname_3,
+        gv.medicinetypename,
+        gv.goodsname,
+        gv.goodspinyin,
+        gv.goodsunit,
+        gv.price_2,
+        gv.price_try,
+        gv.approvedocno,
+        gv.factoryname,
+        gv.factoryid,
+        gv.goodsid,
+        gv.goodstype,
+        gv.goodsid_gps,
+        gv.barcode,
+        gv.currencyname,
+        gv.credate,
+        gv.classn_row_1,
+        gv.classname_1,
+        gv.classname_2,
+        gv.classn_row_2,
+        gv.classn_row_3,
+        gv.busiscope,
+        gv.busiscope_name,
+        gv.goodsqty,
+        gv.invaliddate,
+        gv.otcflag,
+        gv.storagecondition,
+        gv.prodarea,
+        gv.transcondition,
+        gv.dosage,
+        gv.usegoodstime,
+        gv.diagnosticinfo,
+        gv.transporttime,
+        gv.treatment,
+        gv.memo,
+        gv.supplyerid,
+        gv.employeename,
+        gv.zx_b2b_num_limit,
+        gv.storageid,
+        gv.B2B_NOT_SALE_FLAG,
+        g.goods_img goods_image,p.price,p.priceid from arrival_notice an
+        left join erp_goods_v gv on gv.goodsid=an.erp_goods_id
+        left join goods g on g.erp_goods_id=an.erp_goods_id
+        left join member m on m.id=an.member_id
+        left join erp_goods_price_v p on p.goodsid=an.erp_goods_id and p.customid=m.erp_user_id
+        where m.id=#{memberId} and an.AN_STATUS='SENT_KNOW'
+
+    </select>
+    <select id="getPcArrivalNoticeList" resultType="com.zsyc.zt.b2b.vo.ArrivalNoticeVo">
+        select an.*,
+        gv.classname,
+        gv.classname_3,
+        gv.medicinetypename,
+        gv.goodsname,
+        gv.goodspinyin,
+        gv.goodsunit,
+        gv.price_2,
+        gv.price_try,
+        gv.approvedocno,
+        gv.factoryname,
+        gv.factoryid,
+        gv.goodsid,
+        gv.goodstype,
+        gv.goodsid_gps,
+        gv.barcode,
+        gv.currencyname,
+        gv.credate,
+        gv.classn_row_1,
+        gv.classname_1,
+        gv.classname_2,
+        gv.classn_row_2,
+        gv.classn_row_3,
+        gv.busiscope,
+        gv.busiscope_name,
+        gv.goodsqty,
+        gv.invaliddate,
+        gv.otcflag,
+        gv.storagecondition,
+        gv.prodarea,
+        gv.transcondition,
+        gv.dosage,
+        gv.usegoodstime,
+        gv.diagnosticinfo,
+        gv.transporttime,
+        gv.treatment,
+        gv.memo,
+        gv.supplyerid,
+        gv.employeename,
+        gv.zx_b2b_num_limit,
+        gv.storageid,
+        gv.B2B_NOT_SALE_FLAG,
+        g.goods_img goods_image,p.price,p.priceid
+        from arrival_notice an
+        left join erp_goods_v gv on gv.goodsid=an.erp_goods_id
+        left join goods g on g.erp_goods_id=an.erp_goods_id
+        left join member m on m.id=an.member_id
+        left join erp_goods_price_v p on p.goodsid=an.erp_goods_id and p.customid=m.erp_user_id
+
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+                and an.MEMBER_ID = #{arrivalNoticeVo.memberId}
+            <if test="arrivalNoticeVo.goodsId!=null">
+                and an.ERP_GOODS_ID = #{arrivalNoticeVo.goodsId}
+            </if>
+            <if test="arrivalNoticeVo.anStatus!=null and arrivalNoticeVo.anStatus!=''">
+                and an.AN_STATUS = #{arrivalNoticeVo.anStatus}
+            </if>
+            <if test="arrivalNoticeVo.goodsPinYin!=null and arrivalNoticeVo.goodsPinYin!=''">
+                and (
+                an.ERP_GOODS_ID like '%'||(#{arrivalNoticeVo.goodsPinYin})||'%'
+                or an.GOODS_NAME like '%'||#{arrivalNoticeVo.goodsPinYin}||'%')
+            </if>
+        </trim>
+        order by an.create_time desc
+    </select>
+    <select id="getArrivalNoticeListExcel" resultType="com.zsyc.zt.b2b.vo.ArrivalNoticeVo">
+        select an.*,m.erp_user_id,m.user_name from  ${b2b}.arrival_notice an
+        left join member m on m.id=an.member_id
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+
+            <if test="arrivalNoticeVo.memberId!=null">
+                 an.MEMBER_ID = #{arrivalNoticeVo.memberId}
+            </if>
+            <if test="arrivalNoticeVo.erpUserId!=null">
+                and m.erp_user_id = #{arrivalNoticeVo.erpUserId}
+            </if>
+            <if test="arrivalNoticeVo.goodsId!=null">
+                and an.ERP_GOODS_ID = #{arrivalNoticeVo.goodsId}
+            </if>
+            <if test="arrivalNoticeVo.anStatus!=null and arrivalNoticeVo.anStatus!=''">
+                and an.AN_STATUS = #{arrivalNoticeVo.anStatus}
+            </if>
+            <if test="arrivalNoticeVo.goodsPinYin!=null and arrivalNoticeVo.goodsPinYin!=''">
+                and (
+                an.ERP_GOODS_ID like '%'||(#{arrivalNoticeVo.goodsPinYin})||'%'
+                or an.GOODS_NAME like '%'||#{arrivalNoticeVo.goodsPinYin}||'%')
+            </if>
+        </trim>
+        order by an.create_time desc
+    </select>
+</mapper>

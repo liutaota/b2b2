@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSaDtlInvalidMsgMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSaDtlInvalidMsg">
+        <id column="SALESDTLID" property="salesdtlid" />
+        <result column="SALESID" property="salesid" />
+        <result column="SATYPEID" property="satypeid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="GOODSUSEUNIT" property="goodsuseunit" />
+        <result column="GOODSUSEQTY" property="goodsuseqty" />
+        <result column="PRICEID" property="priceid" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="DTLMEMO" property="dtlmemo" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="CUSTOMNAME" property="customname" />
+        <result column="SALERID" property="salerid" />
+        <result column="SALESDEPTID" property="salesdeptid" />
+        <result column="CREDATE" property="credate" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="FMID" property="fmid" />
+        <result column="EXCHANGE" property="exchange" />
+        <result column="INVALIDMANID" property="invalidmanid" />
+        <result column="INVALIDTIME" property="invalidtime" />
+        <result column="INVTYPE" property="invtype" />
+        <result column="SETTLETYPEID" property="settletypeid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="CONTACTID" property="contactid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SALESID, SALESDTLID, SATYPEID, GOODSID, GOODSDTLID, GOODSQTY, GOODSUSEUNIT, GOODSUSEQTY, PRICEID, UNITPRICE, TOTAL_LINE, STORAGEID, DTLMEMO, CUSTOMID, CUSTOMNAME, SALERID, SALESDEPTID, CREDATE, ENTRYID, FMID, EXCHANGE, INVALIDMANID, INVALIDTIME, INVTYPE, SETTLETYPEID, AGENTID, COMEFROM, CONTACTID
+    </sql>
+
+</mapper>

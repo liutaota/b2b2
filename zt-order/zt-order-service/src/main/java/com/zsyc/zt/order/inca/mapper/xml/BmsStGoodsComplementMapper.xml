@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStGoodsComplementMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStGoodsComplement">
+        <id column="COMPLEMENTID" property="complementid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="UPQTY" property="upqty" />
+        <result column="DOWNQTY" property="downqty" />
+        <result column="DEFAULTFROMST" property="defaultfromst" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="MEMO" property="memo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        COMPLEMENTID, STORAGEID, GOODSID, GOODSDTLID, UPQTY, DOWNQTY, DEFAULTFROMST, ENTRYID, CREDATE, INPUTMANID, MEMO
+    </sql>
+
+</mapper>

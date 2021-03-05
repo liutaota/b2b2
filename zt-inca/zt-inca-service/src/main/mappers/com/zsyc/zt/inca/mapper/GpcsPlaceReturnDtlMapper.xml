@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.GpcsPlaceReturnDtlMapper">
+    <update id="updateBy">
+        update gpcs_placereturndtl a set a.usestatus = #{usestatus} where a.placereturndtlid =#{placereturndtlid}
+    </update>
+
+
+    <select id="selectBy" resultType="com.zsyc.zt.inca.entity.GpcsPlaceReturnDtl">
+        select * from GPCS_PLACERETURNDTL a  where a.placereturnid=#{placereturnId}
+    </select>
+
+    <select id="selectCanBackQtyBy" resultType="com.zsyc.zt.inca.entity.GpcsPlaceReturnDtl">
+         select a.goodsid,
+                a.goodsdtlid,
+                a.goodsunit,
+                a.goodsqty,
+                a.lotid,
+                a.batchid,
+                a.posid,
+                a.goodsstatusid,
+                a.usestatus
+           from resa_stqty_sum_v a
+           where a.goodsid=#{goodsId}
+             and a.lotid=#{lotId}
+             and invaliddays > 0
+             and statususeflag = 1
+             and storageid =#{storageId}
+    </select>
+</mapper>

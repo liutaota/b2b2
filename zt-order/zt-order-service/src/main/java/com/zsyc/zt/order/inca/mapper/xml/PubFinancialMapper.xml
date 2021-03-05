@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubFinancialMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubFinancial">
+        <id column="INPUTID" property="inputid" />
+        <result column="CUSTOMERID" property="customerid" />
+        <result column="CREDATE" property="credate" />
+        <result column="TOMONTH" property="tomonth" />
+        <result column="CODEE" property="codee" />
+        <result column="HANDLETOTAL" property="handletotal" />
+        <result column="RECEIVABLE" property="receivable" />
+        <result column="BACKACCOUNT" property="backaccount" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="MEMO" property="memo" />
+        <result column="CLASSIFY" property="classify" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CUSTOMERID, CREDATE, TOMONTH, CODEE, HANDLETOTAL, RECEIVABLE, BACKACCOUNT, INPUTMANID, INPUTID, MEMO, CLASSIFY
+    </sql>
+
+</mapper>

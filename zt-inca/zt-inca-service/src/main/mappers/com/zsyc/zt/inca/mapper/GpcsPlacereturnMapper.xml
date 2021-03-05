@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.GpcsPlaceReturnMapper">
+    <update id="updatePSCallbackStatus">
+        update GPCS_PLACERETURN
+        set b2b_not_write_back = #{b2bNotWriteBack}
+        <where>
+            <choose>
+                <when test="b2bOrderIds!=null and b2bOrderIds.size() >0">
+                    and b2b_order_id in
+                    <foreach collection="b2bOrderIds" open="(" close=")" separator="," item="item">
+                        #{item,jdbcType=INTEGER}
+                    </foreach>
+                </when>
+                <otherwise>
+                    and PLACERETURNID = 0
+                </otherwise>
+
+            </choose>
+        </where>
+
+
+    </update>
+
+    <select id="selectOrderPSNotCallback" resultType="java.lang.String">
+        select a.b2b_order_id
+          from GPCS_PLACERETURN a
+         where 1 = 1
+           and a.b2b_shop_flag =#{b2bShopFlag}
+           and a.approvestatusdoc = #{approveStatusDoc}
+           and a.b2bnotwriteback =  #{b2bNotWriteBack}
+           and a.b2b_order_id not in
+               (select a.b2b_order_id
+                  from GPCS_PLACERETURN a, GPCS_PLACERETURNDTL b
+                 where a.placereturnid = b.placereturnid
+                  and a.approvestatusdoc = #{approveStatusDoc}
+                  and a.b2bnotwriteback =  #{b2bNotWriteBack}
+                  and a.b2b_shop_flag = #{b2bShopFlag}
+                  and b.wmsbackdate is not null )
+    </select>
+    <select id="getByB2bOrderId" resultType="com.zsyc.zt.inca.entity.GpcsPlaceReturn">
+        select placereturnid,
+                placecenterid,
+                placecenteropcode,
+                placecentername,
+                placepointid,
+                placepointopcode,
+                placepointname,
+                placedate,
+                inputflag,
+                totallines,
+                approvestatusdoc,
+                placemanname,
+                placemandid,
+                totalmoney,
+                jd_order_id,
+                b2b_order_id,
+                b2b_order_no,
+                zx_bh_flag,
+                b2b_src_order_id,
+                b2b_src_order_no
+                from GPCS_PLACERETURN_V
+                where placecenterid in (1, 44075)
+                and inputflag <![CDATA[<>]]> 4
+                and b2b_order_no=#{orderId}
+                and exists
+                (select 1
+                from gpcs_placereturndtl b
+                where gpcs_placereturn_v.placereturnid = b.placereturnid
+                and nvl(receiveflag, 0) = 0
+                and b.usestatus = 3)
+    </select>
+</mapper>

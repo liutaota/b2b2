@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuPlanDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuPlanDoc">
+        <id column="PLANDOCID" property="plandocid" />
+        <result column="CREDATE" property="credate" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="DTLLINES" property="dtllines" />
+        <result column="CONFIRMGOODSLINES" property="confirmgoodslines" />
+        <result column="UNCONFIRMGOODSLINES" property="unconfirmgoodslines" />
+        <result column="WFUSESTATUS" property="wfusestatus" />
+        <result column="WFPROCESS" property="wfprocess" />
+        <result column="WFMEMO" property="wfmemo" />
+        <result column="COMEFROM" property="comefrom" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PLANDOCID, CREDATE, ENTRYID, INPUTMANID, USESTATUS, DTLLINES, CONFIRMGOODSLINES, UNCONFIRMGOODSLINES, WFUSESTATUS, WFPROCESS, WFMEMO, COMEFROM
+    </sql>
+
+</mapper>

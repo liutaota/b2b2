@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.CouponMapper">
+    <select id="getCouponList" resultType="com.zsyc.zt.b2b.vo.CouponVo">
+        select * from COUPON c
+        where IS_DEL = 0
+        <if test="couponVo.id!=null">
+            and c.id like '%'||#{couponVo.id}||'%'
+        </if>
+        <if test="couponVo.couponName!=null and couponVo.couponName!=''">
+            and c.COUPON_NAME like '%'||#{couponVo.couponName}||'%'
+        </if>
+        <if test="couponVo.startTime!=null and couponVo.endTime!=null ">
+            and c.CREATE_TIME &gt;= #{couponVo.startTime} and c.CREATE_TIME &lt;= #{couponVo.endTime}
+        </if>
+        order by c.CREATE_TIME desc
+    </select>
+    <select id="getCouponListIsNotPage" resultType="com.zsyc.zt.b2b.vo.CouponVo">
+        select * from COUPON c
+        where IS_DEL = 0
+        <if test="couponVo.couponName!=null and couponVo.couponName!=''">
+            and c.COUPON_NAME like '%'||#{couponVo.couponName}||'%'
+        </if>
+        <if test="couponVo.startTime!=null and couponVo.endTime!=null ">
+            and c.CREATE_TIME &gt;= #{couponVo.startTime} and c.CREATE_TIME &lt;= #{couponVo.endTime}
+        </if>
+        order by c.CREATE_TIME desc
+    </select>
+    <select id="getCouponByOrder" resultType="com.zsyc.zt.b2b.vo.CouponReceiveVo">
+        select cr.*,c.COUPON_NAME,c.type,c.explain,c.FULL_AMOUNT,c.REDUCE_AMOUNT,c.DISCOUNT,c.USE_DAY,c.USE_START_TIME
+        as c_USE_START_TIME,c.USE_END_TIME as c_USE_END_TIME,c.IS_RECEIVE,c.IS_USE from COUPON c
+        INNER JOIN COUPON_RECEIVE cr on cr.COUPON_ID=c.id
+        where cr.SOURCE='ORDER' and cr.IS_DEL=0 and cr.STATUS='TO_RECEIVE'
+        and cr.ORDER_ID=#{orderId}
+    </select>
+    <select id="getByCartCoupon" resultType="com.zsyc.zt.b2b.vo.CouponVo">
+        select DISTINCT c.* from COUPON c
+        inner join COUPON_RECEIVE cr on cr.COUPON_ID=c.id
+        where cr.STATUS='UNUSED' and cr.MEMBER_ID=#{memberId}
+        and cr.is_del=0
+        and c.is_del=0
+        and c.IS_USE=1
+        and sysdate between cr.USE_START_TIME and cr.USE_END_TIME
+      <!--  <if test="type!=null and type!=''">
+            and c.type=#{type}
+        </if>-->
+    </select>
+    <select id="getErpGoodsSetById" resultType="java.lang.Long">
+        select DISTINCT a.goodsid from ${erp}.pub_entry_goods_set_enum_dtl a
+        inner join COUPON_GOODS cg on cg.GOODS_SET_ID=a.setid
+        where cg.COUPON_ID=#{couponId}
+        and a.goodsid in
+        <foreach collection="cartList" item="item" open="(" close=")" separator=",">
+            (#{item})
+        </foreach>
+    </select>
+    <select id="getOrderGoodsByCouponId" resultType="com.zsyc.zt.b2b.entity.OrderGoods">
+        select DISTINCT og.* from order_goods og
+        inner join ${erp}.pub_entry_goods_set_enum_dtl a on a.goodsid=og.ERP_GOODS_ID
+        inner join COUPON_GOODS cg on cg.GOODS_SET_ID=a.setid
+        where cg.COUPON_ID=#{couponId} and order_id= #{orderId} and og.GOOD_TYPE not in (4,9)
+    </select>
+    <select id="getErpGoodsSetByIdNoSee" resultType="java.lang.Long">
+        select DISTINCT a.goodsid from ${erp}.pub_entry_goods_set_enum_dtl a
+        inner join COUPON_GOODS cg on cg.GOODS_SET_ID=a.setid
+        where cg.COUPON_ID=#{couponId}
+    </select>
+    <select id="getErpCustomSetByIdNoSee" resultType="java.lang.Long">
+        select DISTINCT a.CUSTOMID from ${erp}.pub_custom_set_dtl a
+        inner join COUPON_MEMBER cg on cg.CUSTOM_SET_ID=a.setid
+        where cg.COUPON_ID = #{couponId}
+    </select>
+    <select id="isExistMemberSet" resultType="java.lang.Integer">
+        select count(CUSTOMID) from	${erp}.pub_custom_set_dtl where  CUSTOMID=#{customerId}  and SETID in
+        <foreach collection="memberList" item="item" open="(" close=")" separator=",">
+            (#{item})
+        </foreach>
+    </select>
+</mapper>

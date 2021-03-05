@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.CouponReceiveMapper">
+    <update id="updateByCouponReceive">
+        update COUPON_RECEIVE set IS_DEL=1 where COUPON_ID=#{id}
+    </update>
+    <select id="getCouponReceiveList" resultType="com.zsyc.zt.b2b.vo.CouponReceiveVo">
+
+        select cr.*,c.COUPON_NAME,c.type,c.explain,c.FULL_AMOUNT,c.REDUCE_AMOUNT,c.DISCOUNT,c.USE_DAY,c.USE_START_TIME
+        as c_USE_START_TIME,c.USE_END_TIME as c_USE_END_TIME,c.IS_RECEIVE,c.IS_USE from COUPON_RECEIVE cr
+        inner JOIN COUPON c on c.id=cr.COUPON_ID
+        where cr.IS_DEL = 0 and cr.MEMBER_ID = #{couponReceiveVo.memberId} and cr.STATUS!='DEL'
+        <if test="couponReceiveVo.type!=null and couponReceiveVo.type!='' and couponReceiveVo.type!='All'">
+           and c.type=#{couponReceiveVo.type}
+        </if>
+        <if test="couponReceiveVo.status!=null and couponReceiveVo.status!=''">
+            and cr.STATUS = #{couponReceiveVo.status}
+        </if>
+        <if test="couponReceiveVo.status=='All'">
+            and cr.STATUS in ('UNUSED','TO_RECEIVE')
+        </if>
+        order by cr.CREATE_TIME desc
+    </select>
+    <select id="getAdminCouponReceiveList" resultType="com.zsyc.zt.b2b.vo.CouponReceiveVo">
+        select cr.*,c.COUPON_NAME,c.type,c.explain,c.FULL_AMOUNT,c.REDUCE_AMOUNT,c.DISCOUNT,c.USE_DAY,c.USE_START_TIME
+        as c_USE_START_TIME,c.USE_END_TIME as c_USE_END_TIME,c.IS_RECEIVE,c.IS_USE,m.telephone,m.USER_NAME,m.ERP_USER_ID
+        from COUPON_RECEIVE cr
+        inner JOIN COUPON c on c.id=cr.COUPON_ID
+        inner JOIN member  m on m.ERP_USER_ID=cr.MEMBER_ID
+        where cr.IS_DEL = 0
+        <if test="couponReceiveVo.memberId!=null">
+            and cr.MEMBER_ID = #{couponReceiveVo.memberId}
+        </if>
+        <if test="couponReceiveVo.couponId!=null">
+            and cr.COUPON_ID = #{couponReceiveVo.couponId}
+        </if>
+        <if test="couponReceiveVo.status!=null and couponReceiveVo.status!=''">
+            and cr.STATUS = #{couponReceiveVo.status}
+        </if>
+        <if test="couponReceiveVo.telephone!=null and couponReceiveVo.telephone!=''">
+            and m.telephone like '%'||#{couponReceiveVo.telephone}||'%'
+        </if>
+        <if test="couponReceiveVo.userName!=null and couponReceiveVo.userName!=''">
+            and m.USER_NAME like '%'||#{couponReceiveVo.userName}||'%'
+        </if>
+
+        <if test="couponReceiveVo.couponCode!=null and couponReceiveVo.couponCode!=''">
+            and cr.COUPON_CODE like '%'||#{couponReceiveVo.couponCode}||'%'
+        </if>
+        <if test="couponReceiveVo.couponName!=null and couponReceiveVo.couponName!=''">
+            and c.COUPON_NAME like '%'||#{couponReceiveVo.couponName}||'%'
+        </if>
+        <if test="couponReceiveVo.startTime!=null and couponReceiveVo.endTime!=null">
+            and cr.USE_END_TIME &gt;= #{couponReceiveVo.startTime} and cr.USE_END_TIME &lt;= #{couponReceiveVo.endTime}
+        </if>
+        order by
+        (case when CR.status='UNUSED' then CR.status  END) ASC,
+        c.CREATE_TIME desc
+    </select>
+    <select id="getCouponReceiveListIsNotPage" resultType="com.zsyc.zt.b2b.vo.CouponReceiveVo">
+        select * from COUPON_RECEIVE
+        where MEMBER_ID = #{userId} and STATUS = #{couponReceiveVo.status}
+        order by CREATE_TIME desc
+    </select>
+</mapper>

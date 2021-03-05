@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.BmsStIoDtlTmpMapper">
+    <update id="updateDtlGoodsQty">
+             update bms_st_io_dtl_tmp set dtlGoodsQty = #{goodsqty} where inoutid =#{inoutid}
+    </update>
+    <select id="selectBy" resultType="com.zsyc.zt.inca.vo.IncaIoDtlVo">
+        select  b.iodtlid,
+                a.storageid,
+                nvl(e.pickareasid, -1) pickareasid,
+                nvl(c.sthouseid, -1) sthouseid,
+                nvl(d.goodsunitflag, -1) goodsunitflag,
+                nvl((select x.rfmanid
+                from emf_rf_man x
+                where x.pickup = 1
+                and c.posno like x.posmatchcode
+                and rownum <![CDATA[<]]> 2),
+                -1) rfmanid,
+                (select y.taskarea from emf_elabel_address y where y.posid = b.posid) taskarea,
+                b.dtlgoodsqty,
+                a.companyid,
+                a.companyname,
+                h.trid,
+                h.translineid
+                from bms_st_io_dtl_tmp  b,
+                bms_storer_pos     c,
+                bms_st_io_doc_tmp  a,
+                bms_tr_dtl         g,
+                bms_tr_doc         h,
+                bms_st_storehouse  d,
+                bms_pick_areas_dtl e,
+                bms_pick_areas_doc f
+                where a.inoutid = b.inoutid
+                and b.posid = c.posid(+)
+                and c.sthouseid = d.sthouseid(+)
+                and d.sthouseid = e.sthouseid(+)
+                and e.pickareasid = f.pickareasid(+)
+                and f.usestatus = 1
+                and a.trdtlid = g.trdtlid
+                and g.trid = h.trid
+                and a.trdtlid = #{trdtlId}
+                and nvl(a.zx_istotal, 0) = 0
+                order by 2, 3, 4, 5
+
+    </select>
+</mapper>

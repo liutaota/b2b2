@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.HomeMenuMapper">
+    <select id="getHomeMenuList" resultType="com.zsyc.zt.b2b.vo.HomeMenuVo">
+        select h.*,w.TITLE as webPageName
+        from HOME_MENU h
+        left join WEB_PAGE w on w.ID = h.HM_ZONE_ID
+        where h.IS_DEL = 0
+        and h.PARENT_ID is null
+        order by SORT desc nulls first
+    </select>
+    <select id="getHomeList" resultType="com.zsyc.zt.b2b.vo.HomeMenuVo">
+        select h.*,w.TITLE as webPageName
+        from HOME_MENU h
+        left join WEB_PAGE w on w.ID = h.HM_ZONE_ID
+        where h.IS_DEL = 0 and h.PARENT_ID is not null
+        order by h.CREATE_TIME
+    </select>
+    <select id="getHomeList1" resultType="com.zsyc.zt.b2b.vo.HomeMenuVo">
+        select h.*,w.TITLE as webPageName
+        from HOME_MENU h
+        left join WEB_PAGE w on w.ID = h.HM_ZONE_ID
+        where h.IS_DEL = 0 and h.PARENT_ID is not null and h.IS_USE='ON'
+        and h.PARENT_ID=#{id}
+        order by h.CREATE_TIME
+    </select>
+</mapper>

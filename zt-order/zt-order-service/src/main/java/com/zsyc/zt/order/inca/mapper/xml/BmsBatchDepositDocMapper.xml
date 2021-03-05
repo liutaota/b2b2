@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsBatchDepositDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsBatchDepositDoc">
+        <id column="DEPOSITDOCID" property="depositdocid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="CONTROLMODEL" property="controlmodel" />
+        <result column="DEPOSITRATE" property="depositrate" />
+        <result column="DEPOSIT" property="deposit" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DEPOSITDOCID, ENTRYID, SUPPLYID, AGENTID, CONTACTID, CONTROLMODEL, DEPOSITRATE, DEPOSIT
+    </sql>
+
+</mapper>

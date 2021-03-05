@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsTrDocHisMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsTrDocHis">
+        <result column="TRID" property="trid" />
+        <result column="CREDATE" property="credate" />
+        <result column="TARGETDATE" property="targetdate" />
+        <result column="TRANFLAG" property="tranflag" />
+        <result column="TRNO" property="trno" />
+        <result column="FROMCOMPANYID" property="fromcompanyid" />
+        <result column="TOCOMPANYID" property="tocompanyid" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="SOURCETABLE" property="sourcetable" />
+        <result column="SOURCEID" property="sourceid" />
+        <result column="TRANPRIORITY" property="tranpriority" />
+        <result column="URGENTFLAG" property="urgentflag" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="TRANMETHOD" property="tranmethod" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="TARGETPOSID" property="targetposid" />
+        <result column="SELFTRANTYPE" property="selftrantype" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TRID, CREDATE, TARGETDATE, TRANFLAG, TRNO, FROMCOMPANYID, TOCOMPANYID, COMEFROM, SOURCETABLE, SOURCEID, TRANPRIORITY, URGENTFLAG, USESTATUS, TRANMETHOD, INPUTMANID, TARGETPOSID, SELFTRANTYPE
+    </sql>
+
+</mapper>

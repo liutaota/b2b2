@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.RecDtlMapper">
+
+    <select id="getRecDtlList" resultType="com.zsyc.zt.b2b.vo.RecDtlVo">
+        select
+        b.accflag,
+        a.goodsid,
+        b.goodsname,
+        b.goodsunit,
+        b.factoryid,
+        c.factoryname,
+        b.medicinetype,
+        b.medicinetypename,
+        b.currencyname,
+        b.goodstype,
+        a.zx_b2b_num_limit,
+        b.classn_row_1,
+        b.classn_row_2,
+        b.classn_row_3,
+        b.classname_1,
+        b.classname_2,
+        b.classname_3,
+        b.opcode,
+        a.entryid,
+        d.*
+        from REC_DTL d
+        left join ${erp}.pub_entry_goods a on a.goodsid = d.goods_id and a.entryid = 1
+        left join ${erp}.pub_goods b on   b.goodsid=a.goodsid
+        left join ${erp}.pub_factory c on   c.factoryid=b.factoryid
+        where  d.SA_REC_ID = #{recDocId}
+    </select>
+</mapper>

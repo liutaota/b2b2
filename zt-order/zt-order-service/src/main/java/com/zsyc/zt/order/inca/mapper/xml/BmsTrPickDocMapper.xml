@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsTrPickDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsTrPickDoc">
+        <id column="PICKDOCID" property="pickdocid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTCOUNT" property="printcount" />
+        <result column="TOTALPACKQTY" property="totalpackqty" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="FINISHDATE" property="finishdate" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="MEMO" property="memo" />
+        <result column="PICKMANID" property="pickmanid" />
+        <result column="BOXMANID" property="boxmanid" />
+        <result column="DESKID" property="deskid" />
+        <result column="WAVENO" property="waveno" />
+        <result column="DRAWSTATUS" property="drawstatus" />
+        <result column="PICKDATE" property="pickdate" />
+        <result column="BOXQTY" property="boxqty" />
+        <result column="FINISHMANID" property="finishmanid" />
+        <result column="FINISH2MANID" property="finish2manid" />
+        <result column="TRANSLINEID" property="translineid" />
+        <result column="PICKAREASID" property="pickareasid" />
+        <result column="CONTAINERID" property="containerid" />
+        <result column="TRID" property="trid" />
+        <result column="ZX_COMPANYID" property="zxCompanyid" />
+        <result column="ZX_COMPANYNAME" property="zxCompanyname" />
+        <result column="ZX_ISTOTAL" property="zxIstotal" />
+        <result column="PRINTFLAG" property="printflag" />
+        <result column="ZX_SEAT" property="zxSeat" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PICKDOCID, PRINTDATE, PRINTMANID, PRINTCOUNT, TOTALPACKQTY, CREDATE, INPUTMANID, USESTATUS, FINISHDATE, COMEFROM, MEMO, PICKMANID, BOXMANID, DESKID, WAVENO, DRAWSTATUS, PICKDATE, BOXQTY, FINISHMANID, FINISH2MANID, TRANSLINEID, PICKAREASID, CONTAINERID, TRID, ZX_COMPANYID, ZX_COMPANYNAME, ZX_ISTOTAL, PRINTFLAG, ZX_SEAT
+    </sql>
+    <update id="updateBy" parameterType="java.lang.Long">
+        update bms_tr_pick_doc a
+           set a.totalpackqty =
+               (select nvl(sum(trunc(b.dtlgoodsqty / c.packsize)), 0)
+                  from bms_st_io_dtl_tmp b, PUB_GOODS_DETAIL c, bms_storer_pos e
+                 where b.goodsdtlid = c.goodsdtlid
+                   and b.posid = e.posid
+                   and e.goodsunitflag = 1
+                   and b.pickdocid = a.pickdocid)
+         where a.pickdocid = #{pickdocid}
+
+    </update>
+
+</mapper>

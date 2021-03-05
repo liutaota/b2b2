@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.report.mapper.GoodsSalesReportMapper">
+
+    <select id="selectReportListPage" resultType="com.zsyc.zt.report.vo.GoodsSalesReportVo">
+        select a.report_id,
+               a.plan_id,
+               a.goods_id,
+               a.goods_name,
+               a.extract_type,
+               a.goods_type,
+               a.goods_unit,
+               a.sum_goods_qty,
+               a.factory_id,
+               a.factory_name,
+               a.prod_area,
+               a.medicine_type_name,
+               a.statistics_scope,
+               a.convert_date,
+               a.create_date,
+               a.remark
+          from goods_sales_report a
+          <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="goodsSalesReportVo.goodsId != null">
+            and a.goods_id = #{goodsSalesReportVo.goodsId}
+            </if>
+            <if test="goodsSalesReportVo.planId != null">
+            and a.plan_id = #{goodsSalesReportVo.planId}
+            </if>
+            <if test="goodsSalesReportVo.extractType != null">
+            and a.extract_type = #{goodsSalesReportVo.extractType}
+            </if>
+            <if test="goodsSalesReportVo.factoryId != null">
+            and a.factory_id = #{goodsSalesReportVo.factoryId}
+            </if>
+            <if test="goodsSalesReportVo.factoryName != null and goodsSalesReportVo.factoryName != ''">
+            and a.factory_name like ''||#{goodsSalesReportVo.factoryName}||''
+            </if>
+            <if test="goodsSalesReportVo.startDate != null">
+            and to_date(a.statistics_scope,'yyyy-mm-dd') &gt;= #{goodsSalesReportVo.startDate}
+            </if>
+            <if test="goodsSalesReportVo.endDate != null">
+            and to_date(a.statistics_scope,'yyyy-mm-dd') &lt;= #{goodsSalesReportVo.endDate}
+            </if>
+            <if test="goodsSalesReportVo.createDate != null ">
+            and a.create_date = #{goodsSalesReportVo.createDate}
+            </if>
+          </trim>
+          order by a.report_id,a.create_date desc
+    </select>
+
+    <select id="selectExportData" resultType="com.zsyc.zt.report.vo.GoodsSalesReportVo">
+        select a.report_id,
+        a.plan_id,
+        a.goods_id,
+        a.goods_name,
+        a.extract_type,
+        a.goods_type,
+        a.goods_unit,
+        a.sum_goods_qty,
+        a.factory_id,
+        a.factory_name,
+        a.prod_area,
+        a.medicine_type_name,
+        a.statistics_scope,
+        a.convert_date,
+        a.create_date,
+        a.remark
+        from goods_sales_report a
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+        <if test="goodsSalesReportVo.goodsId != null">
+            and a.goods_id = #{goodsSalesReportVo.goodsId}
+        </if>
+        <if test="goodsSalesReportVo.planId != null">
+            and a.plan_id = #{goodsSalesReportVo.planId}
+        </if>
+        <if test="goodsSalesReportVo.extractType != null">
+            and a.extract_type = #{goodsSalesReportVo.extractType}
+        </if>
+        <if test="goodsSalesReportVo.factoryId != null">
+            and a.factory_id = #{goodsSalesReportVo.factoryId}
+        </if>
+        <if test="goodsSalesReportVo.factoryName != null and goodsSalesReportVo.factoryName != ''">
+            and a.factory_name like ''||#{goodsSalesReportVo.factoryName}||''
+        </if>
+        <if test="goodsSalesReportVo.startDate != null">
+            and to_date(a.statistics_scope,'yyyy-mm-dd') &gt;= #{goodsSalesReportVo.startDate}
+        </if>
+        <if test="goodsSalesReportVo.endDate != null">
+            and to_date(a.statistics_scope,'yyyy-mm-dd') &lt;= #{goodsSalesReportVo.endDate}
+        </if>
+        <if test="goodsSalesReportVo.createDate != null ">
+            and a.create_date = #{goodsSalesReportVo.createDate}
+        </if>
+        </trim>
+    </select>
+</mapper>

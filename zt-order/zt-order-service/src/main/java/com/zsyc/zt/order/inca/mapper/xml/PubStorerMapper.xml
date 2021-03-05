@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubStorerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubStorer">
+        <id column="STORERID" property="storerid" />
+        <result column="STOREROPCODE" property="storeropcode" />
+        <result column="STORERNO" property="storerno" />
+        <result column="MASTERID" property="masterid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="CHECKSEQUNCE" property="checksequnce" />
+        <result column="PICKFINISHFLAG" property="pickfinishflag" />
+        <result column="REAUTOCHECHFLAG" property="reautochechflag" />
+        <result column="AUTOPREPAREINFLAG" property="autoprepareinflag" />
+        <result column="AUTOPUTAWAYFLAG" property="autoputawayflag" />
+        <result column="CHANGEQTYFLAG" property="changeqtyflag" />
+        <result column="ISWMSMODE" property="iswmsmode" />
+        <result column="UNITALLOCWITHNOUNITFLAG" property="unitallocwithnounitflag" />
+        <result column="CHECKMANID" property="checkmanid" />
+        <result column="CHECKMANID2" property="checkmanid2" />
+        <result column="USEWMS" property="usewms" />
+        <result column="WMSCENTERUCODE" property="wmscenterucode" />
+        <result column="FENQUTYPE" property="fenqutype" />
+        <result column="BUSINESSTYPE" property="businesstype" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        STORERID, STOREROPCODE, STORERNO, MASTERID, USESTATUS, CHECKSEQUNCE, PICKFINISHFLAG, REAUTOCHECHFLAG, AUTOPREPAREINFLAG, AUTOPUTAWAYFLAG, CHANGEQTYFLAG, ISWMSMODE, UNITALLOCWITHNOUNITFLAG, CHECKMANID, CHECKMANID2, USEWMS, WMSCENTERUCODE, FENQUTYPE, BUSINESSTYPE
+    </sql>
+
+</mapper>

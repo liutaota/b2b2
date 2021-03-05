@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubDeptProducerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubDeptProducer">
+        <id column="PRODUCERID" property="producerid" />
+        <result column="PRODUCERNO" property="producerno" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="MASTERID" property="masterid" />
+        <result column="PRODUCEROPCODE" property="produceropcode" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CRETDATE" property="cretdate" />
+        <result column="DEPTMEMO" property="deptmemo" />
+        <result column="PRODUCERTYPE" property="producertype" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PRODUCERID, PRODUCERNO, USESTATUS, MASTERID, PRODUCEROPCODE, INPUTMANID, CRETDATE, DEPTMEMO, PRODUCERTYPE
+    </sql>
+
+</mapper>

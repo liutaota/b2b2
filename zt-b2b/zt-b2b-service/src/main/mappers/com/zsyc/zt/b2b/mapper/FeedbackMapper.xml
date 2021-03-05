@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.FeedbackMapper">
+
+    <select id="getFeedbackVoList" resultType="com.zsyc.zt.b2b.vo.FeedbackVo">
+        select * from feedback where is_del=0
+
+        <if test="feedbackVo.memberId!=null and feedbackVo.memberId!=''">
+            and MEMBER_ID=#{feedbackVo.memberId}
+        </if>
+        <if test="feedbackVo.type!=null and feedbackVo.type!=''">
+            and type=#{feedbackVo.type}
+        </if>
+        <if test="feedbackVo.goodsShow!=null and feedbackVo.goodsShow!=''">
+            and GOODS_SHOW=#{feedbackVo.goodsShow}
+        </if>
+        <if test="feedbackVo.erpGoodsId!=null">
+            and ERP_GOODS_ID=#{feedbackVo.erpGoodsId}
+        </if>
+        order by CREATE_TIME desc
+    </select>
+    <select id="getFeedbackGoodsShowList" resultType="com.zsyc.zt.b2b.vo.FeedbackVo">
+        select * from feedback where is_del=0 and GOODS_SHOW='ON' and type='GOODS'
+        and ERP_GOODS_ID=#{feedbackVo.erpGoodsId}
+    </select>
+    <select id="getAdminFeedbackVoList" resultType="com.zsyc.zt.b2b.vo.FeedbackVo">
+        select * from feedback where is_del = 0
+        <if test="feedbackVo.type!=null and feedbackVo.type!=''">
+            and type=#{feedbackVo.type}
+        </if>
+        order by CREATE_TIME desc
+    </select>
+</mapper>

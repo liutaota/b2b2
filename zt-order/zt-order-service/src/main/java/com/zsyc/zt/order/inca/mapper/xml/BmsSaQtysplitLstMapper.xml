@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSaQtysplitLstMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSaQtysplitLst">
+        <id column="SPLITID" property="splitid" />
+        <result column="SALESDEPTID" property="salesdeptid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="SPLITQTY" property="splitqty" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="STSETID" property="stsetid" />
+        <result column="QUONDAMID" property="quondamid" />
+        <result column="PLACEPOINTID" property="placepointid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="QUBUFFID" property="qubuffid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SPLITID, SALESDEPTID, GOODSID, SPLITQTY, INPUTMANID, CREDATE, STSETID, QUONDAMID, PLACEPOINTID, STORAGEID, QUBUFFID
+    </sql>
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.MemberLogMapper">
+
+    <select id="getMemberLogList" resultType="com.zsyc.zt.b2b.vo.MemberLogVo">
+
+        select ml.*,m.telephone,m.user_name,m.erp_user_id from member_log ml
+        inner join member m on m.id=ml.member_id
+        <where>
+            <if test="memberLogVo.memberId!=null">
+                m.id=#{memberLogVo.memberId}
+            </if>
+            <if test="memberLogVo.erpUserId!=null">
+                and m.erp_user_id=#{memberLogVo.erpUserId}
+            </if>
+            <if test="memberLogVo.userName!=null">
+                and m.user_name=#{memberLogVo.userName}
+            </if>
+        </where>
+    </select>
+</mapper>

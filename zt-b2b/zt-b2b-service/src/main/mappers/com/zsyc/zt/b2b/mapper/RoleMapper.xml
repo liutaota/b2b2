@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.RoleMapper">
+
+    <select id="getRoleList" resultType="com.zsyc.zt.b2b.vo.RoleVo">
+        select * from sys_role
+        <where>
+            <if test="roleVo.roleName!=null and roleVo.roleName!=''">
+                ROLE_NAME like '%'||#{roleVo.roleName}||'%'
+            </if>
+        </where>
+        order by create_time  desc
+    </select>
+    <select id="getRoleListByUserId" resultType="com.zsyc.zt.b2b.vo.RoleVo">
+        select sr.* from sys_role sr
+        inner join user_role ui on ui.SYS_ROLE_ID=sr.id
+        where ui.USER_INFO_ID=#{userId}
+        order by sr.create_time  desc
+    </select>
+</mapper>

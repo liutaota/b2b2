@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsGoodsFeatureMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsGoodsFeature">
+        <id column="FEATUREID" property="featureid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSCLASS" property="goodsclass" />
+        <result column="SCATTERPICKRATE" property="scatterpickrate" />
+        <result column="WHOLEPICKRATE" property="wholepickrate" />
+        <result column="GOODSCLASSMEMO" property="goodsclassmemo" />
+        <result column="SCATTERPICKRATEMEMO" property="scatterpickratememo" />
+        <result column="WHOLEPICKRATEMEMO" property="wholepickratememo" />
+        <result column="MEMO" property="memo" />
+        <result column="STORERID" property="storerid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        FEATUREID, GOODSID, GOODSCLASS, SCATTERPICKRATE, WHOLEPICKRATE, GOODSCLASSMEMO, SCATTERPICKRATEMEMO, WHOLEPICKRATEMEMO, MEMO, STORERID
+    </sql>
+
+</mapper>

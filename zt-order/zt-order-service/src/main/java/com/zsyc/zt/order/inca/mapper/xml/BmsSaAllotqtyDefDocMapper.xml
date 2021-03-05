@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSaAllotqtyDefDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSaAllotqtyDefDoc">
+        <id column="DEFDOCID" property="defdocid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="STARTDATE" property="startdate" />
+        <result column="ENDDATE" property="enddate" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="CONFIRMMANID" property="confirmmanid" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DEFDOCID, GOODSID, STARTDATE, ENDDATE, USESTATUS, INPUTMANID, CREDATE, CONFIRMMANID, CONFIRMDATE
+    </sql>
+
+</mapper>

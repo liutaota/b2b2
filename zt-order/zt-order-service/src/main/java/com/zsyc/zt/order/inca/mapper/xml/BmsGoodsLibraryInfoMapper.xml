@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsGoodsLibraryInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsGoodsLibraryInfo">
+        <id column="INFOID" property="infoid" />
+        <result column="APPROVEDOCNO" property="approvedocno" />
+        <result column="OLDAPPROVEDOCNO" property="oldapprovedocno" />
+        <result column="GOODSCODE" property="goodscode" />
+        <result column="CODENOTE" property="codenote" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="GOODSENGNAME" property="goodsengname" />
+        <result column="CURRENCYNAME" property="currencyname" />
+        <result column="FACTORYNAME" property="factoryname" />
+        <result column="GOODSTYPE" property="goodstype" />
+        <result column="MEDICINETYPE" property="medicinetype" />
+        <result column="GOODSSORT" property="goodssort" />
+        <result column="APPROVEDATE" property="approvedate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        INFOID, APPROVEDOCNO, OLDAPPROVEDOCNO, GOODSCODE, CODENOTE, GOODSNAME, GOODSENGNAME, CURRENCYNAME, FACTORYNAME, GOODSTYPE, MEDICINETYPE, GOODSSORT, APPROVEDATE
+    </sql>
+
+</mapper>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.NwResIMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.inca.entity.NwResI">
+        <id column="WMS_ITEM_ID" property="wmsItemId" />
+        <result column="ERP_ID" property="erpId" />
+        <result column="ERP_TYPE_ID" property="erpTypeId" />
+        <result column="ITEM_ID" property="itemId" />
+        <result column="INV_ID" property="invId" />
+        <result column="BAT_CODE" property="batCode" />
+        <result column="PROD_AT" property="prodAt" />
+        <result column="EXPR_AT" property="exprAt" />
+        <result column="QTY" property="qty" />
+        <result column="QTY1" property="qty1" />
+        <result column="MOVED_AT" property="movedAt" />
+        <result column="CHECKED_QTY" property="checkedQty" />
+        <result column="CHECKED_QTY1" property="checkedQty1" />
+        <result column="MOVED_BY" property="movedBy" />
+        <result column="MOVED_BY_NAME" property="movedByName" />
+        <result column="CHECKED_AT" property="checkedAt" />
+        <result column="CHECKED_BY" property="checkedBy" />
+        <result column="CHECKED_BY_NAME" property="checkedByName" />
+        <result column="CHECKED_BY2" property="checkedBy2" />
+        <result column="CHECKED_BY_NAME2" property="checkedByName2" />
+        <result column="IS_FCL" property="isFcl" />
+        <result column="SEAT_ID" property="seatId" />
+        <result column="MOVED_BY2" property="movedBy2" />
+        <result column="MOVED_BY_NAME2" property="movedByName2" />
+        <result column="FDA_CODE" property="fdaCode" />
+        <result column="SID" property="sid" />
+        <result column="PACK_ID" property="packId" />
+        <result column="CANCELLED_BY" property="cancelledBy" />
+        <result column="ZX_ISLOAD" property="zxIsload" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        WMS_ITEM_ID, ERP_ID, ERP_TYPE_ID, ITEM_ID, INV_ID, BAT_CODE, PROD_AT, EXPR_AT, QTY, QTY1, MOVED_AT, CHECKED_QTY, CHECKED_QTY1, MOVED_BY, MOVED_BY_NAME, CHECKED_AT, CHECKED_BY, CHECKED_BY_NAME, CHECKED_BY2, CHECKED_BY_NAME2, IS_FCL, SEAT_ID, MOVED_BY2, MOVED_BY_NAME2, FDA_CODE, SID, PACK_ID, CANCELLED_BY, ZX_ISLOAD
+    </sql>
+
+    <select id="getByErpId" resultType="com.zsyc.zt.inca.vo.NwResIVo">
+        select <include refid="Base_Column_List"></include> from NW_RES_I where ERP_ID =#{erpId}
+    </select>
+
+    <select id="getByPackId" resultType="com.zsyc.zt.inca.vo.NwResIVo">
+        select <include refid="Base_Column_List"></include> from NW_RES_I where PACK_ID =#{packId}
+    </select>
+
+    <select id="selectNwResI" resultType="com.zsyc.zt.inca.vo.NwResIVo">
+        select <include refid="Base_Column_List"></include> from NW_RES_I
+    </select>
+
+    <!--  根据货品箱号查询订单及客户信息  -->
+    <select id="getCustomByPackId" resultMap="NwResCustomMap">
+        select
+             rs.pack_id,rs.customid,rs.customname,rs.transortno,
+             listagg(rs.salesid, ',') WITHIN GROUP (ORDER BY rs.salesid) sales_id_list
+          from
+              (select
+                  distinct
+                  a.erp_id,
+                  a.pack_id,
+                  b.salesid,
+                  b.customid,
+                  b.customname,
+                  t.transortno,
+                  b.credate
+              from nw_res_i a,
+                  bms_sa_doc b,
+                  bms_tr_pos_def t
+              where a.pack_id is not null and a.erp_id=b.salesid||'' and b.customid=t.companyid and b.credate>to_date('2020/12/21', 'YYYY/MM/DD')
+              and a.pack_id = #{packId}
+              and not exists(
+                select * from   ck_car_task_doc x ,   ck_car_task_dtl y  ,ck_car_task_box  z
+                where x.task_id = y.task_id and y.task_dtl_id = z.task_dtl_id and z.pack_id = a.pack_id  and x.usestatus = 2
+              ))  rs
+          group by rs.pack_id,rs.customid,rs.customname,rs.transortno
+    </select>
+
+    <resultMap id="NwResCustomMap" type="com.zsyc.zt.inca.vo.NwResIVo">
+        <id column="WMS_ITEM_ID" property="wmsItemId" />
+        <result column="PACK_ID" property="packId" />
+        <result column="customid" property="customId" />
+        <result column="customname" property="customName" />
+        <result column="transortno" property="tranSortNo" />
+    </resultMap>
+
+    <!--  根据销售单号和箱号 查询记录  -->
+    <select id="selectListByErpIdPackId" resultType="com.zsyc.zt.inca.vo.NwResIVo">
+        select
+            a.wms_item_id,
+            a.erp_id,
+            a.pack_id,
+            b.customid,
+            b.customname,
+            t.transortno
+        from nw_res_i a,
+         bms_sa_doc b,
+         bms_tr_pos_def t
+        where a.pack_id is not null and a.erp_id=b.salesid ||&apos;&apos; and b.customid=t.companyid  and a.pack_id = #{packId} and a.erp_id = #{erpId}
+    </select>
+
+    <!--  查询当前客户剩余未录入箱号  -->
+    <select id="querySurplusPackId" resultType="java.lang.String">
+    select r.pack_id from (
+     select
+         rs.pack_id,rs.customid,rs.customname,rs.transortno,
+         listagg(rs.salesid, ',') WITHIN GROUP (ORDER BY rs.salesid) sales_id_list
+      from
+      (
+      select
+          a.erp_id,
+          a.pack_id,
+          b.salesid,
+          b.customid,
+          b.customname,
+          t.transortno,
+          b.credate
+      from nw_res_i a,
+          bms_sa_doc b,
+          bms_tr_pos_def t
+      where a.pack_id is not null and a.erp_id=b.salesid||'' and b.customid=t.companyid and b.credate>to_date('2020/12/21', 'YYYY/MM/DD')
+      and b.usestatus = 1
+      and not exists(
+          select
+           * from
+           ck_car_task_doc x ,   ck_car_task_dtl y  ,ck_car_task_box  z
+          where
+          x.task_id = y.task_id and y.task_dtl_id = z.task_dtl_id and z.pack_id = a.pack_id  and x.usestatus = 2
+      )
+      group by
+          a.erp_id,
+          a.pack_id,
+          b.salesid,
+          b.customid,
+          b.customname,
+          t.transortno,
+          b.credate
+      )  rs where rs.customid = #{customId} and rs.pack_id not in(
+          select bb.pack_id
+                 from ck_car_task_dtl aa, ck_car_task_box bb
+                 where aa.task_dtl_id =bb.task_dtl_id and aa.usestatus=2 and aa.custom_id = #{customId}
+      )
+      group by rs.pack_id,rs.customid,rs.customname,rs.transortno
+      ) r
+    </select>
+
+</mapper>

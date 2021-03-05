@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.BmsTrFetchDtlMapper">
+    <update id="confirmByFetchId">
+        update bms_tr_fetch_dtl
+        set usestatus = 2
+        where fetchid = #{fetchid}
+          and usestatus = 1
+    </update>
+    <select id="selectDtlBy" resultType="com.zsyc.zt.inca.entity.BmsTrFetchDtl">
+        select storagename,
+       opcode,
+       goodsno,
+       goodsname,
+       currencyname,
+       goodsunit,
+       goodstype,
+       prodarea,
+       factoryname,
+       packname,
+       packsize,
+       taxrate,
+       goodsqty,
+       goodsuseunit,
+       goodsuseqty,
+       priceopcode,
+       pricename,
+       unitprice,
+       total_line,
+       discount,
+       notaxmoney,
+       timepricename,
+       timeprice,
+       wholesaleprice,
+       resaleprice,
+       lastpricename,
+       lastunitprice,
+       allowbackflag,
+       batchno,
+       lotno,
+       invaliddate,
+       posno,
+       goodsstatusid,
+       dtlmemo,
+       correctflag,
+       stioflag,
+       settleqty,
+       stiodate,
+       settlemoney,
+       lowerflag,
+       settleflag,
+       salesdtlid,
+       backwhyid,
+       goodsid,
+       factoryid,
+       goodsdtlid,
+       priceid,
+       timepriceid,
+       storageid,
+       certid,
+       lastpriceid,
+       batchid,
+       lotid,
+       posid,
+       salesid,
+       inoutid,
+       iodtlid,
+       credate,
+       storageopcode,
+       examprofit,
+       examprice,
+       backqty,
+       batchprice,
+       batchflag,
+       contactman,
+       contactid,
+       agentname,
+       agentid,
+       lotflag
+  from bms_fetch_tick_v
+ where salesid =#{saleId}
+   and nvl(allowbackflag, 1) = 1
+   and customid = #{customId}
+   and satypeid = 1
+   and entryid = 1
+   and nvl(agentid, -1) = -1
+   and nvl(contactid, -1) = -1
+   and nvl(goodsqty, 0) > backQty
+   and lotid=#{lotId}
+   and batchid=#{batchId}
+    </select>
+    <select id="selectBy" resultType="com.zsyc.zt.inca.entity.BmsTrFetchDtl">
+        select * from bms_tr_fetch_dtl a where a.fetchid=#{fetchId}
+    </select>
+    <select id="selectBySalesDtlId" resultType="com.zsyc.zt.inca.entity.BmsTrFetchDtl">
+        select a.unitprice,
+               a.priceid,
+               f.prodarea,
+               f.approvedocno,
+               d.unitprice batchprice,
+               a.timepriceid,
+               a.goodsid,
+               a.goodsdtlid,
+               f.goodsname,
+               a.lastpriceid,
+               a.salesid,
+               a.salesdtlid,
+               c.batchid,
+               d.batchno,
+               c.iodtlid,
+               c.lotid,
+               e.lotno
+        FROM bms_sa_dtl    a,
+             bms_st_io_doc b,
+             bms_st_io_dtl c,
+             bms_batch_def d,
+             bms_lot_def   e,
+             pub_goods     f
+        WHERE a.salesdtlid = b.sourceid
+          and b.comefrom = 3
+          and b.inoutid = c.inoutid
+          and c.batchid = d.batchid
+          and c.lotid = e.lotid
+          and a.goodsid = f.goodsid
+          and a.salesdtlid = #{salesdtlid}
+    </select>
+
+</mapper>

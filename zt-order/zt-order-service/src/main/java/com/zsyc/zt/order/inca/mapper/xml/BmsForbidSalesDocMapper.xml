@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsForbidSalesDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsForbidSalesDoc">
+        <id column="FORBIDID" property="forbidid" />
+        <result column="FORBIDFLAG" property="forbidflag" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="MEMO" property="memo" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="ENTRYID" property="entryid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        FORBIDID, FORBIDFLAG, USESTATUS, MEMO, INPUTMANID, CREDATE, ENTRYID
+    </sql>
+
+</mapper>

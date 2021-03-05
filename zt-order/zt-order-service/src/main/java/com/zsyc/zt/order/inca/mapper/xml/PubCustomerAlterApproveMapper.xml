@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubCustomerAlterApproveMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubCustomerAlterApprove">
+        <id column="APPROVEID" property="approveid" />
+        <result column="CUSTOMERID" property="customerid" />
+        <result column="CONTENT" property="content" />
+        <result column="APPROVESTATUS" property="approvestatus" />
+        <result column="APPROVEMEMO" property="approvememo" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="APPROVEMANID" property="approvemanid" />
+        <result column="APPROVEDATE" property="approvedate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        APPROVEID, CUSTOMERID, CONTENT, APPROVESTATUS, APPROVEMEMO, INPUTMANID, CREDATE, APPROVEMANID, APPROVEDATE
+    </sql>
+
+</mapper>

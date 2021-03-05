@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zsyc.zt.inca.mapper.B2bFinancialStatementMapper">
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.inca.vo.others.B2bFinancialStatementVo">
+        <result column="SALES_ID" property="source_id_list"></result>
+        <result column="REC_ID" property="recId"></result>
+        <result column="ORDER_ID" property="orderId"></result>
+        <result column="ORDER_NO" property="orderNo"></result>
+        <result column="EXPENSE_DATE" property="expenseDate"></result>
+        <result column="WMS_BACK_DATE" property="wmsBackDate"></result>
+        <result column="BILL_DATE" property="billDate"></result>
+        <result column="BALANCE_DATE" property="balanceDate"></result>
+        <result column="USER_NAME" property="userName"></result>
+        <result column="ERP_CUSTOMER_ID" property="erpCustomerId"></result>
+        <result column="REC_TOTAL" property="recTotal"></result>
+        <result column="GOODS_AMOUNT" property="goodsAmount"></result>
+        <result column="ACTUALLY_MONEY" property="actuallyMoney"></result>
+        <result column="ERP_TOTAL" property="erpOrderTotal"></result>
+        <result column="DISCOUNT" property="discount"></result>
+        <result column="ERP_GOODS_ID" property="erpGoodsId"></result>
+        <result column="GOODS_NAME" property="goodsName"></result>
+        <result column="GOODS_SPEC" property="goodsSpec"></result>
+        <result column="GOODS_NUM" property="goodsNum"></result>
+        <result column="SELL_NUM" property="sellNum"></result>
+        <result column="AMOUNT_PAY" property="amountPay"></result>
+        <result column="ENTRY_ID" property="entryId"></result>
+        <result column="ENTRY_NAME" property="entryName"></result>
+        <result column="SETTLE_TYPE_ID" property="settleTypeId"></result>
+        <result column="ORDER_FROM" property="orderFrom"></result>
+    </resultMap>
+
+    <!--  查询报表信息  -->
+    <select id="getB2bStatementList" resultType="com.zsyc.zt.inca.vo.others.B2bFinancialStatementVo">
+        select
+        a.order_id,
+        a.id,
+        b.order_no,
+        r.source_id_list,
+        a.create_time expenseDate,               -- 费用发生时间
+        '' wms_back_date,   -- 出库日期（物流反馈时间）
+        ''  bill_date,               -- 账单日期
+        ''  balance_date,            -- 结算日期
+        b.erp_customer_id,           -- erp客户编号
+        e.user_name,
+        a.total rec_total,           -- 收款总金额
+        b.goods_amount,              -- 订单应收金额
+        b.actually_money,            -- 订单实付金额
+        r.order_total erp_order_total,               -- ERP发货合计金额
+        (b.order_amount - a.total) discount,         -- 优惠金额
+        c.erp_goods_id,                                     -- erp商品编号
+        c.goods_name,                                       -- 商品名称
+        c.goods_spec ,                                      -- 规格
+        c.amount_pay,                                       -- 价格
+        c.goods_num,                 -- 商品数量
+        c.sell_num,                  -- erp实际发货数量
+        r.settletypeid,
+        a.entry_id,
+        g.entryname,
+        b.order_from                 -- 订单来源(1web,2mobile)
+        from
+        b2b.rec_doc    a,
+        b2b.order_info b,
+        b2b.order_goods c,
+        b2b.member   e,
+        sum_sa_finance_v r,
+        pub_entry g
+        where
+        a.order_id = b.id(+)
+        and b.id = c.order_id(+)
+        and c.order_id = r.b2b_order_id(+)
+        and r.customid = e.erp_user_id(+)
+        and a.entry_id = g.entryid(+)
+        and a.total >0
+
+        <if test="b2bFinancialStatementVo.startDate == null">
+            and a.create_time > to_date('2020/12/01','yyyy/mm/dd')
+        </if>
+
+        <if test="b2bFinancialStatementVo.recId != null">
+        and a.id = #{b2bFinancialStatementVo.recId}
+        </if>
+
+        <if test="b2bFinancialStatementVo.erpCustomerId != null">
+        and b.erp_customer_id = #{b2bFinancialStatementVo.erpCustomerId}
+        </if>
+
+        <if test="b2bFinancialStatementVo.erpGoodsId != null">
+        and b.erp_goods_id = #{b2bFinancialStatementVo.erpGoodsId}
+        </if>
+
+        <if test="b2bFinancialStatementVo.startDate != null and b2bFinancialStatementVo.endDate != null">
+        and a.create_time between #{b2bFinancialStatementVo.startDate} and #{b2bFinancialStatementVo.endDate}
+        </if>
+        order by d.salesid,b.create_time,b.erp_customer_id,c.erp_goods_id
+    </select>
+
+    <select id="getB2bStatementOfAccountList" resultType="com.zsyc.zt.inca.vo.others.B2bFinancialStatementVo">
+        select
+          a.order_id,
+          a.id,
+          b.order_no,
+          r.source_id_list,
+          a.create_time expenseDate,               -- 费用发生时间
+          '' wms_back_date,   -- 出库日期（物流反馈时间）
+          ''  bill_date,               -- 账单日期
+          ''  balance_date,            -- 结算日期
+          b.erp_customer_id,           -- erp客户编号
+          e.user_name,
+          a.total rec_total,           -- 收款总金额
+          b.goods_amount,              -- 订单应收金额
+          b.actually_money,            -- 订单实付金额
+          r.order_total erp_order_total,               -- ERP发货合计金额
+          (b.order_amount - a.total) discount,         -- 优惠金额
+          c.erp_goods_id,                                     -- erp商品编号
+          c.goods_name,                                       -- 商品名称
+          c.goods_spec ,                                      -- 规格
+          c.amount_pay,                                       -- 价格
+          c.goods_num,                 -- 商品数量
+          c.sell_num,                  -- erp实际发货数量
+          r.settletypeid,
+          a.entry_id,
+          g.entryname,
+          b.order_from                 -- 订单来源(1web,2mobile)
+        from
+          b2b.rec_doc    a,
+          b2b.order_info b,
+          b2b.order_goods c,
+          b2b.member   e,
+          sum_sa_finance_v r,
+          pub_entry g
+        where
+          a.order_id = b.id(+)
+          and b.id = c.order_id(+)
+          and c.order_id = r.b2b_order_id(+)
+          and r.customid = e.erp_user_id(+)
+          and a.entry_id = g.entryid(+)
+          and a.create_time > to_date('2020/12/01','yyyy/mm/dd')
+          and a.total >0
+    </select>
+
+    <select id="selectExportStatementData" resultType="com.zsyc.zt.inca.vo.others.B2bFinancialStatementVo">
+        select
+          a.order_id,
+          a.id,
+          b.order_no,
+          r.source_id_list,
+          a.create_time expenseDate,               -- 费用发生时间
+          '' wms_back_date,   -- 出库日期（物流反馈时间）
+          ''  bill_date,               -- 账单日期
+          ''  balance_date,            -- 结算日期
+          b.erp_customer_id,           -- erp客户编号
+          e.user_name,
+          a.total rec_total,           -- 收款总金额
+          b.goods_amount,              -- 订单应收金额
+          b.actually_money,            -- 订单实付金额
+          r.order_total erp_order_total,               -- ERP发货合计金额
+          (b.order_amount - a.total) discount,         -- 优惠金额
+          c.erp_goods_id,                                     -- erp商品编号
+          c.goods_name,                                       -- 商品名称
+          c.goods_spec ,                                      -- 规格
+          c.amount_pay,                                       -- 价格
+          c.goods_num,                 -- 商品数量
+          c.sell_num,                  -- erp实际发货数量
+          r.settletypeid,
+          a.entry_id,
+          g.entryname,
+          b.order_from                 -- 订单来源(1web,2mobile)
+        from
+          b2b.rec_doc    a,
+          b2b.order_info b,
+          b2b.order_goods c,
+          b2b.member   e,
+          sum_sa_finance_v r,
+          pub_entry g
+        where
+          a.order_id = b.id(+)
+          and b.id = c.order_id(+)
+          and c.order_id = r.b2b_order_id(+)
+          and r.customid = e.erp_user_id(+)
+          and a.entry_id = g.entryid(+)
+          and a.total >0
+          and a.create_time between #{b2bFinancialStatementVo.startDate} and #{b2bFinancialStatementVo.endDate}
+    </select>
+    <select id="selectExportStatementDataPage" resultType="com.zsyc.zt.inca.vo.others.B2bFinancialStatementVo">
+        select
+              a.order_id,
+              a.id,
+              b.order_no,
+              r.source_id_list,
+              a.create_time expenseDate,               -- 费用发生时间
+              '' wms_back_date,   -- 出库日期（物流反馈时间）
+              ''  bill_date,               -- 账单日期
+              ''  balance_date,            -- 结算日期
+              b.erp_customer_id,           -- erp客户编号
+              e.user_name,
+              a.total rec_total,           -- 收款总金额
+              b.goods_amount,              -- 订单应收金额
+              b.actually_money,            -- 订单实付金额
+              r.order_total erp_order_total,               -- ERP发货合计金额
+              (b.order_amount - a.total) discount,         -- 优惠金额
+              c.erp_goods_id,                                     -- erp商品编号
+              c.goods_name,                                       -- 商品名称
+              c.goods_spec ,                                      -- 规格
+              c.amount_pay,                                       -- 价格
+              c.goods_num,                 -- 商品数量
+              c.sell_num,                  -- erp实际发货数量
+              r.settletypeid,
+              a.entry_id,
+              g.entryname,
+              b.order_from                 -- 订单来源(1web,2mobile)
+            from
+              b2b.rec_doc    a,
+              b2b.order_info b,
+              b2b.order_goods c,
+              b2b.member   e,
+              sum_sa_finance_v r,
+              pub_entry g
+            where
+              a.order_id = b.id(+)
+              and b.id = c.order_id(+)
+              and c.order_id = r.b2b_order_id(+)
+              and r.customid = e.erp_user_id(+)
+              and a.entry_id = g.entryid(+)
+              and a.total >0
+              and a.create_time between #{b2bFinancialStatementVo.startDate} and #{b2bFinancialStatementVo.endDate}
+    </select>
+
+
+</mapper>

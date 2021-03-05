@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsDisctypeDiscountDefMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsDisctypeDiscountDef">
+        <id column="DISCTYPEDISCDEFID" property="disctypediscdefid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="DISTYPEDOCID" property="distypedocid" />
+        <result column="DISCOUNT" property="discount" />
+        <result column="INVALIDDATE" property="invaliddate" />
+        <result column="INVALIDENDDATE" property="invalidenddate" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="MEMO" property="memo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DISCTYPEDISCDEFID, ENTRYID, DISTYPEDOCID, DISCOUNT, INVALIDDATE, INVALIDENDDATE, USESTATUS, CREDATE, INPUTMANID, MEMO
+    </sql>
+
+</mapper>

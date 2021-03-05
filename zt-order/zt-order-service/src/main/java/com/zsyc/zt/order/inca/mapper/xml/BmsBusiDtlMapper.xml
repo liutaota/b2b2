@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsBusiDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsBusiDtl">
+        <id column="BUSIACCID" property="busiaccid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="REFUPQTY" property="refupqty" />
+        <result column="REFDOWNQTY" property="refdownqty" />
+        <result column="UPQTY" property="upqty" />
+        <result column="DOWNQTY" property="downqty" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="D1AVGSALEQTY" property="d1avgsaleqty" />
+        <result column="D1PROPORTION" property="d1proportion" />
+        <result column="D2AVGSALEQTY" property="d2avgsaleqty" />
+        <result column="D2PROPORTION" property="d2proportion" />
+        <result column="D3AVGSALEQTY" property="d3avgsaleqty" />
+        <result column="D3PROPORTION" property="d3proportion" />
+        <result column="D4AVGSALEQTY" property="d4avgsaleqty" />
+        <result column="D4PROPORTION" property="d4proportion" />
+        <result column="COLLIGATEQTY" property="colligateqty" />
+        <result column="ISUNLOCK" property="isunlock" />
+        <result column="LASTCALCMANID" property="lastcalcmanid" />
+        <result column="LASTCALCDATE" property="lastcalcdate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        BUSIACCID, GOODSID, REFUPQTY, REFDOWNQTY, UPQTY, DOWNQTY, ENTRYID, D1AVGSALEQTY, D1PROPORTION, D2AVGSALEQTY, D2PROPORTION, D3AVGSALEQTY, D3PROPORTION, D4AVGSALEQTY, D4PROPORTION, COLLIGATEQTY, ISUNLOCK, LASTCALCMANID, LASTCALCDATE
+    </sql>
+
+</mapper>

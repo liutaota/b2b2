@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.LicenceMapper">
+    <update id="updateLicenceTOValid">
+        update LICENCE set status='BE_ABOUT_TO_EXPIRES' where VALID_END_TIME!='永久'
+        and SYSDATE-30>=TO_DATE(VALID_END_TIME, 'YYYY-MM-DD HH24:MI:SS') and status in ('NORMAL')
+    </update>
+    <update id="updateLicenceDoneValid">
+
+        update LICENCE set status='EXPIRES' where VALID_END_TIME!='永久'
+        and SYSDATE>=TO_DATE(VALID_END_TIME, 'YYYY-MM-DD HH24:MI:SS') and status in ('NORMAL','BE_ABOUT_TO_EXPIRES')
+    </update>
+
+    <select id="getLicenceVoList" resultType="com.zsyc.zt.b2b.vo.LicenceVo">
+        select la.*,b.customname,  to_char(b.zx_phone) telephone from LICENCE la
+        left join ${erp}.pub_customer b on b.customid=la.ERP_CUSTOMER_ID
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="licenceVo.licenceName!=null and licenceVo.licenceName!=''">
+                and la.LICENCE_NAME like '%'||#{licenceVo.licenceName}||'%'
+            </if>
+            <if test="licenceVo.customname!=null and licenceVo.customname!=''">
+                and b.customname like '%'||#{licenceVo.customname}||'%'
+            </if>
+            <if test="licenceVo.telephone!=null and licenceVo.telephone!=''">
+                and m.telephone like '%'||#{licenceVo.telephone}||'%'
+            </if>
+            <if test="licenceVo.status!=null and licenceVo.status!=''">
+                and la.STATUS =#{licenceVo.status}
+            </if>
+            <if test="licenceVo.licenceTypeId!=null and licenceVo.licenceTypeId!=''">
+                and la.LICENCE_TYPE_ID =#{licenceVo.licenceTypeId}
+            </if>
+            <if test="licenceVo.erpCustomerId!=null and licenceVo.erpCustomerId!=''">
+                and la.ERP_CUSTOMER_ID =#{licenceVo.erpCustomerId}
+            </if>
+            <if test="licenceVo.startTime!=null and licenceVo.endTime!=null">
+                and la.CREATE_TIME &gt;= #{licenceVo.startTime} and la.CREATE_TIME &lt;= #{licenceVo.endTime}
+            </if>
+        </trim>
+        order by la.CREATE_TIME desc
+    </select>
+</mapper>

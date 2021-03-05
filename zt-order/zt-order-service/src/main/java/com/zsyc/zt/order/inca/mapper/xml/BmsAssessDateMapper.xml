@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsAssessDateMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsAssessDate">
+        <id column="SEQID" property="seqid" />
+        <result column="SALERID" property="salerid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="SAMONEY" property="samoney" />
+        <result column="SABONUS" property="sabonus" />
+        <result column="SAPROMONEY" property="sapromoney" />
+        <result column="SAPROBONUS" property="saprobonus" />
+        <result column="RECMONEY" property="recmoney" />
+        <result column="RECBONUS" property="recbonus" />
+        <result column="RECPROMONEY" property="recpromoney" />
+        <result column="RECPROBONUS" property="recprobonus" />
+        <result column="USEMM" property="usemm" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="BONUSMONEY" property="bonusmoney" />
+        <result column="AWARDMONEY" property="awardmoney" />
+        <result column="PUNISHMONEY" property="punishmoney" />
+        <result column="SABKRATE" property="sabkrate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SEQID, SALERID, ENTRYID, SAMONEY, SABONUS, SAPROMONEY, SAPROBONUS, RECMONEY, RECBONUS, RECPROMONEY, RECPROBONUS, USEMM, CREDATE, INPUTMANID, USESTATUS, BONUSMONEY, AWARDMONEY, PUNISHMONEY, SABKRATE
+    </sql>
+
+</mapper>

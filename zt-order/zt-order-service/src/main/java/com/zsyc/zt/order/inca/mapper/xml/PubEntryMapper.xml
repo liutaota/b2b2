@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubEntryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubEntry">
+        <id column="ENTRYID" property="entryid" />
+        <result column="ENTRYNAME" property="entryname" />
+        <result column="ENTRYCOMPANYID" property="entrycompanyid" />
+        <result column="LEGALENTRYID" property="legalentryid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="GOODSOWNERID" property="goodsownerid" />
+        <result column="MEDICODE" property="medicode" />
+        <result column="CATEGORYID" property="categoryid" />
+        <result column="SYS_MODIFYDATE" property="sysModifydate" />
+        <result column="TOWMSDATE" property="towmsdate" />
+        <result column="ZX_IPADDRESS" property="zxIpaddress" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ENTRYID, ENTRYNAME, ENTRYCOMPANYID, LEGALENTRYID, USESTATUS, GOODSOWNERID, MEDICODE, CATEGORYID, SYS_MODIFYDATE, TOWMSDATE, ZX_IPADDRESS
+    </sql>
+
+</mapper>

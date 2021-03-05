@@ -1,0 +1,1107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.GoodsInfoMapper">
+    <select id="getGoodsClassTypeVoList" resultType="com.zsyc.zt.b2b.vo.GoodsClassTypeVo">
+        select pgc.classid,pgc.parentclassid, pgc.classname as oldclassname,pgc.classn_row,
+        REGEXP_SUBSTR(pgc.classname, '[^\-]+$')
+        classname,c.CLASS_IMG classImg
+        from ${erp}.pub_goods_class pgc
+        left join CLASS c on c.ERP_CLASS_ID = pgc.CLASSID
+        where pgc.classtypeid=107
+        <if test="goodsClassTypeVo.classid ==null ">
+            and pgc.parentclassid is null
+        </if>
+        <if test="goodsClassTypeVo.classid !=null ">
+            and pgc.parentclassid = #{goodsClassTypeVo.classid}
+        </if>
+        order by classn_row
+    </select>
+
+    <select id="getGoodsInfoList" resultType="com.zsyc.zt.b2b.vo.GoodsInfoVo">
+        select
+        <!-- (select a.CONTENT from ACTIVITY a
+         INNER join ACTIVITY_STRATEGY ast on ast.ACTIVITY_ID=a.id and ast.IS_USE=1
+         INNER join ACTIVITY_GOODS ag on ag.AS_ID= ast.id and ag.IS_USE=1
+         where a.id in (
+         select tmp.id from (
+         select DISTINCT b.id from ACTIVITY_SET a,ACTIVITY b,${erp}.pub_custom_set_dtl d
+         where a.CUSTOM_SET_ID = d.SETID(+)
+         and a.ACTIVITY_ID(+)=b.id
+         and b.CUSTOM_SET_TYPE =20
+         and d.CUSTOMID = #{goodsInfoVo.memberId}
+         union all
+         select a.id from ACTIVITY a where a.CUSTOM_SET_TYPE =10
+         union all
+         select a.id from activity a where a. CUSTOM_SET_TYPE=30
+
+         and #{goodsInfoVo.memberId} not in
+
+         (select d.CUSTOMID from ACTIVITY_SET s
+         inner join ${erp}.pub_custom_set_dtl d on d.SETID=s.CUSTOM_SET_ID where s.activity_id=a.id)
+         ) tmp )
+         and a.is_use=1
+         and( sysdate BETWEEN to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'), ' '),a.START_EFFECTIVE_TIME) ,
+         'yyyy-mm-dd hh24:mi:ss')
+         and to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'),' '), a.END_EFFECTIVE_TIME) , 'yyyy-mm-dd hh24:mi:ss')
+         or a.START_EFFECTIVE_TIME is null and a.END_EFFECTIVE_TIME is null)
+         and ( a.WEEK= #{goodsInfoVo.week} or a.week=0 or a.week is null)
+         and (sysdate BETWEEN a.WARM_TIME and a.END_TIME+1 or sysdate BETWEEN a.START_TIME and a.END_TIME+1)
+         and ag.ERP_GOODS_ID=gv.goodsid
+         and ROWNUM=1
+         GROUP BY a.id,
+         a.CONTENT
+
+         ) content,-->
+        a.content,
+        gv.goodsid,
+        g.FACTORY_ID,
+        g.EVALUATION_GOOD_STAR,
+        g.EVALUATION_COUNT,
+        g.GOODS_COMMEND,
+        g.GOODS_IMG,
+        g.GOODS_COLLECT,
+        g.GOODS_CLICK,
+        gv.classname,
+        gv.classname_3,
+        gv.medicinetypename,
+        gv.goodsname,
+        gv.goodspinyin,
+        gv.goodsunit,
+        gv.price_2,
+        gv.price_try,
+        gv.approvedocno,
+        gv.factoryname,
+        gv.factoryid,
+        gv.goodstype,
+        gv.goodsid_gps,
+        gv.barcode,
+        gv.currencyname,
+        gv.credate,
+        gv.classn_row_1,
+        gv.classname_1,
+        gv.classname_2,
+        gv.classn_row_2,
+        gv.classn_row_3,
+        gv.busiscope,
+        gv.busiscope_name,
+        gv.goodsqty,
+        gv.invaliddate,
+        gv.otcflag,
+        gv.storagecondition,
+        gv.prodarea,
+        gv.transcondition,
+        gv.dosage,
+        gv.usegoodstime,
+        gv.diagnosticinfo,
+        gv.transporttime,
+        gv.treatment,
+        gv.memo,
+        gv.zx_b2b_num_limit,
+        gv.storageid,
+        gv.accflag,
+        gv.B2B_NOT_SALE_FLAG,
+        gpv.price, gpv.priceid,f.id is_favorites from ERP_GOODS_V gv
+        LEFT JOIN erp_goods_price_v gpv ON gpv.goodsid=gv.goodsid and gpv.customid=#{goodsInfoVo.memberId}
+        left join goods g on g.erp_goods_id=gv.goodsid
+        LEFT JOIN member m ON m.erp_user_id = gpv.customid
+        LEFT JOIN favorites f ON f.fav_id = gv.goodsid and f.member_id=m.id
+
+        left join (SELECT
+        DISTINCT ag.ERP_GOODS_ID,listagg(a.CONTENT,'')within group(order by 1)over(partition by ag.ERP_GOODS_ID) CONTENT
+
+        FROM ACTIVITY_GOODS ag
+        INNER JOIN ACTIVITY a ON a.id = ag.ACTIVITY_ID AND A .is_use = 1
+        WHERE
+
+        ag.IS_USE = 1
+        AND (
+        A .WEEK = #{goodsInfoVo.week}
+        OR A .week = 0
+        OR A .week IS NULL
+        )
+        AND (
+        SYSDATE BETWEEN A .WARM_TIME
+        AND A .END_TIME + 1
+        OR SYSDATE BETWEEN A .START_TIME
+        AND A .END_TIME + 1
+        )
+        group by ag.ERP_GOODS_ID,CONTENT) a on a.ERP_GOODS_ID=gv.goodsid
+        <where>
+            <trim>
+
+                    gv.GOODSID in (
+                    select c.goods_id from CACHE_CUSTOMER_GOODS c where c.customer_id=gpv.customid
+                    )
+
+                <if test="goodsInfoVo.AdvGoodsId!=null and goodsInfoVo.AdvGoodsId!=''">
+                    and gv.GOODSID in (${goodsInfoVo.AdvGoodsId})
+                </if>
+                <if test="goodsInfoVo.classname!=null and goodsInfoVo.classname!=''">
+                    and gv.classname_3 like '%'||#{goodsInfoVo.classname}||'%'
+                </if>
+                <if test="goodsInfoVo.classnRow3!=null">
+                    and gv.classn_row_3=#{goodsInfoVo.classnRow3}
+                </if>
+                <if test="goodsInfoVo.classnRow2!=null">
+                    and gv.classn_row_2=#{goodsInfoVo.classnRow2}
+                </if>
+                <if test="goodsInfoVo.classnRow1!=null">
+                    and gv.classn_row_1=#{goodsInfoVo.classnRow1}
+                </if>
+                <if test="goodsInfoVo.factoryname!=null and goodsInfoVo.factoryname!=''">
+                    and gv.factoryname like '%'||#{goodsInfoVo.factoryname}||'%'
+                </if>
+                <if test="goodsInfoVo.factoryid!=null">
+                    and gv.factoryid =#{goodsInfoVo.factoryid}
+                </if>
+                <!--  <if test="goodsInfoVo.goodsid!=null">
+                      and gv.goodsid=#{goodsInfoVo.goodsid}
+                  </if>-->
+
+                <if test="goodsInfoVo.goodsname!=null and goodsInfoVo.goodsname!=''">
+                    and gv.goodsname =#{goodsInfoVo.goodsname}
+                </if>
+
+                <if test="goodsInfoVo.startTime!=null and goodsInfoVo.startTime!=''and goodsInfoVo.endTime!=null and goodsInfoVo.endTime!=''">
+                    <!-- and gv.invaliddate BETWEEN to_date(#{goodsInfoVo.startTime}, 'yyyy-MM-dd') and to_date(#{goodsInfoVo.endTime}, 'yyyy-MM-dd')-->
+                    and gv.invaliddate >=to_char(#{goodsInfoVo.startTime})
+                    AND to_char(#{goodsInfoVo.endTime}) >= gv.invaliddate
+                </if>
+
+                <if test="goodsInfoVo.goodspinyin!=null and goodsInfoVo.goodspinyin!=''">
+                    and (
+                    UPPER(gv.goodspinyin) like '%'|| UPPER(#{goodsInfoVo.goodspinyin})||'%'
+                    or UPPER(gv.currencyname) like '%'||UPPER(#{goodsInfoVo.goodspinyin})||'%'
+                    or UPPER(gv.goodsname) like '%'||UPPER(#{goodsInfoVo.goodspinyin})||'%'
+                    or gv.goodsid like '%'||#{goodsInfoVo.goodspinyin}||'%'
+                    <!--  or gv.classname_3 like '%'||#{goodsInfoVo.goodspinyin}||'%'-->
+                    or gv.barcode like '%'||#{goodsInfoVo.goodspinyin}||'%'
+                    or UPPER(gv.factoryname) like '%'||UPPER(#{goodsInfoVo.goodspinyin})||'%')
+
+                    order by (CASE
+                    WHEN gv.goodsid = nvl2(translate(gv.GOODSID,concat('\'
+                    ,UPPER(#{goodsInfoVo.goodspinyin})),'0'),'0',UPPER(#{goodsInfoVo.goodspinyin})) THEN 12
+                    when UPPER(gv.currencyname) = UPPER(#{goodsInfoVo.goodspinyin}) then 11
+                    when UPPER(gv.goodsname) = UPPER(#{goodsInfoVo.goodspinyin}) then 10
+
+                    when (UPPER(gv.currencyname) like UPPER(#{goodsInfoVo.goodspinyin})||'%' OR UPPER(gv.goodsname) like
+                    UPPER(#{goodsInfoVo.goodspinyin})||'%' ) then 9
+                    when (UPPER(gv.currencyname) like '%'||UPPER(#{goodsInfoVo.goodspinyin})||'%' OR UPPER(gv.goodsname)
+                    like
+                    '%'||UPPER(#{goodsInfoVo.goodspinyin})||'%' ) then 8
+                    when (UPPER(gv.currencyname) like '%'||UPPER(#{goodsInfoVo.goodspinyin}) OR UPPER(gv.goodsname) like
+                    '%'||UPPER(#{goodsInfoVo.goodspinyin}) ) then 7
+
+                    when content is not null then 6
+                    when gv.goodsid_gps='X' then 5
+                    when UPPER(gv.goodspinyin) = UPPER(#{goodsInfoVo.goodspinyin}) then 4
+                    <!--when gv.classname_3 = #{goodsInfoVo.goodspinyin} then 3-->
+                    when gv.barcode = #{goodsInfoVo.goodspinyin} then 2
+                    when gv.factoryname = UPPER(#{goodsInfoVo.goodspinyin}) then 1
+                    ELSE
+                    0
+                    END) DESC, gv.goodsqty desc
+                </if>
+
+                <if test="goodsInfoVo.goodspinyin==null">
+                    order by (CASE
+                    when content is not null then 2
+                    when gv.goodsid_gps='X' then 1
+                    ELSE
+                    0
+                    END) DESC, gv.goodsqty desc
+                </if>
+            </trim>
+        </where>
+        <!--order by decode(gv.goodsid_gps,'X','A-Z')-->
+        <!--order by #{goodsInfoVo.sort}-->
+    </select>
+    <select id="getGoodsInfo" resultType="com.zsyc.zt.b2b.vo.GoodsInfoVo">
+        SELECT
+        gv.*,g.*,gpv.price,gpv.priceid,f.id is_favorites
+        FROM
+        ERP_GOODS_V gv
+        LEFT JOIN erp_goods_price_v gpv on gpv.goodsid =gv.goodsid and gpv.customid=#{customerId}
+        LEFT JOIN goods g ON g.erp_goods_id = gv.goodsid
+        left join member m on m.erp_user_id=gpv.customid
+        left join favorites f on f.fav_id=gv.goodsid and f.member_id=m.id
+        WHERE
+        gv.goodsid=#{id} and ROWNUM=1
+        <if test="storageId>0">
+            and gv.storageid=#{storageId}
+        </if>
+
+    </select>
+    <select id="getPubGoodsPriceList" resultType="com.zsyc.zt.b2b.vo.PubGoodsPriceVo">
+        select * from ERP_GOODS_PRICE_V where CUSTOMID=#{customerId} and goodsid= #{goodsId}
+    </select>
+    <select id="getStqty1" resultType="java.lang.Integer">
+        SELECT NVL(SUM(A.GOODSQTY - DECODE(D.QTY_TMP, NULL, 0, D.QTY_TMP)) ,0) allqty
+        FROM ${erp}.BMS_ST_QTY_LST A,
+        ${erp}.BMS_LOT_DEF B,
+        ${erp}.BMS_BATCH_DEF C,
+        (SELECT SUM(DTLGOODSQTY) QTY_TMP,
+        D.GOODSDTLID,
+        D.LOTID,
+        D.BATCHID,
+        D.POSID
+        FROM ${erp}.BMS_ST_IO_DTL_TMP D,${erp}.BMS_ST_IO_DOC_TMP D1
+        WHERE D.INOUTID=D1.INOUTID(+) AND D1.STORAGEID IN
+        <foreach collection="storageIds" item="item" open="(" close=")" separator=",">
+            (#{item})
+        </foreach>
+        and d.goodsstatusid=1 --状态为合格临时单
+        GROUP BY D.LOTID,
+        D.BATCHID,
+        D.POSID,
+        D.GOODSDTLID) D
+        WHERE 1 = 1
+        AND A.LOTID = B.LOTID
+        AND A.BATCHID = C.BATCHID
+        AND A.GOODSID = C.GOODSID
+        AND A.LOTID = D.LOTID(+)
+        AND A.BATCHID = D.BATCHID(+)
+        AND A.POSID = D.POSID(+)
+        AND A.GOODSDETAILID = D.GOODSDTLID(+)
+        AND A.GOODSQTY - DECODE(D.QTY_TMP, NULL, 0, D.QTY_TMP) > 0
+        <if test="isGift==5">
+            AND B.INVALIDDATE IS NOT NULL
+        </if>
+        <if test="lotid!=null and lotid>0">
+            and a.LOTID = #{lotid}
+        </if>
+        AND A.GOODSSTATUSID = 1
+        AND ((C.LIMITID IS NULL) OR (C.LIMITID IS NOT NULL AND C.LIMITID = #{customId}))
+        AND A.STORAGEID IN
+        <foreach collection="storageIds" item="item" open="(" close=")" separator=",">
+            (#{item})
+        </foreach>
+        AND A.GOODSID = #{goodsId}
+
+
+    </select>
+    <select id="selectOfForbidBy" resultType="com.zsyc.zt.inca.entity.BmsForbidSales">
+        select *
+        from ${erp}.BMS_FORBID_SALES a
+        where 1=1
+        and usestatus = #{useStatus}
+        and entryid = #{entryId}
+        and forbidflag = 1
+        and exists
+        (
+        select *
+        from ${erp}.PUB_ENTRY_GOODS_SET_ENUM_DTL b, ${erp}.PUB_ENTRY_GOODS_SET c
+        where c.setid = b.setid
+        and a.goodssetid = a.goodssetid
+        and c.entryid = #{entryId}
+        and c.usestatus = #{useStatus}
+        and b.goodsid = #{goodsId}
+        )
+        and exists (select *
+        from ${erp}.pub_custom_set_dtl b, ${erp}.pub_custom_set c
+        where b.setid = c.setid
+        and a.goodssetid = b.SETDTLID
+        and c.entryid = #{entryId}
+        and c.usestatus = #{useStatus}
+        and b.customid = #{customId})
+    </select>
+    <select id="selectOfRestrictBy" resultType="com.zsyc.zt.inca.entity.BmsForbidSales">
+        select *
+        from ${erp}.BMS_FORBID_SALES a
+        where 1=1
+        and usestatus = #{useStatus}
+        and entryid = #{entryId}
+        and forbidflag = 2
+        and exists
+        (
+        select *
+        from ${erp}.PUB_ENTRY_GOODS_SET_ENUM_DTL b, ${erp}.PUB_ENTRY_GOODS_SET c
+        where c.setid = b.setid
+        and a.goodssetid = a.goodssetid
+        and c.entryid = #{entryId}
+        and c.usestatus = #{useStatus}
+        and b.goodsid = #{goodsId}
+        )
+        and not exists (select *
+        from ${erp}.pub_custom_set_dtl b, ${erp}.pub_custom_set c
+        where b.setid = c.setid
+        and a.goodssetid = b.SETDTLID
+        and c.entryid = #{entryId}
+        and c.usestatus = #{useStatus}
+        and b.customid = #{customId})
+
+    </select>
+    <select id="goodsClassTypeVoList" resultType="com.zsyc.zt.b2b.vo.GoodsClassTypeVo">
+        select classid,classn_row, REGEXP_SUBSTR(classname, '[^\-]+$') classname
+        from ${erp}.pub_goods_class
+        start with classn_row=#{classnRow} connect by prior parentclassid=classid
+        order by classn_row
+    </select>
+    <select id="getAdminGoodsInfoList" resultType="com.zsyc.zt.b2b.vo.GoodsInfoVo">
+        SELECT eag.*,g.*
+        FROM ERP_ADMIN_GOODS_V eag
+        LEFT JOIN goods g ON g.erp_goods_id = eag.goodsid
+        <if test="goodsInfoVo.setId!=null">
+            inner join ${erp}.pub_entry_goods_set_enum_dtl p on p.goodsid=eag.goodsid
+        </if>
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="goodsInfoVo.setId!=null">
+                p.SETID=#{goodsInfoVo.setId}
+            </if>
+            <if test="goodsInfoVo.isLot!=null">
+               and g.is_lot=#{goodsInfoVo.isLot}
+            </if>
+            <if test="goodsInfoVo.classname!=null and goodsInfoVo.classname!=''">
+                and eag.classname_3 like '%'||#{goodsInfoVo.classname}||'%'
+            </if>
+            <if test="goodsInfoVo.classnRow3!=null">
+                and eag.classn_row_3=#{goodsInfoVo.classnRow3}
+            </if>
+            <if test="goodsInfoVo.classnRow2!=null">
+                and eag.classn_row_2=#{goodsInfoVo.classnRow2}
+            </if>
+            <if test="goodsInfoVo.classnRow1!=null">
+                and eag.classn_row_1=#{goodsInfoVo.classnRow1}
+            </if>
+            <if test="goodsInfoVo.goodsname!=null and goodsInfoVo.goodsname!=''">
+                and eag.GOODSNAME like '%'||#{goodsInfoVo.goodsname}||'%'
+            </if>
+            <if test="goodsInfoVo.goodsid!=null">
+                and eag.GOODSID = #{goodsInfoVo.goodsid}
+            </if>
+            <if test="goodsInfoVo.barcode!=null and goodsInfoVo.barcode!=''">
+                and eag.BARCODE = #{goodsInfoVo.barcode}
+            </if>
+            <if test="goodsInfoVo.factoryname!=null and goodsInfoVo.factoryname!=''">
+                and eag.FACTORYNAME like '%'||#{goodsInfoVo.factoryname}||'%'
+            </if>
+            <if test="goodsInfoVo.classnRow3!=null">
+                and eag.CLASSN_ROW_3 = #{goodsInfoVo.classnRow3}
+            </if>
+            <if test="goodsInfoVo.isImg">
+                and g.GOODS_IMG is null
+            </if>
+            <if test="goodsInfoVo.isAccFlag">
+                and eag.ACCFLAG = 5
+            </if>
+            <if test="goodsInfoVo.isMinimumSales">
+                and eag.ZX_B2B_NUM_LIMIT = 0
+            </if>
+            <if test="goodsInfoVo.isRacking!=null">
+                and eag.ISPUTAWAY = #{goodsInfoVo.isRacking}
+            </if>
+            <if test="goodsInfoVo.isIntegralGoods!=null">
+                and g.INTEGRAL_GOODS = #{goodsInfoVo.isIntegralGoods}
+            </if>
+            <if test="goodsInfoVo.imgNum!=null">
+                and g.IMG_NUM &lt;= #{goodsInfoVo.imgNum}
+            </if>
+            <if test="goodsInfoVo.startTime!=null and goodsInfoVo.startTime!='' and goodsInfoVo.endTime!=null and goodsInfoVo.endTime!=''">
+                and eag.INVALIDDATE &gt;= #{goodsInfoVo.startTime} and eag.INVALIDDATE &lt;= #{goodsInfoVo.endTime}
+            </if>
+
+            <if test="goodsInfoVo.goodspinyin!=null and goodsInfoVo.goodspinyin!=''">
+                and (
+                UPPER(eag.goodspinyin) like '%'|| UPPER(#{goodsInfoVo.goodspinyin})||'%'
+                or UPPER(eag.currencyname) like '%'||UPPER(#{goodsInfoVo.goodspinyin})||'%'
+                or UPPER(eag.goodsname) like '%'||UPPER(#{goodsInfoVo.goodspinyin})||'%'
+                or eag.goodsid like '%'||#{goodsInfoVo.goodspinyin}||'%'
+                <!--  or gv.classname_3 like '%'||#{goodsInfoVo.goodspinyin}||'%'-->
+                or eag.barcode like '%'||#{goodsInfoVo.goodspinyin}||'%'
+                or UPPER(eag.factoryname) like '%'||UPPER(#{goodsInfoVo.goodspinyin})||'%')
+
+            </if>
+        </trim>
+        order by g.INTEGRAL_GOODS desc nulls last,eag.goodsqty desc,eag.CREDATE desc,eag.GOODSID desc
+    </select>
+    <select id="getAdminGoodsInfo" resultType="com.zsyc.zt.b2b.vo.GoodsInfoVo">
+        SELECT
+        gv.*,g.*
+        FROM
+        ERP_ADMIN_GOODS_V gv
+        LEFT JOIN goods g ON g.erp_goods_id = gv.goodsid
+        WHERE gv.goodsid=#{goodsid}
+        <if test="storageId>0">
+            and gv.storageid=#{storageId}
+        </if>
+        and ROWNUM=1
+    </select>
+
+    <select id="getBannedList" resultType="com.zsyc.zt.b2b.vo.BannedVo">
+        select a.forbidid as forbidid,
+        a.customsetid as customsetid,
+        a.goodssetid as goodssetid,
+        b.setname as customsetname ,
+        b.usestatus as customsetusestatus,
+        c.setname as goodssetname,
+        c.usestatus as goodssetusestatus,
+        a.forbidflag as forbidflag,
+        a.usestatus as usestatus,
+        a.memo as memo,
+        a.credate as credate
+        from ${erp}.bms_forbid_sales a, ${erp}.pub_custom_set b, ${erp}.pub_entry_goods_set c
+        <where>
+            and a.goodssetid = c.setid
+            and a.customsetid = b.setid
+            and c.entryid = 1
+            <if test="bannedVo.forbidid!=null">
+                and a.forbidid = #{bannedVo.forbidid}
+            </if>
+            <if test="bannedVo.customsetid!=null">
+                and a.customsetid = #{bannedVo.customsetid}
+            </if>
+            <if test="bannedVo.customsetname!=null and bannedVo.customsetname!=''">
+                and b.setname like '%'||#{bannedVo.customsetname}||'%'
+            </if>
+            <if test="bannedVo.goodssetid!=null">
+                and a.goodssetid = #{bannedVo.goodssetid}
+            </if>
+            <if test="bannedVo.goodssetname!=null and bannedVo.goodssetname!=''">
+                and c.setname like '%'||#{bannedVo.goodssetname}||'%'
+            </if>
+            <if test="bannedVo.forbidflag!=null">
+                and a.forbidflag = #{bannedVo.forbidflag}
+            </if>
+            <if test="bannedVo.usestatus!=null">
+                and a.usestatus = #{bannedVo.usestatus}
+            </if>
+        </where>
+        order by a.credate desc
+    </select>
+
+    <select id="getAdminGoodsList" resultType="com.zsyc.zt.b2b.vo.BannedVo">
+        select b.SETID as goodssetid,
+        b.SETNAME as goodssetname,
+        d.ENTRYNAME as entryname,
+        c.EMPLOYEENAME as inputmaname,
+        b.USESTATUS as usestatus,
+        b.CREDATE as credate
+        from ${erp}.pub_entry_goods_set b,${erp}.pub_employee c,${erp}.pub_entry d --货品集合总单
+        where b.INPUTMANID = c.EMPLOYEEID
+        and b.ENTRYID = d.ENTRYID
+        and b.entryid = 1
+        <if test="bannedVo.goodssetname!=null and bannedVo.goodssetname!=''">
+            and b.setname like '%'||#{bannedVo.goodssetname}||'%'
+        </if>
+        <if test="bannedVo.goodssetid!=null">
+            and b.setid = #{bannedVo.goodssetid}
+        </if>
+    </select>
+
+    <select id="getAdminGoodsListById" resultType="com.zsyc.zt.b2b.vo.BannedVo">
+        select a.SETENUMDTLID as setenumdtlid,
+        b.GOODSNAME as goodsname,
+        b.GOODSUNIT as goodsunit,
+        b.GOODSTYPE as goodstype,
+        c.gspusestatus as gspusestatus, -- 1质量可用 3质量禁止
+        d.factoryname as factoryname
+        from ${erp}.pub_entry_goods_set_enum_dtl a,${erp}.pub_goods b,
+        ${erp}.pub_entry_goods c,${erp}.pub_factory d --货品集合细单
+        where a.goodsid = b.goodsid
+        and a.goodsid = c.goodsid
+        and b.factoryid = d.factoryid
+        and c.entryid = 1
+        <if test="bannedVo.goodssetid!=null">
+            and a.setid = #{bannedVo.goodssetid}
+        </if>
+    </select>
+
+    <select id="getGoodsListExcel" resultType="com.zsyc.zt.b2b.vo.GoodsInfoVo">
+        SELECT eag.*,g.*
+        FROM ERP_ADMIN_GOODS_V eag
+        LEFT JOIN goods g ON g.erp_goods_id = eag.goodsid
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="goodsInfoVo.goodsname!=null and goodsInfoVo.goodsname!=''">
+                and eag.GOODSNAME like '%'||#{goodsInfoVo.goodsname}||'%'
+            </if>
+            <if test="goodsInfoVo.goodsid!=null">
+                and eag.GOODSID = #{goodsInfoVo.goodsid}
+            </if>
+            <if test="goodsInfoVo.barcode!=null and goodsInfoVo.barcode!=''">
+                and eag.BARCODE = #{goodsInfoVo.barcode}
+            </if>
+            <if test="goodsInfoVo.factoryname!=null and goodsInfoVo.factoryname!=''">
+                and eag.FACTORYNAME like '%'||#{goodsInfoVo.factoryname}||'%'
+            </if>
+            <if test="goodsInfoVo.classnRow3!=null">
+                and eag.CLASSN_ROW_3 = #{goodsInfoVo.classnRow3}
+            </if>
+            <if test="goodsInfoVo.isImg">
+                and g.GOODS_IMG is null
+            </if>
+            <if test="goodsInfoVo.isAccFlag">
+                and eag.ACCFLAG = 5
+            </if>
+            <if test="goodsInfoVo.isRacking!=null">
+                and eag.ISPUTAWAY = #{goodsInfoVo.isRacking}
+            </if>
+            <if test="goodsInfoVo.isMinimumSales">
+                and eag.ZX_B2B_NUM_LIMIT = 0
+            </if>
+            <if test="goodsInfoVo.isPutAway">
+                and eag.ISPUTAWAY != 1
+            </if>
+            <if test="goodsInfoVo.imgNum!=null">
+                and g.IMG_NUM &lt;= #{goodsInfoVo.imgNum}
+            </if>
+            <if test="goodsInfoVo.startTime!=null and goodsInfoVo.startTime!='' and goodsInfoVo.endTime!=null and goodsInfoVo.endTime!=''">
+                and eag.INVALIDDATE &gt;= #{goodsInfoVo.startTime} and eag.INVALIDDATE &lt;= #{goodsInfoVo.endTime}
+            </if>
+        </trim>
+        order by eag.credate desc,eag.GOODSID desc
+    </select>
+    <select id="getValidityGoodsInfo" resultType="com.zsyc.zt.b2b.vo.GoodsInfoVo">
+        select
+        g.id,
+        g.ERP_GOODS_ID,
+        g.FACTORY_ID,
+        g.HAVE_GIFT,
+        g.EVALUATION_GOOD_STAR,
+        g.EVALUATION_COUNT,
+        g.GOODS_COMMEND,
+        g.GOODS_IMG,
+        g.GOODS_COLLECT,
+        g.GOODS_CLICK,
+        g.CREATE_TIME,
+        g.ERP_ACC_FLAG,
+        g.ERP_STORAGE_ID,
+        g.ERP_LOT_NO,
+        g.DESCRIPTION,
+        gv.classname,
+        gv.classname_3,
+        gv.medicinetypename,
+        gv.goodsname,
+        gv.goodspinyin,
+        gv.goodsunit,
+        gv.price_2,
+        gv.price_try,
+        gv.approvedocno,
+        gv.factoryname,
+        gv.factoryid,
+        gv.goodsid,
+        gv.goodstype,
+        gv.goodsid_gps,
+        gv.barcode,
+        gv.currencyname,
+        gv.credate,
+        gv.classn_row_1,
+        gv.classname_1,
+        gv.classname_2,
+        gv.classn_row_2,
+        gv.classn_row_3,
+        gv.busiscope,
+        gv.busiscope_name,
+        gv.goodsqty,
+        gv.invaliddate,
+        gv.otcflag,
+        gv.storagecondition,
+        gv.prodarea,
+        gv.transcondition,
+        gv.dosage,
+        gv.usegoodstime,
+        gv.diagnosticinfo,
+        gv.transporttime,
+        gv.treatment,
+        gv.memo,
+        gv.supplyerid,
+        gv.employeename,
+        gv.zx_b2b_num_limit,
+        gv.storageid,
+        gv.accflag,
+        gv.lotno,
+        gv.lotid,
+        gv.proddate,
+        gv.price,
+        gv.priceid,
+        f.id is_favorites
+        from ERP_validity_goods_v gv
+        <!--  LEFT JOIN ERP_VALIDITY_PRICE_V gpv ON gpv.goodsid=gv.goodsid and  gpv.CUSTOMID=#{goodsInfoVo.memberId}-->
+        LEFT JOIN goods g ON g.erp_goods_id = gv.goodsid
+        LEFT JOIN member m ON m.erp_user_id = #{goodsInfoVo.memberId}
+        LEFT JOIN favorites f ON f.fav_id = gv.goodsid and f.member_id=m.id
+        <where>
+
+                gv.GOODSID in (
+                select c.goods_id from CACHE_CUSTOMER_GOODS c where c.customer_id=#{goodsInfoVo.memberId}
+                )
+
+            <if test="goodsInfoVo.goodsid!=null">
+                and gv.goodsid=#{goodsInfoVo.goodsid}
+            </if>
+            <if test="goodsInfoVo.factoryname!=null and goodsInfoVo.factoryname!=''">
+                and gv.factoryname = #{goodsInfoVo.factoryname}
+            </if>
+            <if test="goodsInfoVo.classname!=null and goodsInfoVo.classname!=''">
+                and gv.classname_3 like '%'||#{goodsInfoVo.classname}||'%'
+            </if>
+            <!--  <if test="goodsInfoVo.classname!=null and goodsInfoVo.classname!=''">
+                  and gv.classname_3 like '%'||#{goodsInfoVo.classname}||'%'
+              </if>
+              <if test="goodsInfoVo.classnRow3!=null">
+                  and gv.classn_row_3=#{goodsInfoVo.classnRow3}
+              </if>
+              <if test="goodsInfoVo.classnRow2!=null">
+                  and gv.classn_row_2=#{goodsInfoVo.classnRow2}
+              </if>
+              <if test="goodsInfoVo.classnRow1!=null">
+                  and gv.classn_row_1=#{goodsInfoVo.classnRow1}
+              </if>
+              <if test="goodsInfoVo.factoryname!=null and goodsInfoVo.factoryname!=''">
+                  and gv.factoryname like '%'||#{goodsInfoVo.factoryname}||'%'
+              </if>
+              <if test="goodsInfoVo.lotid!=null and goodsInfoVo.lotid!=''">
+                  and gv.LOTID = #{goodsInfoVo.lotid}
+              </if>
+              <if test="goodsInfoVo.startTime!=null and goodsInfoVo.startTime!=''and goodsInfoVo.endTime!=null and goodsInfoVo.endTime!=''">
+                  &lt;!&ndash; and gv.invaliddate BETWEEN to_date(#{goodsInfoVo.startTime}, 'yyyy-MM-dd') and to_date(#{goodsInfoVo.endTime}, 'yyyy-MM-dd')&ndash;&gt;
+                  and gv.invaliddate >=to_char(#{goodsInfoVo.startTime})
+                  AND to_char(#{goodsInfoVo.endTime}) >= gv.invaliddate
+              </if>
+
+              <if test="goodsInfoVo.goodspinyin!=null and goodsInfoVo.goodspinyin!=''">
+                  and (
+                  gv.goodspinyin like '%'|| UPPER(#{goodsInfoVo.goodspinyin})||'%'
+                  or gv.currencyname like '%'||#{goodsInfoVo.goodspinyin}||'%'
+                  or gv.goodsname like '%'||#{goodsInfoVo.goodspinyin}||'%'
+                  or gv.goodsid like '%'||#{goodsInfoVo.goodspinyin}||'%'
+                &lt;!&ndash;  or gv.classname_3 like '%'||#{goodsInfoVo.goodspinyin}||'%'&ndash;&gt;
+                  or gv.barcode like '%'||#{goodsInfoVo.goodspinyin}||'%'
+                  or gv.factoryname like '%'||#{goodsInfoVo.goodspinyin}||'%')
+
+                  order by (CASE
+                  when gv.goodspinyin = UPPER(#{goodsInfoVo.goodspinyin}) then 7
+                  when gv.currencyname = #{goodsInfoVo.goodspinyin} then 6
+                  when gv.goodsname = #{goodsInfoVo.goodspinyin} then 5
+                  WHEN gv.goodsid = nvl2(translate(gv.GOODSID,concat('\'
+                  ,#{goodsInfoVo.goodspinyin}),'0'),'0',#{goodsInfoVo.goodspinyin}) THEN 4
+                 &lt;!&ndash; when gv.classname_3 = #{goodsInfoVo.goodspinyin} then 3&ndash;&gt;
+                  when gv.barcode = #{goodsInfoVo.goodspinyin} then 2
+                  when gv.factoryname = #{goodsInfoVo.goodspinyin} then 1
+                  ELSE
+                  0
+                  END) DESC, gv.goodsqty desc
+              </if>-->
+        </where>
+        order by gv.goodsqty desc
+    </select>
+    <select id="getValidityGoodsInfoById" resultType="com.zsyc.zt.b2b.vo.GoodsInfoVo">
+        select
+        g.id,
+        g.ERP_GOODS_ID,
+        g.FACTORY_ID,
+        g.HAVE_GIFT,
+        g.EVALUATION_GOOD_STAR,
+        g.EVALUATION_COUNT,
+        g.GOODS_COMMEND,
+        g.GOODS_IMG,
+        g.GOODS_COLLECT,
+        g.GOODS_CLICK,
+        g.CREATE_TIME,
+        g.ERP_ACC_FLAG,
+        g.ERP_STORAGE_ID,
+        g.ERP_LOT_NO,
+        g.DESCRIPTION,
+        gv.classname,
+        gv.classname_3,
+        gv.medicinetypename,
+        gv.goodsname,
+        gv.goodspinyin,
+        gv.goodsunit,
+        gv.price_2,
+        gv.price_try,
+        gv.approvedocno,
+        gv.factoryname,
+        gv.factoryid,
+        gv.goodsid,
+        gv.goodstype,
+        gv.goodsid_gps,
+        gv.barcode,
+        gv.currencyname,
+        gv.credate,
+        gv.classn_row_1,
+        gv.classname_1,
+        gv.classname_2,
+        gv.classn_row_2,
+        gv.classn_row_3,
+        gv.busiscope,
+        gv.busiscope_name,
+        gv.goodsqty,
+        gv.invaliddate,
+        gv.otcflag,
+        gv.storagecondition,
+        gv.prodarea,
+        gv.transcondition,
+        gv.dosage,
+        gv.usegoodstime,
+        gv.diagnosticinfo,
+        gv.transporttime,
+        gv.treatment,
+        gv.memo,
+        gv.supplyerid,
+        gv.employeename,
+        gv.zx_b2b_num_limit,
+        gv.storageid,
+        gv.accflag,
+        gv.lotno,
+        gv.lotid,
+        gv.proddate,
+        gv.price,
+        gv.priceid,
+        f.id is_favorites
+        from ERP_validity_goods_v gv
+        <!--LEFT JOIN ERP_VALIDITY_PRICE_V gpv ON gpv.goodsid=gv.goodsid and gpv.CUSTOMID=#{customid}-->
+        LEFT JOIN goods g ON g.erp_goods_id = gv.goodsid
+        LEFT JOIN member m ON m.erp_user_id = #{customid}
+        LEFT JOIN favorites f ON f.fav_id = gv.goodsid and f.member_id=m.id
+        WHERE
+        gv.GOODSID=#{goodsId} and ROWNUM=1
+        <if test="lotid!=null and  lotid >0">
+            and gv.LOTID = #{lotid}
+        </if>
+
+    </select>
+
+    <select id="getGoodsListNotPage" resultType="com.zsyc.zt.b2b.vo.GoodsInfoVo">
+        SELECT gv.*,g.*
+        FROM ERP_ADMIN_GOODS_V gv
+        LEFT JOIN goods g ON g.erp_goods_id = gv.goodsid
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="goodsInfoVo.goodsname!=null and goodsInfoVo.goodsname!=''">
+                and gv.goodsname like '%'||#{goodsInfoVo.goodsname}||'%'
+            </if>
+            <if test="goodsInfoVo.goodsid!=null">
+                and gv.goodsid = #{goodsInfoVo.goodsid}
+            </if>
+            <if test="goodsInfoVo.barcode!=null and goodsInfoVo.barcode!=''">
+                and gv.barcode = #{goodsInfoVo.barcode}
+            </if>
+            <if test="goodsInfoVo.factoryname!=null and goodsInfoVo.factoryname!=''">
+                and gv.factoryname like '%'||#{goodsInfoVo.factoryname}||'%'
+            </if>
+            <if test="goodsInfoVo.classnRow3!=null">
+                and gv.CLASSN_ROW_3 = #{goodsInfoVo.classnRow3}
+            </if>
+            <if test="goodsInfoVo.isImg">
+                and g.GOODS_IMG is null
+            </if>
+            <if test="goodsInfoVo.imgNum!=null">
+                adn g.IMG_NUM &lt;= #{goodsInfoVo.imgNum}
+            </if>
+            <if test="goodsInfoVo.startTime!=null and goodsInfoVo.startTime!='' and goodsInfoVo.endTime!=null and goodsInfoVo.endTime!=''">
+                and gv.INVALIDDATE &gt;= #{goodsInfoVo.startTime} and gv.INVALIDDATE &lt;= #{goodsInfoVo.endTime}
+            </if>
+        </trim>
+        order by gv.credate desc,gv.GOODSID desc
+    </select>
+
+    <select id="getGoodsQuality" resultType="com.zsyc.zt.b2b.vo.GoodsQualityVo">
+        select approvedocno,
+        lotno,
+        goodsid,
+        imgurl_top,
+        imgurl_bottom,
+        create_time,
+        filecount,
+        fcheckid,
+        filename
+        from erp_goods_quality_v
+        where create_time > #{startTime}
+        and filename is not null
+    </select>
+    <select id="getNewGoodsInfoVoList" resultType="com.zsyc.zt.b2b.vo.GoodsInfoVo">
+        SELECT
+        g.id,
+        g.ERP_GOODS_ID,
+        g.FACTORY_ID,
+        g.HAVE_GIFT,
+        g.EVALUATION_GOOD_STAR,
+        g.EVALUATION_COUNT,
+        g.GOODS_COMMEND,
+        g.GOODS_IMG,
+        g.GOODS_COLLECT,
+        g.GOODS_CLICK,
+        g.CREATE_TIME,
+        g.ERP_ACC_FLAG,
+        g.ERP_STORAGE_ID,
+        g.ERP_LOT_NO,
+        g.DESCRIPTION,
+        gv.classname,
+        gv.classname_3,
+        gv.medicinetypename,
+        gv.goodsname,
+        gv.goodspinyin,
+        gv.goodsunit,
+        gv.price_2,
+        gv.price_try,
+        gv.approvedocno,
+        gv.factoryname,
+        gv.factoryid,
+        gv.goodsid,
+        gv.goodstype,
+        gv.goodsid_gps,
+        gv.barcode,
+        gv.currencyname,
+        gv.credate,
+        gv.classn_row_1,
+        gv.classname_1,
+        gv.classname_2,
+        gv.classn_row_2,
+        gv.classn_row_3,
+        gv.busiscope,
+        gv.busiscope_name,
+        gv.goodsqty,
+        gv.invaliddate,
+        gv.otcflag,
+        gv.storagecondition,
+        gv.prodarea,
+        gv.transcondition,
+        gv.dosage,
+        gv.usegoodstime,
+        gv.diagnosticinfo,
+        gv.transporttime,
+        gv.treatment,
+        gv.memo,
+        gv.supplyerid,
+        gv.employeename,
+        gv.zx_b2b_num_limit,
+        gv.storageid,
+        gv.storagename,
+        gv.accflag,
+        gpv.price,
+        gpv.priceid,
+        f.id is_favorites
+        FROM
+        ERP_GOODS_V gv
+        LEFT JOIN erp_goods_price_v gpv ON gpv.goodsid=gv.goodsid and gpv.CUSTOMID=#{goodsInfoVo.memberId}
+        LEFT JOIN goods g ON g.erp_goods_id = gv.goodsid
+        LEFT JOIN member m ON m.erp_user_id = gpv.customid
+        LEFT JOIN favorites f ON f.fav_id = gv.goodsid and f.member_id=m.id
+        WHERE
+        gv.goodsid_gps='X'
+
+            and gv.GOODSID in (
+            select c.goods_id from CACHE_CUSTOMER_GOODS c where c.customer_id=gpv.customid )
+
+        <if test="goodsInfoVo.factoryname!=null and goodsInfoVo.factoryname!=''">
+            and gv.factoryname = #{goodsInfoVo.factoryname}
+        </if>
+        <if test="goodsInfoVo.classname!=null and goodsInfoVo.classname!=''">
+            and gv.classname_3 like '%'||#{goodsInfoVo.classname}||'%'
+        </if>
+        order by gv.goodsqty desc
+    </select>
+    <select id="getGoodsInfoVoThree" resultType="com.zsyc.zt.b2b.vo.GoodsInfoVo">
+        SELECT
+        g.EVALUATION_COUNT, g.GOODS_IMG,g.GOODS_CLICK, gpv.price,gpv.priceid,gv.*
+        from
+        ERP_GOODS_V gv
+        LEFT JOIN erp_goods_price_v gpv on gpv.goodsid =gv.goodsid and gpv.customid=#{customerId}
+        LEFT JOIN goods g ON g.erp_goods_id = gv.goodsid
+
+        where gv.GOODSID in (
+        select c.goods_id from CACHE_CUSTOMER_GOODS c where c.customer_id=gpv.customid
+        )
+        and g.GOODS_CLICK>0
+        and 4>ROWNUM
+        order by g.GOODS_CLICK desc
+    </select>
+    <select id="getMyFootAll" resultType="com.zsyc.zt.b2b.vo.GoodsInfoVo">
+        SELECT
+        g.EVALUATION_COUNT,
+        g.GOODS_IMG,
+        g.GOODS_CLICK,
+        gpv.price,
+        gpv.priceid,
+        gv.* ,
+        f.id is_favorites
+        FROM
+        ERP_GOODS_V gv
+        LEFT JOIN erp_goods_price_v gpv ON gpv.goodsid = gv.goodsid
+        AND gpv.customid =#{memberId}
+        LEFT JOIN goods g ON g.erp_goods_id = gv.goodsid
+        left join member m on m.erp_user_id=gpv.customid
+        left join favorites f on f.fav_id=gv.goodsid and f.member_id=m.id
+        WHERE
+        gv.GOODSID IN
+        <foreach collection="goodsId" item="item" open="(" close=")" separator=",">
+            (#{item})
+        </foreach>
+
+    </select>
+    <select id="getAdminGoods" resultType="com.zsyc.zt.b2b.vo.BannedVo">
+        select b.SETID as goodssetid,
+        b.SETNAME as goodssetname,
+        d.ENTRYNAME as entryname,
+        c.EMPLOYEENAME as inputmaname,
+        b.USESTATUS as usestatus,
+        b.CREDATE as credate
+        from ${erp}.pub_entry_goods_set b,${erp}.pub_employee c,${erp}.pub_entry d --货品集合总单
+        where b.INPUTMANID = c.EMPLOYEEID
+        and b.ENTRYID = d.ENTRYID
+        and b.entryid = 1
+        and b.SETID = #{goodsSetId}
+    </select>
+
+    <select id="getAdminGoodsClassTypeVoList" resultType="com.zsyc.zt.b2b.vo.GoodsClassTypeVo">
+        select
+        pgc.classid,
+        pgc.parentclassid,
+        pgc.classn_row,
+        REGEXP_SUBSTR(pgc.classname, '[^\-]+$') oldclassname,
+        c.CLASS_NAME, -- 简称
+        c.CLASS_IMG -- 图片
+        from ${erp}.pub_goods_class pgc
+        left join CLASS c on c.ERP_CLASS_ID = pgc.CLASSID
+        where pgc.classtypeid=107
+        <if test="goodsClassTypeVo.isImg">
+            and c.CLASS_IMG is null
+        </if>
+        <if test="goodsClassTypeVo.classid !=null ">
+            and pgc.classid = #{goodsClassTypeVo.classid}
+        </if>
+        <if test="goodsClassTypeVo.classNo !=null and goodsClassTypeVo.classNo == 1">
+            and pgc.parentclassid is null
+        </if>
+        <if test="goodsClassTypeVo.classNo !=null and goodsClassTypeVo.classNo == 2">
+            and pgc.parentclassid in (select p.classid from ${erp}.pub_goods_class p where p.classtypeid=107 and
+            p.PARENTCLASSID is null)
+        </if>
+        <if test="goodsClassTypeVo.classNo !=null and goodsClassTypeVo.classNo == 3">
+            and pgc.parentclassid not in (select p.classid from ${erp}.pub_goods_class p where p.classtypeid=107 and
+            p.PARENTCLASSID is null)
+        </if>
+        <if test="goodsClassTypeVo.oldclassname !=null and goodsClassTypeVo.oldclassname!=''">
+            and pgc.classname like '%'||#{goodsClassTypeVo.oldclassname}||'%'
+        </if>
+        order by classn_row
+    </select>
+    <select id="getGoodsInfoVoSecKill" resultType="com.zsyc.zt.b2b.vo.GoodsInfoVo">
+        select gv.*,a.*,ag.GOODS_PRICE,g.GOODS_IMG,
+        gpv.price, gpv.priceid from ERP_GOODS_V gv
+        LEFT JOIN erp_goods_price_v gpv ON gpv.goodsid=gv.goodsid and gpv.customid=#{goodsInfoVo.memberId}
+        LEFT JOIN goods g ON g.erp_goods_id = gv.goodsid
+        INNER JOIN ACTIVITY_GOODS ag on ag.ERP_GOODS_ID=gv.GOODSID
+        inner join ACTIVITY_STRATEGY ast on ast.id=ag.AS_ID
+        inner join (select a.* from (
+        select DISTINCT b.* from ACTIVITY_SET a,ACTIVITY b,${erp}.pub_custom_set_dtl d
+        where a.CUSTOM_SET_ID = d.SETID(+)
+        and a.ACTIVITY_ID(+)=b.id
+        and b.CUSTOM_SET_TYPE =20
+        and d.CUSTOMID = #{goodsInfoVo.memberId}
+        union all
+        select a.* from ACTIVITY a where a.CUSTOM_SET_TYPE =10
+        union all
+        select DISTINCT a.* from activity a where a. CUSTOM_SET_TYPE=30
+
+        and #{goodsInfoVo.memberId} not in
+
+        (select d.CUSTOMID from ACTIVITY_SET s
+        inner join ${erp}.pub_custom_set_dtl d on d.SETID=s.CUSTOM_SET_ID where s.activity_id=a.id)
+        ) a ) a on a.id=ast.ACTIVITY_ID and a.id=ag.ACTIVITY_ID
+        where a.is_use=1 and a.ACTIVITY_STRATEGY=60
+        and (sysdate BETWEEN a.WARM_TIME and a.END_TIME+1
+        or sysdate BETWEEN a.START_TIME and a.END_TIME+1)
+
+        and( sysdate BETWEEN a.WARM_TIME
+        and to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'),' '), a.END_EFFECTIVE_TIME) , 'yyyy-mm-dd hh24:mi:ss')
+        or a.END_EFFECTIVE_TIME is null)
+
+        and ( a.WEEK= #{goodsInfoVo.week} or a.week=0 or a.week is null)
+
+            and gv.GOODSID in (
+            select c.goods_id from CACHE_CUSTOMER_GOODS c where c.customer_id=gpv.customid )
+
+    </select>
+    <select id="getPubGoodsPriceList5" resultType="com.zsyc.zt.b2b.vo.PubGoodsPriceVo">
+        select * from ERP_VALIDITY_PRICE_V where CUSTOMID = #{customerId} and GOODSID = #{goodsId}
+    </select>
+    <select id="getIntegralGoodsInfoList" resultType="com.zsyc.zt.b2b.vo.GoodsInfoVo">
+        select
+        gv.currencyname as currencyname,--商品名
+        gv.goodsname as goodsname, -- 通用名
+        gv.factoryname as factoryname,--厂家名称
+        gv.goodsid as goodsid,--商品id
+        gv.goodstype as goodstype, --规格
+        gv.goodsunit as goodsunit,--基本单位
+        gv.goodsqty as stqty,--库存
+        g.GOODS_IMG as goodsImg,--商品图片
+        g.ERP_ACC_FLAG as erpAccFlag, --赠品标识
+        g.INTEGRAL_GOODS as integralGoods, --积分商品上下架
+        g.CONVERTIBLE_INTEGRAL as convertibleIntegral, --兑换积分
+        gv.ZX_B2B_NUM_LIMIT as zxB2bNumLimit, --B2B最小销售数量
+        691 storageid,
+        f.id is_favorites
+
+        from erp_goods_gift_v gv
+        left join GOODS g on g.ERP_GOODS_ID = gv.GOODSID
+        LEFT JOIN member m ON m.erp_user_id = #{goodsInfoVo.memberId}
+        LEFT JOIN favorites f ON f.fav_id = gv.goodsid and f.member_id=m.id
+        where g.INTEGRAL_GOODS = 1
+        <if test="goodsInfoVo.currencyname !=null and goodsInfoVo.currencyname !=''">
+            and gv.goodsname like '%'||#{goodsInfoVo.currencyname}||'%'
+        </if>
+        order by gv.goodsqty desc
+    </select>
+    <select id="getIntegralGoodsInfo" resultType="com.zsyc.zt.b2b.vo.GoodsInfoVo">
+        select gv.*,
+        g.ERP_ACC_FLAG,
+        g.INTEGRAL_GOODS,
+        g.CONVERTIBLE_INTEGRAL,
+        g.GOODS_IMG,
+        691 storageid,
+        f.id is_favorites
+
+        from erp_goods_gift_v gv
+        LEFT JOIN favorites f ON f.fav_id = gv.goodsid and f.member_id=#{memberId}
+        left join goods g on g.ERP_GOODS_ID=gv.GOODSID
+        where gv.GOODSID=#{goodsId} and ROWNUM=1
+    </select>
+    <select id="getActivityGoodsInfoList" resultType="com.zsyc.zt.b2b.vo.GoodsInfoVo">
+        select gv.*,a.*,ag.GOODS_PRICE,g.GOODS_IMG,
+        gpv.price, gpv.priceid from ERP_GOODS_V gv
+        LEFT JOIN erp_goods_price_v gpv ON gpv.goodsid=gv.goodsid and gpv.customid=#{goodsInfoVo.memberId}
+        LEFT JOIN goods g ON g.erp_goods_id = gv.goodsid
+        INNER JOIN ACTIVITY_GOODS ag on ag.ERP_GOODS_ID=gv.GOODSID
+        inner join ACTIVITY_STRATEGY ast on ast.id=ag.AS_ID
+        inner join (select a.* from (
+        select DISTINCT b.* from ACTIVITY_SET a,ACTIVITY b,${erp}.pub_custom_set_dtl d
+        where a.CUSTOM_SET_ID = d.SETID(+)
+        and a.ACTIVITY_ID(+)=b.id
+        and b.CUSTOM_SET_TYPE =20
+        and d.CUSTOMID = #{goodsInfoVo.memberId}
+        union all
+        select a.* from ACTIVITY a where a.CUSTOM_SET_TYPE =10
+        union all
+        select DISTINCT a.* from activity a where a. CUSTOM_SET_TYPE=30
+
+        and #{goodsInfoVo.memberId} not in
+
+        (select d.CUSTOMID from ACTIVITY_SET s
+        inner join ${erp}.pub_custom_set_dtl d on d.SETID=s.CUSTOM_SET_ID where s.activity_id=a.id)
+        ) a ) a on a.id=ast.ACTIVITY_ID and a.id=ag.ACTIVITY_ID
+        where a.is_use=1
+        and (sysdate BETWEEN a.WARM_TIME and a.END_TIME+1
+        or sysdate BETWEEN a.START_TIME and a.END_TIME+1)
+
+        and( sysdate BETWEEN a.WARM_TIME
+        and to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'),' '), a.END_EFFECTIVE_TIME) , 'yyyy-mm-dd hh24:mi:ss')
+        or a.END_EFFECTIVE_TIME is null)
+
+        and ( a.WEEK= #{goodsInfoVo.week} or a.week=0 or a.week is null)
+        and a.id=#{goodsInfoVo.activityId}
+
+            and gv.GOODSID in (
+            select c.goods_id from CACHE_CUSTOMER_GOODS c where c.customer_id=gpv.customid )
+
+    </select>
+    <select id="getCouponGoodsInfoList" resultType="com.zsyc.zt.b2b.vo.GoodsInfoVo">
+        select gv.*,gvp.price,gvp.priceid from COUPON_GOODS cg
+        INNER JOIN ${erp}.pub_entry_goods_set_enum_dtl p on p.setid =cg.GOODS_SET_ID
+        INNER JOIN ERP_GOODS_V gv on gv.GOODSID=p.goodsid
+        left join ERP_GOODS_PRICE_V gvp on gvp.customid=#{customerId} and gvp.goodsid=p.goodsid
+        where cg.COUPON_ID=#{couponId}
+    </select>
+    <select id="getStqty" resultType="java.lang.Integer">
+        select goodsqty from erp_goods_stock_v where goodsid=#{goodsId}
+    </select>
+</mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.ApiUserInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.ApiUserInfo">
+        <result column="ID" property="id" />
+        <result column="USER_NAME" property="userName" />
+        <result column="NAME" property="name" />
+        <result column="PASSWORD" property="password" />
+        <result column="CUSTOM_ID" property="customId" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="IS_DEL" property="isDel" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, USER_NAME, NAME, PASSWORD, CUSTOM_ID, CREATE_TIME, IS_DEL
+    </sql>
+
+    <select id="selectListPage" resultType="com.zsyc.zt.order.vo.ApiUserInfoVo">
+        select a.id,
+               a.user_name,
+               a.name,
+               a.custom_id,
+               a.create_time,
+               a.b2b_custom_id
+          from api_user_info a
+        where a.is_del = 2
+        <if test="apiUserInfoVo.startDate != null and apiUserInfoVo.endDate != null">
+            and a.create_time between #{apiUserInfoVo.startDate} and #{apiUserInfoVo.endDate}
+        </if>
+        <if test="apiUserInfoVo.customId != null">
+            and a.custom_id = #{apiUserInfoVo.customId}
+        </if>
+        <if test="apiUserInfoVo.name != null and apiUserInfoVo.name != ''">
+            and a.name like '%'||#{apiUserInfoVo.name}||'%'
+        </if>
+    </select>
+
+    <update id="deleteUserInfos">
+        update api_user_info set is_del = 1 where id in
+        <foreach collection="ids" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsAccDefMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsAccDef">
+        <id column="ACCID" property="accid" />
+        <result column="ACCNO" property="accno" />
+        <result column="ACCNAME" property="accname" />
+        <result column="ACCTYPE" property="acctype" />
+        <result column="COMPANYFLAG" property="companyflag" />
+        <result column="GOODSFLAG" property="goodsflag" />
+        <result column="DEPTFLAG" property="deptflag" />
+        <result column="EMPLOYEEFLAG" property="employeeflag" />
+        <result column="COND" property="cond" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="FMID" property="fmid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="AGENTFLAG" property="agentflag" />
+        <result column="CONTACTFLAG" property="contactflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ACCID, ACCNO, ACCNAME, ACCTYPE, COMPANYFLAG, GOODSFLAG, DEPTFLAG, EMPLOYEEFLAG, COND, ENTRYID, FMID, AGENTID, AGENTFLAG, CONTACTFLAG
+    </sql>
+
+</mapper>

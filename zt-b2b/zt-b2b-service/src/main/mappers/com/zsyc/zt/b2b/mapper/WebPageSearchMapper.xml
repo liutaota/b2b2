@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.WebPageSearchMapper">
+
+    <select id="getPubGoodsInfo" resultType="com.zsyc.zt.inca.entity.PubGoods">
+        select goodsid, classn_row_1,classn_row_2,classn_row_3, accflag  from ${erp}.pub_goods
+        where goodsid=#{goodsid}
+    </select>
+    <select id="getPubGoodsInfoBySet" resultType="com.zsyc.zt.inca.entity.PubGoods">
+        select b.goodsid,
+        b.GOODSNAME as goodsname,
+        b.classn_row_1,
+        b.classn_row_2,
+        b.classn_row_3,
+        a.setid
+
+        from ${erp}.pub_entry_goods_set_enum_dtl a,${erp}.pub_goods b
+        where a.goodsid = b.goodsid
+        and a.setid = #{goodsSetId}
+
+    </select>
+</mapper>

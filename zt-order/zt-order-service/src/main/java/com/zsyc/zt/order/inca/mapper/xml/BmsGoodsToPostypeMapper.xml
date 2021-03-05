@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsGoodsToPostypeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsGoodsToPostype">
+        <id column="DEFID" property="defid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="GOODSUSEQTY" property="goodsuseqty" />
+        <result column="POSTYPEID" property="postypeid" />
+        <result column="REFGOODSUSEQTY" property="refgoodsuseqty" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="USINGRATE" property="usingrate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DEFID, GOODSID, GOODSDTLID, GOODSUSEQTY, POSTYPEID, REFGOODSUSEQTY, GOODSQTY, USINGRATE
+    </sql>
+
+</mapper>

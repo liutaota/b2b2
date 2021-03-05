@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStAdjustMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStAdjust">
+        <id column="STADJUSTID" property="stadjustid" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="STADJREASON" property="stadjreason" />
+        <result column="MEMO" property="memo" />
+        <result column="STADJUSTTYPE" property="stadjusttype" />
+        <result column="PRINTFLAG" property="printflag" />
+        <result column="AUTOMOVE" property="automove" />
+        <result column="MOVEFLAG" property="moveflag" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="ADJUSTMANID" property="adjustmanid" />
+        <result column="ADJUSTDATE" property="adjustdate" />
+        <result column="GOTFLAG" property="gotflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        STADJUSTID, CREDATE, INPUTMANID, STORAGEID, STADJREASON, MEMO, STADJUSTTYPE, PRINTFLAG, AUTOMOVE, MOVEFLAG, USESTATUS, ADJUSTMANID, ADJUSTDATE, GOTFLAG
+    </sql>
+
+</mapper>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.GpcsPlacereturndtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.GpcsPlacereturndtl">
+        <id column="PLACERETURNDTLID" property="placereturndtlid" />
+        <result column="PLACERETURNID" property="placereturnid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="GOODSUNIT" property="goodsunit" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="BACKWHYID" property="backwhyid" />
+        <result column="OLDPLACEDTLID" property="oldplacedtlid" />
+        <result column="PLACEPRICEID" property="placepriceid" />
+        <result column="PLACEPRICE" property="placeprice" />
+        <result column="PLACEMONEY" property="placemoney" />
+        <result column="RESALEPRICE" property="resaleprice" />
+        <result column="LOTID" property="lotid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="POSID" property="posid" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="APPROVEMANID" property="approvemanid" />
+        <result column="APPROVEDATE" property="approvedate" />
+        <result column="APPROVEOPINION" property="approveopinion" />
+        <result column="ACCSTORAGEID" property="accstorageid" />
+        <result column="PRINTNO" property="printno" />
+        <result column="PRINTLINE" property="printline" />
+        <result column="MEMO" property="memo" />
+        <result column="ACCPOSID" property="accposid" />
+        <result column="OLDSUPPLYTINYID" property="oldsupplytinyid" />
+        <result column="DESTTABLE" property="desttable" />
+        <result column="DESTDTLID" property="destdtlid" />
+        <result column="GENBILLFLAG" property="genbillflag" />
+        <result column="REFUSEMANID" property="refusemanid" />
+        <result column="REFUSEDATE" property="refusedate" />
+        <result column="SENDFLAG" property="sendflag" />
+        <result column="WMSSTATUS" property="wmsstatus" />
+        <result column="APPROVESTATUS" property="approvestatus" />
+        <result column="ACTUALQTY" property="actualqty" />
+        <result column="ECODE" property="ecode" />
+        <result column="CANSALEQTY" property="cansaleqty" />
+        <result column="SENDWMSFLAG" property="sendwmsflag" />
+        <result column="SENDWMSDATE" property="sendwmsdate" />
+        <result column="WMSBACKDATE" property="wmsbackdate" />
+        <result column="ACCMANID" property="accmanid" />
+        <result column="ACCDATE" property="accdate" />
+        <result column="CHECKSTATUS" property="checkstatus" />
+        <result column="CHECKDATE" property="checkdate" />
+        <result column="CHECKMANID" property="checkmanid" />
+        <result column="CHECKMANID2" property="checkmanid2" />
+        <result column="RECHECKSTATUS" property="recheckstatus" />
+        <result column="RECHECKMANID" property="recheckmanid" />
+        <result column="RECHECKDATE" property="recheckdate" />
+        <result column="RECHECKMEMO" property="recheckmemo" />
+        <result column="RECEIVEFLAG" property="receiveflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PLACERETURNDTLID, PLACERETURNID, GOODSID, GOODSDTLID, GOODSUNIT, GOODSQTY, BACKWHYID, OLDPLACEDTLID, PLACEPRICEID, PLACEPRICE, PLACEMONEY, RESALEPRICE, LOTID, BATCHID, POSID, GOODSSTATUSID, USESTATUS, APPROVEMANID, APPROVEDATE, APPROVEOPINION, ACCSTORAGEID, PRINTNO, PRINTLINE, MEMO, ACCPOSID, OLDSUPPLYTINYID, DESTTABLE, DESTDTLID, GENBILLFLAG, REFUSEMANID, REFUSEDATE, SENDFLAG, WMSSTATUS, APPROVESTATUS, ACTUALQTY, ECODE, CANSALEQTY, SENDWMSFLAG, SENDWMSDATE, WMSBACKDATE, ACCMANID, ACCDATE, CHECKSTATUS, CHECKDATE, CHECKMANID, CHECKMANID2, RECHECKSTATUS, RECHECKMANID, RECHECKDATE, RECHECKMEMO, RECEIVEFLAG
+    </sql>
+
+</mapper>

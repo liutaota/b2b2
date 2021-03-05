@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.FavoritesMapper">
+
+    <select id="getMemberFavoritesList" resultType="com.zsyc.zt.b2b.vo.FavoritesVo">
+        SELECT
+        f.id,f.LOT_ID,f.LOG_PRICE,f.LOT_NO,f.FAV_TYPE,f.FAV_ID,f.MEMBER_ID,f.PRICE_ID,f.STORAGE_ID,f.GOODS_NAME,f.MEMBER_NAME,
+        b.goodsname,
+        b.goodsunit,
+        b.factoryid,
+        f.factoryname,
+        b.medicinetype,
+        b.medicinetypename,
+        b.currencyname,
+        b.goodstype,
+        (CASE
+        WHEN a.zx_b2b_num_limit IS NULL THEN
+        1
+        ELSE
+        a.zx_b2b_num_limit
+        END) zx_b2b_num_limit,
+        b.classn_row_1,
+        b.classn_row_2,
+        b.classn_row_3,
+        b.classname_1,
+        b.classname_2,
+        b.classname_3,
+        b.opcode,
+        b.B2B_NOT_SALE_FLAG,
+        g.ERP_ACC_FLAG,
+        g.INTEGRAL_GOODS,
+        g.GOODS_IMG GOODS_IMAGE,
+        g.CONVERTIBLE_INTEGRAL
+        FROM
+        FAVORITES f
+        LEFT JOIN ${erp}.pub_entry_goods a on a.goodsid = f.fav_id
+        LEFT JOIN ${erp}.pub_goods b on b.goodsid =f.fav_id
+        LEFT JOIN ${erp}.pub_factory f on f.factoryid = b.factoryid
+        LEFT JOIN goods g ON g.ERP_GOODS_ID = f.fav_id
+        WHERE
+        a.entryId = 1
+        and f.member_id =#{memberId} and f.fav_type='goods'
+        <if test="goodsId!=null">
+            and f.FAV_ID=#{goodsId}
+        </if>
+        order by f.create_time desc
+    </select>
+</mapper>

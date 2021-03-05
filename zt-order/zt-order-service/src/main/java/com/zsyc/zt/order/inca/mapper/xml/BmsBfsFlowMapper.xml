@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsBfsFlowMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsBfsFlow">
+        <id column="FLOWID" property="flowid" />
+        <result column="CREDATE" property="credate" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="BATCHID" property="batchid" />
+        <result column="LOTID" property="lotid" />
+        <result column="LOTNO" property="lotno" />
+        <result column="PRODDATE" property="proddate" />
+        <result column="INVALIDDATE" property="invaliddate" />
+        <result column="INOUTDTLID" property="inoutdtlid" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="MEMO" property="memo" />
+        <result column="APPUSESTATUS" property="appusestatus" />
+        <result column="APPMEMO" property="appmemo" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="INPUTDATE" property="inputdate" />
+        <result column="CONFIRMID" property="confirmid" />
+        <result column="CUSTOMNAME" property="customname" />
+        <result column="GOODSUNIT" property="goodsunit" />
+        <result column="INPUTTYPE" property="inputtype" />
+        <result column="SOURCEID" property="sourceid" />
+        <result column="FLOWTYPE" property="flowtype" />
+        <result column="TMPID" property="tmpid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="DOCID" property="docid" />
+        <result column="DTLID" property="dtlid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        FLOWID, CREDATE, CUSTOMID, GOODSID, GOODSQTY, UNITPRICE, TOTAL_LINE, BATCHID, LOTID, LOTNO, PRODDATE, INVALIDDATE, INOUTDTLID, SUPPLYID, USESTATUS, MEMO, APPUSESTATUS, APPMEMO, INPUTMANID, INPUTDATE, CONFIRMID, CUSTOMNAME, GOODSUNIT, INPUTTYPE, SOURCEID, FLOWTYPE, TMPID, AGENTID, ENTRYID, DOCID, DTLID
+    </sql>
+
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubSupplyerImpTmpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubSupplyerImpTmp">
+        <id column="TMPID" property="tmpid" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="SUPPLYOPCODE" property="supplyopcode" />
+        <result column="SUPPLYNO" property="supplyno" />
+        <result column="SUPPLYPINYIN" property="supplypinyin" />
+        <result column="CORPCODE" property="corpcode" />
+        <result column="SUPPLYNAME" property="supplyname" />
+        <result column="FINANCENO" property="financeno" />
+        <result column="IMPORTFLAG" property="importflag" />
+        <result column="CITYID" property="cityid" />
+        <result column="COUNTRYID" property="countryid" />
+        <result column="CITY" property="city" />
+        <result column="COUNTRY" property="country" />
+        <result column="ADDRESS" property="address" />
+        <result column="IMPFLAG" property="impflag" />
+        <result column="ERRORMESSAGE" property="errormessage" />
+        <result column="REGISTADD" property="registadd" />
+        <result column="DOCID" property="docid" />
+        <result column="ZXCOLNUM1" property="zxcolnum1" />
+        <result column="ZXCOLNUM2" property="zxcolnum2" />
+        <result column="ZXCOLNUM3" property="zxcolnum3" />
+        <result column="ZXCOLNUM4" property="zxcolnum4" />
+        <result column="ZXCOLNUM5" property="zxcolnum5" />
+        <result column="ZXCOLNUM6" property="zxcolnum6" />
+        <result column="ZXCOLNUM7" property="zxcolnum7" />
+        <result column="ZXCOLNUM8" property="zxcolnum8" />
+        <result column="ZXCOLNUM9" property="zxcolnum9" />
+        <result column="ZXCOLNUM10" property="zxcolnum10" />
+        <result column="GSPFLAG" property="gspflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TMPID, SUPPLYID, SUPPLYOPCODE, SUPPLYNO, SUPPLYPINYIN, CORPCODE, SUPPLYNAME, FINANCENO, IMPORTFLAG, CITYID, COUNTRYID, CITY, COUNTRY, ADDRESS, IMPFLAG, ERRORMESSAGE, REGISTADD, DOCID, ZXCOLNUM1, ZXCOLNUM2, ZXCOLNUM3, ZXCOLNUM4, ZXCOLNUM5, ZXCOLNUM6, ZXCOLNUM7, ZXCOLNUM8, ZXCOLNUM9, ZXCOLNUM10, GSPFLAG
+    </sql>
+
+</mapper>

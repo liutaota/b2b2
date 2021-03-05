@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubGoodsMulvaritDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubGoodsMulvaritDtl">
+        <id column="VARIETYDTLID" property="varietydtlid" />
+        <result column="VARIETYID" property="varietyid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="SQLRULE" property="sqlrule" />
+        <result column="CLASSDESC" property="classdesc" />
+        <result column="EDITFLAG" property="editflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        VARIETYID, VARIETYDTLID, GOODSID, SQLRULE, CLASSDESC, EDITFLAG
+    </sql>
+
+</mapper>

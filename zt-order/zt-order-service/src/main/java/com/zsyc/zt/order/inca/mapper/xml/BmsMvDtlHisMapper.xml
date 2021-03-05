@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsMvDtlHisMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsMvDtlHis">
+        <result column="MOVEDTLID" property="movedtlid" />
+        <result column="MOVEID" property="moveid" />
+        <result column="PRINTNO" property="printno" />
+        <result column="PRINTLINE" property="printline" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="LOTID" property="lotid" />
+        <result column="POSID" property="posid" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="GOODSUSEUNIT" property="goodsuseunit" />
+        <result column="GOODSUSEQTY" property="goodsuseqty" />
+        <result column="COSTINGPRICE" property="costingprice" />
+        <result column="COSTINGMONEY" property="costingmoney" />
+        <result column="COSTCALCFLAG" property="costcalcflag" />
+        <result column="STIFLAG" property="stiflag" />
+        <result column="STOFLAG" property="stoflag" />
+        <result column="DTLMEMO" property="dtlmemo" />
+        <result column="SKCERTID" property="skcertid" />
+        <result column="INVALIDFLAG" property="invalidflag" />
+        <result column="INVALIDMANID" property="invalidmanid" />
+        <result column="INVALIDTIME" property="invalidtime" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="PLACESUPPLYDTLSTID" property="placesupplydtlstid" />
+        <result column="CMDID" property="cmdid" />
+        <result column="CMDMATID" property="cmdmatid" />
+        <result column="OUTSENDWMSFLAG" property="outsendwmsflag" />
+        <result column="OUTSENDWMSDATE" property="outsendwmsdate" />
+        <result column="OUTWMSBACKDATE" property="outwmsbackdate" />
+        <result column="INSENDWMSFLAG" property="insendwmsflag" />
+        <result column="INSENDWMSDATE" property="insendwmsdate" />
+        <result column="INWMSBACKDATE" property="inwmsbackdate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        MOVEDTLID, MOVEID, PRINTNO, PRINTLINE, GOODSID, GOODSDTLID, BATCHID, LOTID, POSID, GOODSSTATUSID, GOODSQTY, GOODSUSEUNIT, GOODSUSEQTY, COSTINGPRICE, COSTINGMONEY, COSTCALCFLAG, STIFLAG, STOFLAG, DTLMEMO, SKCERTID, INVALIDFLAG, INVALIDMANID, INVALIDTIME, USESTATUS, PLACESUPPLYDTLSTID, CMDID, CMDMATID, OUTSENDWMSFLAG, OUTSENDWMSDATE, OUTWMSBACKDATE, INSENDWMSFLAG, INSENDWMSDATE, INWMSBACKDATE
+    </sql>
+
+</mapper>

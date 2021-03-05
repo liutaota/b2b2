@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStQtyLstHisDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStQtyLstHisDtl">
+        <result column="HISID" property="hisid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDETAILID" property="goodsdetailid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="LOTID" property="lotid" />
+        <result column="POSID" property="posid" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="BATCHMONEY" property="batchmoney" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        HISID, GOODSID, GOODSDETAILID, STORAGEID, BATCHID, LOTID, POSID, GOODSSTATUSID, GOODSQTY, BATCHMONEY
+    </sql>
+
+</mapper>

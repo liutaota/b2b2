@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsTrPosDefMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsTrPosDef">
+        <id column="TRANPOSID" property="tranposid" />
+        <result column="OPCODE" property="opcode" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="TRANPOSNAME" property="tranposname" />
+        <result column="POSORDER" property="posorder" />
+        <result column="TRANPOSTYPE" property="tranpostype" />
+        <result column="DISTANCE" property="distance" />
+        <result column="ADDRESS" property="address" />
+        <result column="TELEPHONE" property="telephone" />
+        <result column="FAX" property="fax" />
+        <result column="POSTCODE" property="postcode" />
+        <result column="CONTRACTMAN" property="contractman" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="MEMO" property="memo" />
+        <result column="TRANSLINEID" property="translineid" />
+        <result column="TRANSORTNO" property="transortno" />
+        <result column="DEFAULTFLAG" property="defaultflag" />
+        <result column="SYS_MODIFYDATE" property="sysModifydate" />
+        <result column="TOWMSDATE" property="towmsdate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TRANPOSID, OPCODE, COMPANYID, TRANPOSNAME, POSORDER, TRANPOSTYPE, DISTANCE, ADDRESS, TELEPHONE, FAX, POSTCODE, CONTRACTMAN, USESTATUS, MEMO, TRANSLINEID, TRANSORTNO, DEFAULTFLAG, SYS_MODIFYDATE, TOWMSDATE
+    </sql>
+    <select id="selectByStoreIdId" resultType="com.zsyc.zt.order.entity.BmsTrPosDef">
+        select * from bms_tr_pos_def a where a.b2b_store_id =#{b2bStoreId}
+    </select>
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubWmsErrorlogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubWmsErrorlog">
+        <id column="SEQID" property="seqid" />
+        <result column="SOURCEID" property="sourceid" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="MEMO" property="memo" />
+        <result column="ERRORSTACK" property="errorstack" />
+        <result column="CREDATE" property="credate" />
+        <result column="ERRORTIME" property="errortime" />
+        <result column="WMSID" property="wmsid" />
+        <result column="TABLENAME" property="tablename" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SEQID, SOURCEID, COMEFROM, MEMO, ERRORSTACK, CREDATE, ERRORTIME, WMSID, TABLENAME
+    </sql>
+
+</mapper>

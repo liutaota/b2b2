@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.BmsTrDocMapper">
+    <select id="selectListBy" resultType="com.zsyc.zt.inca.entity.BmsTrDoc">
+         select b.translineid,
+         a.customid,
+       f.COLDSTORAGEFLAG,
+       a.AGENTID,
+		  a.CONTACTID,
+       b.address,
+       a.SALERID,
+       a.SALESDEPTID,
+       a.ENTRYID,
+       a.targetposid
+  from bms_sa_doc a,
+       bms_tr_pos_def b,
+       (select max(nvl(d.coldflag,0)) coldstorageflag, e.salesid
+          from bms_sa_doc e, bms_sa_dtl c, pub_goods d
+         where e.salesid = c.salesid
+           and c.goodsid = d.goodsid
+         group by e.salesid) f
+ where a.targetposid = b.tranposid(+)
+   and a.salesid = f.salesid(+)
+   and a.salesid =#{salesId}
+    </select>
+</mapper>

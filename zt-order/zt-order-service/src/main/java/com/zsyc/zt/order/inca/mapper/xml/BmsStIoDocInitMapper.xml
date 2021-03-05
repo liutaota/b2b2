@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStIoDocInitMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStIoDocInit">
+        <id column="INOUTID" property="inoutid" />
+        <result column="CREDATE" property="credate" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="KEEPDATE" property="keepdate" />
+        <result column="KEEPMANID" property="keepmanid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="INOUTFLAG" property="inoutflag" />
+        <result column="INQTY" property="inqty" />
+        <result column="OLDQTY" property="oldqty" />
+        <result column="GOODSUNIT" property="goodsunit" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="QUONDAMID" property="quondamid" />
+        <result column="PLACEPOINTID" property="placepointid" />
+        <result column="INPUTDATE" property="inputdate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="PASSFLAG" property="passflag" />
+        <result column="UNITCOST" property="unitcost" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        INOUTID, CREDATE, COMEFROM, KEEPDATE, KEEPMANID, GOODSID, STORAGEID, INOUTFLAG, INQTY, OLDQTY, GOODSUNIT, USESTATUS, QUONDAMID, PLACEPOINTID, INPUTDATE, INPUTMANID, PASSFLAG, UNITCOST
+    </sql>
+
+</mapper>

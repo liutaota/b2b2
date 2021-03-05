@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSaAgreementDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSaAgreementDoc">
+        <id column="AGRCONID" property="agrconid" />
+        <result column="AGRCONNO" property="agrconno" />
+        <result column="CONTYPE" property="contype" />
+        <result column="CUSTOMERID" property="customerid" />
+        <result column="CUSTOMNAME" property="customname" />
+        <result column="TOTAL" property="total" />
+        <result column="TRANMETHOD" property="tranmethod" />
+        <result column="SIGNDATE" property="signdate" />
+        <result column="SIGNADDRESS" property="signaddress" />
+        <result column="SIGNMANID" property="signmanid" />
+        <result column="VALIDBEGINDATE" property="validbegindate" />
+        <result column="VALIDENDDATE" property="validenddate" />
+        <result column="SUMMARY" property="summary" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="DTL_LINES" property="dtlLines" />
+        <result column="SALERID" property="salerid" />
+        <result column="SALERDEPTID" property="salerdeptid" />
+        <result column="MEMO" property="memo" />
+        <result column="CREDATE" property="credate" />
+        <result column="FMID" property="fmid" />
+        <result column="CREATEMODE" property="createmode" />
+        <result column="EXCHANGE" property="exchange" />
+        <result column="WTOFLG" property="wtoflg" />
+        <result column="NEEDTRACFLG" property="needtracflg" />
+        <result column="INEXPFLAG" property="inexpflag" />
+        <result column="CUSTOMREQUEST" property="customrequest" />
+        <result column="CUSTOMORDERNO" property="customorderno" />
+        <result column="ENTRYID" property="entryid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        AGRCONID, AGRCONNO, CONTYPE, CUSTOMERID, CUSTOMNAME, TOTAL, TRANMETHOD, SIGNDATE, SIGNADDRESS, SIGNMANID, VALIDBEGINDATE, VALIDENDDATE, SUMMARY, INPUTMANID, DTL_LINES, SALERID, SALERDEPTID, MEMO, CREDATE, FMID, CREATEMODE, EXCHANGE, WTOFLG, NEEDTRACFLG, INEXPFLAG, CUSTOMREQUEST, CUSTOMORDERNO, ENTRYID
+    </sql>
+
+</mapper>

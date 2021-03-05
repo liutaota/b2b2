@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.ActivityMapper">
+
+    <select id="getActivityVoList" resultType="com.zsyc.zt.b2b.vo.ActivityVo">
+        select ID,
+        CONTENT,
+        ABBREVIATION,
+        CUSTOM_SET_TYPE,
+        ACTIVITY_STRATEGY,
+        WARM_TIME,
+        START_EFFECTIVE_TIME,
+        END_EFFECTIVE_TIME,
+        START_TIME,
+        to_date(END_TIME)+1 END_TIME,
+        TIMES,
+        IS_SUPERPOSITION,
+        CREATE_TIME,
+        USER_ID,
+        WEEK,
+        TIMES_STRATEGY,
+        IS_USE
+        from activity
+        <where>
+            <if test="activityVo.content!=null and activityVo.content!=''">
+                content like '%'||#{activityVo.content}||'%'
+            </if>
+            <if test="activityVo.activityStrategy!=null and activityVo.activityStrategy!=''">
+                and activity_strategy=#{activityVo.activityStrategy}
+            </if>
+            <if test="activityVo.startTime!=null and activityVo.endTime!=null">
+                and start_time>= #{activityVo.startTime} and end_time &lt;= #{activityVo.endTime}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+    <select id="getActivityAllDiscount" resultType="com.zsyc.zt.b2b.vo.ActivityVo">
+        select DISTINCT ast.id as_id,ast.discount,ast.GOODS_STRATEGY,ast.AMOUNT_SATISFIED,
+        ast.TOP_LIMIT
+        AS_TOP_LIMIT,ast.GIFT_NUM,ast.REDUCED_AMOUNT,ast.GIFT_STRATEGY,ast.CASH,ast.MEET_QUANTITY,ast.STRATEGY_NAME,
+        a.ID,a.CONTENT,a.ABBREVIATION,a.CUSTOM_SET_TYPE,a.ACTIVITY_STRATEGY,a.WARM_TIME,a.START_EFFECTIVE_TIME,
+        a.END_EFFECTIVE_TIME,a.START_TIME,to_date(a.END_TIME)+1 END_TIME,a.TIMES,a.IS_SUPERPOSITION,a.CREATE_TIME,
+        a.USER_ID,a.WEEK,a.TIMES_STRATEGY,a.IS_USE
+        from activity a
+        left join ACTIVITY_STRATEGY ast on ast.ACTIVITY_ID=a.id and ast.is_use=1
+        where a.is_use=1
+        and( sysdate BETWEEN to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'), ' '),a.START_EFFECTIVE_TIME) ,
+        'yyyy-mm-dd hh24:mi:ss')
+        and to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'),' '), a.END_EFFECTIVE_TIME) , 'yyyy-mm-dd hh24:mi:ss')
+        or a.START_EFFECTIVE_TIME is null and a.END_EFFECTIVE_TIME is null)
+        and (a.WEEK = #{dayOfWeek} or a.week=0 or a.week is null)
+        and a.ACTIVITY_STRATEGY=10
+        and a.id in (
+        select tmp.id from (
+        select DISTINCT b.id from ACTIVITY_SET a,ACTIVITY b,${erp}.pub_custom_set_dtl d
+        where a.CUSTOM_SET_ID = d.SETID(+)
+        and a.ACTIVITY_ID(+)=b.id
+        and b.CUSTOM_SET_TYPE =20
+        and d.CUSTOMID = #{customid}
+        union all
+        select a.id from ACTIVITY a where a.CUSTOM_SET_TYPE =10
+        union all
+        select a.id from activity a where a. CUSTOM_SET_TYPE=30
+
+        and #{customid} not in
+
+        (select d.CUSTOMID from ACTIVITY_SET s
+        inner join ${erp}.pub_custom_set_dtl d on d.SETID=s.CUSTOM_SET_ID where s.activity_id=a.id)
+        ) tmp )
+        and rownum=1
+        order by ast.discount asc
+    </select>
+    <select id="getActivityById" resultType="com.zsyc.zt.b2b.vo.ActivityVo">
+        select DISTINCT ast.id as_id,ast.discount,ast.GOODS_STRATEGY,ast.AMOUNT_SATISFIED,
+        ast.TOP_LIMIT
+        AS_TOP_LIMIT,ast.GIFT_NUM,ast.REDUCED_AMOUNT,ast.GIFT_STRATEGY,ast.CASH,ast.MEET_QUANTITY,ast.STRATEGY_NAME,
+        ag.GOODS_PRICE,ag.CONDITION_PRICE,ag.TOP_LIMIT,ag.CONDITION_NUM,ast.coupon_id,
+        a.ID,a.CONTENT,a.ABBREVIATION,a.CUSTOM_SET_TYPE,a.ACTIVITY_STRATEGY,a.WARM_TIME,a.START_EFFECTIVE_TIME,
+        a.END_EFFECTIVE_TIME,a.START_TIME,to_date(a.END_TIME)+1 END_TIME,a.TIMES,a.IS_SUPERPOSITION,a.CREATE_TIME,
+        a.USER_ID,a.WEEK,a.TIMES_STRATEGY,a.IS_USE
+        from activity a
+        inner join ACTIVITY_STRATEGY ast on ast.ACTIVITY_ID=a.id and ast.is_use=1
+        inner join ACTIVITY_GOODS ag on ag.as_id=ast.id and ag.is_use=1
+        where a.is_use=1
+
+        and( sysdate BETWEEN to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'), ' '),a.START_EFFECTIVE_TIME) ,
+        'yyyy-mm-dd hh24:mi:ss')
+        and to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'),' '), a.END_EFFECTIVE_TIME) , 'yyyy-mm-dd hh24:mi:ss')
+        or a.START_EFFECTIVE_TIME is null and a.END_EFFECTIVE_TIME is null)
+
+        and (a.WEEK = #{dayOfWeek} or a.week=0 or a.week is null)
+        and a.id in (
+        select tmp.id from (
+        select DISTINCT b.id from ACTIVITY_SET a,ACTIVITY b,${erp}.pub_custom_set_dtl d
+        where a.CUSTOM_SET_ID = d.SETID(+)
+        and a.ACTIVITY_ID(+)=b.id
+        and b.CUSTOM_SET_TYPE =20
+        and d.CUSTOMID = #{customid}
+        union all
+        select a.id from ACTIVITY a where a.CUSTOM_SET_TYPE =10
+        union all
+        select a.id from activity a where a. CUSTOM_SET_TYPE=30
+
+        and #{customid} not in
+
+        (select d.CUSTOMID from ACTIVITY_SET s
+        inner join ${erp}.pub_custom_set_dtl d on d.SETID=s.CUSTOM_SET_ID where s.activity_id=a.id)
+        ) tmp )
+        <!--<if test="id!=null">
+            and a.id=#{id}
+        </if>-->
+        <if test="fromTo==1">
+            and (sysdate BETWEEN a.WARM_TIME and a.END_TIME+1
+            or sysdate BETWEEN a.START_TIME and a.END_TIME+1)
+
+        </if>
+        <if test="fromTo==0">
+            and sysdate BETWEEN a.START_TIME and a.END_TIME+1
+
+        </if>
+        <if test="goodsId!=null ">
+            and ag.ERP_GOODS_ID=#{goodsId}
+        </if>
+        order by ast.discount asc,ast.GIFT_NUM desc, ast.REDUCED_AMOUNT desc, ast.id desc
+    </select>
+    <select id="getActivityByGoodsId" resultType="com.zsyc.zt.b2b.vo.ActivityVo">
+        select DISTINCT
+        a.ID,a.CONTENT,a.ABBREVIATION,a.CUSTOM_SET_TYPE,a.ACTIVITY_STRATEGY,a.WARM_TIME,a.START_EFFECTIVE_TIME,
+        a.END_EFFECTIVE_TIME,a.START_TIME,to_date(a.END_TIME)+1 END_TIME,a.TIMES,a.IS_SUPERPOSITION,a.CREATE_TIME,
+        a.USER_ID,a.WEEK,a.TIMES_STRATEGY,a.IS_USE,ast.discount , ag.GOODS_PRICE,ast.AMOUNT_SATISFIED
+        from activity a
+        inner join ACTIVITY_STRATEGY ast on ast.ACTIVITY_ID=a.id and ast.is_use=1
+        inner join ACTIVITY_GOODS ag on ag.activity_id=a.id and ag.is_use=1
+        where a.is_use=1
+        and( sysdate BETWEEN to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'), ' '),a.START_EFFECTIVE_TIME) ,
+        'yyyy-mm-dd hh24:mi:ss')
+        and to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'),' '), a.END_EFFECTIVE_TIME) , 'yyyy-mm-dd hh24:mi:ss')
+        or a.START_EFFECTIVE_TIME is null and a.END_EFFECTIVE_TIME is null)
+        and (a.WEEK=#{dayOfWeek} or a.week=0 or a.week is null)
+        and sysdate BETWEEN a.START_TIME and a.END_TIME+1
+        and ag.erp_goods_id=#{goodsId}
+        <if test="activityId!=null">
+            and a.id =#{activityId}
+        </if>
+        and a.id in (
+        select tmp.id from (
+        select DISTINCT b.id from ACTIVITY_SET a,ACTIVITY b,${erp}.pub_custom_set_dtl d
+        where a.CUSTOM_SET_ID = d.SETID(+)
+        and a.ACTIVITY_ID(+)=b.id
+        and b.CUSTOM_SET_TYPE =20
+        and d.CUSTOMID = #{customid}
+        union all
+        select a.id from ACTIVITY a where a.CUSTOM_SET_TYPE =10
+        union all
+        select a.id from activity a where a. CUSTOM_SET_TYPE=30
+
+        and #{customid} not in
+
+        (select d.CUSTOMID from ACTIVITY_SET s
+        inner join ${erp}.pub_custom_set_dtl d on d.SETID=s.CUSTOM_SET_ID where s.activity_id=a.id)
+        ) tmp )
+
+        <if test="activityStrategy==60">
+            and a.ACTIVITY_STRATEGY in (20,60,80,100)
+        </if>
+        order by (case when a.ACTIVITY_STRATEGY = 60 then 3
+        when a.ACTIVITY_STRATEGY = 100 then 2
+        when a.ACTIVITY_STRATEGY = 80 then 1
+        end
+        ) asc
+    </select>
+    <select id="getActivityByGoods" resultType="com.zsyc.zt.b2b.vo.ActivityVo">
+        select DISTINCT ast.id as_id,ast.discount,ast.GOODS_STRATEGY,ast.AMOUNT_SATISFIED,
+        ast.TOP_LIMIT
+        AS_TOP_LIMIT,ast.GIFT_NUM,ast.REDUCED_AMOUNT,ast.GIFT_STRATEGY,ast.CASH,ast.MEET_QUANTITY,ast.STRATEGY_NAME,
+        ag.GOODS_PRICE,ag.CONDITION_PRICE,ag.TOP_LIMIT,ag.CONDITION_NUM,ast.coupon_id,
+        a.ID,a.CONTENT,a.ABBREVIATION,a.CUSTOM_SET_TYPE,a.ACTIVITY_STRATEGY,a.WARM_TIME,a.START_EFFECTIVE_TIME,
+        a.END_EFFECTIVE_TIME,a.START_TIME,to_date(a.END_TIME)+1 END_TIME,a.TIMES,a.IS_SUPERPOSITION,a.CREATE_TIME,
+        a.USER_ID,a.WEEK,a.TIMES_STRATEGY,a.IS_USE
+        from activity a
+        inner join ACTIVITY_STRATEGY ast on ast.ACTIVITY_ID=a.id and ast.is_use=1
+        inner join ACTIVITY_GOODS ag on ag.as_id=ast.id and ag.is_use=1
+        where a.is_use=1
+
+        and( sysdate BETWEEN to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'), ' '),a.START_EFFECTIVE_TIME) ,
+        'yyyy-mm-dd hh24:mi:ss')
+        and to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'),' '), a.END_EFFECTIVE_TIME) , 'yyyy-mm-dd hh24:mi:ss')
+        or a.START_EFFECTIVE_TIME is null and a.END_EFFECTIVE_TIME is null)
+
+        and (a.WEEK = #{dayOfWeek} or a.week=0 or a.week is null)
+        and a.id in (
+        select tmp.id from (
+        select DISTINCT b.id from ACTIVITY_SET a,ACTIVITY b,${erp}.pub_custom_set_dtl d
+        where a.CUSTOM_SET_ID = d.SETID(+)
+        and a.ACTIVITY_ID(+)=b.id
+        and b.CUSTOM_SET_TYPE =20
+        and d.CUSTOMID = #{customid}
+        union all
+        select a.id from ACTIVITY a where a.CUSTOM_SET_TYPE =10
+        union all
+        select a.id from activity a where a. CUSTOM_SET_TYPE=30
+
+        and #{customid} not in
+
+        (select d.CUSTOMID from ACTIVITY_SET s
+        inner join ${erp}.pub_custom_set_dtl d on d.SETID=s.CUSTOM_SET_ID where s.activity_id=a.id)
+        ) tmp )
+        and (sysdate BETWEEN a.WARM_TIME and a.END_TIME+1
+        or sysdate BETWEEN a.START_TIME and a.END_TIME+1)
+        and ag.ERP_GOODS_ID=#{goodsId}
+        order by ag.GOODS_PRICE asc, ast.discount asc, ast.id desc
+    </select>
+    <select id="getActivityByCoupon" resultType="com.zsyc.zt.b2b.vo.ActivityVo">
+        select DISTINCT ast.id as_id,ast.discount,ast.GOODS_STRATEGY,ast.AMOUNT_SATISFIED,ast.coupon_id,
+        ast.TOP_LIMIT
+        AS_TOP_LIMIT,ast.GIFT_NUM,ast.REDUCED_AMOUNT,ast.GIFT_STRATEGY,ast.CASH,ast.MEET_QUANTITY,ast.STRATEGY_NAME,
+        a.ID,a.CONTENT,a.ABBREVIATION,a.CUSTOM_SET_TYPE,a.ACTIVITY_STRATEGY,a.WARM_TIME,a.START_EFFECTIVE_TIME,
+        a.END_EFFECTIVE_TIME,a.START_TIME,to_date(a.END_TIME)+1 END_TIME,a.TIMES,a.IS_SUPERPOSITION,a.CREATE_TIME,
+        a.USER_ID,a.WEEK,a.TIMES_STRATEGY,a.IS_USE
+        from activity a
+        left join ACTIVITY_STRATEGY ast on ast.ACTIVITY_ID=a.id and ast.is_use=1
+        where a.is_use=1
+        and( sysdate BETWEEN to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'), ' '),a.START_EFFECTIVE_TIME) ,
+        'yyyy-mm-dd hh24:mi:ss')
+        and to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'),' '), a.END_EFFECTIVE_TIME) , 'yyyy-mm-dd hh24:mi:ss')
+        or a.START_EFFECTIVE_TIME is null and a.END_EFFECTIVE_TIME is null)
+        and (a.WEEK = #{dayOfWeek} or a.week=0 or a.week is null)
+        and a.ACTIVITY_STRATEGY=70
+        and a.id in (
+        select tmp.id from (
+        select DISTINCT b.id from ACTIVITY_SET a,ACTIVITY b,${erp}.pub_custom_set_dtl d
+        where a.CUSTOM_SET_ID = d.SETID(+)
+        and a.ACTIVITY_ID(+)=b.id
+        and b.CUSTOM_SET_TYPE =20
+        and d.CUSTOMID = #{customid}
+        union all
+        select a.id from ACTIVITY a where a.CUSTOM_SET_TYPE =10
+        union all
+        select a.id from activity a where a. CUSTOM_SET_TYPE=30
+
+        and #{customid} not in
+
+        (select d.CUSTOMID from ACTIVITY_SET s
+        inner join ${erp}.pub_custom_set_dtl d on d.SETID=s.CUSTOM_SET_ID where s.activity_id=a.id)
+        ) tmp )
+        and rownum=1
+
+    </select>
+    <select id="getActivityGoodsDiscount" resultType="com.zsyc.zt.b2b.entity.ActivityStrategy">
+        select DISTINCT ast.*
+        from activity a
+        inner join ACTIVITY_STRATEGY ast on ast.ACTIVITY_ID=a.id and ast.is_use=1
+        inner join ACTIVITY_GOODS ag on ag.AS_ID=ast.id and ag.ACTIVITY_ID=a.id and ag.is_use=1
+        where a.is_use=1
+        and( sysdate BETWEEN to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'), ' '),a.START_EFFECTIVE_TIME) ,
+        'yyyy-mm-dd hh24:mi:ss')
+        and to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'),' '), a.END_EFFECTIVE_TIME) , 'yyyy-mm-dd hh24:mi:ss')
+        or a.START_EFFECTIVE_TIME is null and a.END_EFFECTIVE_TIME is null)
+        and (a.WEEK = #{dayOfWeek} or a.week=0 or a.week is null)
+        and a.ACTIVITY_STRATEGY=20
+        and a.id in (
+        select tmp.id from (
+        select DISTINCT b.id from ACTIVITY_SET a,ACTIVITY b,${erp}.pub_custom_set_dtl d
+        where a.CUSTOM_SET_ID = d.SETID(+)
+        and a.ACTIVITY_ID(+)=b.id
+        and b.CUSTOM_SET_TYPE =20
+        and d.CUSTOMID = #{customid}
+        union all
+        select a.id from ACTIVITY a where a.CUSTOM_SET_TYPE =10
+        union all
+        select a.id from activity a where a. CUSTOM_SET_TYPE=30
+
+        and #{customid} not in
+
+        (select d.CUSTOMID from ACTIVITY_SET s
+        inner join ${erp}.pub_custom_set_dtl d on d.SETID=s.CUSTOM_SET_ID where s.activity_id=a.id)
+        ) tmp )
+        and ag.erp_goods_id=#{goodsId}
+        order by ast.discount asc,ast.AMOUNT_SATISFIED asc
+    </select>
+    <select id="getActivity30Or40ByGoods" resultType="com.zsyc.zt.b2b.vo.ActivityVo">
+        select DISTINCT
+        a.ID,a.CONTENT,a.ABBREVIATION,a.CUSTOM_SET_TYPE,a.ACTIVITY_STRATEGY,a.WARM_TIME,a.START_EFFECTIVE_TIME,
+        a.END_EFFECTIVE_TIME,a.START_TIME,to_date(a.END_TIME)+1 END_TIME,a.TIMES,a.IS_SUPERPOSITION,a.CREATE_TIME,
+        a.USER_ID,a.WEEK,a.TIMES_STRATEGY,a.IS_USE
+        from activity a
+        inner join ACTIVITY_STRATEGY ast on ast.ACTIVITY_ID=a.id and ast.is_use=1
+        inner join ACTIVITY_GOODS ag on ag.ACTIVITY_ID=a.id and ag.is_use=1
+        where a.is_use=1
+        and( sysdate BETWEEN to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'), ' '),a.START_EFFECTIVE_TIME) ,
+        'yyyy-mm-dd hh24:mi:ss')
+        and to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'),' '), a.END_EFFECTIVE_TIME) , 'yyyy-mm-dd hh24:mi:ss')
+        or a.START_EFFECTIVE_TIME is null and a.END_EFFECTIVE_TIME is null)
+        and (a.WEEK = #{dayOfWeek} or a.week=0 or a.week is null)
+        and a.ACTIVITY_STRATEGY in (30,40)
+        and sysdate BETWEEN a.START_TIME and a.END_TIME+1
+        and ag.erp_goods_id=#{goodsId}
+        and a.id in (
+        select tmp.id from (
+        select DISTINCT b.id from ACTIVITY_SET a,ACTIVITY b,${erp}.pub_custom_set_dtl d
+        where a.CUSTOM_SET_ID = d.SETID(+)
+        and a.ACTIVITY_ID(+)=b.id
+        and b.CUSTOM_SET_TYPE =20
+        and d.CUSTOMID = #{customid}
+        union all
+        select a.id from ACTIVITY a where a.CUSTOM_SET_TYPE =10
+        union all
+        select a.id from activity a where a. CUSTOM_SET_TYPE=30
+
+        and #{customid} not in
+
+        (select d.CUSTOMID from ACTIVITY_SET s
+        inner join ${erp}.pub_custom_set_dtl d on d.SETID=s.CUSTOM_SET_ID where s.activity_id=a.id)
+        ) tmp )
+        and rownum=1
+    </select>
+    <select id="getActivityByPitchOnGoodsId" resultType="com.zsyc.zt.b2b.vo.OrderGoodsVo">
+        select DISTINCT og.*,a.id as AC_ID
+        from activity a
+        inner join ACTIVITY_STRATEGY ast on ast.ACTIVITY_ID=a.id and ast.is_use=1
+        inner join ACTIVITY_GOODS ag on ag.as_id=ast.id and ag.is_use=1 and ag.ACTIVITY_ID=a.id
+        inner join ORDER_GOODS og on og.ERP_GOODS_ID=ag.ERP_GOODS_ID
+        where a.is_use=1
+
+        and ACTIVITY_STRATEGY=50
+        and( sysdate BETWEEN to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'), ' '),a.START_EFFECTIVE_TIME) ,
+        'yyyy-mm-dd hh24:mi:ss')
+        and to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'),' '), a.END_EFFECTIVE_TIME) , 'yyyy-mm-dd hh24:mi:ss')
+        or a.START_EFFECTIVE_TIME is null and a.END_EFFECTIVE_TIME is null)
+
+        and (a.WEEK = #{dayOfWeek} or a.week=0 or a.week is null)
+        and a.id in (
+        select tmp.id from (
+        select DISTINCT b.id from ACTIVITY_SET a,ACTIVITY b,${erp}.pub_custom_set_dtl d
+        where a.CUSTOM_SET_ID = d.SETID(+)
+        and a.ACTIVITY_ID(+)=b.id
+        and b.CUSTOM_SET_TYPE =20
+        and d.CUSTOMID = #{customid}
+        union all
+        select a.id from ACTIVITY a where a.CUSTOM_SET_TYPE =10
+        union all
+        select a.id from activity a where a. CUSTOM_SET_TYPE=30
+
+        and #{customid} not in
+
+        (select d.CUSTOMID from ACTIVITY_SET s
+        inner join ${erp}.pub_custom_set_dtl d on d.SETID=s.CUSTOM_SET_ID where s.activity_id=a.id)
+        ) tmp )
+        and sysdate BETWEEN a.START_TIME and a.END_TIME+1
+        and og.ORDER_ID=#{orderId} and og.good_type not in(4,9)
+        and og.ERP_STORAGE_ID!=5
+        and ag.ERP_GOODS_ID in
+
+        <foreach collection="goodsId" item="item" open="(" close=")" separator=",">
+            (#{item})
+        </foreach>
+
+    </select>
+    <select id="getCartActivity" resultType="com.zsyc.zt.b2b.entity.Cart">
+
+        select c.id,c.erp_goods_id,
+
+        (select DISTINCT
+        a.ID
+        from activity a
+        inner join ACTIVITY_STRATEGY ast on ast.ACTIVITY_ID=a.id and ast.is_use=1
+        inner join ACTIVITY_GOODS ag on ag.ACTIVITY_ID=a.id and ag.is_use=1  and ag.ACTIVITY_ID=#{activityId}
+        where a.is_use=1
+        and( sysdate BETWEEN to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'), ' '),a.START_EFFECTIVE_TIME) ,
+        'yyyy-mm-dd hh24:mi:ss')
+        and to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'),' '), a.END_EFFECTIVE_TIME) , 'yyyy-mm-dd hh24:mi:ss')
+        or a.START_EFFECTIVE_TIME is null and a.END_EFFECTIVE_TIME is null)
+        and (a.WEEK = #{dayOfWeek} or a.week=0 or a.week is null)
+        and a.ACTIVITY_STRATEGY in (30,40)
+        and sysdate BETWEEN a.START_TIME and a.END_TIME+1
+        and ag.erp_goods_id =c.erp_goods_id
+
+        and a.id in (
+        select tmp.id from (
+        select DISTINCT b.id from ACTIVITY_SET a,ACTIVITY b,${erp}.pub_custom_set_dtl d
+        where a.CUSTOM_SET_ID = d.SETID(+)
+        and a.ACTIVITY_ID(+)=b.id
+        and b.CUSTOM_SET_TYPE =20
+        and d.CUSTOMID = #{erpUserId}
+        union all
+        select a.id from ACTIVITY a where a.CUSTOM_SET_TYPE =10
+        union all
+        select a.id from activity a where a. CUSTOM_SET_TYPE=30
+
+        and #{erpUserId} not in
+
+        (select d.CUSTOMID from ACTIVITY_SET s
+        inner join ${erp}.pub_custom_set_dtl d on d.SETID=s.CUSTOM_SET_ID where s.activity_id=a.id)
+        ) tmp )
+
+        and rownum=1) ACTIVITY_ID
+
+
+        from cart c where c.member_id=#{memberId}
+    </select>
+    <select id="getMyCartJoinActivity" resultType="com.zsyc.zt.b2b.vo.ActivityVo">
+
+
+
+        select DISTINCT
+        a.ID,a.content,a.activity_strategy,a.abbreviation
+        from activity a
+        inner join ACTIVITY_STRATEGY ast on ast.ACTIVITY_ID=a.id and ast.is_use=1
+        inner join ACTIVITY_GOODS ag on ag.ACTIVITY_ID=a.id and ag.is_use=1
+        where a.is_use=1
+        and( sysdate BETWEEN to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'), ' '),a.START_EFFECTIVE_TIME) ,
+        'yyyy-mm-dd hh24:mi:ss')
+        and to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'),' '), a.END_EFFECTIVE_TIME) , 'yyyy-mm-dd hh24:mi:ss')
+        or a.START_EFFECTIVE_TIME is null and a.END_EFFECTIVE_TIME is null)
+        and (a.WEEK = 5 or a.week=0 or a.week is null)
+
+        and sysdate BETWEEN a.START_TIME and a.END_TIME+1
+        and ag.erp_goods_id in (select erp_goods_id from cart where member_id=#{memberId})
+        and a.ACTIVITY_STRATEGY in (30,40)
+        and a.id in (
+        select tmp.id from (
+        select DISTINCT b.id from ACTIVITY_SET a,ACTIVITY b,${erp}.pub_custom_set_dtl d
+        where a.CUSTOM_SET_ID = d.SETID(+)
+        and a.ACTIVITY_ID(+)=b.id
+        and b.CUSTOM_SET_TYPE =20
+        and d.CUSTOMID =#{erpUserId}
+        union all
+        select a.id from ACTIVITY a where a.CUSTOM_SET_TYPE =10
+        union all
+        select a.id from activity a where a. CUSTOM_SET_TYPE=30
+
+        and #{erpUserId} not in
+
+        (select d.CUSTOMID from ACTIVITY_SET s
+        inner join ${erp}.pub_custom_set_dtl d on d.SETID=s.CUSTOM_SET_ID where s.activity_id=a.id)
+        ) tmp )
+
+
+    </select>
+    <select id="getActivity90ByGoods" resultType="com.zsyc.zt.b2b.vo.ActivityVo">
+        select DISTINCT
+        a.ID,a.CONTENT,a.ABBREVIATION,a.CUSTOM_SET_TYPE,a.ACTIVITY_STRATEGY,a.WARM_TIME,a.START_EFFECTIVE_TIME,
+        a.END_EFFECTIVE_TIME,a.START_TIME,to_date(a.END_TIME)+1 END_TIME,a.TIMES,a.IS_SUPERPOSITION,a.CREATE_TIME,
+        a.USER_ID,a.WEEK,a.TIMES_STRATEGY,a.IS_USE
+        from activity a
+        inner join ACTIVITY_STRATEGY ast on ast.ACTIVITY_ID=a.id and ast.is_use=1
+        inner join ACTIVITY_GOODS ag on ag.ACTIVITY_ID=a.id and ag.is_use=1
+        where a.is_use=1
+        and( sysdate BETWEEN to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'), ' '),a.START_EFFECTIVE_TIME) ,
+        'yyyy-mm-dd hh24:mi:ss')
+        and to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'),' '), a.END_EFFECTIVE_TIME) , 'yyyy-mm-dd hh24:mi:ss')
+        or a.START_EFFECTIVE_TIME is null and a.END_EFFECTIVE_TIME is null)
+        and (a.WEEK = #{dayOfWeek} or a.week=0 or a.week is null)
+        and a.ACTIVITY_STRATEGY =#{activityStrategy}
+        and sysdate BETWEEN a.START_TIME and a.END_TIME+1
+        and ag.erp_goods_id=#{goodsId}
+        and a.id in (
+        select tmp.id from (
+        select DISTINCT b.id from ACTIVITY_SET a,ACTIVITY b,${erp}.pub_custom_set_dtl d
+        where a.CUSTOM_SET_ID = d.SETID(+)
+        and a.ACTIVITY_ID(+)=b.id
+        and b.CUSTOM_SET_TYPE =20
+        and d.CUSTOMID = #{customid}
+        union all
+        select a.id from ACTIVITY a where a.CUSTOM_SET_TYPE =10
+        union all
+        select a.id from activity a where a. CUSTOM_SET_TYPE=30
+
+        and #{customid} not in
+
+        (select d.CUSTOMID from ACTIVITY_SET s
+        inner join ${erp}.pub_custom_set_dtl d on d.SETID=s.CUSTOM_SET_ID where s.activity_id=a.id)
+        ) tmp )
+        and rownum=1
+        order by a.CREATE_TIME desc
+    </select>
+</mapper>

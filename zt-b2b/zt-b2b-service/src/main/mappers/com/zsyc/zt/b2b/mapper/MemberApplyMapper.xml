@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.MemberApplyMapper">
+    <select id="getAuthenticationList" resultType="com.zsyc.zt.b2b.vo.MemberApplyVo">
+        select * from MEMBER_APPLY
+        <where>
+            <if test="memberApplyVo.status!=null and memberApplyVo.status!=''">
+                STATUS = #{memberApplyVo.status}
+            </if>
+            <if test="memberApplyVo.companyName!=null and memberApplyVo.companyName!=''">
+                and COMPANY_NAME like '%'||#{memberApplyVo.companyName}||'%'
+            </if>
+            <if test="memberApplyVo.companyType!=null and memberApplyVo.companyType!=''">
+                and COMPANY_TYPE = #{memberApplyVo.companyType}
+            </if>
+            <if test="memberApplyVo.contactName!=null and memberApplyVo.contactName!=''">
+                and CONTACT_NAME like '%'||#{memberApplyVo.contactName}||'%'
+            </if>
+            <if test="memberApplyVo.contactPhone!=null and memberApplyVo.contactPhone!=''">
+                and CONTACT_PHONE = #{memberApplyVo.contactPhone}
+            </if>
+            <if test="memberApplyVo.startTime!=null and memberApplyVo.endTime!=null">
+                and CREATE_TIME &gt;= #{memberApplyVo.startTime} and CREATE_TIME &lt;= #{memberApplyVo.endTime}
+            </if>
+        </where>
+        order by CREATE_TIME desc
+    </select>
+    <select id="getTelephoneMemberApplyVo" resultType="com.zsyc.zt.b2b.vo.MemberApplyVo">
+        select m.id member_id ,ma.* from member m
+        left join MEMBER_APPLY ma on ma.id=m.APPLY
+        where m.TELEPHONE=#{telephone}
+    </select>
+</mapper>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsPayDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsPayDoc">
+        <id column="PAYID" property="payid" />
+        <result column="CREDATE" property="credate" />
+        <result column="BANKDOCNO" property="bankdocno" />
+        <result column="SETTLETYPEID" property="settletypeid" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="SUPPLYNAME" property="supplyname" />
+        <result column="TOTAL_OUT" property="totalOut" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CHECKDATE" property="checkdate" />
+        <result column="CHECKMANID" property="checkmanid" />
+        <result column="PAYTYPE" property="paytype" />
+        <result column="MEMO" property="memo" />
+        <result column="BANKID" property="bankid" />
+        <result column="ACCNO" property="accno" />
+        <result column="DTL_LINES" property="dtlLines" />
+        <result column="CERTID" property="certid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="PAYEXMONEY" property="payexmoney" />
+        <result column="PAYEXTYPE" property="payextype" />
+        <result column="CONID" property="conid" />
+        <result column="TOTAL_LINES" property="totalLines" />
+        <result column="INITFLAG" property="initflag" />
+        <result column="EMPLOYEEID" property="employeeid" />
+        <result column="DEPTID" property="deptid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="FMID" property="fmid" />
+        <result column="EXCHANGE" property="exchange" />
+        <result column="OLDPREPAYID" property="oldprepayid" />
+        <result column="PRINTCOUNT" property="printcount" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="PAYEXTAX" property="payextax" />
+        <result column="AGENTID" property="agentid" />
+        <result column="NOTESID" property="notesid" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="REMITTANCEID" property="remittanceid" />
+        <result column="APPLYCOST" property="applycost" />
+        <result column="IMPDTLID" property="impdtlid" />
+        <result column="REQPRINTCOUNT" property="reqprintcount" />
+        <result column="REQPRINTMANID" property="reqprintmanid" />
+        <result column="REQPRINTDATE" property="reqprintdate" />
+        <result column="PREPRINTCOUNT" property="preprintcount" />
+        <result column="PREPRINTMANID" property="preprintmanid" />
+        <result column="PREPRINTDATE" property="preprintdate" />
+        <result column="ZX_BANKNAME" property="zxBankname" />
+        <result column="ZX_ACCNO" property="zxAccno" />
+        <result column="ZX_INITSATUS" property="zxInitsatus" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PAYID, CREDATE, BANKDOCNO, SETTLETYPEID, SUPPLYID, SUPPLYNAME, TOTAL_OUT, INPUTMANID, CHECKDATE, CHECKMANID, PAYTYPE, MEMO, BANKID, ACCNO, DTL_LINES, CERTID, USESTATUS, PAYEXMONEY, PAYEXTYPE, CONID, TOTAL_LINES, INITFLAG, EMPLOYEEID, DEPTID, ENTRYID, FMID, EXCHANGE, OLDPREPAYID, PRINTCOUNT, PRINTMANID, PRINTDATE, PAYEXTAX, AGENTID, NOTESID, CONTACTID, REMITTANCEID, APPLYCOST, IMPDTLID, REQPRINTCOUNT, REQPRINTMANID, REQPRINTDATE, PREPRINTCOUNT, PREPRINTMANID, PREPRINTDATE, ZX_BANKNAME, ZX_ACCNO, ZX_INITSATUS
+    </sql>
+
+</mapper>

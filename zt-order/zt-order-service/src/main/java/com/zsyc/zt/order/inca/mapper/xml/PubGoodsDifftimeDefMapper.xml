@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubGoodsDifftimeDefMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubGoodsDifftimeDef">
+        <id column="SEQID" property="seqid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="DEFREASON" property="defreason" />
+        <result column="PERMITFLAG" property="permitflag" />
+        <result column="STARTDATE" property="startdate" />
+        <result column="ENDDATE" property="enddate" />
+        <result column="FORCEFLAG" property="forceflag" />
+        <result column="STARTYEAR" property="startyear" />
+        <result column="STARTMONTH" property="startmonth" />
+        <result column="STARTDAY" property="startday" />
+        <result column="ENDYEAR" property="endyear" />
+        <result column="ENDMONTH" property="endmonth" />
+        <result column="ENDDAY" property="endday" />
+        <result column="MEMO" property="memo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SEQID, GOODSID, DEFREASON, PERMITFLAG, STARTDATE, ENDDATE, FORCEFLAG, STARTYEAR, STARTMONTH, STARTDAY, ENDYEAR, ENDMONTH, ENDDAY, MEMO
+    </sql>
+
+</mapper>

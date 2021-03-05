@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsEntryPralterDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsEntryPralterDtl">
+        <id column="ALTERDTLID" property="alterdtlid" />
+        <result column="ALTERDOCID" property="alterdocid" />
+        <result column="PRICEID" property="priceid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="FROMPRICE" property="fromprice" />
+        <result column="TOPRICE" property="toprice" />
+        <result column="ALTERREASON" property="alterreason" />
+        <result column="DTLMEMO" property="dtlmemo" />
+        <result column="PRINTNO" property="printno" />
+        <result column="PRINTLINE" property="printline" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ALTERDTLID, ALTERDOCID, PRICEID, GOODSID, FROMPRICE, TOPRICE, ALTERREASON, DTLMEMO, PRINTNO, PRINTLINE
+    </sql>
+
+</mapper>

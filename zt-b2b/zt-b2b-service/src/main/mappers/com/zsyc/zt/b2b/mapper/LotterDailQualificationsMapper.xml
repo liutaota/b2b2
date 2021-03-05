@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.LotterDailQualificationsMapper">
+
+    <delete id="delLotterDailQualificationsByMemberId">
+        delete from LOTTER_DAIL_QUALIFICATIONS where member_id=#{memberId} and status='TMP'
+    </delete>
+    <select id="getMyLotterDailQualificationsList" resultType="com.zsyc.zt.b2b.vo.LotterDailQualificationsVo">
+        select l.*,oi.order_no,a.content,
+        (case
+        when sysdate>=l.lot_end_time then '已过期'
+        else '正常' end ) status_time
+        from LOTTER_DAIL_QUALIFICATIONS l
+        left join order_info oi on oi.id=l.order_id
+        left join activity a on a.id=l.lot_id
+        where l.member_id=#{lotterDailQualifications.memberId} and l.status='ORDER'
+        <if test="lotterDailQualifications.orderId!=null and lotterDailQualifications.orderId!=''">
+            and l.order_id=#{lotterDailQualifications.orderId}
+        </if>
+
+        order by l.LOT_END_TIME asc
+    </select>
+    <select id="getMyLotterCount" resultType="java.lang.Integer">
+        select sum(LOT_NUM) from LOTTER_DAIL_QUALIFICATIONS where member_id=#{memberId} and STATUS='ORDER' and ( lot_end_time>sysdate or lot_end_time is null)
+        <if test="orderId!=null and orderId!=''">
+            and order_id=#{orderId}
+        </if>
+    </select>
+    <select id="getLotterDailQualificationsList" resultType="com.zsyc.zt.b2b.entity.LotterDailQualifications">
+        select * from LOTTER_DAIL_QUALIFICATIONS where member_id=#{memberId} and STATUS='ORDER' and ( lot_end_time>sysdate or lot_end_time is null) and LOT_NUM>0
+    </select>
+</mapper>

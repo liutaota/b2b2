@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubSupplyerImpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubSupplyerImp">
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="SUPPLYOPCODE" property="supplyopcode" />
+        <result column="SUPPLYNO" property="supplyno" />
+        <result column="SUPPLYPINYIN" property="supplypinyin" />
+        <result column="CORPCODE" property="corpcode" />
+        <result column="SUPPLYNAME" property="supplyname" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="SUPPLYMEMO" property="supplymemo" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="IMPORTFLAG" property="importflag" />
+        <result column="CITYID" property="cityid" />
+        <result column="COUNTRYID" property="countryid" />
+        <result column="REGISTADD" property="registadd" />
+        <result column="ADDRESS" property="address" />
+        <result column="ISFARMERFLAG" property="isfarmerflag" />
+        <result column="GSPFLAG" property="gspflag" />
+        <result column="TAXNUMBER" property="taxnumber" />
+        <result column="ZONE" property="zone" />
+        <result column="LEGALPERSON" property="legalperson" />
+        <result column="GSPCATEGORYID" property="gspcategoryid" />
+        <result column="MEDICODE" property="medicode" />
+        <result column="CONFIRMMANID" property="confirmmanid" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="INITFLAG" property="initflag" />
+        <result column="FMID" property="fmid" />
+        <result column="SYS_MODIFYDATE" property="sysModifydate" />
+        <result column="TOWMSDATE" property="towmsdate" />
+        <result column="MEMO" property="memo" />
+        <result column="MEMO1" property="memo1" />
+        <result column="ZX_TEL" property="zxTel" />
+        <result column="ZX_TELNAME" property="zxTelname" />
+        <result column="ZX_TYPE" property="zxType" />
+        <result column="ZX_INVONFLAG" property="zxInvonflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SUPPLYID, SUPPLYOPCODE, SUPPLYNO, SUPPLYPINYIN, CORPCODE, SUPPLYNAME, USESTATUS, SUPPLYMEMO, CREDATE, INPUTMANID, IMPORTFLAG, CITYID, COUNTRYID, REGISTADD, ADDRESS, ISFARMERFLAG, GSPFLAG, TAXNUMBER, ZONE, LEGALPERSON, GSPCATEGORYID, MEDICODE, CONFIRMMANID, CONFIRMDATE, INITFLAG, FMID, SYS_MODIFYDATE, TOWMSDATE, MEMO, MEMO1, ZX_TEL, ZX_TELNAME, ZX_TYPE, ZX_INVONFLAG
+    </sql>
+
+</mapper>

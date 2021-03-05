@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.GpcsPlacepointMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.GpcsPlacepoint">
+        <id column="PLACEPOINTID" property="placepointid" />
+        <result column="PLACEPOINTOPCODE" property="placepointopcode" />
+        <result column="PLACEPOINTNO" property="placepointno" />
+        <result column="PLACEPOINTNAME" property="placepointname" />
+        <result column="PLACEPOINTPINYIN" property="placepointpinyin" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="MEMO" property="memo" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="STHOUSEID" property="sthouseid" />
+        <result column="TEL" property="tel" />
+        <result column="ONES" property="ones" />
+        <result column="BUSINESSTIME" property="businesstime" />
+        <result column="ADDRESS" property="address" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="AREADOCID" property="areadocid" />
+        <result column="RISERATE" property="riserate" />
+        <result column="RESA_MONEY_PRECISION" property="resaMoneyPrecision" />
+        <result column="LOT_MANAGER_MODE" property="lotManagerMode" />
+        <result column="LOT_MODIFY" property="lotModify" />
+        <result column="MAXSALESQTY" property="maxsalesqty" />
+        <result column="UPDATEPOS" property="updatepos" />
+        <result column="INPUTMETHOD" property="inputmethod" />
+        <result column="SALERFLAG" property="salerflag" />
+        <result column="WORKINGTYPE" property="workingtype" />
+        <result column="CTRLLOWPRICE" property="ctrllowprice" />
+        <result column="DISPAYGATHMONEY" property="dispaygathmoney" />
+        <result column="RETAILCENTERID" property="retailcenterid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="PRESSTOCKFLAG" property="presstockflag" />
+        <result column="PRINTFLAG" property="printflag" />
+        <result column="REQSPLITFLAG" property="reqsplitflag" />
+        <result column="ISCOMM" property="iscomm" />
+        <result column="REQCENTERST" property="reqcenterst" />
+        <result column="REQQTYUPLIMIT" property="reqqtyuplimit" />
+        <result column="MANUALRATELIMIT" property="manualratelimit" />
+        <result column="MINIATURETAXPAYERFLAG" property="miniaturetaxpayerflag" />
+        <result column="INCOMETAXRATE" property="incometaxrate" />
+        <result column="OUTPUTTAXRATE" property="outputtaxrate" />
+        <result column="PLACEPOINTTYPE" property="placepointtype" />
+        <result column="BATCH_MANAGER_MODE" property="batchManagerMode" />
+        <result column="INSAUTOUP" property="insautoup" />
+        <result column="OTCRESTRICT" property="otcrestrict" />
+        <result column="DEFAULTDOCTER" property="defaultdocter" />
+        <result column="DEFAULTHOSPITAL" property="defaulthospital" />
+        <result column="MAXEPHQTY" property="maxephqty" />
+        <result column="EXAMPRICEID" property="exampriceid" />
+        <result column="PRELOTMANAGERMODE" property="prelotmanagermode" />
+        <result column="PEIFANGMANID" property="peifangmanid" />
+        <result column="SHENFANGMANID" property="shenfangmanid" />
+        <result column="TRANSLINEID" property="translineid" />
+        <result column="SADAYS_PARAM" property="sadaysParam" />
+        <result column="TOPNUM_PARAM" property="topnumParam" />
+        <result column="CATEGORYID" property="categoryid" />
+        <result column="BULKCHECKMANID" property="bulkcheckmanid" />
+        <result column="DELIVERYDAY" property="deliveryday" />
+        <result column="TOTALAREA" property="totalarea" />
+        <result column="LIVINGAREA" property="livingarea" />
+        <result column="RECIPEREUSABLEFLAG" property="recipereusableflag" />
+        <result column="MANUALLYADD" property="manuallyadd" />
+        <result column="ISAPPROVAL" property="isapproval" />
+        <result column="JFDKXS" property="jfdkxs" />
+        <result column="ISCONFIRM" property="isconfirm" />
+        <result column="INSIDERCHANGELOW" property="insiderchangelow" />
+        <result column="OFFICESIDS" property="officesids" />
+        <result column="OFFICESNAMES" property="officesnames" />
+        <result column="CLASSTEMPLETID" property="classtempletid" />
+        <result column="ISZFB" property="iszfb" />
+        <result column="ZFB_PAY_PUBKEY" property="zfbPayPubkey" />
+        <result column="ZFB_PRIVATEKEY" property="zfbPrivatekey" />
+        <result column="ZFB_APPID" property="zfbAppid" />
+        <result column="ISWEIXIN" property="isweixin" />
+        <result column="WX_CUSTOMERNO" property="wxCustomerno" />
+        <result column="ISENDOFDAY" property="isendofday" />
+        <result column="ISSAME" property="issame" />
+        <result column="AVGMATHED" property="avgmathed" />
+        <result column="AVGMATHEDPOINT" property="avgmathedpoint" />
+        <result column="UPDOWNUPDATE" property="updownupdate" />
+        <result column="UPDOWNGOODS" property="updowngoods" />
+        <result column="UPDOWNAVGMATHED" property="updownavgmathed" />
+        <result column="UPDOWNMATHEDPOINT" property="updownmathedpoint" />
+        <result column="DEFAULTUPDAYS" property="defaultupdays" />
+        <result column="DEFAULTDOWNDAYS" property="defaultdowndays" />
+        <result column="AVGCALCULATEMATHED" property="avgcalculatemathed" />
+        <result column="D1DAYS" property="d1days" />
+        <result column="D2DAYS" property="d2days" />
+        <result column="D3DAYS" property="d3days" />
+        <result column="D4DAYS" property="d4days" />
+        <result column="D1PROPORTION" property="d1proportion" />
+        <result column="D2PROPORTION" property="d2proportion" />
+        <result column="D3PROPORTION" property="d3proportion" />
+        <result column="D4PROPORTION" property="d4proportion" />
+        <result column="REMOVENOSALE" property="removenosale" />
+        <result column="REMOVEPLACE" property="removeplace" />
+        <result column="REMOVENOACCEPT" property="removenoaccept" />
+        <result column="REMOVEINST" property="removeinst" />
+        <result column="REMOVEOUTST" property="removeoutst" />
+        <result column="REQMATHED" property="reqmathed" />
+        <result column="AUTOREQMATHED" property="autoreqmathed" />
+        <result column="AUTOREQDATE" property="autoreqdate" />
+        <result column="AUTOREQUSESTATUS" property="autorequsestatus" />
+        <result column="CLACDATEN" property="clacdaten" />
+        <result column="CALCMETHOD" property="calcmethod" />
+        <result column="ZX_OTCFLAG0" property="zxOtcflag0" />
+        <result column="ZX_OTCFLAG1" property="zxOtcflag1" />
+        <result column="ZX_OTCFLAG2" property="zxOtcflag2" />
+        <result column="ZX_OTCFLAG3" property="zxOtcflag3" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PLACEPOINTID, PLACEPOINTOPCODE, PLACEPOINTNO, PLACEPOINTNAME, PLACEPOINTPINYIN, USESTATUS, MEMO, STORAGEID, STHOUSEID, TEL, ONES, BUSINESSTIME, ADDRESS, CREDATE, INPUTMANID, AREADOCID, RISERATE, RESA_MONEY_PRECISION, LOT_MANAGER_MODE, LOT_MODIFY, MAXSALESQTY, UPDATEPOS, INPUTMETHOD, SALERFLAG, WORKINGTYPE, CTRLLOWPRICE, DISPAYGATHMONEY, RETAILCENTERID, ENTRYID, PRESSTOCKFLAG, PRINTFLAG, REQSPLITFLAG, ISCOMM, REQCENTERST, REQQTYUPLIMIT, MANUALRATELIMIT, MINIATURETAXPAYERFLAG, INCOMETAXRATE, OUTPUTTAXRATE, PLACEPOINTTYPE, BATCH_MANAGER_MODE, INSAUTOUP, OTCRESTRICT, DEFAULTDOCTER, DEFAULTHOSPITAL, MAXEPHQTY, EXAMPRICEID, PRELOTMANAGERMODE, PEIFANGMANID, SHENFANGMANID, TRANSLINEID, SADAYS_PARAM, TOPNUM_PARAM, CATEGORYID, BULKCHECKMANID, DELIVERYDAY, TOTALAREA, LIVINGAREA, RECIPEREUSABLEFLAG, MANUALLYADD, ISAPPROVAL, JFDKXS, ISCONFIRM, INSIDERCHANGELOW, OFFICESIDS, OFFICESNAMES, CLASSTEMPLETID, ISZFB, ZFB_PAY_PUBKEY, ZFB_PRIVATEKEY, ZFB_APPID, ISWEIXIN, WX_CUSTOMERNO, ISENDOFDAY, ISSAME, AVGMATHED, AVGMATHEDPOINT, UPDOWNUPDATE, UPDOWNGOODS, UPDOWNAVGMATHED, UPDOWNMATHEDPOINT, DEFAULTUPDAYS, DEFAULTDOWNDAYS, AVGCALCULATEMATHED, D1DAYS, D2DAYS, D3DAYS, D4DAYS, D1PROPORTION, D2PROPORTION, D3PROPORTION, D4PROPORTION, REMOVENOSALE, REMOVEPLACE, REMOVENOACCEPT, REMOVEINST, REMOVEOUTST, REQMATHED, AUTOREQMATHED, AUTOREQDATE, AUTOREQUSESTATUS, CLACDATEN, CALCMETHOD, ZX_OTCFLAG0, ZX_OTCFLAG1, ZX_OTCFLAG2, ZX_OTCFLAG3
+    </sql>
+
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubTerritoryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubTerritory">
+        <id column="TERRITORYID" property="territoryid" />
+        <result column="TERRITORYNAME" property="territoryname" />
+        <result column="TERRITORYOPCODE" property="territoryopcode" />
+        <result column="TERRITORYCODE" property="territorycode" />
+        <result column="MEMO" property="memo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TERRITORYID, TERRITORYNAME, TERRITORYOPCODE, TERRITORYCODE, MEMO
+    </sql>
+
+</mapper>

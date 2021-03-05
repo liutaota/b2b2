@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubImpSupplyAgentMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubImpSupplyAgent">
+        <id column="DTLID" property="dtlid" />
+        <result column="DOCID" property="docid" />
+        <result column="IMPSTATUS" property="impstatus" />
+        <result column="ERRORMESSAGE" property="errormessage" />
+        <result column="NEWID" property="newid" />
+        <result column="SUPPLYNAME" property="supplyname" />
+        <result column="ENTRYNAME" property="entryname" />
+        <result column="AGENTNAME" property="agentname" />
+        <result column="AGENTOPCODE" property="agentopcode" />
+        <result column="PINYIN" property="pinyin" />
+        <result column="SEX" property="sex" />
+        <result column="BIRTHDATE" property="birthdate" />
+        <result column="IDCARD" property="idcard" />
+        <result column="EMAIL" property="email" />
+        <result column="PHONE" property="phone" />
+        <result column="MOBILENO" property="mobileno" />
+        <result column="ADDRESS" property="address" />
+        <result column="MEMO" property="memo" />
+        <result column="USESTATUSNAME" property="usestatusname" />
+        <result column="ZXCOLUMN01" property="zxcolumn01" />
+        <result column="ZXCOLUMN02" property="zxcolumn02" />
+        <result column="ZXCOLUMN03" property="zxcolumn03" />
+        <result column="ZXCOLUMN04" property="zxcolumn04" />
+        <result column="ZXCOLUMN05" property="zxcolumn05" />
+        <result column="ZXCOLUMN06" property="zxcolumn06" />
+        <result column="ZXCOLUMN07" property="zxcolumn07" />
+        <result column="ZXCOLUMN08" property="zxcolumn08" />
+        <result column="ZXCOLUMN09" property="zxcolumn09" />
+        <result column="ZXCOLUMN10" property="zxcolumn10" />
+        <result column="ZXCOLUMN11" property="zxcolumn11" />
+        <result column="ZXCOLUMN12" property="zxcolumn12" />
+        <result column="ZXCOLUMN13" property="zxcolumn13" />
+        <result column="ZXCOLUMN14" property="zxcolumn14" />
+        <result column="ZXCOLUMN15" property="zxcolumn15" />
+        <result column="ZXCOLUMN16" property="zxcolumn16" />
+        <result column="ZXCOLUMN17" property="zxcolumn17" />
+        <result column="ZXCOLUMN18" property="zxcolumn18" />
+        <result column="ZXCOLUMN19" property="zxcolumn19" />
+        <result column="ZXCOLUMN20" property="zxcolumn20" />
+        <result column="DATETO" property="dateto" />
+        <result column="DATEFROM" property="datefrom" />
+        <result column="CTRLTYPE" property="ctrltype" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="CTRLTYPEDDLID" property="ctrltypeddlid" />
+        <result column="ENTRYSUPPLYERID" property="entrysupplyerid" />
+        <result column="FORBIDBUSINESS" property="forbidbusiness" />
+        <result column="FORBIDBACK" property="forbidback" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DOCID, DTLID, IMPSTATUS, ERRORMESSAGE, NEWID, SUPPLYNAME, ENTRYNAME, AGENTNAME, AGENTOPCODE, PINYIN, SEX, BIRTHDATE, IDCARD, EMAIL, PHONE, MOBILENO, ADDRESS, MEMO, USESTATUSNAME, ZXCOLUMN01, ZXCOLUMN02, ZXCOLUMN03, ZXCOLUMN04, ZXCOLUMN05, ZXCOLUMN06, ZXCOLUMN07, ZXCOLUMN08, ZXCOLUMN09, ZXCOLUMN10, ZXCOLUMN11, ZXCOLUMN12, ZXCOLUMN13, ZXCOLUMN14, ZXCOLUMN15, ZXCOLUMN16, ZXCOLUMN17, ZXCOLUMN18, ZXCOLUMN19, ZXCOLUMN20, DATETO, DATEFROM, CTRLTYPE, SUPPLYID, ENTRYID, USESTATUS, CTRLTYPEDDLID, ENTRYSUPPLYERID, FORBIDBUSINESS, FORBIDBACK
+    </sql>
+
+</mapper>

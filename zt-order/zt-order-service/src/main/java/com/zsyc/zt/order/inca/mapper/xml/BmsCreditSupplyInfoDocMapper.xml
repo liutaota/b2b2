@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsCreditSupplyInfoDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsCreditSupplyInfoDoc">
+        <id column="SUPPLY_ST_ID" property="supplyStId" />
+        <result column="CREDATE" property="credate" />
+        <result column="APPROVE_STATUS" property="approveStatus" />
+        <result column="APPROVE_MEMO" property="approveMemo" />
+        <result column="APPROVE_DATE" property="approveDate" />
+        <result column="APPROVE_MANID" property="approveManid" />
+        <result column="APPROVE_SALERID" property="approveSalerid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SUPPLY_ST_ID, CREDATE, APPROVE_STATUS, APPROVE_MEMO, APPROVE_DATE, APPROVE_MANID, APPROVE_SALERID
+    </sql>
+
+</mapper>

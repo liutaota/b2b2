@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsBatchDefMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsBatchDef">
+        <id column="BATCHID" property="batchid" />
+        <result column="BATCHNO" property="batchno" />
+        <result column="BATCHSORTNO" property="batchsortno" />
+        <result column="CREATEFROM" property="createfrom" />
+        <result column="SOURCEID" property="sourceid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="MEMO" property="memo" />
+        <result column="NOTAXSUPRICE" property="notaxsuprice" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="OLDBATCHID" property="oldbatchid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="EMPID" property="empid" />
+        <result column="DEPUTYID" property="deputyid" />
+        <result column="LIMITID" property="limitid" />
+        <result column="LIMITCUSTOMSETID" property="limitcustomsetid" />
+        <result column="TAXRATE" property="taxrate" />
+        <result column="QUALITYINFO" property="qualityinfo" />
+        <result column="BANNEDCUSTOMERID" property="bannedcustomerid" />
+        <result column="BANNEDCUSTOMERSETID" property="bannedcustomersetid" />
+        <result column="POSTFLAG" property="postflag" />
+        <result column="BANNEDAGENTID" property="bannedagentid" />
+        <result column="LIMITAGENTID" property="limitagentid" />
+        <result column="SUDATE" property="sudate" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="LIMITCONTACTID" property="limitcontactid" />
+        <result column="BANNEDCONTACTID" property="bannedcontactid" />
+        <result column="TWOINVOICEINFLAG" property="twoinvoiceinflag" />
+        <result column="FREIGHTCOUNT" property="freightcount" />
+        <result column="INVCOUNT" property="invcount" />
+        <result column="ZX_KP_FLAG" property="zxKpFlag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        BATCHID, BATCHNO, BATCHSORTNO, CREATEFROM, SOURCEID, GOODSID, GOODSDTLID, INPUTMANID, CREDATE, MEMO, NOTAXSUPRICE, UNITPRICE, OLDBATCHID, COMPANYID, EMPID, DEPUTYID, LIMITID, LIMITCUSTOMSETID, TAXRATE, QUALITYINFO, BANNEDCUSTOMERID, BANNEDCUSTOMERSETID, POSTFLAG, BANNEDAGENTID, LIMITAGENTID, SUDATE, CONTACTID, LIMITCONTACTID, BANNEDCONTACTID, TWOINVOICEINFLAG, FREIGHTCOUNT, INVCOUNT, ZX_KP_FLAG
+    </sql>
+
+</mapper>

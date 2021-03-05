@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsCloudEmployeeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsCloudEmployee">
+        <id column="TELEPHONE" property="telephone" />
+        <result column="EMPLOYEENAME" property="employeename" />
+        <result column="EMPLOYEEOPCODE" property="employeeopcode" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="SERVICEID" property="serviceid" />
+        <result column="ERPEMPLOYEEID" property="erpemployeeid" />
+        <result column="PASSWORD" property="password" />
+        <result column="MD5COUNT" property="md5count" />
+        <result column="ISMANAGER" property="ismanager" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TELEPHONE, EMPLOYEENAME, EMPLOYEEOPCODE, COMPANYID, SERVICEID, ERPEMPLOYEEID, PASSWORD, MD5COUNT, ISMANAGER
+    </sql>
+
+</mapper>

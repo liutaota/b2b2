@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubFormoneyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubFormoney">
+        <id column="FMID" property="fmid" />
+        <result column="FMOPCODE" property="fmopcode" />
+        <result column="FMNAME" property="fmname" />
+        <result column="FMSIGN" property="fmsign" />
+        <result column="FMUNIT" property="fmunit" />
+        <result column="FMRATE" property="fmrate" />
+        <result column="USESTATUS" property="usestatus" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        FMID, FMOPCODE, FMNAME, FMSIGN, FMUNIT, FMRATE, USESTATUS
+    </sql>
+
+</mapper>

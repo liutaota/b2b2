@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.BmsStRgDocMapper">
+
+    <update id="updateByRgid">
+    update bms_st_rg_doc a set a.checkmanid =#{approvemanId} where a.rgid =#{rgid}
+    </update>
+    <update id="updateBy">
+        update bms_st_rg_doc a set a.usestatus = 2,a.checkdate = sysdate where a.rgid = #{rgid}
+    </update>
+</mapper>

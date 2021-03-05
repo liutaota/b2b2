@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSkInitMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSkInit">
+        <id column="SEQID" property="seqid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="MONEY" property="money" />
+        <result column="COSTPRICE" property="costprice" />
+        <result column="STOCKID" property="stockid" />
+        <result column="CALCFLAG" property="calcflag" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="INOUTFLAG" property="inoutflag" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="CREFLAG" property="creflag" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="TMPID" property="tmpid" />
+        <result column="SKCERTID" property="skcertid" />
+        <result column="INITID" property="initid" />
+        <result column="MEMO" property="memo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SEQID, GOODSID, BATCHID, GOODSQTY, MONEY, COSTPRICE, STOCKID, CALCFLAG, STORAGEID, INOUTFLAG, CREDATE, INPUTMANID, ENTRYID, CREFLAG, USESTATUS, TMPID, SKCERTID, INITID, MEMO
+    </sql>
+
+</mapper>

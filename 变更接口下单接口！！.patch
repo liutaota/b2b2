@@ -1,0 +1,130 @@
+Index: zt-inca/zt-inca-service/src/test/java/com/zsyc/test/OrderServiceTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- zt-inca/zt-inca-service/src/test/java/com/zsyc/test/OrderServiceTest.java	(revision 61c114cd7e23934d05c1cc4572a5dc373da14a23)
++++ zt-inca/zt-inca-service/src/test/java/com/zsyc/test/OrderServiceTest.java	(date 1613976060340)
+@@ -184,7 +184,7 @@
+     public void teststatus(){
+         System.out.println(orderService.selectOrderStatusList(new ArrayList<Long>(){
+             {
+-                this.add(3064L);
++                this.add(41595L);
+                 this.add(3066L);
+             }
+         }));
+Index: zt-inca/zt-inca-service/src/main/java/com/zsyc/zt/inca/service/OrderServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- zt-inca/zt-inca-service/src/main/java/com/zsyc/zt/inca/service/OrderServiceImpl.java	(revision 61c114cd7e23934d05c1cc4572a5dc373da14a23)
++++ zt-inca/zt-inca-service/src/main/java/com/zsyc/zt/inca/service/OrderServiceImpl.java	(date 1614136889808)
+@@ -972,6 +972,14 @@
+ 
+         PubCustomToSaler saler = customService.getSalerByCustomId(customId, entryId);
+ 
++
++        /**
++         * 接口下单，需要变更客户的id
++         */
++        if(ObjectUtil.equal(giftOrder.getOrderFrom(),4)){
++            customId = customService.getByCustomStoreId(customId,giftOrder.getStoreId(),entryId);
++        }
++
+         PubCustomer customer = customService.getById(customId);
+         /**
+          * 赠品主表
+@@ -1267,6 +1275,14 @@
+         Integer entryId = orderInfoDocVo.getEntryId();
+ 
+ 
++        /**
++         * 接口下单，需要变更客户的id
++         */
++        if(ObjectUtil.equal(orderInfoDocVo.getOrderFrom(),4)){
++            customId = customService.getByCustomStoreId(customId,orderInfoDocVo.getStoreId(),entryId);
++        }
++
++
+         CustomerVo customer = customService.getByCustomId(customId,entryId);
+ 
+         BmsTrPosDef address = customService.getAddressByCustomId(customId, entryId);
+Index: zt-inca/zt-inca-interface/src/main/java/com/zsyc/zt/inca/entity/BmsTrPosDef.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- zt-inca/zt-inca-interface/src/main/java/com/zsyc/zt/inca/entity/BmsTrPosDef.java	(revision 61c114cd7e23934d05c1cc4572a5dc373da14a23)
++++ zt-inca/zt-inca-interface/src/main/java/com/zsyc/zt/inca/entity/BmsTrPosDef.java	(date 1614136733469)
+@@ -89,5 +89,11 @@
+     @TableField("TOWMSDATE")
+     private Date towmsdate;
+ 
++    @TableField("b2b_store_id")
++    private Long b2bStoreId;
++
++    @TableField("b2b_sub_custom_id")
++    private Long b2bSubCustomId;
++
+ 
+ }
+Index: zt-inca/zt-inca-interface/src/main/java/com/zsyc/zt/inca/service/CustomService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- zt-inca/zt-inca-interface/src/main/java/com/zsyc/zt/inca/service/CustomService.java	(revision 61c114cd7e23934d05c1cc4572a5dc373da14a23)
++++ zt-inca/zt-inca-interface/src/main/java/com/zsyc/zt/inca/service/CustomService.java	(date 1614136437235)
+@@ -177,4 +177,6 @@
+      */
+     @Cached(name="CustomService-getRemainRecDays-", key="#customId+':'+#entryId", expire = 3)
+     Integer getRemainRecDays(Long customId,Integer entryId);
++    @Cached(name="CustomService-getByCustomStoreId-", key="#customId+':'+#storeId+':'+entryId", expire = 3)
++    Long getByCustomStoreId(Long customId, Long storeId, Integer entryId);
+ }
+Index: zt-inca/zt-inca-service/src/main/java/com/zsyc/zt/inca/service/CustomServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- zt-inca/zt-inca-service/src/main/java/com/zsyc/zt/inca/service/CustomServiceImpl.java	(revision 61c114cd7e23934d05c1cc4572a5dc373da14a23)
++++ zt-inca/zt-inca-service/src/main/java/com/zsyc/zt/inca/service/CustomServiceImpl.java	(date 1614136803973)
+@@ -611,4 +611,20 @@
+         return 0;
+     }
+ 
++    /**
++     * 通过仓库编号获取客户id
++     * @param customId
++     * @param storeId
++     * @param entryId
++     * @return
++     */
++    @Override
++    public Long getByCustomStoreId(Long customId, Long storeId, Integer entryId) {
++        QueryWrapper<BmsTrPosDef> queryWrapper = new QueryWrapper<>();
++        queryWrapper.lambda().eq(BmsTrPosDef::getB2bStoreId,storeId);
++        queryWrapper.lambda().eq(BmsTrPosDef::getB2bSubCustomId,customId);
++        BmsTrPosDef bmsTrPosDef = bmsTrPosDefMapper.selectOne(queryWrapper);
++        return bmsTrPosDef.getCompanyid();
++    }
++
+ }
+Index: zt-inca/zt-inca-interface/src/main/java/com/zsyc/zt/inca/vo/OrderInfoDocVo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- zt-inca/zt-inca-interface/src/main/java/com/zsyc/zt/inca/vo/OrderInfoDocVo.java	(revision 61c114cd7e23934d05c1cc4572a5dc373da14a23)
++++ zt-inca/zt-inca-interface/src/main/java/com/zsyc/zt/inca/vo/OrderInfoDocVo.java	(date 1614136334822)
+@@ -71,7 +71,7 @@
+ 
+ 
+     /**
+-     * 订单来源  1  web  2是 小程序
++     * 订单来源  1WEB2mobile  3 后台下单  4 接口下单
+      */
+     private Integer orderFrom;
+ 

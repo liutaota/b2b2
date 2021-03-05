@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.PubCustomToSalerMapper">
+
+    <select id="getSalerByCustomId" resultType="com.zsyc.zt.inca.entity.PubCustomToSaler">
+        select *
+          from (select a.customid, a.salerid, b.deptid salerdeptid
+                  from pub_custom_to_saler a, pub_employee b
+                 where a.salerid = b.employeeid
+                   and a.customid = #{customId}
+                   and a.entryid = #{entryId}
+                 order by nvl(a.zx_flag, 0) desc)
+         where rownum = 1
+    </select>
+</mapper>

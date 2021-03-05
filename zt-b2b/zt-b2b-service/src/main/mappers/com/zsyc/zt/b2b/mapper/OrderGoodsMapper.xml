@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.OrderGoodsMapper">
+
+    <select id="getOrderGoodsVoInfo" resultType="com.zsyc.zt.b2b.vo.OrderGoodsVo">
+
+        select
+        b.accflag,
+        a.goodsid,
+        b.goodsname,
+        b.goodsunit,
+        b.factoryid,
+        c.factoryname,
+        b.medicinetype,
+        b.medicinetypename,
+        b.currencyname,
+        b.goodstype,
+        a.zx_b2b_num_limit,
+        b.classn_row_1,
+        b.classn_row_2,
+        b.classn_row_3,
+        b.classname_1,
+        b.classname_2,
+        b.classname_3,
+        b.opcode,
+        b.prodarea,
+        a.entryid,
+        d.*
+        from order_goods d
+        left join ${erp}.pub_entry_goods a on a.goodsid = d.erp_goods_id and a.entryid = 1
+        left join ${erp}.pub_goods b on b.goodsid=a.goodsid
+        left join ${erp}.pub_factory c on c.factoryid=b.factoryid
+        where d.order_id = #{orderId}
+
+    </select>
+    <select id="getMyOrderGoods" resultType="com.zsyc.zt.b2b.vo.OrderGoodsVo">
+        select og.erp_goods_id ,og.member_id ,sum (og.goods_num)
+        goods_num,og.GOODS_PRICE,og.GOODS_NAME,og.ERP_LEASTSALEQTY,og.ERP_STORAGE_ID,g.goods_img GOODS_IMAGE
+        from order_goods og
+        inner join ERP_GOODS_V gv on gv.GOODSID=og.erp_goods_id
+        left join goods g on g.erp_goods_id=og.erp_goods_id
+        where og.member_id =#{memberId}
+
+        group by og.erp_goods_id ,og.member_id ,
+        og.goods_num,g.goods_img,og.GOODS_PRICE,og.GOODS_NAME,og.ERP_LEASTSALEQTY,og.ERP_STORAGE_ID
+        order by og.goods_num desc
+    </select>
+    <select id="orderGoodsDeliveryList" resultType="com.zsyc.zt.b2b.vo.OrderGoodsVo">
+        select * from erp_order_send_goods_v
+        where b2b_order_id = #{orderId}
+
+    </select>
+    <select id="getTwoBuyGoodsInfoVo" resultType="com.zsyc.zt.b2b.vo.OrderGoodsVo">
+        select
+        b.accflag,
+        a.goodsid,
+        b.goodsname,
+        b.goodsunit,
+        b.factoryid,
+        c.factoryname,
+        b.medicinetype,
+        b.medicinetypename,
+        b.currencyname,
+        b.goodstype,
+        a.zx_b2b_num_limit,
+        b.classn_row_1,
+        b.classn_row_2,
+        b.classn_row_3,
+        b.classname_1,
+        b.classname_2,
+        b.classname_3,
+        b.opcode,
+        b.B2B_NOT_SALE_FLAG,
+        a.entryid,
+        d.*
+        from order_goods d
+        left join ${erp}.pub_entry_goods a on a.goodsid = d.erp_goods_id and a.entryid = 1
+        left join ${erp}.pub_goods b on b.goodsid=a.goodsid
+        left join ${erp}.pub_factory c on c.factoryid=b.factoryid
+        where d.good_type not in (4,9,10) and d.order_id = #{orderId} and (b.B2B_NOT_SALE_FLAG is null or b.B2B_NOT_SALE_FLAG=0)
+    </select>
+    <select id="getActivityContent" resultType="com.zsyc.zt.b2b.vo.OrderGoodsVo">
+        select a.content,og.* from order_goods og
+        inner join ACTIVITY a on a.id=og.ACTIVITY_ID
+        inner join ACTIVITY_ORDER ao on ao.order_id=og.order_id and ao.ACTIVITY_id =og.ACTIVITY_ID
+        where og.order_id=#{orderId} and og.ACTIVITY_ID is not null
+        order by og.id desc
+    </select>
+    <select id="getOrderIdByErpGoodsId" resultType="java.lang.Long">
+        select ERP_GOODS_ID from ORDER_GOODS where ORDER_ID=#{orderId} and GOOD_TYPE not in (4,9) and ERP_STORAGE_ID!=5
+    </select>
+    <select id="getShortOrderGoodsList" resultType="com.zsyc.zt.b2b.entity.OrderGoods">
+        select * from ORDER_GOODS where ORDER_ID=#{orderId} and GOODS_NUM!=SELL_NUM
+    </select>
+    <select id="getOrderGoodsBy9" resultType="com.zsyc.zt.b2b.vo.OrderGoodsVo">
+        select og.*,oi.order_no,m.erp_user_id,m.user_name from order_goods og,order_info oi,member m
+        where og.order_id=oi.id and m.id=oi.member_id
+        and oi.order_state!='CANCEL' and og.good_type=9
+        <if test="orderGoods.erpGoodsId!=null">
+            and og.erp_goods_id=#{orderGoods.erpGoodsId}
+        </if>
+        <if test="orderGoods.goodsName!=null and orderGoods.goodsName!=''">
+            and og.goods_name like '%'||#{orderGoods.goodsName}||'%'
+        </if>
+        <if test="orderGoods.erpUserId!=null and orderGoods.erpUserId!=''">
+            and m.erp_user_id=#{orderGoods.erpUserId}
+        </if>
+        <if test="orderGoods.orderNo!=null and orderGoods.orderNo!=''">
+            and oi.order_no like '%'||#{orderGoods.orderNo}||'%'
+        </if>
+        <if test="orderGoods.userName!=null and orderGoods.userName!=''">
+            and m.user_name like '%'||#{orderGoods.userName}||'%'
+        </if>
+        order by og.create_time desc
+    </select>
+</mapper>

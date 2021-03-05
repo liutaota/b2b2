@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStReTinyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStReTiny">
+        <id column="RETINYID" property="retinyid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="GOODSQTY_LINE" property="goodsqtyLine" />
+        <result column="WHOLEQTY" property="wholeqty" />
+        <result column="SCATTERQTY" property="scatterqty" />
+        <result column="UNWHOLEQTY" property="unwholeqty" />
+        <result column="UNSCATTERQTY" property="unscatterqty" />
+        <result column="UNINTRUSTWHOLEQTY" property="unintrustwholeqty" />
+        <result column="UNINTRUSTSCATTERQTY" property="unintrustscatterqty" />
+        <result column="UNREFUSEWHOLEQTY" property="unrefusewholeqty" />
+        <result column="UNREFUSESCATTERQTY" property="unrefusescatterqty" />
+        <result column="LOTID" property="lotid" />
+        <result column="PACKQUALITY" property="packquality" />
+        <result column="FACEQUALITY" property="facequality" />
+        <result column="TRANSPORTID" property="transportid" />
+        <result column="TRANMETHOD" property="tranmethod" />
+        <result column="STARTTEMPERATURE" property="starttemperature" />
+        <result column="REACHTEMPERATURE" property="reachtemperature" />
+        <result column="TEMPERATURESTATUS" property="temperaturestatus" />
+        <result column="STARTDATE" property="startdate" />
+        <result column="REACHDATE" property="reachdate" />
+        <result column="COLDEQUIP" property="coldequip" />
+        <result column="UNQUALTFIEDMEMO" property="unqualtfiedmemo" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="UNQUALIFIEDQTY" property="unqualifiedqty" />
+        <result column="UNINTRUSTQTY" property="unintrustqty" />
+        <result column="UNREFUSEQTY" property="unrefuseqty" />
+        <result column="REDTLID" property="redtlid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="ZX_GOODSSTATUSID" property="zxGoodsstatusid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        RETINYID, GOODSDTLID, GOODSQTY_LINE, WHOLEQTY, SCATTERQTY, UNWHOLEQTY, UNSCATTERQTY, UNINTRUSTWHOLEQTY, UNINTRUSTSCATTERQTY, UNREFUSEWHOLEQTY, UNREFUSESCATTERQTY, LOTID, PACKQUALITY, FACEQUALITY, TRANSPORTID, TRANMETHOD, STARTTEMPERATURE, REACHTEMPERATURE, TEMPERATURESTATUS, STARTDATE, REACHDATE, COLDEQUIP, UNQUALTFIEDMEMO, GOODSQTY, UNQUALIFIEDQTY, UNINTRUSTQTY, UNREFUSEQTY, REDTLID, BATCHID, ZX_GOODSSTATUSID
+    </sql>
+
+</mapper>

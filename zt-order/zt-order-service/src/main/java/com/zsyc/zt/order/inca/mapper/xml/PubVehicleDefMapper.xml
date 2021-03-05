@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubVehicleDefMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubVehicleDef">
+        <id column="VEHICLEID" property="vehicleid" />
+        <result column="VEHICLENUM" property="vehiclenum" />
+        <result column="VEHICLEMODEL" property="vehiclemodel" />
+        <result column="DRIVERID" property="driverid" />
+        <result column="LOADCAPACITY" property="loadcapacity" />
+        <result column="VEHICLESIZE" property="vehiclesize" />
+        <result column="MEMO" property="memo" />
+        <result column="PRELOADNUM" property="preloadnum" />
+        <result column="ANNUALSURVEYDATE" property="annualsurveydate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        VEHICLEID, VEHICLENUM, VEHICLEMODEL, DRIVERID, LOADCAPACITY, VEHICLESIZE, MEMO, PRELOADNUM, ANNUALSURVEYDATE
+    </sql>
+
+</mapper>

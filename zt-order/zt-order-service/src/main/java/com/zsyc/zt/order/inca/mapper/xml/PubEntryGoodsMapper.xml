@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubEntryGoodsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubEntryGoods">
+        <id column="ENTRYGOODSID" property="entrygoodsid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="GSPUSESTATUS" property="gspusestatus" />
+        <result column="FIRSTSUDATE" property="firstsudate" />
+        <result column="FIRSTAPPROVEDATE" property="firstapprovedate" />
+        <result column="SUUESSTATUS" property="suuesstatus" />
+        <result column="SAUSESTATUS" property="sausestatus" />
+        <result column="LEASTSALEQTY" property="leastsaleqty" />
+        <result column="SUPPLYERID" property="supplyerid" />
+        <result column="GOODSINVNAME" property="goodsinvname" />
+        <result column="SALESTAXRATE" property="salestaxrate" />
+        <result column="SUPPLYTAXRATE" property="supplytaxrate" />
+        <result column="CUSTOMSTAX" property="customstax" />
+        <result column="BMSUSESTATUS" property="bmsusestatus" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="INITFLAG" property="initflag" />
+        <result column="FINANCENO" property="financeno" />
+        <result column="SUBSCRIBESETDTLID" property="subscribesetdtlid" />
+        <result column="USEFLAG" property="useflag" />
+        <result column="PURBEFOR" property="purbefor" />
+        <result column="PROBEFOR" property="probefor" />
+        <result column="SUMBEFOR" property="sumbefor" />
+        <result column="LEVELNUM" property="levelnum" />
+        <result column="PLANSTRA" property="planstra" />
+        <result column="AVERRAGETYPE" property="averragetype" />
+        <result column="AVERRAGEINT" property="averrageint" />
+        <result column="PURCHASENUM" property="purchasenum" />
+        <result column="PRODUCENUM" property="producenum" />
+        <result column="SYS_MODIFYDATE" property="sysModifydate" />
+        <result column="TOWMSDATE" property="towmsdate" />
+        <result column="DOUBLERG" property="doublerg" />
+        <result column="DOUBLECHECK" property="doublecheck" />
+        <result column="DOUBLEPICK" property="doublepick" />
+        <result column="BANCASH" property="bancash" />
+        <result column="ZX_BH_FLAG" property="zxBhFlag" />
+        <result column="OLD_SUPPLYERID" property="oldSupplyerid" />
+        <result column="ZX_KP_FLAG" property="zxKpFlag" />
+        <result column="ZX_FLAG_LIN" property="zxFlagLin" />
+        <result column="ZX_JD_NUM_LIMIT" property="zxJdNumLimit" />
+        <result column="ZX_B2B_NUM_LIMIT" property="zxB2bNumLimit" />
+        <result column="ENTRY_MEMO" property="entryMemo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ENTRYGOODSID, GOODSID, ENTRYID, GSPUSESTATUS, FIRSTSUDATE, FIRSTAPPROVEDATE, SUUESSTATUS, SAUSESTATUS, LEASTSALEQTY, SUPPLYERID, GOODSINVNAME, SALESTAXRATE, SUPPLYTAXRATE, CUSTOMSTAX, BMSUSESTATUS, USESTATUS, COMEFROM, INITFLAG, FINANCENO, SUBSCRIBESETDTLID, USEFLAG, PURBEFOR, PROBEFOR, SUMBEFOR, LEVELNUM, PLANSTRA, AVERRAGETYPE, AVERRAGEINT, PURCHASENUM, PRODUCENUM, SYS_MODIFYDATE, TOWMSDATE, DOUBLERG, DOUBLECHECK, DOUBLEPICK, BANCASH, ZX_BH_FLAG, OLD_SUPPLYERID, ZX_KP_FLAG, ZX_FLAG_LIN, ZX_JD_NUM_LIMIT, ZX_B2B_NUM_LIMIT, ENTRY_MEMO
+    </sql>
+
+</mapper>

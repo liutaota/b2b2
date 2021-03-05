@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsChangeplanpaydateDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsChangeplanpaydateDoc">
+        <id column="CHANGEID" property="changeid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="PLANPAYDATE" property="planpaydate" />
+        <result column="MEMO" property="memo" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="EXEMANID" property="exemanid" />
+        <result column="EXEDATE" property="exedate" />
+        <result column="USESTATUS" property="usestatus" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CHANGEID, ENTRYID, SUPPLYID, AGENTID, CONTACTID, PLANPAYDATE, MEMO, INPUTMANID, CREDATE, EXEMANID, EXEDATE, USESTATUS
+    </sql>
+
+</mapper>

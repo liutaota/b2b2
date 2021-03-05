@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.CkCarTaskDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.inca.entity.CkCarTaskDoc">
+        <id column="TASK_ID" property="taskId" />
+        <result column="SCHEDULE_ID" property="scheduleId" />
+        <result column="INPUTMAN_ID" property="inputmanId" />
+        <result column="CREDATE" property="credate" />
+        <result column="CONFIRMMAN_ID" property="confirmmanId" />
+        <result column="CONFIRM_DATE" property="confirmDate" />
+        <result column="UNCONFIRM_ID" property="unconfirmId" />
+        <result column="UNCONFIRM_DATE" property="unconfirmDate" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="TASK_DATE" property="taskDate" />
+        <result column="DTL_LINES" property="dtlLines" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TASK_ID, SCHEDULE_ID, INPUTMAN_ID, CREDATE, CONFIRMMAN_ID, CONFIRM_DATE, UNCONFIRM_ID, UNCONFIRM_DATE, USESTATUS, TASK_DATE, DTL_LINES
+    </sql>
+
+    <!--  更新任务状态  -->
+    <update id="updateTaskStatusById">
+        update ck_car_task_doc set usestatus = 2 where task_id = #{taskId} and usestatus = 1
+    </update>
+
+    <!--  根据出车调度ID查询任务信息  -->
+    <select id="getTaskByScheduleId" resultMap="AllocatingResultMap">
+        select
+         a.task_id,
+         a.schedule_id,
+         a.usestatus,
+         a.task_date,
+         e.employeename driver_name,
+         c.translinename,
+         d.vehiclenum
+
+        from
+         ck_car_task_doc a,
+         ck_car_schedule_doc w,
+         pub_driver_def b,
+         pub_transline_def c,
+         pub_vehicle_def d,
+         pub_employee e
+
+        where
+         a.schedule_id=#{scheduleId}
+         and a.schedule_id=w.schedule_id(+)
+         and w.driver_id=b.driverid(+)
+         and w.transline_id=c.translineid(+)
+         and w.vehicle_id=d.vehicleid(+)
+         and w.driver_id=e.employeeid(+)
+         and w.usestatus = 2
+    </select>
+
+    <resultMap id="AllocatingResultMap" type="com.zsyc.zt.inca.vo.CkCarTaskDocVo">
+        <id property="taskId" column="task_id"/>
+        <result property="scheduleId" column="schedule_id"/>
+        <result property="driverName" column="driver_name"/>
+        <result property="usestatus" column="usestatus"/>
+        <result property="transLineName" column="translinename"/>
+        <result property="vehicleNum" column="vehiclenum"/>
+        <result property="taskDate" column="task_date"/>
+    </resultMap>
+
+    <!--  查询任务数量  -->
+    <select id="queryTaskCount" resultType="java.lang.Integer">
+        select count(1) from ck_car_task_doc a where a.task_id=#{taskId} and a.usestatus=1
+    </select>
+
+    <!--  上传数据，更新任务状态  -->
+    <update id="updateTaskStatus">
+        update ck_car_task_doc set usestatus=2,CONFIRMMAN_ID = #{confirmManId},CONFIRM_DATE = #{confirmDate} where task_id = #{taskId} and usestatus=1
+    </update>
+
+    <!--  更新细单数量：增加  -->
+    <update id="updateDtlLines">
+        update ck_car_task_doc set dtl_lines=dtl_lines+1 where task_id = #{taskId} and usestatus=1
+    </update>
+
+    <!--  更新细单数量：减少  -->
+    <update id="updateReduceDtlLines">
+        update ck_car_task_doc set dtl_lines=dtl_lines-1 where task_id = #{taskId} and usestatus=1
+    </update>
+
+    <!--  查询任务状态  -->
+    <select id="getUseStatusById" resultType="java.lang.Integer">
+        select usestatus from ck_car_task_doc where task_id = #{taskId}
+    </select>
+
+</mapper>

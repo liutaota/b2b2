@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStComplementApplyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStComplementApply">
+        <id column="APPLYID" property="applyid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="FROMSTORAGEID" property="fromstorageid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="REFAPPLYQTY" property="refapplyqty" />
+        <result column="APPLYQTY" property="applyqty" />
+        <result column="PLACEQTY" property="placeqty" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="MEMO" property="memo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        APPLYID, STORAGEID, FROMSTORAGEID, GOODSID, GOODSDTLID, REFAPPLYQTY, APPLYQTY, PLACEQTY, USESTATUS, ENTRYID, INPUTMANID, CREDATE, MEMO
+    </sql>
+
+</mapper>

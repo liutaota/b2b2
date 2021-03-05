@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.StatementMapper">
+
+    <select id="getMonthRecDoc" resultType="com.zsyc.zt.b2b.entity.RecDoc">
+        select rd.* from REC_DOC rd
+        inner join order_info oi on oi.id=rd.order_id
+        where oi.ORDER_STATE='TO_RECEIVED'
+        and rd.STATUS='TO_PAY'
+        and rd.IS_TRUE=0
+        and rd.MEMBER_ID=#{memberId}
+        and SYSDATE >= rd.CREATE_TIME
+    </select>
+    <select id="getStateMentList" resultType="com.zsyc.zt.b2b.vo.StatementVo">
+        select s.*,m.telephone,m.user_name,m.erp_user_id from STATEMENT s
+        left join member m on m.id=s.member_id
+        <where>
+            <if test="statementVo.id!=null ">
+                s.id=#{statementVo.id}
+            </if>
+            <if test="statementVo.status!=null and statementVo.status!=''">
+               and s.status=#{statementVo.status}
+            </if>
+            <if test="statementVo.payType!=null and statementVo.payType!=''">
+                and s.pay_type=#{statementVo.payType}
+            </if>
+            <if test="statementVo.erpUserId!=null">
+                and m.erp_user_id=#{statementVo.erpUserId}
+            </if>
+            <if test="statementVo.userName!=null and statementVo.userName!=''">
+                and m.user_name like '%'||#{statementVo.userName}||'%'
+            </if>
+            <if test="statementVo.telephone!=null and statementVo.telephone!=''">
+                and m.telephone like '%'||#{statementVo.telephone}||'%'
+            </if>
+            <if test="statementVo.startTime!=null and statementVo.endTime!=null">
+                and s.create_time &gt;= #{statementVo.startTime} and s.create_time &lt;= #{statementVo.endTime}
+            </if>
+        </where>
+        order by s.CREATE_TIME desc
+    </select>
+    <select id="getMyStateMentList" resultType="com.zsyc.zt.b2b.vo.StatementVo">
+        select s.*,m.telephone,m.user_name from STATEMENT s
+        left join member m on m.id=s.member_id
+        where s.member_id=#{statementVo.memberId}
+        <if test="statementVo.status!=null and statementVo.status!=''">
+            and s.status=#{statementVo.status}
+        </if>
+        <if test="statementVo.startTime!=null and statementVo.endTime!=null">
+            and s.create_time &gt;= #{statementVo.startTime} and s.create_time &lt;= #{statementVo.endTime}
+        </if>
+        order by s.CREATE_TIME desc
+    </select>
+</mapper>

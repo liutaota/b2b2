@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuSetDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuSetDtl">
+        <id column="SUSETDTLID" property="susetdtlid" />
+        <result column="SUSETDOCID" property="susetdocid" />
+        <result column="PRINTNO" property="printno" />
+        <result column="PRINTLINE" property="printline" />
+        <result column="SUPPLYERID" property="supplyerid" />
+        <result column="DEPTID" property="deptid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="TAXRATE" property="taxrate" />
+        <result column="COSTPRICE" property="costprice" />
+        <result column="COST" property="cost" />
+        <result column="BUYCOST" property="buycost" />
+        <result column="EXPENSECOST" property="expensecost" />
+        <result column="CUSTOMSTAX" property="customstax" />
+        <result column="CUSTOMSMONEY" property="customsmoney" />
+        <result column="TAXMONEY" property="taxmoney" />
+        <result column="PAYACCQTY" property="payaccqty" />
+        <result column="PAYACCMONEY" property="payaccmoney" />
+        <result column="PAYFINFLAG" property="payfinflag" />
+        <result column="PAYFINDATE" property="payfindate" />
+        <result column="INVDATE" property="invdate" />
+        <result column="CORRECTFLAG" property="correctflag" />
+        <result column="INVNO" property="invno" />
+        <result column="PAYLIMIT" property="paylimit" />
+        <result column="PLNPAYDATE" property="plnpaydate" />
+        <result column="MEMO" property="memo" />
+        <result column="INVALIDFLAG" property="invalidflag" />
+        <result column="INVALIDMANID" property="invalidmanid" />
+        <result column="INVALIDTIME" property="invalidtime" />
+        <result column="PAYMETHOD" property="paymethod" />
+        <result column="SUUNITPRICE" property="suunitprice" />
+        <result column="SUDOCDTLID" property="sudocdtlid" />
+        <result column="SUCOST" property="sucost" />
+        <result column="INVCODE" property="invcode" />
+        <result column="SUPATCHED" property="supatched" />
+        <result column="ADJSTFLAG" property="adjstflag" />
+        <result column="OLDSUSETDTLID" property="oldsusetdtlid" />
+        <result column="IMPDTLID" property="impdtlid" />
+        <result column="INVTYPE" property="invtype" />
+        <result column="TRANSDOCNO" property="transdocno" />
+        <result column="ZX_PREPAYFLAG" property="zxPrepayflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SUSETDTLID, SUSETDOCID, PRINTNO, PRINTLINE, SUPPLYERID, DEPTID, GOODSID, GOODSQTY, UNITPRICE, TOTAL_LINE, TAXRATE, COSTPRICE, COST, BUYCOST, EXPENSECOST, CUSTOMSTAX, CUSTOMSMONEY, TAXMONEY, PAYACCQTY, PAYACCMONEY, PAYFINFLAG, PAYFINDATE, INVDATE, CORRECTFLAG, INVNO, PAYLIMIT, PLNPAYDATE, MEMO, INVALIDFLAG, INVALIDMANID, INVALIDTIME, PAYMETHOD, SUUNITPRICE, SUDOCDTLID, SUCOST, INVCODE, SUPATCHED, ADJSTFLAG, OLDSUSETDTLID, IMPDTLID, INVTYPE, TRANSDOCNO, ZX_PREPAYFLAG
+    </sql>
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubGoodsUnitNameMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubGoodsUnitName">
+        <id column="GOODSUNITID" property="goodsunitid" />
+        <result column="GOODSUNITNAME" property="goodsunitname" />
+        <result column="GOODSUNITOPCODE" property="goodsunitopcode" />
+        <result column="MEMO" property="memo" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="MODIFYLOG" property="modifylog" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GOODSUNITID, GOODSUNITNAME, GOODSUNITOPCODE, MEMO, INPUTMANID, CREDATE, MODIFYLOG
+    </sql>
+
+</mapper>

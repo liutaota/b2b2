@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubFeedbackDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubFeedbackDoc">
+        <id column="FEEDBACKDOCID" property="feedbackdocid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="CURRENCYNAME" property="currencyname" />
+        <result column="GOODSTYPE" property="goodstype" />
+        <result column="FACTORYNAME" property="factoryname" />
+        <result column="GOODSUNIT" property="goodsunit" />
+        <result column="MEMO" property="memo" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="CUSTOMNAME" property="customname" />
+        <result column="TRANPOSNAME" property="tranposname" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="INPUTMANNAME" property="inputmanname" />
+        <result column="CREDATE" property="credate" />
+        <result column="ZX_MEMO" property="zxMemo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GOODSID, CURRENCYNAME, GOODSTYPE, FACTORYNAME, GOODSUNIT, MEMO, CUSTOMID, CUSTOMNAME, TRANPOSNAME, USESTATUS, INPUTMANID, INPUTMANNAME, CREDATE, ZX_MEMO, FEEDBACKDOCID
+    </sql>
+
+</mapper>

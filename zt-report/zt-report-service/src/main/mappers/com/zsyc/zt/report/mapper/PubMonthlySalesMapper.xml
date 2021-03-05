@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.report.mapper.PubMonthlySalesMapper">
+    <select id="selectPageList" resultType="com.zsyc.zt.report.entity.PubMonthlySales">
+        select a.id,
+       a.customids,
+       a.tomonthss,
+       a.sales_lines,
+       a.zyc_lines,
+       a.cfy_lines,
+       a.fcfy_lines,
+       a.bjsp_lines,
+       a.grflp_lines,
+       a.ylqj_lines,
+       a.spyl_lines,
+       a.total,
+       a.sales_amount,
+       a.customname,
+       a.sales_goodsqty from pub_monthly_sales a where a.customids is not null
+
+       <if test="salesIdList!=null and salesIdList.size()>0">
+          and a.goodsId in
+          <foreach  collection="salesIdList" separator="," item="customids" open="(" close=")">
+             #{customids}
+          </foreach>
+       </if>
+       <if test="customids!=null and customids!=''">
+          and a.customids= #{customids}
+       </if>
+       <if test="tomonthss!=null and tomonthss!=''">
+          and a.tomonthss = #{tomonthss}
+       </if>
+       <if test="customname!=null and customname!=''">
+          and a.customname like #{customname}
+       </if>
+       <if test="startTime!=null and endTime!=null and startTime!='' and startTime!='' " >
+          and a.tomonthss between to_char(to_date (#{startTime},'yyyy-mm-dd hh24:mi:ss'),'yyyy-mm') and to_char(to_date (#{endTime},'yyyy-mm-dd hh24:mi:ss'),'yyyy-mm')
+
+       </if>
+
+    </select>
+    <select id="selectListByTime" resultType="com.zsyc.zt.report.entity.PubMonthlySales">
+            select a.id,
+       a.customids,
+       a.tomonthss,
+       a.sales_lines,
+       a.zyc_lines,
+       a.cfy_lines,
+       a.fcfy_lines,
+       a.bjsp_lines,
+       a.grflp_lines,
+       a.ylqj_lines,
+       a.spyl_lines,
+       a.total,
+       a.sales_amount,
+       a.sales_goodsqty,
+       a.customname
+        from pub_monthly_sales a where a.customids is not null
+       <if test="startTime!=null and endTime!=null and startTime!='' and startTime!='' " >
+          and a.tomonthss between to_char(to_date (#{startTime},'yyyy-mm-dd hh24:mi:ss'),'yyyy-mm') and to_char(to_date (#{endTime},'yyyy-mm-dd hh24:mi:ss'),'yyyy-mm')
+
+       </if>
+    </select>
+
+</mapper>

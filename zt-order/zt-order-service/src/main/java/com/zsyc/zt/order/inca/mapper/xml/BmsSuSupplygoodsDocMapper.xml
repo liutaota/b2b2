@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuSupplygoodsDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuSupplygoodsDoc">
+        <id column="SUPPLYGOODSDOCID" property="supplygoodsdocid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="LASTSUDATE" property="lastsudate" />
+        <result column="LASTPRICE" property="lastprice" />
+        <result column="HIGHESTPRICE" property="highestprice" />
+        <result column="LOWESTPRICE" property="lowestprice" />
+        <result column="SUTIMES" property="sutimes" />
+        <result column="SUGOODSQTYS" property="sugoodsqtys" />
+        <result column="SUMONEYS" property="sumoneys" />
+        <result column="SUBACKTIMES" property="subacktimes" />
+        <result column="SUBACKGOODSQTYS" property="subackgoodsqtys" />
+        <result column="SUBACKMONEYS" property="subackmoneys" />
+        <result column="RULE" property="rule" />
+        <result column="VALIDITY" property="validity" />
+        <result column="NUM" property="num" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="SUPPLYTAXRATE" property="supplytaxrate" />
+        <result column="LASTSUPPLYID" property="lastsupplyid" />
+        <result column="LASTAGENTID" property="lastagentid" />
+        <result column="LASTCONTACTID" property="lastcontactid" />
+        <result column="LASTSUDOCID" property="lastsudocid" />
+        <result column="LASTSUQTY" property="lastsuqty" />
+        <result column="DTLLINES" property="dtllines" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SUPPLYGOODSDOCID, GOODSID, LASTSUDATE, LASTPRICE, HIGHESTPRICE, LOWESTPRICE, SUTIMES, SUGOODSQTYS, SUMONEYS, SUBACKTIMES, SUBACKGOODSQTYS, SUBACKMONEYS, RULE, VALIDITY, NUM, INPUTMANID, ENTRYID, SUPPLYTAXRATE, LASTSUPPLYID, LASTAGENTID, LASTCONTACTID, LASTSUDOCID, LASTSUQTY, DTLLINES
+    </sql>
+
+</mapper>

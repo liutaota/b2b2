@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSaRecDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSaRecDoc">
+        <id column="SARECID" property="sarecid" />
+        <result column="CREDATE" property="credate" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="CUSTOMNAME" property="customname" />
+        <result column="TOTAL" property="total" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="DTL_LINES" property="dtlLines" />
+        <result column="MEMO" property="memo" />
+        <result column="RECTYPEID" property="rectypeid" />
+        <result column="RECMETHOD" property="recmethod" />
+        <result column="BANKBILLNO" property="bankbillno" />
+        <result column="CERTID" property="certid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="PREMONEY" property="premoney" />
+        <result column="RECEXPMONEY" property="recexpmoney" />
+        <result column="RECEXPTYPE" property="recexptype" />
+        <result column="INITFLAG" property="initflag" />
+        <result column="PRESALERID" property="presalerid" />
+        <result column="PRESADEPTID" property="presadeptid" />
+        <result column="BANKID" property="bankid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="OLDPRERECID" property="oldprerecid" />
+        <result column="FMID" property="fmid" />
+        <result column="EXCHANGE" property="exchange" />
+        <result column="DRAFTDATE" property="draftdate" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="CONFIRMMANID" property="confirmmanid" />
+        <result column="PRINTCOUNT" property="printcount" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="AGENTID" property="agentid" />
+        <result column="FINISHFLAG" property="finishflag" />
+        <result column="NOTESID" property="notesid" />
+        <result column="RECMANID" property="recmanid" />
+        <result column="NOTESNO" property="notesno" />
+        <result column="IMPDTLID" property="impdtlid" />
+        <result column="B2BCONID" property="b2bconid" />
+        <result column="ORDERID" property="orderid" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="ROADDTLID" property="roaddtlid" />
+        <result column="SWIFTNUMBER" property="swiftnumber" />
+        <result column="PAYTYPE" property="paytype" />
+        <result column="ZX_INITSATUS" property="zxInitsatus" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SARECID, CREDATE, CUSTOMID, CUSTOMNAME, TOTAL, INPUTMANID, DTL_LINES, MEMO, RECTYPEID, RECMETHOD, BANKBILLNO, CERTID, USESTATUS, PREMONEY, RECEXPMONEY, RECEXPTYPE, INITFLAG, PRESALERID, PRESADEPTID, BANKID, ENTRYID, OLDPRERECID, FMID, EXCHANGE, DRAFTDATE, CONFIRMDATE, CONFIRMMANID, PRINTCOUNT, PRINTMANID, PRINTDATE, AGENTID, FINISHFLAG, NOTESID, RECMANID, NOTESNO, IMPDTLID, B2BCONID, ORDERID, CONTACTID, ROADDTLID, SWIFTNUMBER, PAYTYPE, ZX_INITSATUS
+    </sql>
+
+</mapper>

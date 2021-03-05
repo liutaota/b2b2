@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubGoodsImpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubGoodsImp">
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="CURRENCYNAME" property="currencyname" />
+        <result column="GOODSTYPE" property="goodstype" />
+        <result column="GOODSUNIT" property="goodsunit" />
+        <result column="SUPPLYTAXRATE" property="supplytaxrate" />
+        <result column="SALESTAXRATE" property="salestaxrate" />
+        <result column="OPCODE" property="opcode" />
+        <result column="GOODSPINYIN" property="goodspinyin" />
+        <result column="ACCFLAG" property="accflag" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="SYS_MODIFYDATE" property="sysModifydate" />
+        <result column="GSPFLAG" property="gspflag" />
+        <result column="ALONEPACKFLAG" property="alonepackflag" />
+        <result column="SPECIALDRUG" property="specialdrug" />
+        <result column="SPECIALCTRL" property="specialctrl" />
+        <result column="INITFLAG" property="initflag" />
+        <result column="LOTFLAG" property="lotflag" />
+        <result column="ZX_SPLIT_TYPE" property="zxSplitType" />
+        <result column="ZX_TYPECODE" property="zxTypecode" />
+        <result column="ZX_KPOPCODE" property="zxKpopcode" />
+        <result column="ZX_OPCODE" property="zxOpcode" />
+        <result column="ZX_GOODS_ID" property="zxGoodsId" />
+        <result column="BARCODE" property="barcode" />
+        <result column="GOODSNO" property="goodsno" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GOODSID, GOODSNAME, CURRENCYNAME, GOODSTYPE, GOODSUNIT, SUPPLYTAXRATE, SALESTAXRATE, OPCODE, GOODSPINYIN, ACCFLAG, CREDATE, INPUTMANID, USESTATUS, SYS_MODIFYDATE, GSPFLAG, ALONEPACKFLAG, SPECIALDRUG, SPECIALCTRL, INITFLAG, LOTFLAG, ZX_SPLIT_TYPE, ZX_TYPECODE, ZX_KPOPCODE, ZX_OPCODE, ZX_GOODS_ID, BARCODE, GOODSNO
+    </sql>
+
+</mapper>

@@ -1,0 +1,53 @@
+<meta charSet="utf-8"/>
+<input type="file" name="file" multiple="multiple" />
+<br>
+<form>
+
+</form>
+<br>
+<ol id="img-list" >
+</ol>
+<style>
+    img{max-width: 800px;}
+</style>
+<script src="assets/js/file.min.js" ></script>
+
+<script>
+	window.uploadHost = '';
+	const IMG_SIZE = ['','w_245','w_100'];
+    const IMAGE_HOST_PROMISE = fetch('imageHost').then(res => res.json()).then(data => data.bizContent);
+    let upload = async files => {
+        let postData = {};
+        let elements = document.querySelector('form').elements;
+        for (let i = 0; i < elements.length; i++) {
+            if (elements[i].type === 'checkbox') {
+                postData[elements[i].name] = elements[i].checked ? elements[i].value : '';
+            } else {
+                postData[elements[i].name] = elements[i].value;
+            }
+        }
+        let codes = await Promise.all(Array.from(files).map(async (file) => {
+            return await fileUpload(file, postData).then(data => data.bizContent.code);
+        }));
+        let imageHost = await IMAGE_HOST_PROMISE;
+        this.value = '';
+        document.querySelector('#img-list').innerHTML =
+            '<li>'
+            + codes.map(code => `<hr><code>${code}</code><br>` + IMG_SIZE.map(size => `${imageHost}/${code}?${size ? 'x-oss-process=image/resize,' + size + ',limit_0' : ''}`).map(src => `<img src="${src}">`).join('')).join('</li><li>')
+            + '</li>';
+    };
+    document.body.addEventListener('paste', e => {
+        upload(
+            Array.from(e.clipboardData.items)
+                .filter(item => !!item)
+                .map(item => item.getAsFile())
+                .filter(item => !!item)
+        );
+
+    });
+    document.querySelector('input[type=file]').addEventListener('change', e => {
+        upload(e.target.files);
+        e.target.value = '';
+    });
+
+</script>

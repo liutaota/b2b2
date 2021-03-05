@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuRebateTinyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuRebateTiny">
+        <id column="REBATETINYID" property="rebatetinyid" />
+        <result column="REBATEDTLID" property="rebatedtlid" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="LADDERSTART" property="ladderstart" />
+        <result column="LADDERHANDLE1" property="ladderhandle1" />
+        <result column="LADDEREND" property="ladderend" />
+        <result column="LADDERHANDLE2" property="ladderhandle2" />
+        <result column="LADDERVALUE" property="laddervalue" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="CLASSID" property="classid" />
+        <result column="DEPTID" property="deptid" />
+        <result column="SALERID" property="salerid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="SETID" property="setid" />
+        <result column="AREAID" property="areaid" />
+        <result column="PLACEPOINTID" property="placepointid" />
+        <result column="POINTCLASSID" property="pointclassid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="SUPPLYERID" property="supplyerid" />
+        <result column="FACTORYID" property="factoryid" />
+        <result column="GOODSCLASSID" property="goodsclassid" />
+        <result column="GOODSSETID" property="goodssetid" />
+        <result column="GOODSBRANDID" property="goodsbrandid" />
+        <result column="SETTLETYPEID" property="settletypeid" />
+        <result column="CALCTYPE" property="calctype" />
+        <result column="MEMO" property="memo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        REBATETINYID, REBATEDTLID, SUPPLYID, LADDERSTART, LADDERHANDLE1, LADDEREND, LADDERHANDLE2, LADDERVALUE, CUSTOMID, CLASSID, DEPTID, SALERID, AGENTID, CONTACTID, SETID, AREAID, PLACEPOINTID, POINTCLASSID, GOODSID, SUPPLYERID, FACTORYID, GOODSCLASSID, GOODSSETID, GOODSBRANDID, SETTLETYPEID, CALCTYPE, MEMO
+    </sql>
+
+</mapper>

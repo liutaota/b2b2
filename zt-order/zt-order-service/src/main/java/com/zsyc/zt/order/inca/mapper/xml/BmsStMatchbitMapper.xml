@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStMatchbitMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStMatchbit">
+        <id column="MATCHBITID" property="matchbitid" />
+        <result column="MATCHAREAID" property="matchareaid" />
+        <result column="MATCHBITNO" property="matchbitno" />
+        <result column="MATCHFLAG" property="matchflag" />
+        <result column="PREPAREFLAG" property="prepareflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        MATCHBITID, MATCHAREAID, MATCHBITNO, MATCHFLAG, PREPAREFLAG
+    </sql>
+
+</mapper>

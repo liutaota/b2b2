@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStQtyDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStQtyDtl">
+        <id column="CUTDTLID" property="cutdtlid" />
+        <result column="CUTID" property="cutid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="LOTID" property="lotid" />
+        <result column="POSID" property="posid" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="REALQTY" property="realqty" />
+        <result column="CUTFLAG" property="cutflag" />
+        <result column="CUTMANID" property="cutmanid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="ISCONFIRM" property="isconfirm" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CUTID, CUTDTLID, GOODSID, GOODSDTLID, BATCHID, LOTID, POSID, GOODSSTATUSID, GOODSQTY, REALQTY, CUTFLAG, CUTMANID, STORAGEID, INPUTMANID, ISCONFIRM
+    </sql>
+
+</mapper>

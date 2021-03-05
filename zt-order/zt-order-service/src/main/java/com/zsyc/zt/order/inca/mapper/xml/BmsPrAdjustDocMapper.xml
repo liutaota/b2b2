@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsPrAdjustDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsPrAdjustDoc">
+        <id column="ADJUSTPRICEDOCID" property="adjustpricedocid" />
+        <result column="SUDOCDTLID" property="sudocdtlid" />
+        <result column="CREATEDATE" property="createdate" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="OLDBATCHID" property="oldbatchid" />
+        <result column="OLDSUPRICE" property="oldsuprice" />
+        <result column="OLDSUQTY" property="oldsuqty" />
+        <result column="ADJUSTREASON" property="adjustreason" />
+        <result column="CENTERSTTOTALSQTY" property="centersttotalsqty" />
+        <result column="POINTSTTOTALSQTY" property="pointsttotalsqty" />
+        <result column="SUADJUSTQTY" property="suadjustqty" />
+        <result column="SAADJUSTSUMQTY" property="saadjustsumqty" />
+        <result column="DOCADJUSTPRICE" property="docadjustprice" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="DOCMEMO" property="docmemo" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="INPUTDATE" property="inputdate" />
+        <result column="MODIFYMANID" property="modifymanid" />
+        <result column="MODIFYDATE" property="modifydate" />
+        <result column="CONFIRMMANID" property="confirmmanid" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="NEWBATCHID" property="newbatchid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="LOTID" property="lotid" />
+        <result column="CONTACTID" property="contactid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ADJUSTPRICEDOCID, SUDOCDTLID, CREATEDATE, SUPPLYID, AGENTID, GOODSID, OLDBATCHID, OLDSUPRICE, OLDSUQTY, ADJUSTREASON, CENTERSTTOTALSQTY, POINTSTTOTALSQTY, SUADJUSTQTY, SAADJUSTSUMQTY, DOCADJUSTPRICE, USESTATUS, DOCMEMO, INPUTMANID, INPUTDATE, MODIFYMANID, MODIFYDATE, CONFIRMMANID, CONFIRMDATE, NEWBATCHID, ENTRYID, GOODSDTLID, LOTID, CONTACTID
+    </sql>
+
+</mapper>

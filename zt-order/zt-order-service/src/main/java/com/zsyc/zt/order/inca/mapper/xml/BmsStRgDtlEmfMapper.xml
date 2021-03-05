@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStRgDtlEmfMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStRgDtlEmf">
+        <id column="RGDTLID" property="rgdtlid" />
+        <result column="RGID" property="rgid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="REALPRICE" property="realprice" />
+        <result column="CHECKMANID" property="checkmanid" />
+        <result column="CHECKDATE" property="checkdate" />
+        <result column="TRANSTEP" property="transtep" />
+        <result column="IMPORTREPFLAG" property="importrepflag" />
+        <result column="PASSGATEFLAG" property="passgateflag" />
+        <result column="REGISTEFLAG" property="registeflag" />
+        <result column="GENQUCHKFLAG" property="genquchkflag" />
+        <result column="LOWESTPRICE" property="lowestprice" />
+        <result column="LASTPRICE" property="lastprice" />
+        <result column="SUPPLYLASTPRICE" property="supplylastprice" />
+        <result column="SUPPLYERID" property="supplyerid" />
+        <result column="LIMITID" property="limitid" />
+        <result column="LIMITCUSTOMERSETID" property="limitcustomersetid" />
+        <result column="BANNEDCUSTOMERID" property="bannedcustomerid" />
+        <result column="BANNEDCUSTOMERSETID" property="bannedcustomersetid" />
+        <result column="SUCONDTLID" property="sucondtlid" />
+        <result column="FETCHDTLID" property="fetchdtlid" />
+        <result column="HASPRESENDFLAG" property="haspresendflag" />
+        <result column="PRESENDINFO" property="presendinfo" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="LOTID" property="lotid" />
+        <result column="POSID" property="posid" />
+        <result column="POSMEMO" property="posmemo" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="PACKQUALITY" property="packquality" />
+        <result column="FACEQUALITY" property="facequality" />
+        <result column="ASKCHKFLAG" property="askchkflag" />
+        <result column="PACKQTY" property="packqty" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="SUCONGOODSQTY" property="sucongoodsqty" />
+        <result column="POSFLAG" property="posflag" />
+        <result column="SALERID" property="salerid" />
+        <result column="QUALITYCHECKMANID" property="qualitycheckmanid" />
+        <result column="TARGETSOURCEID" property="targetsourceid" />
+        <result column="TARGETGOODSQTY" property="targetgoodsqty" />
+        <result column="WHOLEQTY" property="wholeqty" />
+        <result column="SCATTERQTY" property="scatterqty" />
+        <result column="UNQUALIFIEDMETHOD" property="unqualifiedmethod" />
+        <result column="TRANSMETHOD" property="transmethod" />
+        <result column="TRANSTIMES" property="transtimes" />
+        <result column="TRANSTEMP" property="transtemp" />
+        <result column="UNQUALIFIEDMEMO" property="unqualifiedmemo" />
+        <result column="OLDRGDTLID" property="oldrgdtlid" />
+        <result column="QUALITYDATE" property="qualitydate" />
+        <result column="ASKCHECKID" property="askcheckid" />
+        <result column="CHECKDOCID" property="checkdocid" />
+        <result column="MEMO" property="memo" />
+        <result column="UNELIGIBGOODSQTY" property="uneligibgoodsqty" />
+        <result column="ELIGIBGOODSQTY" property="eligibgoodsqty" />
+        <result column="PUTAWAYFLAG" property="putawayflag" />
+        <result column="SOURCEID" property="sourceid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        RGID, RGDTLID, STORAGEID, GOODSID, GOODSQTY, REALPRICE, CHECKMANID, CHECKDATE, TRANSTEP, IMPORTREPFLAG, PASSGATEFLAG, REGISTEFLAG, GENQUCHKFLAG, LOWESTPRICE, LASTPRICE, SUPPLYLASTPRICE, SUPPLYERID, LIMITID, LIMITCUSTOMERSETID, BANNEDCUSTOMERID, BANNEDCUSTOMERSETID, SUCONDTLID, FETCHDTLID, HASPRESENDFLAG, PRESENDINFO, GOODSDTLID, BATCHID, LOTID, POSID, POSMEMO, GOODSSTATUSID, PACKQUALITY, FACEQUALITY, ASKCHKFLAG, PACKQTY, UNITPRICE, SUCONGOODSQTY, POSFLAG, SALERID, QUALITYCHECKMANID, TARGETSOURCEID, TARGETGOODSQTY, WHOLEQTY, SCATTERQTY, UNQUALIFIEDMETHOD, TRANSMETHOD, TRANSTIMES, TRANSTEMP, UNQUALIFIEDMEMO, OLDRGDTLID, QUALITYDATE, ASKCHECKID, CHECKDOCID, MEMO, UNELIGIBGOODSQTY, ELIGIBGOODSQTY, PUTAWAYFLAG, SOURCEID
+    </sql>
+
+</mapper>

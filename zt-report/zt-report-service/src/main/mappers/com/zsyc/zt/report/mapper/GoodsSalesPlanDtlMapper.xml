@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.report.mapper.GoodsSalesPlanDtlMapper">
+
+    <insert id="insertDtlList" parameterType="java.util.List">
+        INSERT INTO
+         GOODS_SALES_PLAN_DTL
+         (PLAN_DTL_ID,PLAN_ID,GOODS_ID,GOODS_NAME,GOODS_TYPE,GOODS_UNIT,MEDICINE_TYPE_NAME,FACTORY_ID,FACTORY_NAME,PROD_AREA,OPERATOR_ID,OPERATION_DATE,OPERATOR)
+        SELECT GOODS_SALES_PLAN_DTL_SEQ.NEXTVAL PLAN_DTL_ID,A.* FROM (
+        <foreach collection ="dtlVoList" item="item" index="index" separator="UNION ALL">
+            SELECT
+            #{item.planId,jdbcType=NUMERIC} PLAN_ID,
+            #{item.goodsId,jdbcType=NUMERIC} GOODS_ID,
+            #{item.goodsName,jdbcType=VARCHAR} GOODS_NAME,
+            #{item.goodsType,jdbcType=VARCHAR} GOODS_TYPE,
+            #{item.goodsUnit,jdbcType=VARCHAR} GOODS_UNIT,
+            #{item.medicineTypeName,jdbcType=VARCHAR} MEDICINE_TYPE_NAME,
+            #{item.factoryId,jdbcType=NUMERIC} FACTORY_ID,
+            #{item.factoryName,jdbcType=VARCHAR} FACTORY_NAME,
+            #{item.prodArea,jdbcType=VARCHAR} PROD_AREA,
+            #{item.operatorId,jdbcType=NUMERIC} OPERATOR_ID,
+            SYSDATE OPERATION_DATE,
+            #{item.operator,jdbcType=NUMERIC} OPERATOR
+            FROM DUAL
+            where not exists(
+            select 1 from goods_sales_plan_dtl b where b.plan_id = #{item.planId} and b.goods_id = #{item.goodsId}
+            )
+        </foreach >
+        ) A
+    </insert>
+    <select id="selectPlanGoodsListPage" resultType="com.zsyc.zt.report.vo.GoodsSalesPlanDtlVo">
+         select b.plan_dtl_id,
+               b.plan_id,
+               b.goods_id,
+               b.goods_name,
+               b.goods_type,
+               b.goods_unit,
+               b.medicine_type_name,
+               b.factory_id,
+               b.factory_name,
+               b.prod_area,
+               b.operator_id,
+               b.operation_date,
+               b.operator
+        from goods_sales_plan_dtl b
+        where b.plan_id = #{goodsSalesPlanDtlVo.planId}
+        <if test="goodsSalesPlanDtlVo.goodsId != null">
+            and b.goods_id = #{goodsSalesPlanDtlVo.goodsId}
+        </if>
+        <if test="goodsSalesPlanDtlVo.goodsName != null and goodsSalesPlanDtlVo.goodsName != ''">
+            and b.goods_name like '%'||#{goodsSalesPlanDtlVo.goodsName}||'%'
+        </if>
+        <if test="goodsSalesPlanDtlVo.factoryId != null">
+            and b.factory_id = #{goodsSalesPlanDtlVo.factoryId}
+        </if>
+        <if test="goodsSalesPlanDtlVo.factoryName != null and goodsSalesPlanDtlVo.factoryName != ''">
+            and b.factory_name like '%'||#{goodsSalesPlanDtlVo.factoryName}||'%'
+        </if>
+    </select>
+    <select id="getPlanDtl" resultType="com.zsyc.zt.report.vo.GoodsSalesPlanDtlVo">
+        select * from goods_sales_plan_dtl a where a.plan_id = #{planId} and a.goods_id = #{goodsId}
+    </select>
+
+</mapper>

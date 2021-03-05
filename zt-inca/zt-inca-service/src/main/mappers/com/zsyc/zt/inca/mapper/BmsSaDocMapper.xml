@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.BmsSaDocMapper">
+    <update id="updateCallbackStatus">
+        update BMS_SA_DOC
+        set b2b_write_back_flag = #{b2bWriteBackFlag}
+        <where>
+
+            <choose>
+                <when test="orderIds!=null and orderIds.size() >0">
+                    and b2b_order_id in
+                    <foreach collection="orderIds" open="(" close=")" separator="," item="item">
+                        #{item,jdbcType=INTEGER}
+                    </foreach>
+                </when>
+                <otherwise>
+                    and salesid = 0
+                </otherwise>
+
+            </choose>
+        </where>
+
+
+    </update>
+
+    <select id="selectNotCallbackInList" resultType="java.lang.Long">
+
+        select distinct x.b2b_ORDER_ID
+                    from (SELECT DISTINCT A.b2b_ORDER_ID
+                                    FROM BMS_SA_DOC A
+                                    where 1 = 1
+                                    AND A.ZX_BH_FLAG =  #{zxBhFlag}
+                                    AND A.USESTATUS = 1
+                                    and a.b2b_order_id is not null
+                                    AND A.b2b_ORDER_ID NOT IN
+                                    (SELECT X.b2b_ORDER_ID
+                                    FROM BMS_SA_DOC X, BMS_SA_DTL Y
+                                    WHERE X.SALESID = Y.SALESID
+                                    AND X.ZX_BH_FLAG =  #{zxBhFlag}
+                                    <include refid="orderIdList"></include>
+                                    AND Y.WMSBACKDATE IS NULL)
+                                    AND A.b2b_ORDER_ID NOT IN
+                                    (SELECT X.b2b_ORDER_ID
+                                    FROM BMS_PRES_OUT_DOC X, BMS_PRES_OUT_DTL Y
+                                    WHERE X.PRESOUTID = Y.PRESOUTID
+                                    AND X.ZX_BH_FLAG =  #{zxBhFlag}
+                                    <include refid="orderIdList"></include>
+                                    AND Y.WMSBACKDATE IS NULL)
+                    union
+                                    SELECT DISTINCT A.b2b_ORDER_ID
+                                    FROM GPCS_PLACESUPPLY A
+                                    WHERE 1 = 1
+                                    AND A.ZX_BH_FLAG =  #{zxBhFlag}
+                                    AND A.USESTATUS = 2
+                                    and a.b2b_order_id is not null
+                                    AND A.b2b_ORDER_ID NOT IN
+                                    (SELECT X.b2b_ORDER_ID
+                                    FROM GPCS_PLACESUPPLY       X,
+                                    GPCS_PLACESUPPLYDTL    Y,
+                                    GPCS_PLACESUPPLYDTL_ST Z
+                                    WHERE X.PLACESUPPLYID = Y.PLACESUPPLYID
+                                    AND Y.PLACESUPPLYDTLID = Z.PLACESUPPLYDTLID
+                                    AND X.ZX_BH_FLAG =  #{zxBhFlag}
+                                    <include refid="orderIdList"></include>
+                                    AND Z.WMSBACKDATE IS NULL)
+                                    AND A.b2b_ORDER_ID NOT IN
+                                    (SELECT X.b2b_ORDER_ID
+                                    FROM BMS_PRES_OUT_DOC X, BMS_PRES_OUT_DTL Y
+                                    WHERE X.PRESOUTID = Y.PRESOUTID
+                                    AND X.ZX_BH_FLAG =  #{zxBhFlag}
+                                    <include refid="orderIdList"></include>
+                                    AND Y.WMSBACKDATE IS NULL)) x
+                    where 1 = 1
+           <include refid="orderIdList"></include>
+    </select>
+    <sql id="orderIdList">
+        <choose>
+            <when test="orderIdList!=null and orderIdList.size()>0">
+                AND x.b2b_ORDER_ID  IN
+                <foreach collection="orderIdList" item="orderId" open="(" close=")" separator=",">
+                    #{orderId}
+                </foreach>
+            </when>
+            <otherwise>
+                AND x.b2b_ORDER_ID = 0
+            </otherwise>
+        </choose>
+    </sql>
+
+    <select id="selectExistsInList" resultType="java.lang.Long">
+         select b2b_ORDER_ID
+            from (SELECT DISTINCT A.b2b_ORDER_ID
+                    FROM BMS_SA_DOC A
+                   WHERE 1 = 1
+                     AND A.ZX_BH_FLAG = #{zxBhFlag}
+
+
+                  union
+                  SELECT DISTINCT A.b2b_ORDER_ID
+                    FROM GPCS_PLACESUPPLY A
+                   WHERE 1 = 1
+                     AND A.ZX_BH_FLAG = #{zxBhFlag}
+                      ) a where 1 = 1
+        <choose>
+            <when test="orderIdList!=null and orderIdList.size()>0">
+                AND A.b2b_ORDER_ID  IN
+                <foreach collection="orderIdList" item="orderId" open="(" close=")" separator=",">
+                    #{orderId}
+                </foreach>
+            </when>
+            <otherwise>
+                AND A.b2b_ORDER_ID = 0
+            </otherwise>
+        </choose>
+    </select>
+
+    <update id="updateSummary">
+         update bms_sa_doc a
+           set a.dtl_lines =
+               (select count(1) from bms_sa_dtl b where b.salesid = a.salesid),
+             a.total =
+               (select sum(b.total_line)
+                  from bms_sa_dtl b
+                 where b.salesid = a.salesid)
+         where a.salesid = #{salesId}
+         and a.entryid = #{entryId}
+
+    </update>
+    <update id="writeBackPayOrderAndFlowNo">
+        update bms_sa_doc a set a.b2b_pay_order_no = #{payOrderNo,jdbcType=VARCHAR} ,a.b2b_pay_flow_no = #{payFlowNo,jdbcType=VARCHAR}
+            <choose>
+                <when test="isPsCustom">
+                    where placesupplyid in
+                    <foreach collection="orderIds" open="(" close=")" separator="," index="index" item="orderId">
+                        #{orderId}
+                    </foreach>
+                </when>
+                <otherwise>
+                    where salesid in
+                    <foreach collection="orderIds" open="(" close=")" separator="," index="index" item="orderId">
+                        #{orderId}
+                    </foreach>
+                </otherwise>
+            </choose>
+    </update>
+
+
+    <!-- <resultMap id="rsBmsMapByFaPiao" type="com.zsyc.zt.inca.vo.BmsSaByFaPiaoVo">
+         <result column="B2B_ORDER_NO" property="b2bOrderNo"></result>
+         <result column="B2B_ORDER_ID" property="b2bOrderId"></result>
+         <collection property="erpOrderIdList" select="com.zsyc.zt.inca.mapper.BmsSaDocMapper.erpOrderIdListByOrderId" column="B2B_ORDER_ID"></collection>
+     </resultMap>-->
+
+    <select id="erpOrderIdListByOrderId" resultType="long" >
+         select salesid from bms_sa_doc where b2b_order_id =#{b2bOrderId}
+    </select>
+
+
+    <resultMap id="RsBmsMapByFaPiao" type="com.zsyc.zt.inca.vo.BmsSaByFaPiaoVo">
+        <result column="B2B_ORDER_NO" property="b2bOrderNo"></result>
+        <result column="B2B_ORDER_ID" property="b2bOrderId"></result>
+        <collection property="erpOrderIdList" select="com.zsyc.zt.inca.mapper.BmsSaDocMapper.erpOrderIdListByOrderId" column="B2B_ORDER_ID"></collection>
+    </resultMap>
+
+
+    <select id="getBmsSaDocListByB2bOrderId" resultMap="RsBmsMapByFaPiao">
+        select b2b_order_no,b2b_order_id from bms_sa_doc where b2b_order_id  = #{b2bOrderId}
+        group by b2b_order_no,b2b_order_id
+    </select>
+
+
+    <select id="getBmsSaDocListByB2bOrderIdList" resultMap="RsBmsMapByFaPiao">
+          select b2b_order_no,b2b_order_id from bms_sa_doc where b2b_order_id in
+                <foreach collection="b2bOrderIdList" open="(" close=")" separator="," item="b2bOrderId">
+                     #{b2bOrderId}
+                </foreach>
+        group by b2b_order_no,b2b_order_id
+    </select>
+    <select id="getNotRecMoney" resultType="Double">
+        <choose >
+            <when test="sourceType==1">
+                select sum(nvl(a.total_line, 0) - nvl(a.totalrecmoney, 0))
+                from bms_sa_dtl a
+                where a.salesid = #{srcErpOrderId}
+            </when>
+            <when test="sourceType==2">
+                select sum(nvl(a.total_line, 0) - nvl(a.totalrecmoney, 0))
+                from bms_sa_dtl a
+                where exists (select 1
+                from bms_sa_doc b
+                where a.salesid = b.salesid
+                and b.placesupplyid = #{srcErpOrderId}
+                )
+            </when>
+            <when test="sourceType==3">
+                select sum(nvl(a.total_line, 0) - nvl(a.totalrecmoney, 0))
+                from bms_sa_dtl a
+                where a.salesid = #{srcErpOrderId}
+            </when>
+        </choose>
+    </select>
+    <select id="getSalesIdByPlacesupplyId" resultType="java.lang.Long">
+               select salesid from bms_sa_doc a where a.comefrom= 3 and    a.customid = #{customId}  and  a.placesupplyid = #{srcErpOrderId}
+    </select>
+    <select id="getSalesIdByPlacesupplyDtlId" resultType="java.lang.Long">
+        select a.salesdtlid from  bms_sa_dtl a
+        where exists (
+                 select 1 from gpcs_placesupplydtl b ,gpcs_placesupplydtl_st c
+                 where b.placesupplydtlid = c.placesupplydtlid
+                   and a.placesupplydtlstid = c.placesupplydtlstid and b.placesupplydtlid = #{srcErpOrderDtlId})
+    </select>
+
+</mapper>

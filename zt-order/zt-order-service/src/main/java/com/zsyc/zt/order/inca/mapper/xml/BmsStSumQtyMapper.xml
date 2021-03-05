@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStSumQtyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStSumQty">
+        <id column="GOODSID" property="goodsid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="USEMM" property="usemm" />
+        <result column="SUPPLYQTY" property="supplyqty" />
+        <result column="SUPPLYBAKQTY" property="supplybakqty" />
+        <result column="SALESQTY" property="salesqty" />
+        <result column="SALESBAKQTY" property="salesbakqty" />
+        <result column="MOVEINQTY" property="moveinqty" />
+        <result column="MOVEOUTQTY" property="moveoutqty" />
+        <result column="OVERFLOWQTY" property="overflowqty" />
+        <result column="LOSEQTY" property="loseqty" />
+        <result column="MATERIALOUT" property="materialout" />
+        <result column="PRODIN" property="prodin" />
+        <result column="OTHERINQTY" property="otherinqty" />
+        <result column="OTHEROUTQTY" property="otheroutqty" />
+        <result column="ERAINQTY" property="erainqty" />
+        <result column="ERAOUTQTY" property="eraoutqty" />
+        <result column="PRESENTINQTY" property="presentinqty" />
+        <result column="PRESENTOUTQTY" property="presentoutqty" />
+        <result column="FITINQTY" property="fitinqty" />
+        <result column="FITOUTQTY" property="fitoutqty" />
+        <result column="DEBITOUT" property="debitout" />
+        <result column="LENDEROUT" property="lenderout" />
+        <result column="DEBITIN" property="debitin" />
+        <result column="LENDERIN" property="lenderin" />
+        <result column="MATERIALOUTBACK" property="materialoutback" />
+        <result column="PDINBACK" property="pdinback" />
+        <result column="DIAGNOISOUTQTY" property="diagnoisoutqty" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GOODSID, STORAGEID, USEMM, SUPPLYQTY, SUPPLYBAKQTY, SALESQTY, SALESBAKQTY, MOVEINQTY, MOVEOUTQTY, OVERFLOWQTY, LOSEQTY, MATERIALOUT, PRODIN, OTHERINQTY, OTHEROUTQTY, ERAINQTY, ERAOUTQTY, PRESENTINQTY, PRESENTOUTQTY, FITINQTY, FITOUTQTY, DEBITOUT, LENDEROUT, DEBITIN, LENDERIN, MATERIALOUTBACK, PDINBACK, DIAGNOISOUTQTY
+    </sql>
+
+</mapper>

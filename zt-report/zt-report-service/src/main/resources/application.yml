@@ -1,0 +1,92 @@
+server.port: -1
+#spring.application.name: zt-fapiao-service
+#
+#dubbo.application.name: zt-fapiao-service
+#dubbo.registry.address: zookeeper://172.168.200.71:31199?timeout=60000
+#dubbo.metadata-report.address: zookeeper://172.168.200.71:31199
+spring.application.name: zt-report-service
+
+dubbo.application.name: zt-report-service
+dubbo.registry.address: zookeeper://172.168.200.223:2182?timeout=60000
+dubbo.metadata-report.address: zookeeper://172.168.200.223:2182
+dubbo.protocol.name: dubbo
+dubbo.protocol.port: 9234
+dubbo.provider.version: 1.0.1-peiqy
+dubbo.provider.host: 127.0.0.1
+dubbo.provider.filter: -default,dubboExceptionFilter
+dubbo.provider.timeout: 30000
+dubbo.scan.base-packages: com.zsyc
+
+dubbo.consumer.check: false
+dubbo.consumer.version: 1.0.1-peiqy
+#dubbo.monitor.protocol: registry
+
+#spring.datasource.url: jdbc:oracle:thin:@172.168.200.221:1521:orcl
+#spring.datasource.username: inca
+#spring.datasource.password: inca
+spring.datasource.url: jdbc:oracle:thin:@172.168.200.212:1521:orcl
+spring.datasource.username: report
+spring.datasource.password: report
+spring.datasource.driver-class-name: oracle.jdbc.driver.OracleDriver
+
+management.endpoints.web.exposure.include: '*'
+management.endpoint.health.show-details: always
+management.server.port: 9231
+
+spring.boot.admin.client.url: http://spring-boot-admin.od.com
+spring.boot.admin.client.username: admin
+spring.boot.admin.client.password: admin
+spring.boot.admin.client.instance.prefer-ip: true
+
+# redis
+spring.redis.host: 172.168.200.223
+spring.redis.port: 6379
+spring.redis.password: zt2020
+spring.redis.database: 1
+
+# rabbitmq
+spring.rabbitmq.host: 172.168.200.223
+spring.rabbitmq.port: 5672
+spring.rabbitmq.username: b2b
+spring.rabbitmq.password: 123456
+
+## resision \u5206\u5E03\u5F0F\u9501
+
+redisson.address: redis://172.168.200.223:6379
+redisson.password: zt2020
+redisson.database: 2
+
+## jetcache
+
+jetcache.address: 172.168.200.223
+jetcache.port: 6379
+jetcache.password: zt2020
+jetcache.database: 3
+
+
+
+
+#mybatis-plus.global-config.db-config.table-prefix: abs_
+
+## \u652F\u4ED8\u8BA2\u5355ID\u751F\u6210\u5668
+zsyc.pay.order-id.data-center: 0
+zsyc.pay.order-id.machine-id: 0
+
+zsyc.pay.wechat.enable: false
+
+# zsyc.life.invite-code.expire: 1800
+
+## \u6587\u4EF6\u7CFB\u7EDF
+zsyc.fs.host: https://fs.130.gdzsyc.cn
+# \u8FD9\u4E2A\u914D\u7F6E\u4F1A\u5C06\u6267\u884C\u7684sql\u6253\u5370\u51FA\u6765\uFF0C\u5728\u5F00\u53D1\u6216\u6D4B\u8BD5\u7684\u65F6\u5019\u53EF\u4EE5\u7528
+mybatis-plus.configuration.log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+## xxl-job
+zsyc.xxl-job.enable: true
+zsyc.xxl-job.admin-addresses: http://172.16.20.3:8080/xxl-job-admin
+zsyc.xxl-job.app-name: ${spring.application.name}
+zsyc.xxl-job.port: 9214
+zsyc.xxl-job.accessToken: 123456
+zsyc.xxl-job.logpath: ${log.path:/tmp}/xxl-job/${spring.application.name}
+# schedule address
+#zsyc.xxl-job.scheduler-address: 172.16.20.47

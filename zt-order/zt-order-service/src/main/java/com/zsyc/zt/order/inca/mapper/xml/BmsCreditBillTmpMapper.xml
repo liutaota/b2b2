@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsCreditBillTmpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsCreditBillTmp">
+        <id column="SOURCETABLE" property="sourcetable" />
+        <result column="SALERID" property="salerid" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="SOURCEID" property="sourceid" />
+        <result column="BILLDATE" property="billdate" />
+        <result column="BILLMONEY" property="billmoney" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SALERID, CUSTOMID, ENTRYID, SOURCETABLE, SOURCEID, BILLDATE, BILLMONEY
+    </sql>
+
+</mapper>

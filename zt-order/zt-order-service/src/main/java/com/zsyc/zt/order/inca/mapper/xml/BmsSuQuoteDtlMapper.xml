@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuQuoteDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuQuoteDtl">
+        <id column="QUOTEDTLID" property="quotedtlid" />
+        <result column="QUOTEDOCID" property="quotedocid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="PLANDATE" property="plandate" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="TOTAL" property="total" />
+        <result column="ARRIVEDATE" property="arrivedate" />
+        <result column="ISTICKETFLAG" property="isticketflag" />
+        <result column="CREDITMONEY" property="creditmoney" />
+        <result column="CREDITDAY" property="creditday" />
+        <result column="REBATEPOLICY" property="rebatepolicy" />
+        <result column="QUOTEDATE" property="quotedate" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="SUPPLYERID" property="supplyerid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        QUOTEDTLID, QUOTEDOCID, GOODSID, GOODSQTY, PLANDATE, UNITPRICE, TOTAL, ARRIVEDATE, ISTICKETFLAG, CREDITMONEY, CREDITDAY, REBATEPOLICY, QUOTEDATE, SUPPLYID, AGENTID, CONTACTID, SUPPLYERID
+    </sql>
+
+</mapper>

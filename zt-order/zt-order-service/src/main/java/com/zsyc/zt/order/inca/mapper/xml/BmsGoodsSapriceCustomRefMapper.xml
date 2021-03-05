@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsGoodsSapriceCustomRefMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsGoodsSapriceCustomRef">
+        <id column="ENTRYID" property="entryid" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="LASTSADTLID" property="lastsadtlid" />
+        <result column="LASTSAPRICE" property="lastsaprice" />
+        <result column="COMEFROM" property="comefrom" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ENTRYID, CUSTOMID, GOODSID, LASTSADTLID, LASTSAPRICE, COMEFROM
+    </sql>
+
+</mapper>

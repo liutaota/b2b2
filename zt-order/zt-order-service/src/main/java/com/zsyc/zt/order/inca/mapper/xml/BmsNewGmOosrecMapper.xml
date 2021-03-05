@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsNewGmOosrecMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsNewGmOosrec">
+        <id column="OOSRECID" property="oosrecid" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="CURRENCYNAME" property="currencyname" />
+        <result column="GOODSTYPE" property="goodstype" />
+        <result column="FACTORYNAME" property="factoryname" />
+        <result column="PRODAREA" property="prodarea" />
+        <result column="MEDICINETYPENAME" property="medicinetypename" />
+        <result column="APPROVEDOCNO" property="approvedocno" />
+        <result column="REGISTDOCNO" property="registdocno" />
+        <result column="GOODSMEMO" property="goodsmemo" />
+        <result column="SOURCEOFGOODS" property="sourceofgoods" />
+        <result column="BUYQTY" property="buyqty" />
+        <result column="PRICEINSTRUCTION" property="priceinstruction" />
+        <result column="BUYER" property="buyer" />
+        <result column="BUYERTEL" property="buyertel" />
+        <result column="BUYERMEMO" property="buyermemo" />
+        <result column="MEMO" property="memo" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="PLACEPOINTID" property="placepointid" />
+        <result column="INPUTDATE" property="inputdate" />
+        <result column="DEALSTATUS" property="dealstatus" />
+        <result column="DEALMANID" property="dealmanid" />
+        <result column="DEALDEPTID" property="dealdeptid" />
+        <result column="DEALDATE" property="dealdate" />
+        <result column="DEALMEMO" property="dealmemo" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="FILECOUNT" property="filecount" />
+        <result column="ISONSALE" property="isonsale" />
+        <result column="GOODSOPCODE" property="goodsopcode" />
+        <result column="FEEDBACKOBJ" property="feedbackobj" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="TRADEMARK" property="trademark" />
+        <result column="GOODSEFFECT" property="goodseffect" />
+        <result column="FEEDBACKREASON" property="feedbackreason" />
+        <result column="PLACEPOINTNAME" property="placepointname" />
+        <result column="BUYERID" property="buyerid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GOODSNAME, CURRENCYNAME, GOODSTYPE, FACTORYNAME, PRODAREA, MEDICINETYPENAME, APPROVEDOCNO, REGISTDOCNO, GOODSMEMO, SOURCEOFGOODS, BUYQTY, PRICEINSTRUCTION, BUYER, BUYERTEL, BUYERMEMO, MEMO, INPUTMANID, PLACEPOINTID, INPUTDATE, DEALSTATUS, DEALMANID, DEALDEPTID, DEALDATE, DEALMEMO, ENTRYID, FILECOUNT, OOSRECID, ISONSALE, GOODSOPCODE, FEEDBACKOBJ, GOODSID, TRADEMARK, GOODSEFFECT, FEEDBACKREASON, PLACEPOINTNAME, BUYERID
+    </sql>
+
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStQtyCutMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStQtyCut">
+        <id column="CUTID" property="cutid" />
+        <result column="CUTNO" property="cutno" />
+        <result column="STORAGEIDS" property="storageids" />
+        <result column="CUTDATE" property="cutdate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="STHOUSEIDS" property="sthouseids" />
+        <result column="MEMO" property="memo" />
+        <result column="JUDGEFLAG" property="judgeflag" />
+        <result column="OFLSFLAG" property="oflsflag" />
+        <result column="INPUTMETHOD" property="inputmethod" />
+        <result column="GENFLAG" property="genflag" />
+        <result column="GOODSDTLFLAG" property="goodsdtlflag" />
+        <result column="BATCHFLAG" property="batchflag" />
+        <result column="LOTFLAG" property="lotflag" />
+        <result column="POSFLAG" property="posflag" />
+        <result column="GOODSSTATUSFLAG" property="goodsstatusflag" />
+        <result column="COUNTERID" property="counterid" />
+        <result column="PRINTCOUNT" property="printcount" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="GOODSIDS" property="goodsids" />
+        <result column="POSID" property="posid" />
+        <result column="POSNOS" property="posnos" />
+        <result column="STORAGENAMES" property="storagenames" />
+        <result column="STHOUSENAMES" property="sthousenames" />
+        <result column="GOODSNAMES" property="goodsnames" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="PDTYPE" property="pdtype" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CUTID, CUTNO, STORAGEIDS, CUTDATE, INPUTMANID, STHOUSEIDS, MEMO, JUDGEFLAG, OFLSFLAG, INPUTMETHOD, GENFLAG, GOODSDTLFLAG, BATCHFLAG, LOTFLAG, POSFLAG, GOODSSTATUSFLAG, COUNTERID, PRINTCOUNT, PRINTMANID, PRINTDATE, GOODSIDS, POSID, POSNOS, STORAGENAMES, STHOUSENAMES, GOODSNAMES, COMEFROM, PDTYPE
+    </sql>
+
+</mapper>

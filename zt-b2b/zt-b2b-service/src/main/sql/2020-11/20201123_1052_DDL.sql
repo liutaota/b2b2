@@ -1,0 +1,33 @@
+/***************************************************************/
+-- 功能描述: 新增 erp异常金额，账单是否生成标识
+-- 创建人员：tang
+-- 创建日期：2020-11-23
+-- /**************************************************************/
+
+ALTER TABLE "B2B"."ORDER_INFO"
+ADD ("ERP_AMOUNT" NUMBER(18) );
+
+COMMENT ON COLUMN "B2B"."ORDER_INFO"."ERP_AMOUNT" IS '异常金额';
+
+
+ALTER TABLE "B2B"."REC_DOC"
+ADD ("IS_TRUE" NUMBER(11) DEFAULT 0 );
+
+COMMENT ON COLUMN "B2B"."REC_DOC"."IS_TRUE" IS '是否生成账单';
+
+
+ALTER TABLE "B2B"."REC_DOC"
+ADD ("ERP_FINANCE_REMARK" VARCHAR2(1024) )
+ADD ("FINANCE_TRUE" NUMBER(11) );
+
+COMMENT ON COLUMN "B2B"."REC_DOC"."ERP_FINANCE_REMARK" IS 'erp核销备注';
+
+COMMENT ON COLUMN "B2B"."REC_DOC"."FINANCE_TRUE" IS '核销是否通过';
+
+ALTER TABLE "B2B"."REC_DOC"
+MODIFY ("FINANCE_TRUE" DEFAULT 1 );
+
+ALTER TABLE "B2B"."ORDER_INFO"
+ADD ("FINANCE_TRUE" NUMBER(11) DEFAULT 0 );
+
+COMMENT ON COLUMN "B2B"."ORDER_INFO"."FINANCE_TRUE" IS '订单是否已核销'

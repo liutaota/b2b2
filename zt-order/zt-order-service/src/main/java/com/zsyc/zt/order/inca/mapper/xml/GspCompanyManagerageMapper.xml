@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.GspCompanyManagerageMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.GspCompanyManagerage">
+        <id column="SEQID" property="seqid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="SCOPEDEFID" property="scopedefid" />
+        <result column="LICENSEID" property="licenseid" />
+        <result column="MEDICINETYPE" property="medicinetype" />
+        <result column="ZX_FLAG" property="zxFlag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SEQID, COMPANYID, SCOPEDEFID, LICENSEID, MEDICINETYPE, ZX_FLAG
+    </sql>
+
+    <select id="selectBy" resultType="com.zsyc.zt.order.vo.CustomManageScopeVo">
+        select *
+          from gsp_company_license a, gsp_company_managerage b
+         where a.licenseid = b.licenseid
+           and a.entryid = #{entryId}
+           and a.usestatus = #{useStatus}
+           and a.companyid = #{customId}
+           and b.scopedefid = #{bussinessScope}
+    </select>
+
+</mapper>

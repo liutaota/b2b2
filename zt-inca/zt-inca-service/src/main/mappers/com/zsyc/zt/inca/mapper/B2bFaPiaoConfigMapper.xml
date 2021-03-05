@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zsyc.zt.inca.mapper.B2bFaPiaoConfigMapper">
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.inca.entity.B2bFaPiaoConfig">
+        <result column="TAX_NO" property="taxNo"></result>
+        <result column="USERNAME" property="username"></result>
+        <result column="PASSWORD" property="password"></result>
+        <result column="FLAY" property="flay"></result>
+        <result column="TAX_URL" property="taxUrl"></result>
+    </resultMap>
+    <!-- 通用查询结果列 -->
+    <sql id="B2B_Column_List">
+        TAX_NO, USERNAME, PASSWORD,FLAY,TAX_URL
+    </sql>
+
+
+</mapper>

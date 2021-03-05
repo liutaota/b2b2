@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsBusiDtlBackMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsBusiDtlBack">
+        <result column="GOODSID" property="goodsid" />
+        <result column="UPQTY" property="upqty" />
+        <result column="DOWNQTY" property="downqty" />
+        <result column="SUPLANQTY" property="suplanqty" />
+        <result column="STQTY" property="stqty" />
+        <result column="NOSTINQTY" property="nostinqty" />
+        <result column="NOSTOUTQTY" property="nostoutqty" />
+        <result column="SUPLANFLAG" property="suplanflag" />
+        <result column="SUCONFLAG" property="suconflag" />
+        <result column="SUFLAG" property="suflag" />
+        <result column="SUPLANUSEQTY" property="suplanuseqty" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="BUSIDTLID" property="busidtlid" />
+        <result column="SETUPQTY" property="setupqty" />
+        <result column="SETDOWNQTY" property="setdownqty" />
+        <result column="MODIFYTYPE" property="modifytype" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GOODSID, UPQTY, DOWNQTY, SUPLANQTY, STQTY, NOSTINQTY, NOSTOUTQTY, SUPLANFLAG, SUCONFLAG, SUFLAG, SUPLANUSEQTY, ENTRYID, BUSIDTLID, SETUPQTY, SETDOWNQTY, MODIFYTYPE
+    </sql>
+
+</mapper>

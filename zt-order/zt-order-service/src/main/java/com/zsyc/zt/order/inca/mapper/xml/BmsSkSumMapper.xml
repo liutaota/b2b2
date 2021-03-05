@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSkSumMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSkSum">
+        <id column="SEQID" property="seqid" />
+        <result column="USEMM" property="usemm" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="SUMDEBITQTY" property="sumdebitqty" />
+        <result column="SUMDEBITMONEY" property="sumdebitmoney" />
+        <result column="SUMCREDITQTY" property="sumcreditqty" />
+        <result column="SUMCREDITMONEY" property="sumcreditmoney" />
+        <result column="STOCKID" property="stockid" />
+        <result column="LOGICMM" property="logicmm" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="INITQTY" property="initqty" />
+        <result column="INITMONEY" property="initmoney" />
+        <result column="SASETQTY" property="sasetqty" />
+        <result column="SASETMONEY" property="sasetmoney" />
+        <result column="SUQTY" property="suqty" />
+        <result column="SUMONEY" property="sumoney" />
+        <result column="MVINQTY" property="mvinqty" />
+        <result column="MVINMONEY" property="mvinmoney" />
+        <result column="MVOUTQTY" property="mvoutqty" />
+        <result column="MVOUTMONEY" property="mvoutmoney" />
+        <result column="LSQTY" property="lsqty" />
+        <result column="LSMONEY" property="lsmoney" />
+        <result column="OFQTY" property="ofqty" />
+        <result column="OFMONEY" property="ofmoney" />
+        <result column="GRESAQTY" property="gresaqty" />
+        <result column="GRESAMONEY" property="gresamoney" />
+        <result column="ADJCOSTQTY" property="adjcostqty" />
+        <result column="ADJCOSTMONEY" property="adjcostmoney" />
+        <result column="PRINQTY" property="prinqty" />
+        <result column="PRINMONEY" property="prinmoney" />
+        <result column="MATERIALOUTQTY" property="materialoutqty" />
+        <result column="MATERIALOUTMONEY" property="materialoutmoney" />
+        <result column="OTHERQTY" property="otherqty" />
+        <result column="OTHERMONEY" property="othermoney" />
+        <result column="RECIQTY" property="reciqty" />
+        <result column="RECIMONEY" property="recimoney" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SEQID, USEMM, STORAGEID, GOODSID, BATCHID, SUMDEBITQTY, SUMDEBITMONEY, SUMCREDITQTY, SUMCREDITMONEY, STOCKID, LOGICMM, ENTRYID, INITQTY, INITMONEY, SASETQTY, SASETMONEY, SUQTY, SUMONEY, MVINQTY, MVINMONEY, MVOUTQTY, MVOUTMONEY, LSQTY, LSMONEY, OFQTY, OFMONEY, GRESAQTY, GRESAMONEY, ADJCOSTQTY, ADJCOSTMONEY, PRINQTY, PRINMONEY, MATERIALOUTQTY, MATERIALOUTMONEY, OTHERQTY, OTHERMONEY, RECIQTY, RECIMONEY
+    </sql>
+
+</mapper>

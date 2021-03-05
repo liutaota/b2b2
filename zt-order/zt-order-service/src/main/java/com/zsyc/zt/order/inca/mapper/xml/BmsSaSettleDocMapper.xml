@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSaSettleDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSaSettleDoc">
+        <id column="SASETTLEID" property="sasettleid" />
+        <result column="CREDATE" property="credate" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="CUSTOMNAME" property="customname" />
+        <result column="TOTAL" property="total" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="DTL_LINES" property="dtlLines" />
+        <result column="MEMO" property="memo" />
+        <result column="CERTID" property="certid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="INVTYPE" property="invtype" />
+        <result column="INITFLAG" property="initflag" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="FMID" property="fmid" />
+        <result column="EXCHANGE" property="exchange" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="CONFIRMMANID" property="confirmmanid" />
+        <result column="ASSESSDATE" property="assessdate" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="SACERTID" property="sacertid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="QUOTA" property="quota" />
+        <result column="INVCODE" property="invcode" />
+        <result column="PRINTSITEID" property="printsiteid" />
+        <result column="RECEIVEDATE" property="receivedate" />
+        <result column="RECEIVEMANID" property="receivemanid" />
+        <result column="INVALIDDATE" property="invaliddate" />
+        <result column="INVALIDMANID" property="invalidmanid" />
+        <result column="REDFLAG" property="redflag" />
+        <result column="PRINTCOUNT" property="printcount" />
+        <result column="TAXFLAG" property="taxflag" />
+        <result column="TAXMANID" property="taxmanid" />
+        <result column="TAXDATE" property="taxdate" />
+        <result column="INVNO" property="invno" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="ZX_TOTALRECMONEY" property="zxTotalrecmoney" />
+        <result column="ZX_INITSATUS" property="zxInitsatus" />
+        <result column="ZX_INVSTATUS" property="zxInvstatus" />
+        <result column="ZX_INVBACKDATE" property="zxInvbackdate" />
+        <result column="ZX_INVDATE" property="zxInvdate" />
+        <result column="ZX_ERRORMEMO" property="zxErrormemo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SASETTLEID, CREDATE, CUSTOMID, CUSTOMNAME, TOTAL, INPUTMANID, DTL_LINES, MEMO, CERTID, USESTATUS, INVTYPE, INITFLAG, ENTRYID, FMID, EXCHANGE, CONFIRMDATE, CONFIRMMANID, ASSESSDATE, PRINTMANID, PRINTDATE, SACERTID, AGENTID, QUOTA, INVCODE, PRINTSITEID, RECEIVEDATE, RECEIVEMANID, INVALIDDATE, INVALIDMANID, REDFLAG, PRINTCOUNT, TAXFLAG, TAXMANID, TAXDATE, INVNO, CONTACTID, ZX_TOTALRECMONEY, ZX_INITSATUS, ZX_INVSTATUS, ZX_INVBACKDATE, ZX_INVDATE, ZX_ERRORMEMO
+    </sql>
+
+</mapper>

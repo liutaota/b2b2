@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuConImpTmpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuConImpTmp">
+        <id column="IMPID" property="impid" />
+        <result column="DOCID" property="docid" />
+        <result column="ERRMSG" property="errmsg" />
+        <result column="IMPFLAG" property="impflag" />
+        <result column="SUCONNO" property="suconno" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="SUPPLYNAME" property="supplyname" />
+        <result column="AGENTID" property="agentid" />
+        <result column="AGENTNAME" property="agentname" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSNO" property="goodsno" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="GOODSTYPE" property="goodstype" />
+        <result column="PRICE" property="price" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="ENTRYNAME" property="entryname" />
+        <result column="RATE" property="rate" />
+        <result column="SUPPLYERID" property="supplyerid" />
+        <result column="SUPPLYER" property="supplyer" />
+        <result column="ZXCOLNAME1" property="zxcolname1" />
+        <result column="ZXCOLNAME2" property="zxcolname2" />
+        <result column="ZXCOLNAME3" property="zxcolname3" />
+        <result column="ZXCOLNAME4" property="zxcolname4" />
+        <result column="ZXCOLNAME5" property="zxcolname5" />
+        <result column="ZXCOLNAME6" property="zxcolname6" />
+        <result column="ZXCOLNAME7" property="zxcolname7" />
+        <result column="ZXCOLNAME8" property="zxcolname8" />
+        <result column="ZXCOLNAME9" property="zxcolname9" />
+        <result column="ZXCOLNAME10" property="zxcolname10" />
+        <result column="CREDATE" property="credate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DOCID, IMPID, ERRMSG, IMPFLAG, SUCONNO, SUPPLYID, SUPPLYNAME, AGENTID, AGENTNAME, GOODSID, GOODSNO, GOODSNAME, GOODSTYPE, PRICE, GOODSQTY, ENTRYID, ENTRYNAME, RATE, SUPPLYERID, SUPPLYER, ZXCOLNAME1, ZXCOLNAME2, ZXCOLNAME3, ZXCOLNAME4, ZXCOLNAME5, ZXCOLNAME6, ZXCOLNAME7, ZXCOLNAME8, ZXCOLNAME9, ZXCOLNAME10, CREDATE
+    </sql>
+
+</mapper>

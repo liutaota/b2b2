@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubBankMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubBank">
+        <id column="BANKID" property="bankid" />
+        <result column="BANKOPCODE" property="bankopcode" />
+        <result column="BANKNO" property="bankno" />
+        <result column="BANKPINYIN" property="bankpinyin" />
+        <result column="CORPCODE" property="corpcode" />
+        <result column="BANKNAME" property="bankname" />
+        <result column="BANKMEMO" property="bankmemo" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="ACCNO" property="accno" />
+        <result column="B2BBANKTYPE" property="b2bbanktype" />
+        <result column="MERCHANTS" property="merchants" />
+        <result column="CONFIRMMANID" property="confirmmanid" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        BANKID, BANKOPCODE, BANKNO, BANKPINYIN, CORPCODE, BANKNAME, BANKMEMO, USESTATUS, CREDATE, INPUTMANID, ACCNO, B2BBANKTYPE, MERCHANTS, CONFIRMMANID, CONFIRMDATE
+    </sql>
+
+</mapper>

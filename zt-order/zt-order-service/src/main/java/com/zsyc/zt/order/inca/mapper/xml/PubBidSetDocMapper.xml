@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubBidSetDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubBidSetDoc">
+        <id column="SETID" property="setid" />
+        <result column="SETNAME" property="setname" />
+        <result column="OPCODE" property="opcode" />
+        <result column="STARTDATE" property="startdate" />
+        <result column="ENDDATE" property="enddate" />
+        <result column="MEMO" property="memo" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="ENTRYID" property="entryid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SETID, SETNAME, OPCODE, STARTDATE, ENDDATE, MEMO, CREDATE, INPUTMANID, USESTATUS, ENTRYID
+    </sql>
+
+</mapper>

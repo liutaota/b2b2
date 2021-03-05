@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsRgNoticeDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsRgNoticeDoc">
+        <id column="NOTICEDOCID" property="noticedocid" />
+        <result column="NOTICENO" property="noticeno" />
+        <result column="CREDATE" property="credate" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="SOURCEID" property="sourceid" />
+        <result column="SALERID" property="salerid" />
+        <result column="SALESDEPTID" property="salesdeptid" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="TRPOSID" property="trposid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="MEMO" property="memo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        NOTICEDOCID, NOTICENO, CREDATE, COMEFROM, SOURCEID, SALERID, SALESDEPTID, INPUTMANID, COMPANYID, AGENTID, STORAGEID, TRPOSID, ENTRYID, MEMO
+    </sql>
+
+</mapper>

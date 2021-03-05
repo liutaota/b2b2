@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuRemittanceDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuRemittanceDoc">
+        <id column="REMITTANCEID" property="remittanceid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="PAYPLANDATE" property="payplandate" />
+        <result column="PAYTYPE" property="paytype" />
+        <result column="APPLYMONEY" property="applymoney" />
+        <result column="APPROVALMONEY" property="approvalmoney" />
+        <result column="PAYEDMONEY" property="payedmoney" />
+        <result column="REASON" property="reason" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="APPLYID" property="applyid" />
+        <result column="APPLYTYPE" property="applytype" />
+        <result column="APPLYDATE" property="applydate" />
+        <result column="PAYABLEMONEY" property="payablemoney" />
+        <result column="BANKNAME" property="bankname" />
+        <result column="BANKNO" property="bankno" />
+        <result column="ENTRYID" property="entryid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        REMITTANCEID, COMPANYID, PAYPLANDATE, PAYTYPE, APPLYMONEY, APPROVALMONEY, PAYEDMONEY, REASON, USESTATUS, APPLYID, APPLYTYPE, APPLYDATE, PAYABLEMONEY, BANKNAME, BANKNO, ENTRYID
+    </sql>
+
+</mapper>

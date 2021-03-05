@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.ErpB2bOrderRecDocMapper">
+
+    <select id="getErpB2bOrderRecDocVoList" resultType="com.zsyc.zt.b2b.vo.ErpB2bOrderRecDocVo">
+        select e.*,m.customname user_name, m.zx_phone telephone,
+        uf.ERP_EMPLOYEE_ID finance_erp_id,uf.user_name finance_name,uc.ERP_EMPLOYEE_ID confirm_erp_id,uc.name confirm_name,
+        u.ERP_EMPLOYEE_ID s_erp_id,u.name s_name,
+        (case when e.FINANCE_TRUE=1 then '已核销'
+        when e.FINANCE_TRUE=0 then '未核销'
+        when e.FINANCE_TRUE=2 then '核销中'
+        else  '核销失败' end) FINANCE_status,
+        (select  listagg(SALESID ,',')within group(order by ERP_B2B_ORDER_REC_DOC_ID)  salesids from ERP_B2B_ORDER_REC_Dtl
+        where ERP_B2B_ORDER_REC_DOC_ID = e.id
+        group by ERP_B2B_ORDER_REC_DOC_ID) salesids
+
+        from erp_b2b_ORDER_REC_DOC e
+        left join ${erp}.pub_customer m on m.customid=e.erp_user_id
+        left join user_info uf on uf.id=e.finance_user_id
+        left join user_info uc on uc.id=e.confirm_user_id
+        left join user_info u on u.id=e.user_id
+        where e.pay_time is not null and e.is_del=0
+
+        <if test="erpB2bOrderRecDocVo.tranposnames!=null ">
+            and e.tranposname in
+            <foreach collection="erpB2bOrderRecDocVo.tranposnames" item="item" open="(" close=")" separator=",">
+                (#{item})
+            </foreach>
+        </if>
+        <if test="erpB2bOrderRecDocVo.tranposname!=null and erpB2bOrderRecDocVo.tranposname!=''">
+            and e.tranposname=#{erpB2bOrderRecDocVo.tranposname}
+        </if>
+        <if test="erpB2bOrderRecDocVo.payType!=null and erpB2bOrderRecDocVo.payType!=''">
+            and e.pay_type=#{erpB2bOrderRecDocVo.payType}
+        </if>
+        <if test="erpB2bOrderRecDocVo.financeTrues!=null and erpB2bOrderRecDocVo.financeTrues!=''">
+            and e.FINANCE_TRUE=#{erpB2bOrderRecDocVo.financeTrues}
+        </if>
+        <if test="erpB2bOrderRecDocVo.transortno!=null and erpB2bOrderRecDocVo.transortno!=''">
+            and e.transortno=#{erpB2bOrderRecDocVo.transortno}
+        </if>
+        <if test="erpB2bOrderRecDocVo.confirm==1">
+            and e.CONFIRM_TIME is null
+        </if>
+        <if test="erpB2bOrderRecDocVo.confirm==2">
+            and e.CONFIRM_TIME is not null
+        </if>
+        <if test="erpB2bOrderRecDocVo.erpUserId!=null">
+            and e.erp_user_id=#{erpB2bOrderRecDocVo.erpUserId}
+        </if>
+        <if test="erpB2bOrderRecDocVo.sErpId!=null">
+            and u.ERP_EMPLOYEE_ID=#{erpB2bOrderRecDocVo.sErpId}
+        </if>
+        <if test="erpB2bOrderRecDocVo.financeErpId!=null">
+            and uf.ERP_EMPLOYEE_ID=#{erpB2bOrderRecDocVo.financeErpId}
+        </if>
+        <if test="erpB2bOrderRecDocVo.confirmErpId!=null">
+            and uc.ERP_EMPLOYEE_ID=#{erpB2bOrderRecDocVo.confirmErpId}
+        </if>
+        <if test="erpB2bOrderRecDocVo.userName!=null and erpB2bOrderRecDocVo.userName!=''">
+            and m.customname like '%'||#{erpB2bOrderRecDocVo.userName}||'%'
+        </if>
+        <if test="erpB2bOrderRecDocVo.sName!=null and erpB2bOrderRecDocVo.sName!=''">
+            and u.name like '%'||#{erpB2bOrderRecDocVo.sName}||'%'
+        </if>
+        <if test="erpB2bOrderRecDocVo.telephone!=null and erpB2bOrderRecDocVo.telephone!=''">
+            and m.zx_phone like '%'||#{erpB2bOrderRecDocVo.telephone}||'%'
+        </if>
+        <if test="erpB2bOrderRecDocVo.tmpNo!=null and erpB2bOrderRecDocVo.tmpNo!=''">
+            and e.tmp_no like '%'||#{erpB2bOrderRecDocVo.tmpNo}||'%'
+        </if>
+        <if test="erpB2bOrderRecDocVo.payFlowNo!=null and erpB2bOrderRecDocVo.payFlowNo!=''">
+            and e.PAY_FLOW_NO like '%'||#{erpB2bOrderRecDocVo.payFlowNo}||'%'
+        </if>
+        <if test="erpB2bOrderRecDocVo.startTime!=null and erpB2bOrderRecDocVo.endTime!=null">
+            and e.pay_time &gt;= #{erpB2bOrderRecDocVo.startTime} and e.pay_time &lt;= #{erpB2bOrderRecDocVo.endTime}
+        </if>
+        order by e.pay_time desc
+    </select>
+    <select id="getErpB2bOrderRecDocVoExcel" resultType="com.zsyc.zt.b2b.vo.ErpB2bOrderRecDocVo">
+        select e.*,m.customname user_name, m.zx_phone telephone,
+        uf.ERP_EMPLOYEE_ID finance_erp_id,uf.user_name finance_name,uc.ERP_EMPLOYEE_ID confirm_erp_id,uc.name confirm_name,
+        u.ERP_EMPLOYEE_ID s_erp_id,u.name s_name,
+        (case when e.FINANCE_TRUE=1 then '已核销'
+        when e.FINANCE_TRUE=0 then '未核销'
+        when e.FINANCE_TRUE=2 then '核销中'
+        else  '核销失败' end) FINANCE_status,
+        (select  listagg(SALESID ,',')within group(order by ERP_B2B_ORDER_REC_DOC_ID)  salesids from ERP_B2B_ORDER_REC_Dtl
+        where ERP_B2B_ORDER_REC_DOC_ID = e.id
+        group by ERP_B2B_ORDER_REC_DOC_ID) salesids
+
+        from erp_b2b_ORDER_REC_DOC e
+        left join ${erp}.pub_customer m on m.customid=e.erp_user_id
+        left join user_info uf on uf.id=e.finance_user_id
+        left join user_info uc on uc.id=e.confirm_user_id
+        left join user_info u on u.id=e.user_id
+        where e.pay_time is not null and e.is_del=0
+        <if test="erpB2bOrderRecDocVo.tranposnames!=null ">
+            and e.tranposname in
+            <foreach collection="erpB2bOrderRecDocVo.tranposnames" item="item" open="(" close=")" separator=",">
+                (#{item})
+            </foreach>
+        </if>
+        <if test="erpB2bOrderRecDocVo.tranposname!=null and erpB2bOrderRecDocVo.tranposname!=''">
+            and e.tranposname=#{erpB2bOrderRecDocVo.tranposname}
+        </if>
+        <if test="erpB2bOrderRecDocVo.payType!=null and erpB2bOrderRecDocVo.payType!=''">
+            and e.pay_type=#{erpB2bOrderRecDocVo.payType}
+        </if>
+        <if test="erpB2bOrderRecDocVo.tmpNo!=null and erpB2bOrderRecDocVo.tmpNo!=''">
+            and e.tmp_no like '%'||#{erpB2bOrderRecDocVo.tmpNo}||'%'
+        </if>
+        <if test="erpB2bOrderRecDocVo.payFlowNo!=null and erpB2bOrderRecDocVo.payFlowNo!=''">
+            and e.PAY_FLOW_NO like '%'||#{erpB2bOrderRecDocVo.payFlowNo}||'%'
+        </if>
+        <if test="erpB2bOrderRecDocVo.financeTrues!=null and erpB2bOrderRecDocVo.financeTrues!=''">
+            and e.FINANCE_TRUE=#{erpB2bOrderRecDocVo.financeTrues}
+        </if>
+        <if test="erpB2bOrderRecDocVo.transortno!=null and erpB2bOrderRecDocVo.transortno!=''">
+            and e.transortno=#{erpB2bOrderRecDocVo.transortno}
+        </if>
+        <if test="erpB2bOrderRecDocVo.confirm==1">
+            and e.CONFIRM_TIME is null
+        </if>
+        <if test="erpB2bOrderRecDocVo.confirm==2">
+            and e.CONFIRM_TIME is not null
+        </if>
+        <if test="erpB2bOrderRecDocVo.erpUserId!=null">
+            and e.erp_user_id=#{erpB2bOrderRecDocVo.erpUserId}
+        </if>
+        <if test="erpB2bOrderRecDocVo.sErpId!=null">
+            and u.ERP_EMPLOYEE_ID=#{erpB2bOrderRecDocVo.sErpId}
+        </if>
+        <if test="erpB2bOrderRecDocVo.financeErpId!=null">
+            and uf.ERP_EMPLOYEE_ID=#{erpB2bOrderRecDocVo.financeErpId}
+        </if>
+        <if test="erpB2bOrderRecDocVo.confirmErpId!=null">
+            and uc.ERP_EMPLOYEE_ID=#{erpB2bOrderRecDocVo.confirmErpId}
+        </if>
+        <if test="erpB2bOrderRecDocVo.userName!=null and erpB2bOrderRecDocVo.userName!=''">
+            and m.customname like '%'||#{erpB2bOrderRecDocVo.userName}||'%'
+        </if>
+        <if test="erpB2bOrderRecDocVo.sName!=null and erpB2bOrderRecDocVo.sName!=''">
+            and u.name like '%'||#{erpB2bOrderRecDocVo.sName}||'%'
+        </if>
+        <if test="erpB2bOrderRecDocVo.telephone!=null and erpB2bOrderRecDocVo.telephone!=''">
+            and m.zx_phone like '%'||#{erpB2bOrderRecDocVo.telephone}||'%'
+        </if>
+        <if test="erpB2bOrderRecDocVo.startTime!=null and erpB2bOrderRecDocVo.endTime!=null">
+            and e.pay_time &gt;= #{erpB2bOrderRecDocVo.startTime} and e.pay_time &lt;= #{erpB2bOrderRecDocVo.endTime}
+        </if>
+        order by e.pay_time desc
+    </select>
+</mapper>

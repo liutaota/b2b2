@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.RefundReturnMapper">
+    <select id="getRefundReturnList" resultType="com.zsyc.zt.b2b.vo.RefundReturnVo">
+        select a.*,u.user_name RECEIVE_NAME ,b.address_detail,b.ZX_PH_ORDER,b.TRANSLINENAME,b.TARGET_POS_ID,
+        m.telephone,m.user_name ,b.PAY_METHOD,b.ORDER_FROM,
+        (select count(1) from refund_detail where REFUND_id=a.id) as goods_num
+        from REFUND_RETURN a,ORDER_INFO b,user_info u,member m
+        where a.ORDER_ID = b.id and a.RECEIVE_USER_ID=u.id(+) and m.id=b.member_id
+        <if test="refundReturnVo.memberPhone!=null and refundReturnVo.memberPhone!=''">
+            and b.MEMBER_PHONE = #{refundReturnVo.memberPhone}
+        </if>
+        <if test="refundReturnVo.telephone!=null and refundReturnVo.telephone!=''">
+            and m.telephone = #{refundReturnVo.telephone}
+        </if>
+        <if test="refundReturnVo.memberId!=null">
+            and a.ERP_CUSTOMER_ID = #{refundReturnVo.memberId}
+        </if>
+        <if test="refundReturnVo.memberName!=null and refundReturnVo.memberName!=''">
+            and a.MEMBER_NAME like '%'||#{refundReturnVo.memberName}||'%'
+        </if>
+        <if test="refundReturnVo.refundState!=null and refundReturnVo.refundState!=''">
+            and a.refund_state = #{refundReturnVo.refundState}
+        </if>
+        <if test="refundReturnVo.orderNo!=null and refundReturnVo.orderNo!=''">
+            and a.ORDER_NO = #{refundReturnVo.orderNo}
+        </if>
+        <if test="refundReturnVo.applyNo!=null and refundReturnVo.applyNo!=''">
+            and a.APPLY_NO = #{refundReturnVo.applyNo}
+        </if>
+        <if test="refundReturnVo.startTime!=null and refundReturnVo.endTime!=null ">
+            and a.create_time &gt;= #{refundReturnVo.startTime} and a.create_time &lt;= #{refundReturnVo.endTime}
+        </if>
+        order by  a.create_time desc
+    </select>
+    <select id="getMyRefundReturnVoList" resultType="com.zsyc.zt.b2b.vo.RefundReturnVo">
+        select DISTINCT r.* from REFUND_RETURN r
+        left join REFUND_DETAIL rd on rd.REFUND_ID=r.id
+        where r.member_id=#{refundReturnVo.memberId}
+        <if test="refundReturnVo.startTime!=null and refundReturnVo.endTime!=null ">
+            and r.create_time &gt;= #{refundReturnVo.startTime} and r.create_time &lt;= #{refundReturnVo.endTime}
+        </if>
+        <if test="refundReturnVo.refundState!=null and refundReturnVo.refundState!=''">
+            and r.refund_state = #{refundReturnVo.refundState}
+        </if>
+        <if test="refundReturnVo.keyword!=null and refundReturnVo.keyword!=''">
+            and (
+            r.APPLY_NO like '%'||#{refundReturnVo.keyword}||'%'
+            or rd.GOODS_ID like '%'||#{refundReturnVo.keyword}||'%'
+            or rd.GOODS_NAME like '%'||#{refundReturnVo.keyword}||'%'
+            )
+        </if>
+        order by r.create_time desc
+    </select>
+    <select id="getRefundReturnVoInfo" resultType="com.zsyc.zt.b2b.vo.RefundReturnVo">
+        select a.*,u.user_name RECEIVE_NAME ,b.address_detail,b.ZX_PH_ORDER,b.TRANSLINENAME,b.TARGET_POS_ID,
+        m.telephone member_phone,m.user_name member_name,b.PAY_METHOD,b.ORDER_FROM
+        from REFUND_RETURN a,ORDER_INFO b,user_info u,member m
+        where a.ORDER_ID = b.id and a.RECEIVE_USER_ID=u.id(+) and m.id=b.member_id and b.id=#{orderId}
+    </select>
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsPayDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsPayDtl">
+        <id column="PAYDTLID" property="paydtlid" />
+        <result column="PAYID" property="payid" />
+        <result column="PRINTNO" property="printno" />
+        <result column="PRINTLINE" property="printline" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="SUPPLYERID" property="supplyerid" />
+        <result column="DEPTID" property="deptid" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="CORRECTFLAG" property="correctflag" />
+        <result column="CERTID" property="certid" />
+        <result column="CDATE" property="cdate" />
+        <result column="INVALIDFLAG" property="invalidflag" />
+        <result column="INVALIDMANID" property="invalidmanid" />
+        <result column="INVALIDDATE" property="invaliddate" />
+        <result column="INVNO" property="invno" />
+        <result column="GENFACSINGLEREBFLAG" property="genfacsinglerebflag" />
+        <result column="GENSUPSINGLEREBFLAG" property="gensupsinglerebflag" />
+        <result column="GENFACTOTALREBFLAG" property="genfactotalrebflag" />
+        <result column="GENSUPTOTALREBFLAG" property="gensuptotalrebflag" />
+        <result column="TRANSDOCNO" property="transdocno" />
+        <result column="PAYPLANDTLID" property="payplandtlid" />
+        <result column="ZX_PREPAYFLAG" property="zxPrepayflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PAYDTLID, PAYID, PRINTNO, PRINTLINE, GOODSID, GOODSQTY, UNITPRICE, SUPPLYERID, DEPTID, TOTAL_LINE, CORRECTFLAG, CERTID, CDATE, INVALIDFLAG, INVALIDMANID, INVALIDDATE, INVNO, GENFACSINGLEREBFLAG, GENSUPSINGLEREBFLAG, GENFACTOTALREBFLAG, GENSUPTOTALREBFLAG, TRANSDOCNO, PAYPLANDTLID, ZX_PREPAYFLAG
+    </sql>
+
+</mapper>

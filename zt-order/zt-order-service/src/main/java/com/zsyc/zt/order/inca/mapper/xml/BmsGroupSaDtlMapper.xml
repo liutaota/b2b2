@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsGroupSaDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsGroupSaDtl">
+        <id column="SALESDTLID" property="salesdtlid" />
+        <result column="SALESID" property="salesid" />
+        <result column="PRINTNO" property="printno" />
+        <result column="PRINTLINE" property="printline" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="TAXRATE" property="taxrate" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="GOODSUSEUNIT" property="goodsuseunit" />
+        <result column="GOODSUSEQTY" property="goodsuseqty" />
+        <result column="DISCOUNT" property="discount" />
+        <result column="PRICEID" property="priceid" />
+        <result column="LOWERFLAG" property="lowerflag" />
+        <result column="TIMEPRICEID" property="timepriceid" />
+        <result column="TIMEPRICE" property="timeprice" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="SETTLEQTY" property="settleqty" />
+        <result column="SETTLEMONEY" property="settlemoney" />
+        <result column="SETTLEFLAG" property="settleflag" />
+        <result column="WHOLESALEPRICE" property="wholesaleprice" />
+        <result column="RESALEPRICE" property="resaleprice" />
+        <result column="DTLMEMO" property="dtlmemo" />
+        <result column="ALLOWBACKFLAG" property="allowbackflag" />
+        <result column="CORRECTFLAG" property="correctflag" />
+        <result column="CERTID" property="certid" />
+        <result column="BACKWHYID" property="backwhyid" />
+        <result column="NOTAXMONEY" property="notaxmoney" />
+        <result column="LASTPRICEID" property="lastpriceid" />
+        <result column="LASTUNITPRICE" property="lastunitprice" />
+        <result column="BATCHID" property="batchid" />
+        <result column="LOTID" property="lotid" />
+        <result column="POSID" property="posid" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="STIOFLAG" property="stioflag" />
+        <result column="STIODATE" property="stiodate" />
+        <result column="LOTGROSS" property="lotgross" />
+        <result column="PRINTFLAG" property="printflag" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="REQPRINTQUFLAG" property="reqprintquflag" />
+        <result column="HASPRINTQUFLAG" property="hasprintquflag" />
+        <result column="OLDUNITPRICE" property="oldunitprice" />
+        <result column="REDCORRECTFLAG" property="redcorrectflag" />
+        <result column="REDSALESID" property="redsalesid" />
+        <result column="BATCHFLAG" property="batchflag" />
+        <result column="BATCHPRICE" property="batchprice" />
+        <result column="LASTDATE" property="lastdate" />
+        <result column="OLDDISCOUNT" property="olddiscount" />
+        <result column="EXAMPROFIT" property="examprofit" />
+        <result column="EXAMPRICE" property="examprice" />
+        <result column="PACKQTY" property="packqty" />
+        <result column="LOTGROSSRATE" property="lotgrossrate" />
+        <result column="LASTGOODSQTY" property="lastgoodsqty" />
+        <result column="ADDRATE" property="addrate" />
+        <result column="WHOLESALEFLAG" property="wholesaleflag" />
+        <result column="INVNO" property="invno" />
+        <result column="INVDATE" property="invdate" />
+        <result column="TAXBATCHPRICE" property="taxbatchprice" />
+        <result column="INVCODE" property="invcode" />
+        <result column="WMSSTATUS" property="wmsstatus" />
+        <result column="SENDFLAG" property="sendflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SALESDTLID, SALESID, PRINTNO, PRINTLINE, GOODSID, GOODSDTLID, TAXRATE, GOODSQTY, UNITPRICE, TOTAL_LINE, GOODSUSEUNIT, GOODSUSEQTY, DISCOUNT, PRICEID, LOWERFLAG, TIMEPRICEID, TIMEPRICE, STORAGEID, SETTLEQTY, SETTLEMONEY, SETTLEFLAG, WHOLESALEPRICE, RESALEPRICE, DTLMEMO, ALLOWBACKFLAG, CORRECTFLAG, CERTID, BACKWHYID, NOTAXMONEY, LASTPRICEID, LASTUNITPRICE, BATCHID, LOTID, POSID, GOODSSTATUSID, STIOFLAG, STIODATE, LOTGROSS, PRINTFLAG, PRINTMANID, PRINTDATE, REQPRINTQUFLAG, HASPRINTQUFLAG, OLDUNITPRICE, REDCORRECTFLAG, REDSALESID, BATCHFLAG, BATCHPRICE, LASTDATE, OLDDISCOUNT, EXAMPROFIT, EXAMPRICE, PACKQTY, LOTGROSSRATE, LASTGOODSQTY, ADDRATE, WHOLESALEFLAG, INVNO, INVDATE, TAXBATCHPRICE, INVCODE, WMSSTATUS, SENDFLAG
+    </sql>
+
+</mapper>

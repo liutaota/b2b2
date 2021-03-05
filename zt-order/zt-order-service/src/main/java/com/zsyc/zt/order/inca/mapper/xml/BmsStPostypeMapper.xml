@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStPostypeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStPostype">
+        <id column="POSTYPEID" property="postypeid" />
+        <result column="POSTYPENAME" property="postypename" />
+        <result column="GOODSUNITFLAG" property="goodsunitflag" />
+        <result column="POSTLONG" property="postlong" />
+        <result column="POSTWIDE" property="postwide" />
+        <result column="POSTHIGH" property="posthigh" />
+        <result column="POSTWEIGHT" property="postweight" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="GOODSUNITVOL" property="goodsunitvol" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        POSTYPEID, POSTYPENAME, GOODSUNITFLAG, POSTLONG, POSTWIDE, POSTHIGH, POSTWEIGHT, CREDATE, INPUTMANID, GOODSUNITVOL
+    </sql>
+
+</mapper>

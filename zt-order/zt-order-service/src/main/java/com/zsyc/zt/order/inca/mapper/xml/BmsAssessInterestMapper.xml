@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsAssessInterestMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsAssessInterest">
+        <id column="SEQID" property="seqid" />
+        <result column="USEMM" property="usemm" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="AWARDMONEY" property="awardmoney" />
+        <result column="PUNISHMONEY" property="punishmoney" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="SALERID" property="salerid" />
+        <result column="SALESID" property="salesid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SEQID, USEMM, ENTRYID, CUSTOMID, AWARDMONEY, PUNISHMONEY, CREDATE, INPUTMANID, SALERID, SALESID
+    </sql>
+
+</mapper>

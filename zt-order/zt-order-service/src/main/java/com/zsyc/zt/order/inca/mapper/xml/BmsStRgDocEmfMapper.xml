@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStRgDocEmfMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStRgDocEmf">
+        <id column="RGID" property="rgid" />
+        <result column="CREDATE" property="credate" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="STORERID" property="storerid" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="MEMO" property="memo" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="RGTYPE" property="rgtype" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="FREIGHTBILLNO" property="freightbillno" />
+        <result column="EMPLOYEEID" property="employeeid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="ISOFCHECKED" property="isofchecked" />
+        <result column="UPSTATUS" property="upstatus" />
+        <result column="SOURCEID" property="sourceid" />
+        <result column="LORDERID" property="lorderid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        RGID, CREDATE, COMPANYID, STORERID, INPUTMANID, MEMO, USESTATUS, RGTYPE, ENTRYID, FREIGHTBILLNO, EMPLOYEEID, AGENTID, ISOFCHECKED, UPSTATUS, SOURCEID, LORDERID
+    </sql>
+
+</mapper>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubGoodsImpTmpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubGoodsImpTmp">
+        <id column="TMPID" property="tmpid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="OPCODE" property="opcode" />
+        <result column="GOODSPINYIN" property="goodspinyin" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="CURRENCYNAME" property="currencyname" />
+        <result column="GOODSNO" property="goodsno" />
+        <result column="STANDARDNO" property="standardno" />
+        <result column="BARCODE" property="barcode" />
+        <result column="GOODSTYPE" property="goodstype" />
+        <result column="GOODSUNIT" property="goodsunit" />
+        <result column="FIRSTAPPROVEDOCNO" property="firstapprovedocno" />
+        <result column="APPROVEDOCNO" property="approvedocno" />
+        <result column="REGISTDOCNO" property="registdocno" />
+        <result column="STANDARDTYPE" property="standardtype" />
+        <result column="FACTORYNAME" property="factoryname" />
+        <result column="VALIDPERIOD" property="validperiod" />
+        <result column="RESPPERIOD" property="respperiod" />
+        <result column="PERIODUNIT" property="periodunit" />
+        <result column="PRODAREA" property="prodarea" />
+        <result column="SUPPLYTAXRATE" property="supplytaxrate" />
+        <result column="SALESTAXRATE" property="salestaxrate" />
+        <result column="FIXPRICETYPE" property="fixpricetype" />
+        <result column="STORAGECONDITION" property="storagecondition" />
+        <result column="TRANSCONDITION" property="transcondition" />
+        <result column="COMBINFLAG" property="combinflag" />
+        <result column="MINREQGOODSQTY" property="minreqgoodsqty" />
+        <result column="FINANCENO" property="financeno" />
+        <result column="OTCFLAG" property="otcflag" />
+        <result column="GMPFLAG" property="gmpflag" />
+        <result column="PATENTFLAG" property="patentflag" />
+        <result column="SECURITYFLAG" property="securityflag" />
+        <result column="CHINESEFLAG" property="chineseflag" />
+        <result column="MEDICINETYPE" property="medicinetype" />
+        <result column="IMPORTFLAG" property="importflag" />
+        <result column="DRUGFLAG" property="drugflag" />
+        <result column="POISONFLAG" property="poisonflag" />
+        <result column="BIOMEDFLAG" property="biomedflag" />
+        <result column="BACTERINFLAG" property="bacterinflag" />
+        <result column="COMMONFLAG" property="commonflag" />
+        <result column="MEDICINEFLAG" property="medicineflag" />
+        <result column="BUSISCOPE" property="busiscope" />
+        <result column="SUBGOODSUNIT1" property="subgoodsunit1" />
+        <result column="SUBGOODSQTY1" property="subgoodsqty1" />
+        <result column="BASEUNITQTY1" property="baseunitqty1" />
+        <result column="UNIT2WEIGHT" property="unit2weight" />
+        <result column="UNIT2VOL" property="unit2vol" />
+        <result column="SUBGOODSUNIT2" property="subgoodsunit2" />
+        <result column="SUBGOODSQTY2" property="subgoodsqty2" />
+        <result column="BASEUNITQTY2" property="baseunitqty2" />
+        <result column="IMPFLAG" property="impflag" />
+        <result column="ERRORMESSAGE" property="errormessage" />
+        <result column="FACTORYID" property="factoryid" />
+        <result column="FIXPRICETYPEID" property="fixpricetypeid" />
+        <result column="MEDICINETYPEID" property="medicinetypeid" />
+        <result column="BUSISCOPEID" property="busiscopeid" />
+        <result column="STORAGECONDITIONID" property="storageconditionid" />
+        <result column="TRANSCONDITIONID" property="transconditionid" />
+        <result column="DOCID" property="docid" />
+        <result column="UNITISDTL" property="unitisdtl" />
+        <result column="UNITQTY" property="unitqty" />
+        <result column="UNITWEIGHT" property="unitweight" />
+        <result column="UNITVOL" property="unitvol" />
+        <result column="UNIT1" property="unit1" />
+        <result column="UNIT1ISDTL" property="unit1isdtl" />
+        <result column="UNIT1WEIGHT" property="unit1weight" />
+        <result column="UNIT1VOL" property="unit1vol" />
+        <result column="UNIT2" property="unit2" />
+        <result column="UNIT2ISDTL" property="unit2isdtl" />
+        <result column="ACCFLAG" property="accflag" />
+        <result column="DEFAULTAGTFLAG" property="defaultagtflag" />
+        <result column="ACCFLAGID" property="accflagid" />
+        <result column="ZXCOLNUM1" property="zxcolnum1" />
+        <result column="ZXCOLNUM2" property="zxcolnum2" />
+        <result column="ZXCOLNUM3" property="zxcolnum3" />
+        <result column="ZXCOLNUM4" property="zxcolnum4" />
+        <result column="ZXCOLNUM5" property="zxcolnum5" />
+        <result column="ZXCOLNUM6" property="zxcolnum6" />
+        <result column="ZXCOLNUM7" property="zxcolnum7" />
+        <result column="ZXCOLNUM8" property="zxcolnum8" />
+        <result column="ZXCOLNUM9" property="zxcolnum9" />
+        <result column="ZXCOLNUM10" property="zxcolnum10" />
+        <result column="DEFAULTAGTFLAGID" property="defaultagtflagid" />
+        <result column="VARIETYNAME" property="varietyname" />
+        <result column="VARIETYDESCNAME" property="varietydescname" />
+        <result column="VARIETYID" property="varietyid" />
+        <result column="VARIETYDESCID" property="varietydescid" />
+        <result column="GSPFLAG" property="gspflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GOODSID, OPCODE, GOODSPINYIN, GOODSNAME, CURRENCYNAME, GOODSNO, STANDARDNO, BARCODE, GOODSTYPE, GOODSUNIT, FIRSTAPPROVEDOCNO, APPROVEDOCNO, REGISTDOCNO, STANDARDTYPE, FACTORYNAME, VALIDPERIOD, RESPPERIOD, PERIODUNIT, PRODAREA, SUPPLYTAXRATE, SALESTAXRATE, FIXPRICETYPE, STORAGECONDITION, TRANSCONDITION, COMBINFLAG, MINREQGOODSQTY, FINANCENO, OTCFLAG, GMPFLAG, PATENTFLAG, SECURITYFLAG, CHINESEFLAG, MEDICINETYPE, IMPORTFLAG, DRUGFLAG, POISONFLAG, BIOMEDFLAG, BACTERINFLAG, COMMONFLAG, MEDICINEFLAG, BUSISCOPE, TMPID, SUBGOODSUNIT1, SUBGOODSQTY1, BASEUNITQTY1, UNIT2WEIGHT, UNIT2VOL, SUBGOODSUNIT2, SUBGOODSQTY2, BASEUNITQTY2, IMPFLAG, ERRORMESSAGE, FACTORYID, FIXPRICETYPEID, MEDICINETYPEID, BUSISCOPEID, STORAGECONDITIONID, TRANSCONDITIONID, DOCID, UNITISDTL, UNITQTY, UNITWEIGHT, UNITVOL, UNIT1, UNIT1ISDTL, UNIT1WEIGHT, UNIT1VOL, UNIT2, UNIT2ISDTL, ACCFLAG, DEFAULTAGTFLAG, ACCFLAGID, ZXCOLNUM1, ZXCOLNUM2, ZXCOLNUM3, ZXCOLNUM4, ZXCOLNUM5, ZXCOLNUM6, ZXCOLNUM7, ZXCOLNUM8, ZXCOLNUM9, ZXCOLNUM10, DEFAULTAGTFLAGID, VARIETYNAME, VARIETYDESCNAME, VARIETYID, VARIETYDESCID, GSPFLAG
+    </sql>
+
+</mapper>

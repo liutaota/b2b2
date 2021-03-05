@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubImpSuDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubImpSuDoc">
+        <id column="DTLID" property="dtlid" />
+        <result column="DOCID" property="docid" />
+        <result column="IMPSTATUS" property="impstatus" />
+        <result column="ERRORMESSAGE" property="errormessage" />
+        <result column="NEWID" property="newid" />
+        <result column="ENTRYNAME" property="entryname" />
+        <result column="CREDATE" property="credate" />
+        <result column="SUPPLYNAME" property="supplyname" />
+        <result column="AGENTNAME" property="agentname" />
+        <result column="DELIVERDATE" property="deliverdate" />
+        <result column="ARRIVEEDATE" property="arriveedate" />
+        <result column="TRANSDOCNO" property="transdocno" />
+        <result column="FMNAME" property="fmname" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="CONFIRMMANNAME" property="confirmmanname" />
+        <result column="INPUTMANNAME" property="inputmanname" />
+        <result column="DOCMEMO" property="docmemo" />
+        <result column="STORAGENAME" property="storagename" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="CURRENCYNAME" property="currencyname" />
+        <result column="GOODSTYPE" property="goodstype" />
+        <result column="GOODSUNIT" property="goodsunit" />
+        <result column="FACTORYNAME" property="factoryname" />
+        <result column="PRODAREA" property="prodarea" />
+        <result column="SUPPLYERNAME" property="supplyername" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="TAXRATE" property="taxrate" />
+        <result column="COSTINGPRICE" property="costingprice" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="COSTMONEY" property="costmoney" />
+        <result column="PAYMETHODNAME" property="paymethodname" />
+        <result column="PAYLIMIT" property="paylimit" />
+        <result column="DTLMEMO" property="dtlmemo" />
+        <result column="ZXCOLUMN01" property="zxcolumn01" />
+        <result column="ZXCOLUMN02" property="zxcolumn02" />
+        <result column="ZXCOLUMN03" property="zxcolumn03" />
+        <result column="ZXCOLUMN04" property="zxcolumn04" />
+        <result column="ZXCOLUMN05" property="zxcolumn05" />
+        <result column="ZXCOLUMN06" property="zxcolumn06" />
+        <result column="ZXCOLUMN07" property="zxcolumn07" />
+        <result column="ZXCOLUMN08" property="zxcolumn08" />
+        <result column="ZXCOLUMN09" property="zxcolumn09" />
+        <result column="ZXCOLUMN10" property="zxcolumn10" />
+        <result column="ZXCOLUMN11" property="zxcolumn11" />
+        <result column="ZXCOLUMN12" property="zxcolumn12" />
+        <result column="ZXCOLUMN13" property="zxcolumn13" />
+        <result column="ZXCOLUMN14" property="zxcolumn14" />
+        <result column="ZXCOLUMN15" property="zxcolumn15" />
+        <result column="ZXCOLUMN16" property="zxcolumn16" />
+        <result column="ZXCOLUMN17" property="zxcolumn17" />
+        <result column="ZXCOLUMN18" property="zxcolumn18" />
+        <result column="ZXCOLUMN19" property="zxcolumn19" />
+        <result column="ZXCOLUMN20" property="zxcolumn20" />
+        <result column="BATCHID" property="batchid" />
+        <result column="DEPTID" property="deptid" />
+        <result column="PAYMETHOD" property="paymethod" />
+        <result column="FMID" property="fmid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="SUPPLYERID" property="supplyerid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="CONFIRMMANID" property="confirmmanid" />
+        <result column="EXCHANGE" property="exchange" />
+        <result column="CONTACTMAN" property="contactman" />
+        <result column="CONTACTID" property="contactid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DOCID, DTLID, IMPSTATUS, ERRORMESSAGE, NEWID, ENTRYNAME, CREDATE, SUPPLYNAME, AGENTNAME, DELIVERDATE, ARRIVEEDATE, TRANSDOCNO, FMNAME, CONFIRMDATE, CONFIRMMANNAME, INPUTMANNAME, DOCMEMO, STORAGENAME, GOODSNAME, CURRENCYNAME, GOODSTYPE, GOODSUNIT, FACTORYNAME, PRODAREA, SUPPLYERNAME, GOODSQTY, UNITPRICE, TAXRATE, COSTINGPRICE, TOTAL_LINE, COSTMONEY, PAYMETHODNAME, PAYLIMIT, DTLMEMO, ZXCOLUMN01, ZXCOLUMN02, ZXCOLUMN03, ZXCOLUMN04, ZXCOLUMN05, ZXCOLUMN06, ZXCOLUMN07, ZXCOLUMN08, ZXCOLUMN09, ZXCOLUMN10, ZXCOLUMN11, ZXCOLUMN12, ZXCOLUMN13, ZXCOLUMN14, ZXCOLUMN15, ZXCOLUMN16, ZXCOLUMN17, ZXCOLUMN18, ZXCOLUMN19, ZXCOLUMN20, BATCHID, DEPTID, PAYMETHOD, FMID, AGENTID, ENTRYID, INPUTMANID, SUPPLYID, STORAGEID, GOODSID, SUPPLYERID, GOODSDTLID, CONFIRMMANID, EXCHANGE, CONTACTMAN, CONTACTID
+    </sql>
+
+</mapper>

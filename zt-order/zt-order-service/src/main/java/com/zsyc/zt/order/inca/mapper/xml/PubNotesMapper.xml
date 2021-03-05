@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubNotesMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubNotes">
+        <id column="SEQID" property="seqid" />
+        <result column="NOTESNO" property="notesno" />
+        <result column="CREDATE" property="credate" />
+        <result column="ENDDATE" property="enddate" />
+        <result column="ACCDATE" property="accdate" />
+        <result column="MONEY" property="money" />
+        <result column="BANKID" property="bankid" />
+        <result column="DEPT" property="dept" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="COMEDATE" property="comedate" />
+        <result column="ENDORSEID" property="endorseid" />
+        <result column="ENDORSEDATE" property="endorsedate" />
+        <result column="DISCOUNTDATE" property="discountdate" />
+        <result column="DISCOUNTEMPID" property="discountempid" />
+        <result column="CASHEMPID" property="cashempid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="NOTESTYPE" property="notestype" />
+        <result column="CASHDATE" property="cashdate" />
+        <result column="ENTRYID" property="entryid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SEQID, NOTESNO, CREDATE, ENDDATE, ACCDATE, MONEY, BANKID, DEPT, COMPANYID, COMEDATE, ENDORSEID, ENDORSEDATE, DISCOUNTDATE, DISCOUNTEMPID, CASHEMPID, USESTATUS, NOTESTYPE, CASHDATE, ENTRYID
+    </sql>
+
+</mapper>

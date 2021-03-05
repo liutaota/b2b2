@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSettleAccountMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSettleAccount">
+        <id column="USEDAY" property="useday" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="PLACEPOINTID" property="placepointid" />
+        <result column="CHECKMEMO" property="checkmemo" />
+        <result column="SETTLECERTID" property="settlecertid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="HANDINCHECKFLAG" property="handincheckflag" />
+        <result column="DAYCUTDATE" property="daycutdate" />
+        <result column="SASETCERTFLAG" property="sasetcertflag" />
+        <result column="DATACUTMANID" property="datacutmanid" />
+        <result column="DIAGNOSISCERTFLAG" property="diagnosiscertflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        USEDAY, USESTATUS, PLACEPOINTID, CHECKMEMO, SETTLECERTID, ENTRYID, HANDINCHECKFLAG, DAYCUTDATE, SASETCERTFLAG, DATACUTMANID, DIAGNOSISCERTFLAG
+    </sql>
+
+</mapper>

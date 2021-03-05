@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSkIoDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSkIoDoc">
+        <id column="SEQID" property="seqid" />
+        <result column="CERTID" property="certid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="DEBITQTY" property="debitqty" />
+        <result column="DEBITMONEY" property="debitmoney" />
+        <result column="CREDITQTY" property="creditqty" />
+        <result column="CREDITMONEY" property="creditmoney" />
+        <result column="SOURCEID" property="sourceid" />
+        <result column="SOURCETABLE" property="sourcetable" />
+        <result column="BUSIDATE" property="busidate" />
+        <result column="SUMMARY" property="summary" />
+        <result column="NEEDCALC" property="needcalc" />
+        <result column="COSTPRICE" property="costprice" />
+        <result column="TRANSACTIONID" property="transactionid" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="INOUTID" property="inoutid" />
+        <result column="SUADJFLAG" property="suadjflag" />
+        <result column="STOCKID" property="stockid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="COMPANYNAME" property="companyname" />
+        <result column="LOGICMM" property="logicmm" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="COSTOBJID" property="costobjid" />
+        <result column="CONTACTID" property="contactid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SEQID, CERTID, STORAGEID, GOODSID, BATCHID, DEBITQTY, DEBITMONEY, CREDITQTY, CREDITMONEY, SOURCEID, SOURCETABLE, BUSIDATE, SUMMARY, NEEDCALC, COSTPRICE, TRANSACTIONID, COMEFROM, INOUTID, SUADJFLAG, STOCKID, COMPANYID, COMPANYNAME, LOGICMM, ENTRYID, AGENTID, COSTOBJID, CONTACTID
+    </sql>
+
+</mapper>

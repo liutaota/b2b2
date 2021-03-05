@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStReceiveRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStReceiveRecord">
+        <id column="RECORDID" property="recordid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="REID" property="reid" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="STORERID" property="storerid" />
+        <result column="MEMO" property="memo" />
+        <result column="RETYPE" property="retype" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="FREIGHTBILLNO" property="freightbillno" />
+        <result column="TRANSPORTID" property="transportid" />
+        <result column="TRANMETHOD" property="tranmethod" />
+        <result column="STARTPLACE" property="startplace" />
+        <result column="STARTDATE" property="startdate" />
+        <result column="REACHDATE" property="reachdate" />
+        <result column="REDTLID" property="redtlid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="REALPRICE" property="realprice" />
+        <result column="LOWESTPRICE" property="lowestprice" />
+        <result column="LASTPRICE" property="lastprice" />
+        <result column="SUPPLYLASTPRICE" property="supplylastprice" />
+        <result column="SUPPLYERID" property="supplyerid" />
+        <result column="LIMITID" property="limitid" />
+        <result column="LIMITCUSTOMERSETID" property="limitcustomersetid" />
+        <result column="BANNEDCUSTOMERID" property="bannedcustomerid" />
+        <result column="BANNEDCUSTOMERSETID" property="bannedcustomersetid" />
+        <result column="SUCONDTLID" property="sucondtlid" />
+        <result column="FETCHDTLID" property="fetchdtlid" />
+        <result column="HASPERSENDFLAG" property="haspersendflag" />
+        <result column="PERSENDINFO" property="persendinfo" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="LOTID" property="lotid" />
+        <result column="POSID" property="posid" />
+        <result column="POSMEMO" property="posmemo" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="PACKQUALITY" property="packquality" />
+        <result column="FACEQUALITY" property="facequality" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="SUCONGOODSQTY" property="sucongoodsqty" />
+        <result column="SALERID" property="salerid" />
+        <result column="DTLMEMO" property="dtlmemo" />
+        <result column="UNQUALIFIEDMETHOD" property="unqualifiedmethod" />
+        <result column="UNQUALTFIEDMEMO" property="unqualtfiedmemo" />
+        <result column="BATCHID" property="batchid" />
+        <result column="BACKWHYID" property="backwhyid" />
+        <result column="PACKQTY" property="packqty" />
+        <result column="WHOLEQTY" property="wholeqty" />
+        <result column="SCATTERQTY" property="scatterqty" />
+        <result column="UNQUALIFIEDQTY" property="unqualifiedqty" />
+        <result column="UNWHOLEQTY" property="unwholeqty" />
+        <result column="UNSCATTERQTY" property="unscatterqty" />
+        <result column="UNPACKQTY" property="unpackqty" />
+        <result column="UNINTRUSTQTY" property="unintrustqty" />
+        <result column="UNINTRUSTWHOLEQTY" property="unintrustwholeqty" />
+        <result column="UNINTRUSTSCATTERQTY" property="unintrustscatterqty" />
+        <result column="UNINTRUSTPACKQTY" property="unintrustpackqty" />
+        <result column="UNREFUSEQTY" property="unrefuseqty" />
+        <result column="UNREFUSEWHOLEQTY" property="unrefusewholeqty" />
+        <result column="UNREFUSESCATTERQTY" property="unrefusescatterqty" />
+        <result column="UNREFUSEPACKQTY" property="unrefusepackqty" />
+        <result column="FETCHGOODSQTY" property="fetchgoodsqty" />
+        <result column="STARTTEMPERATURE" property="starttemperature" />
+        <result column="REACHTEMPERATURE" property="reachtemperature" />
+        <result column="TEMPERATURESTATUS" property="temperaturestatus" />
+        <result column="COLDEQUIP" property="coldequip" />
+        <result column="INVALIDDATE" property="invaliddate" />
+        <result column="INVALIDMANID" property="invalidmanid" />
+        <result column="RECIEVEQTY" property="recieveqty" />
+        <result column="RECIEVEPACKQTY" property="recievepackqty" />
+        <result column="CONTACTID" property="contactid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        RECORDID, USESTATUS, REID, CREDATE, INPUTMANID, COMPANYID, STORERID, MEMO, RETYPE, ENTRYID, AGENTID, FREIGHTBILLNO, TRANSPORTID, TRANMETHOD, STARTPLACE, STARTDATE, REACHDATE, REDTLID, STORAGEID, GOODSID, GOODSQTY, REALPRICE, LOWESTPRICE, LASTPRICE, SUPPLYLASTPRICE, SUPPLYERID, LIMITID, LIMITCUSTOMERSETID, BANNEDCUSTOMERID, BANNEDCUSTOMERSETID, SUCONDTLID, FETCHDTLID, HASPERSENDFLAG, PERSENDINFO, GOODSDTLID, LOTID, POSID, POSMEMO, GOODSSTATUSID, PACKQUALITY, FACEQUALITY, UNITPRICE, SUCONGOODSQTY, SALERID, DTLMEMO, UNQUALIFIEDMETHOD, UNQUALTFIEDMEMO, BATCHID, BACKWHYID, PACKQTY, WHOLEQTY, SCATTERQTY, UNQUALIFIEDQTY, UNWHOLEQTY, UNSCATTERQTY, UNPACKQTY, UNINTRUSTQTY, UNINTRUSTWHOLEQTY, UNINTRUSTSCATTERQTY, UNINTRUSTPACKQTY, UNREFUSEQTY, UNREFUSEWHOLEQTY, UNREFUSESCATTERQTY, UNREFUSEPACKQTY, FETCHGOODSQTY, STARTTEMPERATURE, REACHTEMPERATURE, TEMPERATURESTATUS, COLDEQUIP, INVALIDDATE, INVALIDMANID, RECIEVEQTY, RECIEVEPACKQTY, CONTACTID
+    </sql>
+
+</mapper>

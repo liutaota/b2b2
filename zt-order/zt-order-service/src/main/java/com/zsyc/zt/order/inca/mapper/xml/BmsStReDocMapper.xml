@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStReDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStReDoc">
+        <id column="REDOCID" property="redocid" />
+        <result column="RETYPE" property="retype" />
+        <result column="FREIGHTBILLNO" property="freightbillno" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="STORERID" property="storerid" />
+        <result column="MEMO" property="memo" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="TWOINVOICEINFLAG" property="twoinvoiceinflag" />
+        <result column="FILECOUNT" property="filecount" />
+        <result column="PLACERETURNID" property="placereturnid" />
+        <result column="ZX_MEMO" property="zxMemo" />
+        <result column="ZX_RECMANID" property="zxRecmanid" />
+        <result column="ZX_RECDATE" property="zxRecdate" />
+        <result column="JD_ORDER_ID" property="jdOrderId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        REDOCID, RETYPE, FREIGHTBILLNO, COMPANYID, AGENTID, CONTACTID, STORERID, MEMO, INPUTMANID, CREDATE, ENTRYID, USESTATUS, TWOINVOICEINFLAG, FILECOUNT, PLACERETURNID, ZX_MEMO, ZX_RECMANID, ZX_RECDATE, JD_ORDER_ID
+    </sql>
+
+</mapper>

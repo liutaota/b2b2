@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubCompanyGoodsLstMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubCompanyGoodsLst">
+        <id column="SEQID" property="seqid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSNO" property="goodsno" />
+        <result column="AGENTID" property="agentid" />
+        <result column="SUPAGENTID" property="supagentid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SEQID, COMPANYID, GOODSID, GOODSNO, AGENTID, SUPAGENTID
+    </sql>
+
+</mapper>

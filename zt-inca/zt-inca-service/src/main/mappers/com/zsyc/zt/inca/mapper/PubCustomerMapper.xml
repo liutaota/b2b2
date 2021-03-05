@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.PubCustomerMapper">
+
+    <select id="getLongestOverdraftDay" resultType="java.lang.Integer">
+        SELECT ROUND(SYSDATE - NVL(MIN(g.credate),SYSDATE)) day_max
+                 FROM BMS_SA_SETTLE_DOC G
+                WHERE NOT EXISTS (
+                       SELECT 1
+                         FROM BMS_SA_SETTLE_DOC X,
+                               BMS_SA_SETTLE_DTL Y,
+                               (SELECT SUM(T.TOTAL_LINE) TOTAL_REC,
+                                       U.SASETTLEDTLID
+                                  FROM BMS_SA_REC_DTL  T,
+                                       BMS_SA_SETTOREC U
+                                 WHERE T.SARECDTLID = U.SARECDTLID
+                                 GROUP BY U.SASETTLEDTLID) W
+                        WHERE X.CUSTOMID = #{customId}
+                          AND X.ENTRYID = #{entryId}
+                          AND X.SASETTLEID = Y.SASETTLEID
+                          AND Y.SASETTLEDTLID = W.SASETTLEDTLID
+                          AND X.SASETTLEID = G.SASETTLEID
+                          AND Y.TOTAL_LINE - W.TOTAL_REC = 0)
+                  AND G.TOTAL >0
+                  AND G.CUSTOMID = #{customId}
+                  AND G.ENTRYID = #{entryId}
+    </select>
+    <select id="getAmountNoSettle" resultType="java.lang.Double">
+        SELECT nvl(SUM(A.TOTAL),0) total_no_settle
+                         FROM BMS_SA_DOC A,
+                        BMS_SA_DTL B
+                        WHERE A.SALESID = B.SALESID
+                          AND A.ENTRYID = #{entryId}
+                          AND A.CUSTOMID = #{customId}
+                          AND A.USESTATUS = 1
+                          AND NOT EXISTS (SELECT 1
+                                 FROM BMS_SA_DOCTOSET X
+                                WHERE X.SALESDTLID = B.SALESDTLID)
+
+
+    </select>
+    <select id="getAmountSettle" resultType="java.lang.Double">
+        SELECT NVL(SUM(B.TOTAL_LINE), 0) TOTAL
+                       FROM BMS_SA_SETTLE_DOC A,
+                            BMS_SA_SETTLE_DTL B
+                      WHERE A.SASETTLEID = B.SASETTLEID
+                        AND A.ENTRYID = #{entryId}
+                        AND A.CUSTOMID = #{customId}
+    </select>
+    <select id="getAmountWriteOff" resultType="java.lang.Double">
+         SELECT SUM(A.TOTAL_LINE) TOTAL_REC
+                         FROM BMS_SA_REC_DTL A
+                        WHERE EXISTS
+                        (SELECT 1
+                                 FROM BMS_SA_SETTLE_DOC X,
+                                      BMS_SA_SETTLE_DTL Y,
+                                      BMS_SA_SETTOREC   Z
+                                WHERE X.SASETTLEID = Y.SASETTLEID
+                                  AND Y.SASETTLEDTLID = Z.SASETTLEDTLID
+                                  AND A.SARECDTLID = Z.SARECDTLID
+                                  AND X.ENTRYID =#{entryId}
+                                  AND X.CUSTOMID =#{customId})
+
+    </select>
+    <select id="getCustomInfo"  parameterType="Long"  resultType="com.zsyc.zt.inca.vo.CustomerVo">
+    select
+        customid,
+        customname,
+        fmid,
+        fmrate,
+        settletypeid
+    from
+        pub_entry_customer_v
+    where
+        nvl(gspusestatus,0)=1
+        and
+        entryid=1
+        and customid=#{customId}
+    </select>
+    <select id="selectBusinessScopeByCustomId" resultType="com.zsyc.zt.inca.vo.CustomBusinessScopeVo">
+        select * from (select distinct a.companyid custom_id, --客户ID
+                        c.companyname custom_name, --客户名称
+                        a.scopedefid scope_Id, --经营范围ID
+                        b.classname  scope_name, --经营范围名称
+                        a.licenseid license_id,  --客户证照ID
+                        f.licensename license_name--客户证照名称
+          from gsp_company_managerage a,
+               pub_goods_class        b,
+               pub_company            c,
+               gsp_company_license    e,
+               gsp_license_type       f
+         where a.scopedefid = b.classid(+)
+           and a.companyid = c.companyid
+           and a.licenseid =e.licenseid
+           and e.licensetypeid = f.licensetypeid(+)
+           and e.entryid=1
+           and e.usestatus = 1
+           and e.validenddate >=trunc(sysdate)
+          and a.companyid not in (select placepointid from gpcs_placepoint)
+        union all
+        select distinct a.companyid custom_id, --客户ID
+                        c.companyname custom_Name, --客户名称
+                        a.scopedefid scope_id, --经营范围ID
+                        b.classname  scope_name, --经营范围名称
+                        a.licenseid license_id,  --客户证照ID
+                        f.licensename license_name--客户证照名称
+          from gsp_company_managerage a,
+               pub_goods_class        b,
+               pub_company            c,
+               gsp_company_license    e,
+               gsp_license_type       f
+         where a.scopedefid = b.classid(+)
+           and a.companyid = c.companyid
+           and a.licenseid =e.licenseid
+           and e.licensetypeid = f.licensetypeid(+)
+           and e.entryid=3
+           and a.companyid in (select placepointid from gpcs_placepoint) )  a where a.custom_Id = #{customId}
+
+
+    </select>
+    <select id="selectCustomLicenseByCustomId" resultType="com.zsyc.zt.inca.vo.CustomLicenseVo">
+        select c.licenseid license_id,            --证照ID
+               c.companyid custome_id, --客户ID
+               c.licensename license_name,          --证照名称
+               c.signdate sign_date,             --签发日期
+               c.validondate valid_begin_date,
+               c.validenddate  valid_end_date        --效期至
+        from (
+                 select a.licenseid,
+                        a.companyid,
+                        case
+                            when a.licensename is null then
+                                'null '
+                            else
+                                a.licensename
+                            end            licensename,
+                        a.signdate,
+                        a.validondate,
+                        a.validenddate + 1 validenddate,
+                        c.approvedate,
+                        a.sys_modifydate
+                 from gsp_company_license_v a,
+                      (select a.licenseid,
+                              a.approvedate
+                       from gsp_license_alter_approve a,
+                            (select b.licenseid,
+                                    max(b.approvedate) approvedate
+                             from gsp_license_alter_approve b
+                             where b.entryid in (1, 3)
+                             group by b.licenseid) c
+                       where a.entryid in (1, 3)
+                         and a.licenseid = c.licenseid(+)
+                         and a.approvedate = c.approvedate) c
+                 where a.entryid = 1
+                   and a.licenseid = c.licenseid(+)
+                   and a.companyid not in (select placepointid from gpcs_placepoint)
+                   and a.usestatus = 1
+                   and a.validenddate is not null
+                 union all
+                 select a.licenseid,
+                        a.companyid,
+                        case
+                            when a.licensename is null then
+                                'null '
+                            else
+                                a.licensename
+                            end            licensename,
+                        a.signdate,
+                        a.validondate,
+                        a.validenddate + 1 validenddate,
+                        c.approvedate,
+                        a.sys_modifydate
+                 from gsp_company_license_v a,
+                      (select a.licenseid,
+                              a.approvedate
+                       from gsp_license_alter_approve a,
+                            (select b.licenseid,
+                                    max(b.approvedate) approvedate
+                             from gsp_license_alter_approve b
+                             where b.entryid in (1, 3)
+                             group by b.licenseid) c
+                       where a.entryid in (1, 3)
+                         and a.licenseid = c.licenseid(+)
+                         and a.approvedate = c.approvedate) c
+                 where a.entryid = 3
+                   and a.licenseid = c.licenseid(+)
+                   and a.companyid in (select placepointid from gpcs_placepoint)
+                   and a.usestatus = 1
+                   and a.validenddate is not null) c
+                    where 1 = 1 and c.companyid = #{customId}
+    </select>
+    <select id="getSettletypeid" resultType="java.lang.Integer">
+         SELECT B.SETTLETYPEID
+          FROM
+               PUB_ENTRY_CUSTOMER B
+         WHERE 1  =1
+            and    B.CUSTOMID = #{customId}
+           AND B.ENTRYID = #{entryId}
+    </select>
+    <select id="selectBusinessScopeByCustomIdAndLicenseType"
+            resultType="com.zsyc.zt.inca.vo.CustomBusinessScopeVo">
+        select c.licenseid license_id,            --证照ID
+               c.companyid custome_id, --客户ID
+               c.licensename license_name,          --证照名称
+               c.signdate sign_date,             --签发日期
+               c.validondate valid_begin_date,
+               c.validenddate  valid_end_date        --效期至
+        from (
+                 select a.licenseid,
+                        a.companyid,
+                        case
+                            when a.licensename is null then
+                                'null '
+                            else
+                                a.licensename
+                            end            licensename,
+                        a.signdate,
+                        a.validondate,
+                        a.validenddate + 1 validenddate,
+                        c.approvedate,
+                        a.sys_modifydate
+                 from gsp_company_license_v a,
+                      (select a.licenseid,
+                              a.approvedate
+                       from gsp_license_alter_approve a,
+                            (select b.licenseid,
+                                    max(b.approvedate) approvedate
+                             from gsp_license_alter_approve b
+                             where b.entryid in (1, 3)
+                             group by b.licenseid) c
+                       where a.entryid in (1, 3)
+                         and a.licenseid = c.licenseid(+)
+                         and a.approvedate = c.approvedate) c
+                 where a.entryid = 1
+                   and a.licensetypeid = #{licenseType}
+                   and a.licenseid = c.licenseid(+)
+                   and a.companyid not in (select placepointid from gpcs_placepoint)
+                   and a.usestatus = 1
+                   and a.validenddate is not null
+                 union all
+                 select a.licenseid,
+                        a.companyid,
+                        case
+                            when a.licensename is null then
+                                'null '
+                            else
+                                a.licensename
+                            end            licensename,
+                        a.signdate,
+                        a.validondate,
+                        a.validenddate + 1 validenddate,
+                        c.approvedate,
+                        a.sys_modifydate
+                 from gsp_company_license_v a,
+                      (select a.licenseid,
+                              a.approvedate
+                       from gsp_license_alter_approve a,
+                            (select b.licenseid,
+                                    max(b.approvedate) approvedate
+                             from gsp_license_alter_approve b
+                             where b.entryid in (1, 3)
+                             group by b.licenseid) c
+                       where a.entryid in (1, 3)
+                         and a.licenseid = c.licenseid(+)
+                         and a.approvedate = c.approvedate) c
+                 where a.entryid = 3
+                   and a.licensetypeid = #{licenseType}
+                   and a.licenseid = c.licenseid(+)
+                   and a.companyid in (select placepointid from gpcs_placepoint)
+                   and a.usestatus = 1
+                   and a.validenddate is not null) c
+                    where 1 = 1 and c.companyid = #{customId}
+
+    </select>
+    <select id="selectBusinessScopeByCustomIdAndLicenseId"
+            resultType="com.zsyc.zt.inca.vo.CustomBusinessScopeVo">
+        select * from (select distinct a.companyid custom_id, --客户ID
+        c.companyname custom_name, --客户名称
+        a.scopedefid scope_Id, --经营范围ID
+        b.classname  scope_name, --经营范围名称
+        a.licenseid license_id,  --客户证照ID
+        f.licensename license_name--客户证照名称
+        from gsp_company_managerage a,
+        pub_goods_class        b,
+        pub_company            c,
+        gsp_company_license    e,
+        gsp_license_type       f
+        where a.scopedefid = b.classid(+)
+        and a.companyid = c.companyid
+        and a.licenseid =e.licenseid
+        and a.licenseid=#{licenseId}
+        and e.licensetypeid = f.licensetypeid(+)
+        and e.entryid=1
+        and e.usestatus = 1
+        and e.validenddate >=trunc(sysdate)
+        and a.companyid not in (select placepointid from gpcs_placepoint)
+        union all
+        select distinct a.companyid custom_id, --客户ID
+        c.companyname custom_Name, --客户名称
+        a.scopedefid scope_id, --经营范围ID
+        b.classname  scope_name, --经营范围名称
+        a.licenseid license_id,  --客户证照ID
+        f.licensename license_name--客户证照名称
+        from gsp_company_managerage a,
+        pub_goods_class        b,
+        pub_company            c,
+        gsp_company_license    e,
+        gsp_license_type       f
+        where a.scopedefid = b.classid(+)
+        and a.companyid = c.companyid
+        and a.licenseid =e.licenseid
+        and a.licenseid=#{licenseId}
+        and e.licensetypeid = f.licensetypeid(+)
+        and e.entryid=3
+        and a.companyid in (select placepointid from gpcs_placepoint) )  a where a.custom_Id = #{customId}
+    </select>
+    <select id="getByCustomId" resultType="com.zsyc.zt.inca.vo.CustomerVo">
+        select a.customid, b.customname, a.sausestatus, a.gspusestatus
+          from pub_entry_customer a, pub_customer b
+         where a.customid = b.customid
+           and a.customid = #{customId}
+           and a.entryid = #{entryId}
+    </select>
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.ActivityGoodsMapper">
+
+    <select id="getActivityGoodsByAsId" resultType="com.zsyc.zt.b2b.entity.ActivityGoods">
+        select * from activity_goods where AS_ID=#{asId} and is_use=1 and ERP_GOODS_ID in
+        <foreach collection="erpGoodsId" item="item" open="(" close=")" separator=",">
+            (#{item})
+        </foreach>
+    </select>
+    <select id="getActivityGoodsByAcIdAsId" resultType="com.zsyc.zt.b2b.entity.ActivityGoods">
+        select * from activity_goods where ACTIVITY_ID=#{acId} and AS_ID=#{asId} and is_use=1
+    </select>
+    <select id="getActivityGoodsInfo" resultType="com.zsyc.zt.b2b.entity.ActivityGoods">
+        select * from activity_goods where is_use=1 and ACTIVITY_ID=#{acId} and AS_ID=#{asId} and ERP_GOODS_ID=#{erpGoodsId}
+    </select>
+</mapper>

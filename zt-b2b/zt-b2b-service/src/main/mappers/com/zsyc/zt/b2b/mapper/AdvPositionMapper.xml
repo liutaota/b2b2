@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.AdvPositionMapper">
+    <select id="getAdvPosition" resultType="com.zsyc.zt.b2b.vo.AdvPositionVo">
+        select a.*
+        from ADV_POSITION a
+        where a.IS_DEL = 0
+        <if test="advName!=null and advName!=''">
+            and a.ADV_NAME like '%'||#{advName}||'%'
+        </if>
+        <if test="apDisplay!=null and apDisplay!=''">
+            and a.AP_DISPLAY = #{apDisplay}
+        </if>
+        order by a.CREATE_TIME desc
+    </select>
+    <select id="getAdvPositionAll" resultType="com.zsyc.zt.b2b.vo.AdvPositionVo">
+        select a.*
+        from ADV_POSITION a
+        where a.IS_DEL = 0 and a.IS_USE='ON'
+        <if test="advPositionVo.advName!=null and advPositionVo.advName!=''">
+            and a.ADV_NAME like '%'||#{advPositionVo.advName}||'%'
+        </if>
+        <if test="advPositionVo.apDisplay!=null and advPositionVo.apDisplay!=''">
+            and a.AP_DISPLAY = #{advPositionVo.apDisplay}
+        </if>
+        order by a.CREATE_TIME desc
+    </select>
+    <select id="isExistMemberSet" resultType="java.lang.Integer">
+        select count(CUSTOMID) from	${erp}.pub_custom_set_dtl where  CUSTOMID=#{customerId}  and SETID in
+        <foreach collection="memberList" item="item" open="(" close=")" separator=",">
+            (#{item})
+        </foreach>
+    </select>
+    <select id="getAvailableAdvPosition" resultType="com.zsyc.zt.b2b.entity.AdvPosition">
+        select adv.*
+        from ADV_POSITION adv
+        where adv.id = #{id}
+          and adv.IS_USE = 'ON'
+          and adv.id in (
+            select tmp.id
+            from ( select b.ADV_ID id
+                     from ADV_POSITION_CUSTOMER_SET b,
+                          ${erp}.pub_custom_set_dtl d
+                     where b.CUSTOMER_SET_ID = d.SETID(+)
+                       and d.CUSTOMID = #{customerId}
+                    union all
+                    select a.ADV_ID id
+                        from ADV_POSITION_CUSTOMER_SET a
+                         where TYPE = 'ALL_VISIBLE'
+                ) tmp
+            )
+    </select>
+</mapper>

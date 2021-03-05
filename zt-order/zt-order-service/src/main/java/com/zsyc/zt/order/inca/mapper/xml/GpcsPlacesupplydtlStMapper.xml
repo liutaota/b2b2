@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.GpcsPlacesupplydtlStMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.GpcsPlacesupplydtlSt">
+        <id column="PLACESUPPLYDTLSTID" property="placesupplydtlstid" />
+        <result column="PLACESUPPLYDTLID" property="placesupplydtlid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="DESTTABLE" property="desttable" />
+        <result column="DESTDTLID" property="destdtlid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="PLACEPRICEID" property="placepriceid" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="PRICEMOD" property="pricemod" />
+        <result column="PLACEPRICE" property="placeprice" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="SETTLETYPEID" property="settletypeid" />
+        <result column="PLACETYPE" property="placetype" />
+        <result column="SUPRICE" property="suprice" />
+        <result column="SUBATCHID" property="subatchid" />
+        <result column="INVTYPE" property="invtype" />
+        <result column="LASTPOSTENTRYID" property="lastpostentryid" />
+        <result column="LASTPOSTSTORAGEID" property="lastpoststorageid" />
+        <result column="ECODE" property="ecode" />
+        <result column="POSTPLACEPRICEID" property="postplacepriceid" />
+        <result column="POSTPRICEMOD" property="postpricemod" />
+        <result column="POSTSETTLETYPEID" property="postsettletypeid" />
+        <result column="POSTINVTYPE" property="postinvtype" />
+        <result column="POSTPLACEPRICE" property="postplaceprice" />
+        <result column="POSTUNITPRICE" property="postunitprice" />
+        <result column="POSTENTRYID" property="postentryid" />
+        <result column="POSTTOTAL_LINE" property="posttotalLine" />
+        <result column="POSTPLACETYPE" property="postplacetype" />
+        <result column="GENBILLFLAG" property="genbillflag" />
+        <result column="POSTSALESDTLID" property="postsalesdtlid" />
+        <result column="POSTSUDOCDTLID" property="postsudocdtlid" />
+        <result column="POSTSUDTLMEMO" property="postsudtlmemo" />
+        <result column="SENDWMSFLAG" property="sendwmsflag" />
+        <result column="SENDWMSDATE" property="sendwmsdate" />
+        <result column="WMSBACKDATE" property="wmsbackdate" />
+        <result column="JD_SOURCE_NUM" property="jdSourceNum" />
+        <result column="JD_ORDER_ID" property="jdOrderId" />
+        <result column="JD_ORDER_DTL_ID" property="jdOrderDtlId" />
+        <result column="JD_TOTAL_MONEY" property="jdTotalMoney" />
+        <result column="JD_DISCOUNT" property="jdDiscount" />
+        <result column="JD_PAY_MONEY" property="jdPayMoney" />
+        <result column="JD_UNIT_PRICE" property="jdUnitPrice" />
+        <result column="JD_MONEY" property="jdMoney" />
+        <result column="JD_ORDER_TYPE" property="jdOrderType" />
+        <result column="JD_PAY_TYPE" property="jdPayType" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PLACESUPPLYDTLSTID, PLACESUPPLYDTLID, STORAGEID, DESTTABLE, DESTDTLID, GOODSQTY, PLACEPRICEID, UNITPRICE, TOTAL_LINE, PRICEMOD, PLACEPRICE, ENTRYID, CUSTOMID, SETTLETYPEID, PLACETYPE, SUPRICE, SUBATCHID, INVTYPE, LASTPOSTENTRYID, LASTPOSTSTORAGEID, ECODE, POSTPLACEPRICEID, POSTPRICEMOD, POSTSETTLETYPEID, POSTINVTYPE, POSTPLACEPRICE, POSTUNITPRICE, POSTENTRYID, POSTTOTAL_LINE, POSTPLACETYPE, GENBILLFLAG, POSTSALESDTLID, POSTSUDOCDTLID, POSTSUDTLMEMO, SENDWMSFLAG, SENDWMSDATE, WMSBACKDATE, JD_SOURCE_NUM, JD_ORDER_ID, JD_ORDER_DTL_ID, JD_TOTAL_MONEY, JD_DISCOUNT, JD_PAY_MONEY, JD_UNIT_PRICE, JD_MONEY, JD_ORDER_TYPE, JD_PAY_TYPE
+    </sql>
+
+</mapper>

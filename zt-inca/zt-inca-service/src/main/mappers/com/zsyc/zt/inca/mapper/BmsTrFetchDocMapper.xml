@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.BmsTrFetchDocMapper">
+
+<select id="getByCustomId" resultType="com.zsyc.zt.inca.entity.BmsTrFetchDoc">
+         select a.invmethod, a.invdemand, a.invtype, b.settletypeid, a.customname
+             from pub_customer a, pub_entry_customer b
+            where a.customid = b.customid(+)
+              and rownum=1
+              and a.customid = #{customId}
+    </select>
+    <select id="selectByOrderId" resultType="com.zsyc.zt.inca.entity.BmsTrFetchDoc">
+        select fetchid,
+        credate,
+        comefrom,
+        fetchtype,
+        inputmanid,
+        inputmanname,
+        fetchno,
+        companyid,
+        companyname,
+        companyopcode,
+        confirmmanid,
+        confirmmanname,
+        confirmdate,
+        memo,
+        entryid,
+        entryname,
+        agentid,
+        agentopcode,
+        agentname,
+        salerid,
+        saleropcode,
+        salername,
+        salesdeptid,
+        salesdeptname,
+        storerid,
+        storeropcode,
+        storername,
+        contactid,
+        contactman,
+        storageid,
+        storagename
+        from bms_tr_fetch_doc_v
+        where b2b_src_order_id=#{orderId}
+        and storerid = 7368
+        and entryid = 1
+        and exists (select 1
+        from bms_tr_fetch_dtl b
+        where bms_tr_fetch_doc_v.fetchid = b.fetchid
+        and nvl(receiveqty, 0) <![CDATA[<]]> b.goodsqty
+        and b.usestatus in (2, 3))
+
+    </select>
+
+</mapper>

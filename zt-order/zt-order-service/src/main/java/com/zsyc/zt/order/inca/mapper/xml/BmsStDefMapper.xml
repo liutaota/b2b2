@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStDefMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStDef">
+        <id column="STORAGEID" property="storageid" />
+        <result column="OPCODE" property="opcode" />
+        <result column="STORAGENO" property="storageno" />
+        <result column="STORAGENAME" property="storagename" />
+        <result column="GOODSDTLFLAG" property="goodsdtlflag" />
+        <result column="BATCHFLAG" property="batchflag" />
+        <result column="LOTFLAG" property="lotflag" />
+        <result column="POSFLAG" property="posflag" />
+        <result column="PHYSTOREID" property="phystoreid" />
+        <result column="MEMO" property="memo" />
+        <result column="PROCFLAG" property="procflag" />
+        <result column="AUTOCRTFLAG" property="autocrtflag" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="EMPID" property="empid" />
+        <result column="STORAGETYPE" property="storagetype" />
+        <result column="SYS_MODIFYDATE" property="sysModifydate" />
+        <result column="TOWMSDATE" property="towmsdate" />
+        <result column="ZX_CHECK_IN_SORT" property="zxCheckInSort" />
+        <result column="ZX_CHECK_OUT_SORT" property="zxCheckOutSort" />
+        <result column="ZX_MV_STORAGEID" property="zxMvStorageid" />
+        <result column="ZX_UNQUALIFIED_STORAGEID" property="zxUnqualifiedStorageid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        STORAGEID, OPCODE, STORAGENO, STORAGENAME, GOODSDTLFLAG, BATCHFLAG, LOTFLAG, POSFLAG, PHYSTOREID, MEMO, PROCFLAG, AUTOCRTFLAG, ENTRYID, EMPID, STORAGETYPE, SYS_MODIFYDATE, TOWMSDATE, ZX_CHECK_IN_SORT, ZX_CHECK_OUT_SORT, ZX_MV_STORAGEID, ZX_UNQUALIFIED_STORAGEID
+    </sql>
+    <select id="getUseWms" resultType="java.lang.Integer">
+        select usewms
+          from bms_st_def a, pub_storer b
+         where a.phystoreid = b.storerid
+           and a.storageid = #{storageId}
+           and a.entryid = #{entryId}
+    </select>
+
+</mapper>

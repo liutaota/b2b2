@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.WebPageMapper">
+    <select id="getWebPageList" resultType="com.zsyc.zt.b2b.vo.WebPageVo">
+        select * from WEB_PAGE where IS_DEL = 0
+        <if test="title!=null and title!=''">
+            and TITLE like '%'||#{title}||'%'
+        </if>
+        order by SORT_NUM desc nulls first
+    </select>
+    <select id="getWebPageAll" resultType="com.zsyc.zt.b2b.vo.WebPageVo">
+        select * from WEB_PAGE where IS_DEL = 0
+        <if test="webPageVo.title!=null and webPageVo.title!=''">
+            and TITLE like '%'||#{webPageVo.title}||'%'
+        </if>
+        order by SORT_NUM desc
+    </select>
+    <select id="getWebPageLists" resultType="com.zsyc.zt.b2b.vo.WebPageVo">
+        select *
+        from WEB_PAGE
+        where id in (
+        select tmp.id
+        from (
+        select a.id from WEB_PAGE a,WEB_PAGE_CUSTOMER_SET b,${erp}.pub_custom_set_dtl d
+        where a.ID = b.WEB_PAGE_ID(+)
+        and b.CUSTOMER_SET_ID = d.SETID(+)
+        and a.is_del = 0
+        and a.is_use = 'ON'
+        and b.TYPE = 'PARTIALLY_VISIBLE'
+        and d.CUSTOMID = #{memberId}
+        union all
+        select b.id from WEB_PAGE_CUSTOMER_SET a,WEB_PAGE b
+        where a.WEB_PAGE_ID = b.ID
+        and TYPE = 'ALL_VISIBLE'
+        union all
+        select a.id from WEB_PAGE a,WEB_PAGE_CUSTOMER_SET b,${erp}.pub_custom_set_dtl d
+        where a.ID = b.WEB_PAGE_ID(+)
+        and b.CUSTOMER_SET_ID = d.SETID(+)
+        and a.is_del = 0
+        and a.is_use = 'ON'
+        and b.TYPE = 'UN_VISIBLE'
+        and d.CUSTOMID not in #{memberId}
+        ) tmp
+        ) and IS_DEL = 0 and IS_USE = 'ON' order by SORT_NUM desc
+    </select>
+    <select id="getWebPageSearchList" resultType="com.zsyc.zt.b2b.vo.GoodsInfoVo">
+        select
+
+        DISTINCT
+        gv.goodsid,
+        g.FACTORY_ID,
+        g.EVALUATION_GOOD_STAR,
+        g.EVALUATION_COUNT,
+        g.GOODS_COMMEND,
+        g.GOODS_IMG,
+        g.GOODS_COLLECT,
+        g.GOODS_CLICK,
+        gv.classname,
+        gv.classname_3,
+        gv.medicinetypename,
+        gv.goodsname,
+        gv.goodspinyin,
+        gv.goodsunit,
+        gv.price_2,
+        gv.price_try,
+        gv.approvedocno,
+        gv.factoryname,
+        gv.factoryid,
+        gv.goodstype,
+        gv.goodsid_gps,
+        gv.barcode,
+        gv.currencyname,
+        gv.credate,
+        gv.classn_row_1,
+        gv.classname_1,
+        gv.classname_2,
+        gv.classn_row_2,
+        gv.classn_row_3,
+        gv.busiscope,
+        gv.busiscope_name,
+        gv.goodsqty,
+        gv.invaliddate,
+        gv.otcflag,
+        gv.storagecondition,
+        gv.prodarea,
+        gv.transcondition,
+        gv.dosage,
+        gv.usegoodstime,
+        gv.diagnosticinfo,
+        gv.transporttime,
+        gv.treatment,
+        gv.memo,
+        gv.zx_b2b_num_limit,
+        gv.storageid,
+        gv.accflag,
+        gpv.price, gpv.priceid,f.id is_favorites,
+        <!-- (select a.CONTENT from ACTIVITY a
+        INNER join ACTIVITY_STRATEGY ast on ast.ACTIVITY_ID=a.id and ast.IS_USE=1
+        INNER join ACTIVITY_GOODS ag on ag.AS_ID= ast.id and ag.IS_USE=1
+        where a.id in (
+        select tmp.id from (
+        select DISTINCT b.id from ACTIVITY_SET a,ACTIVITY b,${erp}.pub_custom_set_dtl d
+        where a.CUSTOM_SET_ID = d.SETID(+)
+        and a.ACTIVITY_ID(+)=b.id
+        and b.CUSTOM_SET_TYPE =20
+        and d.CUSTOMID = #{goodsInfoVo.memberId}
+        union all
+        select a.id from ACTIVITY a where a.CUSTOM_SET_TYPE =10
+
+        union all
+        select a.id from activity a where a. CUSTOM_SET_TYPE=30
+
+        and #{goodsInfoVo.memberId} not in
+
+        (select d.CUSTOMID from ACTIVITY_SET s
+        inner join ${erp}.pub_custom_set_dtl d on d.SETID=s.CUSTOM_SET_ID where s.activity_id=a.id)
+        ) tmp )
+        and a.is_use=1
+        and( sysdate BETWEEN to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'), ' '),a.START_EFFECTIVE_TIME) ,
+        'yyyy-mm-dd hh24:mi:ss')
+        and to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'),' '), a.END_EFFECTIVE_TIME) , 'yyyy-mm-dd hh24:mi:ss')
+        or a.START_EFFECTIVE_TIME is null and a.END_EFFECTIVE_TIME is null)
+        and (a.WEEK=#{goodsInfoVo.week} or a.week=0 or a.week is null)
+        and (sysdate BETWEEN a.WARM_TIME and a.END_TIME+1 or sysdate BETWEEN a.START_TIME and a.END_TIME+1)
+        and ag.ERP_GOODS_ID=w.erp_goods_id
+        and ROWNUM=1
+        GROUP BY a.id,
+        a.CONTENT) content-->
+        a.content
+        from WEB_PAGE_SEARCH w
+        left join ERP_GOODS_V gv on gv.goodsid=w.erp_goods_id
+        LEFT JOIN erp_goods_price_v gpv ON gpv.goodsid=gv.goodsid and gpv.CUSTOMID=#{goodsInfoVo.memberId}
+        left join goods g on g.erp_goods_id=gv.goodsid
+        LEFT JOIN member m ON m.erp_user_id = gpv.customid
+        LEFT JOIN favorites f ON f.fav_id = gv.goodsid and f.member_id=m.id
+
+        left join (SELECT
+        DISTINCT	ag.ERP_GOODS_ID,listagg(a.CONTENT,'')within  group(order by 1)over(partition by ag.ERP_GOODS_ID) CONTENT
+
+        FROM ACTIVITY_GOODS ag
+        INNER JOIN ACTIVITY a ON a.id = ag.ACTIVITY_ID  AND A .is_use = 1
+        WHERE
+
+        ag.IS_USE = 1
+        AND (
+        A .WEEK = #{goodsInfoVo.week}
+        OR A .week = 0
+        OR A .week IS NULL
+        )
+        AND (
+        SYSDATE BETWEEN A .WARM_TIME
+        AND A .END_TIME + 1
+        OR SYSDATE BETWEEN A .START_TIME
+        AND A .END_TIME + 1
+        )
+        group by ag.ERP_GOODS_ID,CONTENT) a on a.ERP_GOODS_ID=w.erp_goods_id
+
+        where w.WEB_PAGE_ID =#{goodsInfoVo.webPageId}
+
+            and gv.GOODSID in (
+            select c.goods_id from CACHE_CUSTOMER_GOODS c where c.customer_id=gpv.customid )
+
+        <if test="goodsInfoVo.title!=null and goodsInfoVo.title!=''">
+            and w.title = #{goodsInfoVo.title}
+        </if>
+        <if test="goodsInfoVo.floorId!=null and goodsInfoVo.floorId!=''">
+            and w.FLOOR_ID =#{goodsInfoVo.floorId}
+        </if>
+        <!-- <if test="goodsInfoVo.floorId==null">
+             and w.FLOOR_ID is null
+         </if>-->
+        <if test="goodsInfoVo.stairClassify!=null and goodsInfoVo.stairClassify!=''">
+            and w.CLASS_NAME_1 like '%'||#{goodsInfoVo.stairClassify}||'%'
+        </if>
+        <if test="goodsInfoVo.accessName!=null and goodsInfoVo.accessName!=''">
+            and w.CLASS_NAME_2 like '%'||#{goodsInfoVo.accessName}||'%'
+        </if>
+        <if test="goodsInfoVo.classname!=null and goodsInfoVo.classname!=''">
+            and gv.classname_3 like '%'||#{goodsInfoVo.classname}||'%'
+        </if>
+        <if test="goodsInfoVo.classnRow3!=null">
+            and gv.classn_row_3=#{goodsInfoVo.classnRow3}
+        </if>
+        <if test="goodsInfoVo.classnRow2!=null">
+            and gv.classn_row_2=#{goodsInfoVo.classnRow2}
+        </if>
+        <if test="goodsInfoVo.classnRow1!=null">
+            and gv.classn_row_1=#{goodsInfoVo.classnRow1}
+        </if>
+        <if test="goodsInfoVo.factoryname!=null and goodsInfoVo.factoryname!=''">
+            and gv.factoryname like '%'||#{goodsInfoVo.factoryname}||'%'
+        </if>
+        <if test="goodsInfoVo.goodspinyin!=null and goodsInfoVo.goodspinyin!=''">
+            and (
+            gv.goodspinyin like '%'|| UPPER(#{goodsInfoVo.goodspinyin})||'%'
+            or gv.currencyname like '%'||#{goodsInfoVo.goodspinyin}||'%'
+            or gv.goodsname like '%'||#{goodsInfoVo.goodspinyin}||'%'
+            or gv.goodsid like '%'||#{goodsInfoVo.goodspinyin}||'%'
+            or gv.classname_3 like '%'||#{goodsInfoVo.goodspinyin}||'%'
+            or gv.barcode like '%'||#{goodsInfoVo.goodspinyin}||'%'
+            or gv.factoryname like '%'||#{goodsInfoVo.goodspinyin}||'%')
+
+            order by (CASE
+            when gv.goodspinyin = #{goodsInfoVo.goodspinyin} then 7
+            when gv.currencyname = #{goodsInfoVo.goodspinyin} then 6
+            when gv.goodsname = #{goodsInfoVo.goodspinyin} then 5
+            WHEN gv.goodsid = nvl2(translate(gv.GOODSID,concat('\'
+            ,#{goodsInfoVo.goodspinyin}),'0'),'0',#{goodsInfoVo.goodspinyin}) THEN 4
+            when gv.classname_3 = #{goodsInfoVo.goodspinyin} then 3
+            when gv.barcode = #{goodsInfoVo.goodspinyin} then 2
+            when gv.factoryname = #{goodsInfoVo.goodspinyin} then 1
+            ELSE
+            0
+            END) DESC, gv.goodsqty desc
+        </if>
+        <if test="goodsInfoVo.goodspinyin==null">
+            order by (CASE
+            when content is not null then 2
+            when gv.goodsid_gps='X' then 1
+            ELSE
+            0
+            END) DESC, gv.goodsqty desc
+        </if>
+    </select>
+    <select id="getWebPageSearchListReturnName" resultType="com.zsyc.zt.b2b.vo.SearchTipsVo">
+        select distinct GOODS_NAME as goodsname, --通用名
+        ERP_GOODS_ID as goodsid --商品id
+        from (select *
+        from WEB_PAGE_SEARCH
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="webPageId !=null">
+                WEB_PAGE_ID = #{webPageId} and FLOOR_ID is null
+            </if>
+            <if test="goodspinyin != null and goodspinyin != ''">
+                and (
+                UPPER(GOODS_NAME) like '%'||UPPER(#{goodspinyin})||'%'
+                or UPPER(ERP_GOODS_ID) like '%'||UPPER(#{goodspinyin})||'%'
+                )
+
+                order by (case
+                when UPPER(GOODS_NAME) = UPPER(#{goodspinyin}) then 2
+                when UPPER(ERP_GOODS_ID) = UPPER(#{goodspinyin}) then 1
+                else 0 end))
+            </if>
+        </trim>
+        where rownum &lt; 6
+    </select>
+    <select id="getGoodsByCustomerId" resultType="com.zsyc.zt.b2b.vo.FloorInfoVo$Goods">
+        select
+        (select a.CONTENT from ACTIVITY a
+        left join ACTIVITY_STRATEGY ast on ast.ACTIVITY_ID=a.id and ast.IS_USE=1
+        left join ACTIVITY_GOODS ag on ag.AS_ID= ast.id and ag.IS_USE=1
+        where a.id in (
+        select tmp.id from (
+        select DISTINCT b.id from ACTIVITY_SET a,ACTIVITY b,${erp}.pub_custom_set_dtl d
+        where a.CUSTOM_SET_ID = d.SETID(+)
+        and a.ACTIVITY_ID(+)=b.id
+        and b.CUSTOM_SET_TYPE =20
+        and d.CUSTOMID = #{customerId}
+        union all
+        select a.id from ACTIVITY a where a.CUSTOM_SET_TYPE =10
+        union all
+        select a.id from activity a where a. CUSTOM_SET_TYPE=30
+
+        and #{customerId} not in
+
+        (select d.CUSTOMID from ACTIVITY_SET s
+        inner join ${erp}.pub_custom_set_dtl d on d.SETID=s.CUSTOM_SET_ID where s.activity_id=a.id)
+        ) tmp )
+        and a.is_use=1
+        and( sysdate BETWEEN to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'), ' '),a.START_EFFECTIVE_TIME) ,
+        'yyyy-mm-dd hh24:mi:ss')
+        and to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'),' '), a.END_EFFECTIVE_TIME) , 'yyyy-mm-dd hh24:mi:ss')
+        or a.START_EFFECTIVE_TIME is null and a.END_EFFECTIVE_TIME is null)
+        and (a.WEEK=#{dayOfWeek} or a.week=0 or a.week is null)
+        and (sysdate BETWEEN a.WARM_TIME and a.END_TIME+1 or sysdate BETWEEN a.START_TIME and a.END_TIME+1)
+        and ag.ERP_GOODS_ID=gv.goodsid
+        and ROWNUM=1
+        GROUP BY a.id,
+        a.CONTENT
+
+        ) content,
+        gv.goodsid,
+        g.FACTORY_ID,
+        g.EVALUATION_GOOD_STAR,
+        g.EVALUATION_COUNT,
+        g.GOODS_COMMEND,
+        g.GOODS_IMG,
+        g.GOODS_COLLECT,
+        g.GOODS_CLICK,
+        gv.classname,
+        gv.classname_3,
+        gv.medicinetypename,
+        gv.goodsname,
+        gv.goodspinyin,
+        gv.goodsunit,
+        gv.price_2,
+        gv.price_try,
+        gv.approvedocno,
+        gv.factoryname,
+        gv.factoryid,
+        gv.goodstype,
+        gv.goodsid_gps,
+        gv.barcode,
+        gv.currencyname,
+        gv.credate,
+        gv.classn_row_1,
+        gv.classname_1,
+        gv.classname_2,
+        gv.classn_row_2,
+        gv.classn_row_3,
+        gv.busiscope,
+        gv.busiscope_name,
+        gv.goodsqty,
+        gv.invaliddate,
+        gv.otcflag,
+        gv.storagecondition,
+        gv.prodarea,
+        gv.transcondition,
+        gv.dosage,
+        gv.usegoodstime,
+        gv.diagnosticinfo,
+        gv.transporttime,
+        gv.treatment,
+        gv.memo,
+        gv.zx_b2b_num_limit,
+        gv.storageid,
+        gv.accflag,
+        gpv.price, gpv.priceid,f.id is_favorites,g.INTEGRAL_GOODS,g.CONVERTIBLE_INTEGRAL from ERP_GOODS_V gv
+        LEFT JOIN erp_goods_price_v gpv ON gpv.goodsid=gv.goodsid and gpv.customid=#{customerId}
+        left join goods g on g.erp_goods_id=gv.goodsid
+        LEFT JOIN member m ON m.erp_user_id = gpv.customid
+        LEFT JOIN favorites f ON f.fav_id = gv.goodsid and f.member_id=m.id
+        where gv.GOODSID in (
+        select c.goods_id from CACHE_CUSTOMER_GOODS c where c.customer_id=gpv.customid
+        )
+        and gv.GOODSID in
+        <foreach collection="goodsId" item="item" open="(" close=")" separator=",">
+            (#{item})
+        </foreach>
+        order by (CASE
+        when content is not null then 2
+        when gv.goodsid_gps='X' then 1
+        ELSE
+        0
+        END) DESC, gv.goodsqty desc
+    </select>
+    <select id="getWebPageListById" resultType="com.zsyc.zt.b2b.vo.WebPageVo">
+        select *
+        from WEB_PAGE
+        where id in (
+        select tmp.id
+        from (
+        select a.id from WEB_PAGE a,WEB_PAGE_CUSTOMER_SET b,${erp}.pub_custom_set_dtl d
+        where a.ID = b.WEB_PAGE_ID(+)
+        and b.CUSTOMER_SET_ID = d.SETID(+)
+        and a.is_del = 0
+        and a.is_use = 'ON'
+        and b.TYPE = 'PARTIALLY_VISIBLE'
+        and d.CUSTOMID = #{memberId}
+        union all
+        select b.id from WEB_PAGE_CUSTOMER_SET a,WEB_PAGE b
+        where a.WEB_PAGE_ID = b.ID
+        and TYPE = 'ALL_VISIBLE'
+        union all
+        select a.id from WEB_PAGE a,WEB_PAGE_CUSTOMER_SET b,${erp}.pub_custom_set_dtl d
+        where a.ID = b.WEB_PAGE_ID(+)
+        and b.CUSTOMER_SET_ID = d.SETID(+)
+        and a.is_del = 0
+        and a.is_use = 'ON'
+        and b.TYPE = 'UN_VISIBLE'
+        and d.CUSTOMID not in #{memberId}
+        ) tmp
+        ) and IS_DEL = 0 and IS_USE = 'ON'
+        and id=#{id}
+        order by SORT_NUM desc
+    </select>
+</mapper>

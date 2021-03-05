@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSadocImpTmpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSadocImpTmp">
+        <id column="TMPID" property="tmpid" />
+        <result column="DOCID" property="docid" />
+        <result column="IMPFLAG" property="impflag" />
+        <result column="ERRORMESSAGE" property="errormessage" />
+        <result column="CREDATE" property="credate" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="CUSTOMNAME" property="customname" />
+        <result column="AGENTID" property="agentid" />
+        <result column="AGENTNAME" property="agentname" />
+        <result column="INVTYPE" property="invtype" />
+        <result column="INVTYPENAME" property="invtypename" />
+        <result column="SETTLETYPEID" property="settletypeid" />
+        <result column="SETTLETYPE" property="settletype" />
+        <result column="SALERID" property="salerid" />
+        <result column="SALERNAME" property="salername" />
+        <result column="SALESDEPTID" property="salesdeptid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="ENTRYNAME" property="entryname" />
+        <result column="FMID" property="fmid" />
+        <result column="FMNAME" property="fmname" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="TAXRATE" property="taxrate" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="NOTAXMONEY" property="notaxmoney" />
+        <result column="PRICEID" property="priceid" />
+        <result column="PRICENAME" property="pricename" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="STORAGENAME" property="storagename" />
+        <result column="DISCOUNT" property="discount" />
+        <result column="ZXCOLNUM1" property="zxcolnum1" />
+        <result column="ZXCOLNUM2" property="zxcolnum2" />
+        <result column="ZXCOLNUM3" property="zxcolnum3" />
+        <result column="ZXCOLNUM4" property="zxcolnum4" />
+        <result column="ZXCOLNUM5" property="zxcolnum5" />
+        <result column="ZXCOLNUM6" property="zxcolnum6" />
+        <result column="ZXCOLNUM7" property="zxcolnum7" />
+        <result column="ZXCOLNUM8" property="zxcolnum8" />
+        <result column="ZXCOLNUM9" property="zxcolnum9" />
+        <result column="ZXCOLNUM10" property="zxcolnum10" />
+        <result column="ISBACKFLAG" property="isbackflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TMPID, DOCID, IMPFLAG, ERRORMESSAGE, CREDATE, CUSTOMID, CUSTOMNAME, AGENTID, AGENTNAME, INVTYPE, INVTYPENAME, SETTLETYPEID, SETTLETYPE, SALERID, SALERNAME, SALESDEPTID, ENTRYID, ENTRYNAME, FMID, FMNAME, GOODSID, GOODSNAME, TAXRATE, GOODSQTY, UNITPRICE, TOTAL_LINE, NOTAXMONEY, PRICEID, PRICENAME, STORAGEID, STORAGENAME, DISCOUNT, ZXCOLNUM1, ZXCOLNUM2, ZXCOLNUM3, ZXCOLNUM4, ZXCOLNUM5, ZXCOLNUM6, ZXCOLNUM7, ZXCOLNUM8, ZXCOLNUM9, ZXCOLNUM10, ISBACKFLAG
+    </sql>
+
+</mapper>

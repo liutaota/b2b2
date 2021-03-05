@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubGoodsHisMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubGoodsHis">
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="CURRENCYNAME" property="currencyname" />
+        <result column="GOODSUNIT" property="goodsunit" />
+        <result column="ZX_SPLIT_TYPE" property="zxSplitType" />
+        <result column="GOODSTYPE" property="goodstype" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GOODSID, GOODSNAME, CURRENCYNAME, GOODSUNIT, ZX_SPLIT_TYPE, GOODSTYPE
+    </sql>
+
+</mapper>

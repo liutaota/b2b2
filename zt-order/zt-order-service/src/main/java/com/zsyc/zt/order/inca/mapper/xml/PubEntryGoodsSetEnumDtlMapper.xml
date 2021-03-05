@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubEntryGoodsSetEnumDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubEntryGoodsSetEnumDtl">
+        <id column="SETENUMDTLID" property="setenumdtlid" />
+        <result column="SETID" property="setid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="IMPGOODSID" property="impgoodsid" />
+        <result column="IMPGOODSNAME" property="impgoodsname" />
+        <result column="MEMO" property="memo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SETENUMDTLID, SETID, GOODSID, COMEFROM, IMPGOODSID, IMPGOODSNAME, MEMO
+    </sql>
+
+</mapper>

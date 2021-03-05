@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsDirectSaDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsDirectSaDoc">
+        <id column="DOCID" property="docid" />
+        <result column="SUCONDATE" property="sucondate" />
+        <result column="SUDATE" property="sudate" />
+        <result column="KEEPINDATE" property="keepindate" />
+        <result column="SADATE" property="sadate" />
+        <result column="KEEPOUTDATE" property="keepoutdate" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="POSID" property="posid" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="SALERID" property="salerid" />
+        <result column="INPUTDATE" property="inputdate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="MEMO" property="memo" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="CONFIRMMANID" property="confirmmanid" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="DTL_LINES" property="dtlLines" />
+        <result column="SUTOTAL" property="sutotal" />
+        <result column="SATOTAL" property="satotal" />
+        <result column="SUPPLYAGENTID" property="supplyagentid" />
+        <result column="CUSTOMAGENTID" property="customagentid" />
+        <result column="PLANINVDATE" property="planinvdate" />
+        <result column="INVDEMAND" property="invdemand" />
+        <result column="SETTLETYPEID" property="settletypeid" />
+        <result column="INVTYPE" property="invtype" />
+        <result column="SUSETTLETYPEID" property="susettletypeid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DOCID, SUCONDATE, SUDATE, KEEPINDATE, SADATE, KEEPOUTDATE, ENTRYID, STORAGEID, POSID, SUPPLYID, CUSTOMID, SALERID, INPUTDATE, INPUTMANID, MEMO, USESTATUS, CONFIRMMANID, CONFIRMDATE, DTL_LINES, SUTOTAL, SATOTAL, SUPPLYAGENTID, CUSTOMAGENTID, PLANINVDATE, INVDEMAND, SETTLETYPEID, INVTYPE, SUSETTLETYPEID
+    </sql>
+
+</mapper>

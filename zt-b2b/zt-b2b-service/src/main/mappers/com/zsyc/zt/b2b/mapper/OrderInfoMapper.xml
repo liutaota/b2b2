@@ -1,0 +1,873 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.OrderInfoMapper">
+
+    <select id="getMyOrderInfoList" resultType="com.zsyc.zt.b2b.vo.OrderInfoVo">
+        select * from ${b2b}.order_info oi where oi.delete_state!=2
+        and oi.member_id=#{orderInfoVo.memberId}
+        <if test="orderInfoVo.orderState!=null and orderInfoVo.orderState!=''">
+            and oi.order_state =#{orderInfoVo.orderState}
+        </if>
+        <if test="orderInfoVo.orderNo!=null and orderInfoVo.orderNo!=''">
+            and oi.order_no like '%'||#{orderInfoVo.orderNo}||'%'
+        </if>
+        <if test="orderInfoVo.deleteState!=null and orderInfoVo.deleteState!=''">
+            and oi.delete_state =#{orderInfoVo.deleteState}
+        </if>
+        <if test="orderInfoVo.startTime!=null and orderInfoVo.startTime!=''and orderInfoVo.endTime!=null and orderInfoVo.endTime!=''">
+            and oi.create_time BETWEEN to_date(#{orderInfoVo.startTime}, 'yyyy-MM-dd') and
+            to_date(#{orderInfoVo.endTime}, 'yyyy-MM-dd')
+        </if>
+        order by oi.create_time desc
+    </select>
+    <select id="getOrderInfoById" resultType="com.zsyc.zt.b2b.vo.OrderInfoVo">
+        select oi.*,v.*,m.telephone from order_info oi
+        left join member m on m.id=oi.member_id
+        left join erp_customer_v v on v.customid=m.erp_user_id
+        where oi.id=#{id}
+    </select>
+    <select id="getAdminOrderInfoList" resultType="com.zsyc.zt.b2b.vo.OrderInfoVo">
+        select oi.*,m.telephone,ui.user_name,PE.EMPLOYEENAME EMPLOYEE_NAME,PE.EMPLOYEENO EMPLOYEE_NO,
+        rd.id rec_doc_id,uc.user_name confirm_name,rd.confirm_date,rd.confirm_remark,ux.user_name ux_name,ol.create_time ux_time
+        from order_info oi
+        left join member m on m.id=oi.member_id
+        left join USER_INFO ui on ui.id=oi.sent_user_id
+        left join ${erp}.pub_employee pe on pe.EMPLOYEEID=ui.ERP_EMPLOYEE_ID
+        left join rec_doc rd on rd.order_id=oi.id  and rd.REC_METHOD in ('SHORT','NO_ORDER')
+        left join user_info uc on uc.id=rd.confirm_user_id
+        left join
+        (select order_id oid,log_msg,create_time,done_time, user_id,order_status ,ROW_NUMBER() OVER(PARTITION BY order_id ORDER
+        BY create_time desc) rn from order_log where  user_id is not null  and order_status ='NORMAL') ol on ol.oid=oi.id and rn=1
+        left join user_info ux on ux.id=ol.user_id
+        <where>
+            <if test="orderInfoVo.orderState!=null and orderInfoVo.orderState!=''">
+                oi.order_state =#{orderInfoVo.orderState}
+            </if>
+            <if test="orderInfoVo.payOrderNo!=null and orderInfoVo.payOrderNo!=''">
+                and oi.PAY_ORDER_NO like '%'||#{orderInfoVo.payOrderNo}||'%'
+            </if>
+            <if test="orderInfoVo.payMethod!=null and orderInfoVo.payMethod!=''">
+                and oi.PAY_METHOD =#{orderInfoVo.payMethod}
+            </if>
+            <if test="orderInfoVo.id!=null">
+                and oi.id =#{orderInfoVo.id}
+            </if>
+            <if test="orderInfoVo.memberId!=null">
+                and oi.member_id =#{orderInfoVo.memberId}
+            </if>
+            <if test="orderInfoVo.orderFrom!=null and orderInfoVo.orderFrom!=''">
+                and oi.ORDER_FROM =#{orderInfoVo.orderFrom}
+            </if>
+            <if test="orderInfoVo.orderNo!=null and orderInfoVo.orderNo!=''">
+                and oi.order_no like '%'||#{orderInfoVo.orderNo}||'%'
+            </if>
+            <if test="orderInfoVo.deleteState!=null and orderInfoVo.deleteState!=''">
+                and oi.delete_state = #{orderInfoVo.deleteState}
+            </if>
+            <if test="orderInfoVo.memberName!=null and orderInfoVo.memberName!=''">
+                and oi.member_name like '%'||#{orderInfoVo.memberName}||'%'
+            </if>
+            <if test="orderInfoVo.telephone!=null and orderInfoVo.telephone!=''">
+                and m.telephone like '%'||#{orderInfoVo.telephone}||'%'
+            </if>
+            <if test="orderInfoVo.memberPhone!=null and orderInfoVo.memberPhone!=''">
+                and oi.member_phone like '%'||#{orderInfoVo.memberPhone}||'%'
+            </if>
+            <if test="orderInfoVo.erpCustomerId!=null and orderInfoVo.erpCustomerId!=''">
+                and oi.ERP_CUSTOMER_ID = #{orderInfoVo.erpCustomerId}
+            </if>
+            <if test="orderInfoVo.expStatus!=null and orderInfoVo.expStatus!='' and orderInfoVo.expStatus!='全部'">
+                and oi.EXP_STATUS = #{orderInfoVo.expStatus}
+            </if>
+            <if test="orderInfoVo.expStatus!=null and orderInfoVo.expStatus!='' and orderInfoVo.expStatus=='全部'">
+                and oi.EXP_STATUS !='NORMAL'
+            </if>
+            <if test="orderInfoVo.startTime!=null and orderInfoVo.endTime!=null">
+                and oi.create_time &gt;= #{orderInfoVo.startTime} and oi.create_time &lt;= #{orderInfoVo.endTime}
+            </if>
+        </where>
+
+    </select>
+    <select id="getMyOrderInfoAll" resultType="com.zsyc.zt.b2b.vo.OrderInfoVo">
+        select * from ${b2b}.order_info oi where oi.delete_state!=2
+        and oi.member_id=#{memberId}
+        <if test="orderState!=null and orderState!=''">
+            and oi.order_state =#{orderState}
+        </if>
+        <if test="orderState!=null and orderState=='TO_DELIVERY'">
+            and oi.sent_time is null
+        </if>
+        order by oi.create_time desc
+    </select>
+    <select id="getOrderInfoExceptionList" resultType="com.zsyc.zt.b2b.vo.OrderInfoVo">
+        select oi.*,ol.create_time exp_time,ol.log_msg ,done_time,order_status,m.telephone from order_info oi
+        left join member m on m.id=oi.member_id
+        inner join
+        (select order_id oid,log_msg,create_time,done_time, order_status ,ROW_NUMBER() OVER(PARTITION BY order_id ORDER
+        BY create_time desc) rn from order_log ) ol on ol.oid=oi.id
+        where rn=1 and oi.EXP_STATUS !='NORMAL'
+        <if test="orderInfoVo.id!=null">
+            and oi.id =#{orderInfoVo.id}
+        </if>
+        <if test="orderInfoVo.orderState!=null and orderInfoVo.orderState!=''">
+            and oi.order_state =#{orderInfoVo.orderState}
+        </if>
+        <if test="orderInfoVo.expStatus!=null and orderInfoVo.expStatus!=''">
+            and oi.EXP_STATUS =#{orderInfoVo.expStatus}
+        </if>
+        <if test="orderInfoVo.isTrue!=null and orderInfoVo.isTrue!=''">
+            and oi.IS_TRUE =#{orderInfoVo.isTrue}
+        </if>
+        <if test="orderInfoVo.orderNo!=null and orderInfoVo.orderNo!=''">
+            and oi.order_no like '%'||#{orderInfoVo.orderNo}||'%'
+        </if>
+        <if test="orderInfoVo.deleteState!=null and orderInfoVo.deleteState!=''">
+            and oi.delete_state = #{orderInfoVo.deleteState}
+        </if>
+        <if test="orderInfoVo.memberName!=null and orderInfoVo.memberName!=''">
+            and oi.member_name like '%'||#{orderInfoVo.memberName}||'%'
+        </if>
+        <if test="orderInfoVo.memberPhone!=null and orderInfoVo.memberPhone!=''">
+            and oi.member_phone like '%'||#{orderInfoVo.memberPhone}||'%'
+        </if>
+        <if test="orderInfoVo.telephone!=null and orderInfoVo.telephone!=''">
+            and m.telephone like '%'||#{orderInfoVo.telephone}||'%'
+        </if>
+        <if test="orderInfoVo.erpCustomerId!=null and orderInfoVo.erpCustomerId!=''">
+            and oi.ERP_CUSTOMER_ID = #{orderInfoVo.erpCustomerId}
+        </if>
+        <if test="orderInfoVo.startTime!=null and orderInfoVo.endTime!=null">
+            and oi.create_time &gt;= #{orderInfoVo.startTime} and oi.create_time &lt;= #{orderInfoVo.endTime}
+        </if>
+        order by
+        (CASE when oi.EXP_STATUS in ('NO_ORDER','SHORT') THEN
+        1
+        END) asc,
+        oi.create_time desc
+    </select>
+    <select id="getNowOrderInfo" resultType="com.zsyc.zt.b2b.entity.OrderInfo">
+        select oi.* from order_info oi
+
+
+        where sysdate-#{minutes}/1440 > oi.create_time and oi.ORDER_STATE='TO_ERP'
+        and oi.DELETE_STATE=0 and oi.finance_true=0
+        and oi.EXP_STATUS='NORMAL' and 6>ROWNUM
+        order by oi.create_time asc
+    </select>
+    <select id="getOrderInfoOrderGoodsExcel" resultType="com.zsyc.zt.b2b.vo.OrderInfoVo">
+
+    </select>
+    <select id="getOrderByToSend" resultType="java.lang.Long">
+        select id from order_info where order_state='TO_SEND' and DELETE_STATE=0 and exp_status='NORMAL'
+    </select>
+    <select id="getGoodsInfoReport" resultType="java.lang.String">
+        select DISTINCT
+        listagg(v.IMGURL_BOTTOM,',')within group(order by 1)over(partition by v.goodsid) as quality_img
+        from ERP_GOODS_QUALITY_V v
+        where v.goodsid=#{goodsId} and v.lotno=#{lotno}
+    </select>
+    <select id="getOrderInfoByCustomerId" resultType="java.lang.Integer">
+
+        select count(oi.id) from order_info oi
+
+        where oi.create_time > sysdate-#{time}/1440 and oi.ORDER_STATE !='CANCEL'
+        and ERP_CUSTOMER_ID=#{customerId}
+    </select>
+    <select id="getAutoOrderToDelivery" resultType="com.zsyc.zt.b2b.entity.OrderInfo">
+        select * from order_info oi
+        where oi.ORDER_STATE='TO_DELIVERY'
+        and oi.DELETE_STATE=0
+        and
+        sysdate-#{minutes} /1440 > (select ol.create_time from order_log ol where ol.ORDER_STATUS='TO_DELIVERY' and
+        ol.order_id=oi.id and 1=ROWNUM)
+        and 21>ROWNUM
+        order by oi.id asc
+    </select>
+    <select id="getFastOrderInfo" resultType="com.zsyc.zt.b2b.vo.OrderInfoVo">
+        select t1.customid ERP_CUSTOMER_ID,--客户id,
+        t1.customname MEMBER_NAME,--客户名称,
+        t.goodsid ,--货品id,
+        t2.goodsname GOODS_NAME,--货品名称,
+        t2.goodstype ,--规格,
+        t2.goodsunit ,--基体单位,
+        pr.price price, --批发二价,
+        t.storageid,-- 保管帐ID,
+        nvl(eg.zx_b2b_num_limit,1) zx_b2b_num_limit,-- 最小销售数,
+        t3.factoryname ,--厂家名称,
+        count(t.goodsid) sing_goods_num, --单品销售次数,
+        dense_rank() over(order by count(t.goodsid) desc) sales_sort , --销售次数排行,
+        sum(t.goodsqty) goodsqty, --单品销售数量,
+        dense_rank() over(order by sum(t.goodsqty) desc) sales_num_sort, --销售数量排行
+        g.GOODS_IMG GOODS_IMAGE
+        from ${erp}.bms_sa_dtl t,
+        ${erp}.bms_sa_doc t1,
+        ${erp}.pub_goods t2,
+        ${erp}.bms_entry_goods_price pr,
+        ${erp}.pub_factory t3,
+        ${erp}.pub_entry_goods eg,
+        GOODS g
+        where t.salesid = t1.salesid
+        and t1.usestatus = 1
+        and t.stioflag = 1
+        and t1.entryid = 1
+        and t1.satypeid = 1 --1是销售单,2是销售退货单
+        and t2.factoryid = t3.factoryid(+)
+        and t.goodsid = t2.goodsid(+)
+        and t.goodsid = pr.goodsid(+)
+        and pr.entryid = 1
+        and pr.priceid = 105
+        and eg.entryid =1
+        and t.goodsid = eg.goodsid(+)
+        and t.goodsid=g.erp_goods_id
+        and t1.customid=#{orderInfoVo.erpCustomerId}
+        <if test="orderInfoVo.startTime!=null and orderInfoVo.endTime!=null">
+            and t1.credate &gt;= #{orderInfoVo.startTime} and t1.credate &lt;= #{orderInfoVo.endTime}
+        </if>
+        <if test="orderInfoVo.goodsName!=null and orderInfoVo.goodsName!=''">
+            and (t2.goodsname like '%'||#{orderInfoVo.goodsName}||'%' or t.goodsid like
+            '%'||#{orderInfoVo.goodsName}||'%')
+        </if>
+
+        group by t.goodsid,
+        t1.customid,
+        t1.customname,
+        t2.goodsname,
+        t2.goodstype,
+        t2.goodsunit,
+        pr.price,
+        t.storageid,
+        eg.zx_b2b_num_limit,
+        t3.factoryname,
+        g.GOODS_IMG
+    </select>
+    <select id="getMyGoodsReport" resultType="com.zsyc.zt.b2b.vo.OrderGoodsVo">
+        SELECT C.SALESID,
+        A.CREDATE create_time,
+        A.COMPANYID,
+        A.COMPANYNAME,
+        A.GOODSID,
+        D.GOODSNAME,
+        D.GOODSTYPE,
+        D.GOODSUNIT,
+        C.LOTID,
+        f.lotno,
+        E.FACTORYNAME,
+        bg.GOODS_IMG GOODS_IMAGE,
+        f.FILEURL quality_img
+        FROM ${erp}.BMS_ST_IO_DOC A,
+        ${erp}.BMS_ST_IO_DTL B,
+        ${erp}.BMS_SA_DTL C,
+        ${erp}.PUB_GOODS D,
+        ${erp}.PUB_FACTORY E,
+        goods bg,
+        (SELECT A.GOODSID,
+
+        A.LOTID,
+        c.lotno,
+        LISTAGG(A.FCHECKID || '/' || B.FILENAME, ',') WITHIN GROUP(ORDER BY A.GOODSID) FILEURL
+        FROM ${erp}.GSP_GOODS_FACTORY_CHECK A,
+        ${erp}.NP_EFILES_OP_FILE B,
+        ${erp}.BMS_LOT_DEF C,
+        ${erp}.PUB_GOODS D
+        --PUB_FACTORY E
+        WHERE A.FCHECKID = B.PKID
+        AND A.LOTID = C.LOTID
+        AND A.GOODSID = D.GOODSID
+        GROUP BY A.GOODSID,
+        A.LOTID,c.lotno) F
+
+        WHERE A.COMEFROM = 3
+        AND A.SOURCETABLE = 2
+        AND A.INOUTID = B.INOUTID
+        AND A.SOURCEID = C.SALESDTLID(+)
+        AND A.GOODSID = D.GOODSID(+)
+        AND D.FACTORYID = E.FACTORYID(+)
+        AND F.GOODSID = A.GOODSID
+        AND B.LOTID = F.LOTID
+        and bg.erp_goods_id=a.goodsid
+        and A.companyid = #{orderGoodsVo.memberId}
+        <if test="orderGoodsVo.salesid!=null and orderGoodsVo.salesid!=''">
+            and C.salesid=#{orderGoodsVo.salesid}
+        </if>
+        <if test="orderGoodsVo.goodsName!=null and orderGoodsVo.goodsName!=''">
+            and D.goodsname like '%'||#{orderGoodsVo.goodsName}||'%'
+        </if>
+        <if test="orderGoodsVo.lotno!=null and orderGoodsVo.lotno!=''">
+            and f.lotno like '%'||#{orderGoodsVo.lotno}||'%'
+        </if>
+        <if test="orderGoodsVo.startTime!=null and orderGoodsVo.endTime!=null">
+            and A.credate &gt;= #{orderGoodsVo.startTime} and A.credate &lt;= #{orderGoodsVo.endTime}
+        </if>
+
+    </select>
+    <select id="autoCancelOrder" resultType="com.zsyc.zt.b2b.entity.OrderInfo">
+        select * from order_info where ORDER_STATE='UNPAID'
+        and DELETE_STATE=0
+        and sysdate-30 /1440 > create_time
+        order by id asc
+    </select>
+    <select id="autoFinanceOrder" resultType="com.zsyc.zt.b2b.vo.OrderInfoVo">
+        select oi.*,rd.CONFIRM_USER_ID,rd.CONFIRM_REMARK,rd.CONFIRM_DATE from order_info oi
+        left join REC_DOC rd on rd.ORDER_ID=oi.id
+        where oi.ORDER_STATE='TO_RECEIVED'
+        <!--and oi.PAY_METHOD in ('ON_LINE','WX_LINE','ZFB_LINE','ABC_LINE')-->
+        and oi.DELETE_STATE=0 and oi.FINANCE_TRUE=0 and oi.EXP_STATUS='NORMAL'
+        and RD.STATUS='DONE_PAY' and RD.REC_TYPE='ON_LINE' and RD.FINANCE_TRUE=0 and rd.CONFIRM_DATE is not null
+        order by oi.id asc
+    </select>
+    <select id="getTVGoodsOff" resultType="com.zsyc.zt.b2b.vo.TVDates">
+
+        select distinct
+        to_char( d.recredate ,'MM-DD HH:mi') recredate,
+        to_char( d.checkdate ,'MM-DD HH:mi') checkdate,
+        case
+        when ceil((d.checkdate + 1 - sysdate) * 24) > 0 then
+        ceil((d.checkdate + 1 - sysdate) * 24) || '小时'
+        else
+        '已过期'
+        end remaining_time,
+
+        case
+        when (d.checkdate + 1 - sysdate) > 0.15 then '正常'
+        when (d.checkdate + 1 - sysdate) > 0 then '临近过期'
+        else
+        '已过期'
+        end remaining_status,
+
+
+        b.sudocid,
+        a.companyid,
+        a.companyname,
+        b.goodsid,
+        e.goodsname,
+        e.goodstype,
+        e.goodsunit,
+        f.factoryname,
+        b.goodsqty,
+        a.inqty
+        from ${erp}.bms_st_io_doc a,
+        ${erp}.bms_su_dtl b,
+        ${erp}.bms_su_doc c,
+        ${erp}.bms_st_rg_doc d,
+        ${erp}.pub_factory f,
+        ${erp}.pub_goods e
+        where a.entryid = 1
+        and a.comefrom = 1
+        and a.usestatus = 1
+        and a.sourceid = b.sudocdtlid(+)
+        and e.factoryid = f.factoryid(+)
+        and b.sudocid = c.sudocid
+        and b.zx_sucondtlid = d.sucondtlid(+)
+        and b.goodsid = e.goodsid(+)
+        and d.usestatus in (2, 3) --已验收;
+        order by recredate desc
+
+    </select>
+    <select id="getTVToDaySales" resultType="com.zsyc.zt.b2b.vo.TVDates">
+        select b.doctype, --平台类型
+        b.credate, --业务日期
+        b.docno, --平台订单号
+        b.zx_allstioflag --发货状态
+        from (select 'B2B平台' doctype, --平台类型
+        a.credate, --业务日期
+        a.b2b_order_no docno, --平台订单号
+        (case
+        when (select count(1)
+        from ${erp}.bms_sa_dtl w
+        where w.salesid = a.salesid
+        and nvl(w.stioflag, 0) = 0) > 0 then
+        0
+        else
+        1
+        end) zx_allstioflag
+        from ${erp}.bms_sa_doc a
+        where a.credate >= trunc(sysdate)
+        and a.entryid = 1
+        and a.satypeid = 1 --1销售出库单，2退货入库单
+        and nvl(a.zx_bh_flag, 0) = 11 --新B2B
+        union all
+        select '京东平台' doctype, --平台类型
+        a.credate, --业务日期
+        a.zx_ordernumber docno, --平台订单号
+        (case
+        when (select count(1)
+        from ${erp}.bms_sa_dtl w
+        where w.salesid = a.salesid
+        and nvl(w.stioflag, 0) = 0) > 0 then
+        0
+        else
+        1
+        end) zx_allstioflag
+        from ${erp}.bms_sa_doc a
+        where a.credate >= trunc(sysdate)
+        and a.entryid = 1
+        and a.satypeid = 1 --1销售出库单，2退货入库单
+        and nvl(a.zx_bh_flag, 0) = 4 --京东单
+        union all
+        select 'ERP线下' doctype, --平台类型
+        a.credate, --业务日期
+        to_char(a.salesid) docno, --平台订单号
+        (case
+        when (select count(1)
+        from ${erp}.bms_sa_dtl w
+        where w.salesid = a.salesid
+        and nvl(w.stioflag, 0) = 0) > 0 then
+        0
+        else
+        1
+        end) zx_allstioflag
+        from ${erp}.bms_sa_doc a
+        where a.credate >= trunc(sysdate)
+        and a.entryid = 1
+        and a.satypeid = 1 --1销售出库单，2退货入库单
+        and nvl(a.zx_bh_flag, 0) = 0 --ERP订单
+        ) b
+        where b.zx_allstioflag = 1
+        order by b.credate desc
+    </select>
+    <select id="getTVToDaySalesTotal" resultType="com.zsyc.zt.b2b.vo.TVDates">
+        select
+        sum(b.countsa) counterp, --ERP订单数量
+        sum(b.countjd) countjd, --京东订单数量
+        sum(b.countb2b) countb2b, --B2B订单数量
+        sum(b.countsa)+sum(b.countjd)+sum(b.countb2b) countall --总单量
+        from (select case
+        when nvl(a.zx_bh_flag, 0) = 0 then
+        count(a.salesid)
+        else
+        0
+        end countsa,
+        (case
+        when (select count(1)
+        from ${erp}.bms_sa_dtl w
+        where w.salesid = a.salesid
+        and nvl(w.stioflag, 0) = 0) > 0 then
+        0
+        else
+        1
+        end) zx_allstioflag,
+        count(a.zx_ordernumber) countjd,
+        count(a.b2b_order_no) countb2b
+        from ${erp}.bms_sa_doc a
+        where a.credate >= trunc(sysdate)
+        and a.entryid = 1
+        and a.satypeid = 1 --1销售出库单，2退货入库单
+        --and ROWNUM=1
+        group by a.zx_bh_flag,a.salesid ) b where b.zx_allstioflag=1
+    </select>
+    <select id="autoReturnOrder" resultType="com.zsyc.zt.b2b.vo.OrderInfoVo">
+        select oi.*,
+        (select sum((goods_num-sell_num)*GOODS_PAY_PRICE) from ORDER_GOODS where good_type!=4 and
+        goods_num>sell_num and order_id=oi.id) return_amount
+        from order_info oi
+        where oi.ORDER_STATE='TO_RECEIVED' and oi.PAY_METHOD in ('ON_LINE','WX_LINE','ZFB_LINE','ABC_LINE')
+        and oi.REFUND_AMOUNT=0 and oi.EXP_STATUS='NORMAL'
+        and oi.DELETE_STATE=0 and (select count(id) from ORDER_GOODS where good_type!=4 and goods_num!=sell_num and
+        order_id=oi.id) >0
+        order by oi.id asc
+    </select>
+    <select id="getTVGiftGoodsOff" resultType="com.zsyc.zt.b2b.vo.TVDates">
+
+        select
+        to_char( b.credate,'MM-DD HH:mi') recredate, --赠品业务日期
+        to_char( b.confirmdate ,'MM-DD HH:mi') checkdate, --赠品确定日期
+
+        case
+        when ceil((b.confirmdate + 1 - sysdate) * 24) > 0 then
+        ceil((b.confirmdate + 1 - sysdate) * 24) || '小时'
+        else
+        '已过期'
+        end remaining_time,
+
+        case
+        when (b.confirmdate + 1 - sysdate) > 0.15 then '正常'
+        when (b.confirmdate + 1 - sysdate) > 0 then '临近过期'
+        else
+        '已过期'
+        end remaining_status,
+
+        a.presinid sudocid, --赠品入库单ID
+        b.supplyid companyid, --来货单位ID
+        b.supplyname companyname, --来货单位ID
+        a.goodsid,
+        c.goodsname,
+        c.goodstype,
+        c.goodsunit,
+        e.factoryname,
+        a.goodsqty, --来货数量
+        a.goodsqty inqty --上架数量
+        from ${erp}.bms_pres_in_dtl a, ${erp}.bms_pres_in_doc b,${erp}.pub_goods c,${erp}.pub_factory e
+        where a.presinid = b.presinid(+)
+        and a.goodsid=c.goodsid(+)
+        and c.factoryid=e.factoryid(+)
+        and b.usestatus = 1
+        and a.recst = 0
+        order by recredate desc
+    </select>
+    <select id="getOrderInfoInterceptList" resultType="com.zsyc.zt.b2b.vo.OrderInfoVo">
+        select oi.*,m.telephone,mi.erp_order_no from order_info oi
+        left join member m on m.id=oi.member_id
+        left join MANUALLY_INTERCEPT mi on mi.b2b_order_no=oi.order_no
+        <where>
+            <if test="orderInfoVo.id!=null">
+                oi.id =#{orderInfoVo.id}
+            </if>
+            <if test="orderInfoVo.interceptStatus!=null and orderInfoVo.interceptStatus!=''">
+                and oi.INTERCEPT_STATUS =#{orderInfoVo.interceptStatus}
+            </if>
+            <if test="orderInfoVo.orderState!=null and orderInfoVo.orderState!=''">
+                and oi.order_state =#{orderInfoVo.orderState}
+            </if>
+            <if test="orderInfoVo.expStatus!=null and orderInfoVo.expStatus!=''">
+                and oi.EXP_STATUS =#{orderInfoVo.expStatus}
+            </if>
+            <if test="orderInfoVo.orderNo!=null and orderInfoVo.orderNo!=''">
+                and oi.order_no like '%'||#{orderInfoVo.orderNo}||'%'
+            </if>
+            <if test="orderInfoVo.deleteState!=null and orderInfoVo.deleteState!=''">
+                and oi.delete_state = #{orderInfoVo.deleteState}
+            </if>
+            <if test="orderInfoVo.memberName!=null and orderInfoVo.memberName!=''">
+                and oi.member_name like '%'||#{orderInfoVo.memberName}||'%'
+            </if>
+            <if test="orderInfoVo.memberPhone!=null and orderInfoVo.memberPhone!=''">
+                and oi.member_phone like '%'||#{orderInfoVo.memberPhone}||'%'
+            </if>
+            <if test="orderInfoVo.telephone!=null and orderInfoVo.telephone!=''">
+                and m.telephone like '%'||#{orderInfoVo.telephone}||'%'
+            </if>
+            <if test="orderInfoVo.erpCustomerId!=null and orderInfoVo.erpCustomerId!=''">
+                and oi.ERP_CUSTOMER_ID = #{orderInfoVo.erpCustomerId}
+            </if>
+            <if test="orderInfoVo.startTime!=null and orderInfoVo.endTime!=null">
+                and oi.INTERCEPT_TIME &gt;= #{orderInfoVo.startTime} and oi.INTERCEPT_TIME &lt;= #{orderInfoVo.endTime}
+            </if>
+        </where>
+        order by oi.INTERCEPT_TIME desc
+    </select>
+    <select id="getAdminErpOrderInfoInterceptList" resultType="com.zsyc.zt.b2b.vo.OrderInfoVo">
+        select oi.id,oi.order_no,oi.INTERCEPT_TIME,oi.create_time,e.salesid erp_order from order_info oi
+
+        left join ( select a.salesid ,a.b2b_order_id
+        from ${erp}.bms_sa_doc a
+        where a.zx_bh_flag = 11
+
+        union select a.placesupplyid ,a.b2b_order_id
+        from ${erp}.gpcs_placesupply a
+
+        where a.zx_bh_flag = 11
+
+        union select a.presoutid ,a.b2b_order_id
+        from ${erp}.bms_pres_out_doc a
+
+        where a.zx_bh_flag = 11) e on e.b2b_order_id=oi.id
+
+        where oi.INTERCEPT_STATUS =#{orderInfoVo.interceptStatus}
+
+        order by oi.create_time desc
+    </select>
+    <select id="get24MemberOrderInfo" resultType="java.lang.Integer">
+        select count(id) from ORDER_INFO where MEMBER_ID=#{memberId} and CREATE_TIME >= sysdate
+    </select>
+    <select id="getManuallyInterceptList" resultType="com.zsyc.zt.b2b.entity.ManuallyIntercept">
+        select * from MANUALLY_INTERCEPT where status=#{manuallyIntercept.status}
+        order by create_time desc
+    </select>
+    <select id="getOrderInfoByCustomerIdInfo" resultType="com.zsyc.zt.b2b.entity.OrderInfo">
+        select * from order_info oi where oi.ORDER_STATE !='CANCEL' and oi.ERP_CUSTOMER_ID=#{customerId} and ROWNUM=1
+    </select>
+    <select id="getOrderInfoDate" resultType="com.zsyc.zt.b2b.vo.OrderInfoVo">
+
+    </select>
+    <select id="getAddOrderToDay" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM order_info WHERE TO_CHAR(create_time,'YYYY-MM-DD')=TO_CHAR(SYSDATE,'YYYY-MM-DD') and
+        member_id=#{memberId} and #{amount}>goods_amount and ORDER_STATE !='CANCEL'
+    </select>
+    <select id="getTVGoodsTotal" resultType="java.lang.Integer">
+        select count(1) counts
+        from ${erp}.bms_st_io_doc a,
+        ${erp}.bms_su_dtl b,
+        ${erp}.bms_su_doc c,
+        ${erp}.bms_st_rg_doc d,
+        ${erp}.pub_factory f,
+        ${erp}.pub_goods e
+        where a.entryid = 1
+        and a.comefrom = 1
+        and a.usestatus = 1
+        and a.sourceid = b.sudocdtlid(+)
+        and e.factoryid = f.factoryid(+)
+        and b.sudocid = c.sudocid
+        and b.zx_sucondtlid = d.sucondtlid(+)
+        and b.goodsid = e.goodsid(+)
+        and d.usestatus in (2, 3) --已验收;
+        order by d.checkdate asc
+    </select>
+    <select id="getTVToGoodsTotal" resultType="java.lang.Integer">
+        select
+        count(1) counts
+        from ${erp}.bms_st_io_doc a,
+        ${erp}.bms_su_dtl b,
+        ${erp}.bms_su_doc c,
+        ${erp}.bms_st_rg_doc d,
+        ${erp}.pub_factory f,
+        ${erp}.pub_goods e
+        where a.entryid = 1
+        and a.comefrom = 1
+        and a.usestatus = 1
+        and a.sourceid=b.sudocdtlid(+)
+        and e.factoryid=f.factoryid(+)
+        and b.sudocid=c.sudocid
+        and b.zx_sucondtlid=d.sucondtlid(+)
+        and b.goodsid=e.goodsid(+)
+        and d.usestatus in (2,3)
+        and 0 > (d.checkdate+1-sysdate)
+    </select>
+    <select id="getOrderGoodsAmountToday" resultType="java.lang.Integer">
+        select count(1) from order_goods where TO_CHAR(create_time,'YYYY-MM-DD')=TO_CHAR(SYSDATE,'YYYY-MM-DD')
+        and amount_pay>(goods_num*goods_pay_price)
+    </select>
+    <select id="getOrderInfoAmountToday" resultType="java.lang.Integer">
+        select count(1) from order_info where goods_amount is null and
+        TO_CHAR(create_time,'YYYY-MM-DD')=TO_CHAR(SYSDATE,'YYYY-MM-DD') and order_state!='CANCEL' and delete_state=0
+    </select>
+    <select id="getAddOrderToDayAmount" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM order_info WHERE TO_CHAR(create_time,'YYYY-MM-DD')=TO_CHAR(SYSDATE,'YYYY-MM-DD') and
+        member_id=#{memberId} and goods_amount>=#{amount} and ORDER_STATE !='CANCEL'
+    </select>
+    <select id="getOrderGoodsCountPurchase" resultType="java.lang.Integer">
+        select nvl(sum(og.goods_num),0) from order_goods og ,order_info oi ,activity a
+        where oi.member_id=#{memberId} and og.order_id=oi.id and
+        oi.order_state!='CANCEL' and a.id=og.purchase_id
+        and og.purchase_id=#{purchaseId} and og.erp_goods_id=#{erpGoodsId}
+        and a.TIMES_STRATEGY is not null
+        <if test="timesStrategy==0">
+            and oi.create_time between a.start_time and a.end_time
+        </if>
+        <if test="timesStrategy==1">
+            and oi.create_time between to_date( CONCAT(CONCAT(TO_CHAR(sysdate,'yyyy-mm-dd'), ' '),'00:00:01') ,
+            'yyyy-mm-dd hh24:mi:ss') and sysdate
+        </if>
+        <if test="timesStrategy==2">
+            and oi.create_time between sysdate-7 and sysdate
+        </if>
+        <if test="timesStrategy==3">
+            and oi.create_time between sysdate-30 and sysdate
+        </if>
+        <if test="timesStrategy==4">
+            and oi.create_time between sysdate-360 and sysdate
+        </if>
+    </select>
+    <select id="getOrderInfoVoByTranslinename" resultType="com.zsyc.zt.b2b.vo.OrderInfoVo">
+        select customid,
+        customname,
+        zx_phone,
+        pay_totaline,
+        erp_total,
+        settletype,
+        address,
+        tranposname,
+        transortno from erp_norec_custom_onface_list_v ev
+        <where>
+            <if test="orderInfoVo.translinename!=null and orderInfoVo.translinename!=''">
+                tranposname like '%'||UPPER(#{orderInfoVo.translinename})||'%'
+            </if>
+            <if test="orderInfoVo.erpTotal==1">
+                and ev.pay_totaline > 0
+
+            </if>
+            <if test="orderInfoVo.erpTotal==2">
+                and ev.pay_totaline = 0
+            </if>
+            <if test="orderInfoVo.translinenames!=null ">
+                and tranposname in
+                <foreach collection="orderInfoVo.translinenames" item="item" open="(" close=")" separator=",">
+                    (#{item})
+                </foreach>
+            </if>
+            <if test="orderInfoVo.transortno!=null and orderInfoVo.transortno!=''">
+                and transortno=#{orderInfoVo.transortno}
+            </if>
+            <if test="orderInfoVo.customid!=null and orderInfoVo.customid!=''">
+                and customid=#{orderInfoVo.customid}
+            </if>
+            <if test="orderInfoVo.customname!=null and orderInfoVo.customname!=''">
+                and customname like '%'||#{orderInfoVo.customname}||'%'
+            </if>
+        </where>
+    </select>
+    <select id="getErpOrderId" resultType="com.zsyc.zt.b2b.vo.ErpOrderInfo">
+        select a.salesid, a.dtl_lines
+        from ${erp}.bms_sa_doc a
+        where a.b2b_order_no = #{orderNo}
+    </select>
+    <select id="getOrderInfoByMemberId" resultType="java.lang.Long">
+        select id from order_info where order_state ='TO_DELIVERY' and sent_time is null
+        and member_id=#{memberId}
+    </select>
+    <select id="getErpOrderInfoByMemberId" resultType="com.zsyc.zt.b2b.vo.ErpOrderInfo">
+        select satypeid,
+        sourcetype,
+        customid,
+        customname,
+        salesid,
+        sourcedocid,
+        b2b_order_id,
+        zx_bh_flag,
+        credate,
+        pay_totaline,
+        tranposname,
+        (case when salesid in
+        <foreach collection="erpOrderInfo.longList" item="item" open="(" close=")" separator=",">
+            (#{item})
+        </foreach>
+        then 1
+        else 0
+        end) pitchon,
+        transortno from erp_not_rec_order_list_v en where en.customid=#{erpOrderInfo.erpUserId}
+        <if test="erpOrderInfo.translinenames!=null ">
+            and tranposname in
+            <foreach collection="erpOrderInfo.translinenames" item="item" open="(" close=")" separator=",">
+                (#{item})
+            </foreach>
+        </if>
+        <if test="erpOrderInfo.sourcetypes!=null ">
+            and sourcetype in
+            <foreach collection="erpOrderInfo.sourcetypes" item="item" open="(" close=")" separator=",">
+                (#{item})
+            </foreach>
+        </if>
+        <if test="erpOrderInfo.transDocBySalesId!=null ">
+            and salesid in
+            <foreach collection="erpOrderInfo.transDocBySalesId" item="item" open="(" close=")" separator=",">
+                (#{item})
+            </foreach>
+        </if>
+        <if test="erpOrderInfo.salesid!=null and erpOrderInfo.salesid!=''">
+            and salesid=#{erpOrderInfo.salesid}
+        </if>
+        <if test="erpOrderInfo.startTime!=null and erpOrderInfo.endTime!=null">
+            and credate &gt;= #{erpOrderInfo.startTime} and credate &lt;= #{erpOrderInfo.endTime}
+        </if>
+    </select>
+    <select id="getErpOrderInfoBySalesid" resultType="com.zsyc.zt.b2b.vo.ErpOrderInfo">
+        select satypeid,
+        sourcetype,
+        customid,
+        customname,
+        salesid,
+        sourcedocid,
+        b2b_order_id,
+        zx_bh_flag,
+        credate,
+        pay_totaline,
+        tranposname,
+        transortno from erp_not_rec_order_list_v where customid=#{erpUserId}
+
+        <if test="salesid!=null and salesid!=''">
+            and salesid=#{salesid}
+        </if>
+
+    </select>
+    <select id="getFinancialStatementTotalList" resultType="com.zsyc.zt.b2b.vo.OrderInfoVo">
+        select
+        oi.id,oi.order_no,oi.create_time,oi.erp_customer_id,m.user_name,oi.goods_amount,oi.actually_money,oi.refund_amount,oi.pay_method,oi.coupon_ids
+        from order_info oi
+        inner join member m on m.erp_user_id=oi.erp_customer_id
+        where oi.ORDER_STATE !='CANCEL' and oi.DELETE_STATE=0
+        <if test="orderInfoVo.orderState!=null and orderInfoVo.orderState!=''">
+            oi.order_state =#{orderInfoVo.orderState}
+        </if>
+        <if test="orderInfoVo.payOrderNo!=null and orderInfoVo.payOrderNo!=''">
+            and oi.PAY_ORDER_NO like '%'||#{orderInfoVo.payOrderNo}||'%'
+        </if>
+        <if test="orderInfoVo.payMethod!=null and orderInfoVo.payMethod!=''">
+            and oi.PAY_METHOD =#{orderInfoVo.payMethod}
+        </if>
+        <if test="orderInfoVo.id!=null">
+            and oi.id =#{orderInfoVo.id}
+        </if>
+        <if test="orderInfoVo.memberId!=null">
+            and oi.member_id =#{orderInfoVo.memberId}
+        </if>
+        <if test="orderInfoVo.orderFrom!=null and orderInfoVo.orderFrom!=''">
+            and oi.ORDER_FROM =#{orderInfoVo.orderFrom}
+        </if>
+        <if test="orderInfoVo.orderNo!=null and orderInfoVo.orderNo!=''">
+            and oi.order_no like '%'||#{orderInfoVo.orderNo}||'%'
+        </if>
+        <if test="orderInfoVo.deleteState!=null and orderInfoVo.deleteState!=''">
+            and oi.delete_state = #{orderInfoVo.deleteState}
+        </if>
+        <if test="orderInfoVo.memberName!=null and orderInfoVo.memberName!=''">
+            and oi.member_name like '%'||#{orderInfoVo.memberName}||'%'
+        </if>
+        <if test="orderInfoVo.telephone!=null and orderInfoVo.telephone!=''">
+            and m.telephone like '%'||#{orderInfoVo.telephone}||'%'
+        </if>
+        <if test="orderInfoVo.memberPhone!=null and orderInfoVo.memberPhone!=''">
+            and oi.member_phone like '%'||#{orderInfoVo.memberPhone}||'%'
+        </if>
+        <if test="orderInfoVo.erpCustomerId!=null and orderInfoVo.erpCustomerId!=''">
+            and oi.ERP_CUSTOMER_ID = #{orderInfoVo.erpCustomerId}
+        </if>
+        <if test="orderInfoVo.startTime!=null and orderInfoVo.endTime!=null">
+            and oi.create_time &gt;= #{orderInfoVo.startTime} and oi.create_time &lt;= #{orderInfoVo.endTime}
+        </if>
+        order by oi.id desc
+    </select>
+    <select id="getFinancialStatementList" resultType="com.zsyc.zt.b2b.vo.OrderInfoVo">
+        select
+        oi.id,oi.order_no,oi.create_time,oi.erp_customer_id,m.user_name,oi.order_amount,oi.goods_amount,oi.actually_money,oi.refund_amount,oi.pay_method,oi.coupon_ids,
+        og.erp_goods_id goodsid,og.goods_name,og.goods_pay_price
+        price,og.goods_num,og.amount_pay,og.amount_num,og.erp_goods_unit goodsunit,og.GOODS_SPEC goodstype,
+        b.prodarea, c.factoryname
+        from order_info oi
+        inner join member m on m.erp_user_id=oi.erp_customer_id
+        inner join order_goods og on og.order_id=oi.id
+        left join ${erp}.pub_goods b on b.goodsid=og.erp_goods_id
+        left join ${erp}.pub_factory c on c.factoryid=b.factoryid
+        where oi.ORDER_STATE !='CANCEL' and oi.DELETE_STATE=0
+        <if test="orderInfoVo.orderState!=null and orderInfoVo.orderState!=''">
+            oi.order_state =#{orderInfoVo.orderState}
+        </if>
+        <if test="orderInfoVo.payOrderNo!=null and orderInfoVo.payOrderNo!=''">
+            and oi.PAY_ORDER_NO like '%'||#{orderInfoVo.payOrderNo}||'%'
+        </if>
+        <if test="orderInfoVo.payMethod!=null and orderInfoVo.payMethod!=''">
+            and oi.PAY_METHOD =#{orderInfoVo.payMethod}
+        </if>
+        <if test="orderInfoVo.id!=null">
+            and oi.id =#{orderInfoVo.id}
+        </if>
+        <if test="orderInfoVo.memberId!=null">
+            and oi.member_id =#{orderInfoVo.memberId}
+        </if>
+        <if test="orderInfoVo.orderFrom!=null and orderInfoVo.orderFrom!=''">
+            and oi.ORDER_FROM =#{orderInfoVo.orderFrom}
+        </if>
+        <if test="orderInfoVo.orderNo!=null and orderInfoVo.orderNo!=''">
+            and oi.order_no like '%'||#{orderInfoVo.orderNo}||'%'
+        </if>
+        <if test="orderInfoVo.deleteState!=null and orderInfoVo.deleteState!=''">
+            and oi.delete_state = #{orderInfoVo.deleteState}
+        </if>
+        <if test="orderInfoVo.memberName!=null and orderInfoVo.memberName!=''">
+            and oi.member_name like '%'||#{orderInfoVo.memberName}||'%'
+        </if>
+        <if test="orderInfoVo.telephone!=null and orderInfoVo.telephone!=''">
+            and m.telephone like '%'||#{orderInfoVo.telephone}||'%'
+        </if>
+        <if test="orderInfoVo.memberPhone!=null and orderInfoVo.memberPhone!=''">
+            and oi.member_phone like '%'||#{orderInfoVo.memberPhone}||'%'
+        </if>
+        <if test="orderInfoVo.erpCustomerId!=null and orderInfoVo.erpCustomerId!=''">
+            and oi.ERP_CUSTOMER_ID = #{orderInfoVo.erpCustomerId}
+        </if>
+        <if test="orderInfoVo.startTime!=null and orderInfoVo.endTime!=null">
+            and oi.create_time &gt;= #{orderInfoVo.startTime} and oi.create_time &lt;= #{orderInfoVo.endTime}
+        </if>
+        order by oi.id desc
+    </select>
+
+
+</mapper>

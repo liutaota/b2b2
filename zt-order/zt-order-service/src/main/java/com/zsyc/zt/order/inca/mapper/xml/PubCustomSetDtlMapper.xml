@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubCustomSetDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubCustomSetDtl">
+        <id column="SETDTLID" property="setdtlid" />
+        <result column="SETID" property="setid" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="IMPCUSTOMID" property="impcustomid" />
+        <result column="IMPCUSTOMNAME" property="impcustomname" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SETDTLID, SETID, CUSTOMID, IMPCUSTOMID, IMPCUSTOMNAME
+    </sql>
+
+</mapper>

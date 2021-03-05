@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.BmsSaSettleDtlMapper">
+    <update id="updateRecfinflag">
+    update
+        bms_sa_settle_dtl
+    set
+        recfinflag = 3,
+        totalrecqty = nvl(totalrecqty,0) + #{goodsqty,jdbcType=NUMERIC} ,
+        totalrecmoney = nvl(totalrecmoney,0) + #{totalLine,jdbcType=NUMERIC}
+    where sasettledtlid = #{sasettledtlid,jdbcType=NUMERIC}
+    </update>
+    <update id="updateTotalRecMoney">
+        update bms_sa_settle_dtl a
+        set a.totalrecmoney =#{totalLine,jdbcType=NUMERIC}
+        where a.sasettledtlid = #{sasettledtlid,jdbcType=NUMERIC}
+    </update>
+    <delete id="deleteBmsSaSettleDtlTmp">
+    delete from bms_sa_settle_dtl_tmp where sasettledtlid = #{sasettledtlid,jdbcType=NUMERIC}
+    </delete>
+    <select id="getBmsSaSettleDtlTmp" resultType="java.lang.Long">
+        select * from bms_sa_settle_dtl_tmp tmp where tmp.sasettledtlid=#{sasettledtlid,jdbcType=NUMERIC}
+    </select>
+    <select id="getBySalesdtlid" resultType="com.zsyc.zt.inca.entity.BmsSaSettleDtl">
+        select *
+          from bms_sa_settle_dtl a
+         where exists (select 1
+                  from bms_sa_doctoset b
+                 where a.sasettledtlid = b.sasettledtlid
+                   and b.salesdtlid = #{salesdtlid})
+    </select>
+</mapper>

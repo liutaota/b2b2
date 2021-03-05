@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.B2bGiftDocComfirmMapper">
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.inca.entity.BmsPresOutDoc">
+        <id column="MEMO" property="memo"></id>
+        <result column="PRESOUTID" property="presoutid"></result>
+        <result column="USESTATUS" property="usestatus"></result>
+        <result column="CONFIRMMANID" property="confirmmanid"></result>
+        <result column="INPUTMANID" property="inputmanid"></result>
+    </resultMap>
+    <!-- 通用查询结果列 -->
+    <sql id="B2B_Column_List">
+        MEMO, PRESOUTID, USESTATUS,PRESOUTID
+    </sql>
+    <select id="selectBy"
+            resultMap="BaseResultMap">
+       select a.*,b.employeename inputname from bms_pres_out_doc a,pub_employee b where a.zx_ordernumber=#{orderNo} and a.entryid=#{entryId} and a.usestatus=#{srcStatus} and a.inputmanid = b.employeeid(+)
+    </select>
+    <select id="queryAddress"
+            resultType="com.zsyc.zt.inca.vo.IncaAddressVo">
+       select * from (select b.tranposid, b.translineid, a.entryid, c.address
+						    from bms_pres_out_doc a, bms_tr_pos_def b, pub_customer c
+						    where a.customid = b.companyid
+						     and a.customid = c.customid
+						      and b.tranpostype = 1
+						      and b.usestatus=1
+						     and a.presoutid =#{presoutid}
+						    order by b.tranposid desc) where  rownum=1
+
+    </select>
+    <select id="queryCustomid"
+            resultType="String">
+       select customid  from bms_pres_out_doc where presoutid =#{presoutid}
+
+    </select>
+    <select id="getStorerid"
+            resultType="java.lang.Integer">
+      select b.phystoreid
+           from bms_st_io_doc_tmp a, bms_st_def b
+          where a.storageid = b.storageid
+            and sourcetable =18
+            and a.sourceid in
+                (select presoutdtlid from bms_pres_out_dtl where presoutid = #{presoutid})
+          group by phystoreid
+
+    </select>
+
+</mapper>

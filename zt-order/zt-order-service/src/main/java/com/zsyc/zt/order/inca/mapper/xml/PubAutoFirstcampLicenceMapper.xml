@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubAutoFirstcampLicenceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubAutoFirstcampLicence">
+        <id column="FIRSTCAMPLICENCEID" property="firstcamplicenceid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="REENTRYID" property="reentryid" />
+        <result column="SUPPLYAUTOFIRSTCAMP" property="supplyautofirstcamp" />
+        <result column="CUSTOMERAUTOFIRSTCAMP" property="customerautofirstcamp" />
+        <result column="GOODSAUTOFIRSTCAMP" property="goodsautofirstcamp" />
+        <result column="COMPANYAUTOCOPY" property="companyautocopy" />
+        <result column="GOODSAUTOCOPY" property="goodsautocopy" />
+        <result column="GOODSAPPROVALID1" property="goodsapprovalid1" />
+        <result column="GOODSAPPROVALID2" property="goodsapprovalid2" />
+        <result column="GOODSAPPROVALID3" property="goodsapprovalid3" />
+        <result column="GOODSAPPROVALID4" property="goodsapprovalid4" />
+        <result column="GOODSAPPROVALID5" property="goodsapprovalid5" />
+        <result column="GOODSAPPROVALID6" property="goodsapprovalid6" />
+        <result column="SUPPLYAPPROVALID1" property="supplyapprovalid1" />
+        <result column="SUPPLYAPPROVALID2" property="supplyapprovalid2" />
+        <result column="SUPPLYAPPROVALID3" property="supplyapprovalid3" />
+        <result column="SUPPLYAPPROVALID4" property="supplyapprovalid4" />
+        <result column="SUPPLYAPPROVALID5" property="supplyapprovalid5" />
+        <result column="SUPPLYAPPROVALID6" property="supplyapprovalid6" />
+        <result column="CUSTOMERAPPROVALID1" property="customerapprovalid1" />
+        <result column="CUSTOMERAPPROVALID2" property="customerapprovalid2" />
+        <result column="CUSTOMERAPPROVALID3" property="customerapprovalid3" />
+        <result column="CUSTOMERAPPROVALID4" property="customerapprovalid4" />
+        <result column="CUSTOMERAPPROVALID5" property="customerapprovalid5" />
+        <result column="CUSTOMERAPPROVALID6" property="customerapprovalid6" />
+        <result column="GOODSLICENCECREADEID" property="goodslicencecreadeid" />
+        <result column="GOODSLICENCEALTERID" property="goodslicencealterid" />
+        <result column="GOODSLICENCEALTERAPPROVELID" property="goodslicencealterapprovelid" />
+        <result column="COMPANYLICENCECREADEID" property="companylicencecreadeid" />
+        <result column="COMPANYLICENCEALTERID" property="companylicencealterid" />
+        <result column="COMPANYLICENCEALTERAPPROVELID" property="companylicencealterapprovelid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        FIRSTCAMPLICENCEID, ENTRYID, REENTRYID, SUPPLYAUTOFIRSTCAMP, CUSTOMERAUTOFIRSTCAMP, GOODSAUTOFIRSTCAMP, COMPANYAUTOCOPY, GOODSAUTOCOPY, GOODSAPPROVALID1, GOODSAPPROVALID2, GOODSAPPROVALID3, GOODSAPPROVALID4, GOODSAPPROVALID5, GOODSAPPROVALID6, SUPPLYAPPROVALID1, SUPPLYAPPROVALID2, SUPPLYAPPROVALID3, SUPPLYAPPROVALID4, SUPPLYAPPROVALID5, SUPPLYAPPROVALID6, CUSTOMERAPPROVALID1, CUSTOMERAPPROVALID2, CUSTOMERAPPROVALID3, CUSTOMERAPPROVALID4, CUSTOMERAPPROVALID5, CUSTOMERAPPROVALID6, GOODSLICENCECREADEID, GOODSLICENCEALTERID, GOODSLICENCEALTERAPPROVELID, COMPANYLICENCECREADEID, COMPANYLICENCEALTERID, COMPANYLICENCEALTERAPPROVELID
+    </sql>
+
+</mapper>

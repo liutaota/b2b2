@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsTrFetchDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsTrFetchDoc">
+        <id column="FETCHID" property="fetchid" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="FETCHTYPE" property="fetchtype" />
+        <result column="FETCHNO" property="fetchno" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="COMPANYNAME" property="companyname" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="TRANSFLAG" property="transflag" />
+        <result column="TRPOSID" property="trposid" />
+        <result column="CONFIRMMANID" property="confirmmanid" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="MEMO" property="memo" />
+        <result column="WFUSESTATUS" property="wfusestatus" />
+        <result column="WFPROCESS" property="wfprocess" />
+        <result column="WFMEMO" property="wfmemo" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="SALERID" property="salerid" />
+        <result column="SALESDEPTID" property="salesdeptid" />
+        <result column="DELIVERMETHOD" property="delivermethod" />
+        <result column="MIDPOSID" property="midposid" />
+        <result column="STORERID" property="storerid" />
+        <result column="NOWMSFLAG" property="nowmsflag" />
+        <result column="PRINTCOUNT" property="printcount" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="INVDEMAND" property="invdemand" />
+        <result column="PLANINVDATE" property="planinvdate" />
+        <result column="SETTLETYPEID" property="settletypeid" />
+        <result column="INVTYPE" property="invtype" />
+        <result column="EXPECTGETDATE" property="expectgetdate" />
+        <result column="TRANMETHOD" property="tranmethod" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="ZX_BH_FLAG" property="zxBhFlag" />
+        <result column="ZX_ORDERNUMBER" property="zxOrdernumber" />
+        <result column="ZX_TOTAL" property="zxTotal" />
+        <result column="B2B_NOT_WRITE_BACK" property="b2bNotWriteBack" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        FETCHID, CREDATE, INPUTMANID, COMEFROM, FETCHTYPE, FETCHNO, COMPANYID, COMPANYNAME, STORAGEID, TRANSFLAG, TRPOSID, CONFIRMMANID, CONFIRMDATE, MEMO, WFUSESTATUS, WFPROCESS, WFMEMO, ENTRYID, AGENTID, SALERID, SALESDEPTID, DELIVERMETHOD, MIDPOSID, STORERID, NOWMSFLAG, PRINTCOUNT, PRINTMANID, PRINTDATE, INVDEMAND, PLANINVDATE, SETTLETYPEID, INVTYPE, EXPECTGETDATE, TRANMETHOD, CONTACTID, ZX_BH_FLAG, ZX_ORDERNUMBER, ZX_TOTAL, B2B_NOT_WRITE_BACK
+    </sql>
+
+    <select id="getByCustomId" resultType="com.zsyc.zt.order.entity.BmsTrFetchDoc">
+         select a.invmethod, a.invdemand, a.invtype, b.settletypeid, a.customname
+     from pub_customer a, pub_entry_customer b
+    where a.customid = b.customid(+)
+      and rownum=1
+      and a.customid = #{customId}
+    </select>
+
+</mapper>

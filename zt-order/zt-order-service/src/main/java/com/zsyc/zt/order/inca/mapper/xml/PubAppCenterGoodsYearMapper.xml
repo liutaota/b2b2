@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubAppCenterGoodsYearMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubAppCenterGoodsYear">
+        <result column="SEQID" property="seqid" />
+        <result column="RETAILCENTERID" property="retailcenterid" />
+        <result column="MONEY" property="money" />
+        <result column="CLASSID" property="classid" />
+        <result column="CREDATE" property="credate" />
+        <result column="GROSS" property="gross" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SEQID, RETAILCENTERID, MONEY, CLASSID, CREDATE, GROSS
+    </sql>
+
+</mapper>

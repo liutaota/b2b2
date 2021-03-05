@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.LicenceApplyMapper">
+    <delete id="delLicenceApplyByMemberId">
+        delete from LICENCE_APPLY where member_id=#{memberId}
+    </delete>
+    <select id="getLicenceApplyList" resultType="com.zsyc.zt.b2b.vo.LicenceApplyVo">
+        select la.*,b.customname,  to_char(b.zx_phone) telephone from LICENCE_APPLY la
+        left join ${erp}.pub_customer b on b.customid=la.ERP_CUSTOMER_ID
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="licenceApplyVo.licenceName!=null and licenceApplyVo.licenceName!=''">
+                and la.LICENCE_NAME like '%'||#{licenceApplyVo.licenceName}||'%'
+            </if>
+            <if test="licenceApplyVo.customname!=null and licenceApplyVo.customname!=''">
+                and b.customname like '%'||#{licenceApplyVo.customname}||'%'
+            </if>
+            <if test="licenceApplyVo.telephone!=null and licenceApplyVo.telephone!=''">
+                and b.zx_phone like '%'||#{licenceApplyVo.telephone}||'%'
+            </if>
+            <if test="licenceApplyVo.status!=null and licenceApplyVo.status!=''">
+                and la.STATUS =#{licenceApplyVo.status}
+            </if>
+            <if test="licenceApplyVo.licenceTypeId!=null and licenceApplyVo.licenceTypeId!=''">
+                and la.LICENCE_TYPE_ID =#{licenceApplyVo.licenceTypeId}
+            </if>
+            <if test="licenceApplyVo.erpCustomerId!=null and licenceApplyVo.erpCustomerId!=''">
+                and la.ERP_CUSTOMER_ID =#{licenceApplyVo.erpCustomerId}
+            </if>
+            <if test="licenceApplyVo.startTime!=null and licenceApplyVo.endTime!=null">
+                and la.CREATE_TIME &gt;= #{licenceApplyVo.startTime} and la.CREATE_TIME &lt;= #{licenceApplyVo.endTime}
+            </if>
+        </trim>
+        order by la.CREATE_TIME desc
+    </select>
+    <select id="getAuditResultList" resultType="com.zsyc.zt.b2b.vo.LicenceApplyVo">
+        select l.*,m.apply,mp.REASON apply_reason from LICENCE_APPLY l
+        inner join member m on m.id=l.MEMBER_ID
+        inner join MEMBER_APPLY mp on mp.id=m.apply
+        where l.MEMBER_ID=#{id}
+    </select>
+    <select id="getMemberLicenceList" resultType="com.zsyc.zt.b2b.vo.MemberLicenceVo">
+        select
+        la.MEMBER_ID,
+        la.LICENCE_ID licenseId,
+        la.LICENCE_CODE   licenceCode,
+        la.LICENCE_NAME,
+        la.SIGN_TIME,
+        la.LICENCE_TYPE_ID,
+        la.STATUS        auditStatus,
+        la.LICENCE_IMAGES,
+        l.STATUS         licenceStatus,
+        la.REASON,
+        (case
+        when sysdate>=TO_DATE(la.VALID_ON_TIME,'YYYY-MM-DD') then '已过期'
+        when sysdate-30>=TO_DATE(la.VALID_ON_TIME,'YYYY-MM-DD') then '即将过期'
+        else '正常' end ) status_time,
+        la.VALID_ON_TIME  VALID_ON_TIME,
+        la.VALID_END_TIME
+        from LICENCE_APPLY la
+        left join LICENCE l on l.apply_id =la.id
+        where la.MEMBER_ID = #{memberLicenceVo.memberId} and la.LICENCE_TYPE_ID!=562
+        and (sysdate-30>=TO_DATE(la.VALID_ON_TIME,'YYYY-MM-DD') or sysdate>=TO_DATE(la.VALID_ON_TIME,'YYYY-MM-DD'))
+       <!-- <if test="memberLicenceVo.times==1">
+            and sysdate-30>=la.VALID_ON_TIME
+        </if>
+        <if test="memberLicenceVo.times==2">
+            and sysdate>=la.VALID_ON_TIME
+        </if>-->
+        union all
+        select
+        lv.memberId,--客户ID
+        --lv.memberName,--客户名称
+        lv.licenseId ,--证照ID
+        lv.licenceCode, --erp证照编码
+        lv.licenseName, --证照名称
+        lv.signTime, --签发日期
+        lv.licensetypeid,
+        l.STATUS  licenceStatus,
+        l.LICENCE_IMAGES,
+        ''  auditStatus ,
+        '' REASON,
+        (case
+        when sysdate>=lv.validEndTime then '已过期'
+        when sysdate-30>=lv.validEndTime then '即将过期'
+        else '正常' end ) status_time,
+        TO_CHAR(lv.validBeginTime,'YYYY-MM-DD') , --发证日期
+        TO_CHAR(lv.validEndTime,'YYYY-MM-DD HH24:MI:SS')
+        from  (select c.companyid    memberId,--客户ID
+        c.COMPANYNAME  memberName,--客户名称
+        c.licenseid    licenseId,--证照ID
+        c.licensename  licenseName,--证照名称
+        c.signdate     signTime,--签发日期
+        c.validondate  validBeginTime,--发证日期
+        c.validenddate validEndTime,
+        c.LICENSECODE  licenceCode --erp证照编码
+        ,c.licensetypeid
+        from (
+        select a.licenseid,
+        a.companyid,
+        case
+        when a.licensename is null then
+        'null '
+        else
+        a.licensename
+        end            licensename,
+        a.signdate,
+        a.validondate,
+        a.validenddate + 1 validenddate,
+        c.approvedate,
+        a.sys_modifydate,
+        a.LICENSECODE,
+        a.COMPANYNAME
+        ,a.licensetypeid
+        from ${erp}.gsp_company_license_v a,
+        (select a.licenseid,
+        a.approvedate
+        from ${erp}.gsp_license_alter_approve a,
+        (select b.licenseid,
+        max(b.approvedate) approvedate
+        from ${erp}.gsp_license_alter_approve b
+        where b.entryid in (1, 3)
+        group by b.licenseid) c
+        where a.entryid in (1, 3)
+        and a.licenseid = c.licenseid(+)
+        and a.approvedate = c.approvedate) c
+        where a.entryid = 1
+        and a.licenseid = c.licenseid(+)
+        and a.companyid not in (select placepointid from ${erp}.gpcs_placepoint)
+        and a.usestatus = 1
+        and a.validenddate is not null
+        union all
+        select a.licenseid,
+        a.companyid,
+        case
+        when a.licensename is null then
+        'null '
+        else
+        a.licensename
+        end            licensename,
+        a.signdate,
+        a.validondate,
+        a.validenddate + 1 validenddate,
+        c.approvedate,
+        a.sys_modifydate,
+        a.LICENSECODE,
+        a.COMPANYNAME
+        ,a.licensetypeid
+        from ${erp}.gsp_company_license_v a,
+        (select a.licenseid, a.approvedate
+        from ${erp}.gsp_license_alter_approve a,
+        (select b.licenseid,
+        max(b.approvedate) approvedate
+        from ${erp}.gsp_license_alter_approve b
+        where b.entryid in (1, 3)
+        group by b.licenseid) c
+        where a.entryid in (1, 3)
+        and a.licenseid = c.licenseid(+)
+        and a.approvedate = c.approvedate) c
+        where a.entryid = 3
+        and a.licenseid = c.licenseid(+)
+        and a.companyid in (select placepointid from ${erp}.gpcs_placepoint)
+        and a.usestatus = 1
+        and a.validenddate is not null) c) lv
+        left join LICENCE l on l.ERP_CUSTOMER_ID = lv.memberId and l.ERP_LICENCE_ID =lv.licenseId
+        where lv.memberId = #{memberLicenceVo.erpCustomerId} and lv.licensetypeid!=562
+        and (sysdate-30>=lv.validEndTime or sysdate>=lv.validEndTime)
+        <!--<if test="memberLicenceVo.times==1">
+            and sysdate-30>=lv.validEndTime
+        </if>
+        <if test="memberLicenceVo.times==2">
+            and sysdate>=lv.validEndTime
+        </if>-->
+
+    </select>
+</mapper>

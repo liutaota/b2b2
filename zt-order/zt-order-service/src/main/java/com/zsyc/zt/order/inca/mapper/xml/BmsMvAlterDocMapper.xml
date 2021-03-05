@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsMvAlterDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsMvAlterDoc">
+        <id column="ALTERID" property="alterid" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="SOURCEID" property="sourceid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="LOTID" property="lotid" />
+        <result column="POSID" property="posid" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="KEEPDATE" property="keepdate" />
+        <result column="KEEPMANID" property="keepmanid" />
+        <result column="REALFLAG" property="realflag" />
+        <result column="ORGINVQTY" property="orginvqty" />
+        <result column="USESTATUS" property="usestatus" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ALTERID, COMEFROM, SOURCEID, GOODSID, GOODSDTLID, STORAGEID, BATCHID, LOTID, POSID, GOODSSTATUSID, GOODSQTY, KEEPDATE, KEEPMANID, REALFLAG, ORGINVQTY, USESTATUS
+    </sql>
+
+</mapper>

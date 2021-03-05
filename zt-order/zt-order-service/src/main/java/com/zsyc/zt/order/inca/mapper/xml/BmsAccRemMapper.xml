@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsAccRemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsAccRem">
+        <id column="SEQID" property="seqid" />
+        <result column="USEMM" property="usemm" />
+        <result column="ACCID" property="accid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="DEPTID" property="deptid" />
+        <result column="EMPLOYEEID" property="employeeid" />
+        <result column="REMDEBITQTY" property="remdebitqty" />
+        <result column="REMDEBITMONEY" property="remdebitmoney" />
+        <result column="REMCREDITQTY" property="remcreditqty" />
+        <result column="REMCREDITMONEY" property="remcreditmoney" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="AGENTID" property="agentid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SEQID, USEMM, ACCID, COMPANYID, GOODSID, DEPTID, EMPLOYEEID, REMDEBITQTY, REMDEBITMONEY, REMCREDITQTY, REMCREDITMONEY, CONTACTID, AGENTID
+    </sql>
+
+</mapper>

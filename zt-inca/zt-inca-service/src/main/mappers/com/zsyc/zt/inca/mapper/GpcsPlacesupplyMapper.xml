@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.GpcsPlacesupplyMapper">
+    <update id="updateUsestatus" parameterType="com.zsyc.zt.inca.entity.GpcsPlacesupply">
+        update gpcs_placesupply
+      set usestatus = 2,
+          total    =
+          (select sum(b.total_line)
+             from gpcs_placesupplydtl a, gpcs_placesupplydtl_st b
+            where a.placesupplydtlid = b.placesupplydtlid             and a.placesupplyid = gpcs_placesupply.placesupplyid),
+     DTL_LINES=(select count(1) dtllines from gpcs_placesupplydtl a where a.placesupplyid=gpcs_placesupply.placesupplyid)      where placesupplyid = #{placesupplyId}
+    </update>
+    <update id="updateSummary">
+        update gpcs_placesupply a
+           set a.dtl_lines =
+               (select count(1) from gpcs_placesupplydtl b where b.placesupplyid = a.placesupplyid),
+             a.total =
+               (select sum(b.total_line)
+                  from gpcs_placesupplydtl b
+                 where b.placesupplyid = a.placesupplyid)
+         where a.placesupplyid = #{placesupplyId}
+    </update>
+    <select id="selectByData" resultType="com.zsyc.zt.inca.vo.BmsPresDataVo">
+            select b.translineid,
+   a.placepointid,       i.COLDSTORAGEFLAG,
+       e.AGENTID,
+		  a.contactid,
+       b.address,
+       a.PLACEMANID SALERID,
+       d.salerdeptid     SALESDEPTID,
+       b.ENTRYID
+  from gpcs_placesupply a,
+       gpcs_placepoint b,
+       pub_customer c,
+       PUB_CUSTOM_TO_SALER d,
+       PUB_COMPANY_TO_AGENT e,
+       (select max(nvl(h.coldflag,0)) coldstorageflag, f.placesupplyid
+          from gpcs_placesupply f, gpcs_placesupplydtl g, pub_goods h
+         where f.placesupplyid = g.placesupplyid
+           and g.goodsid = h.goodsid
+         group by f.placesupplyid) i
+ where a.placepointid = b.placepointid
+   and a.placesupplyid = i.placesupplyid(+)
+   and b.placepointid = c.customid(+)
+   and c.customid = d.customid(+)
+   and c.customid = e.companyid(+)
+   and a.placesupplyid =#{placesupplyId}
+    and d.salerdeptid=7628
+    </select>
+</mapper>

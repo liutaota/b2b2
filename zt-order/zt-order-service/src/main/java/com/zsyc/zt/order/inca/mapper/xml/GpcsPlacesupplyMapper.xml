@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.GpcsPlacesupplyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.GpcsPlacesupply">
+        <id column="PLACESUPPLYID" property="placesupplyid" />
+        <result column="PLACECENTERID" property="placecenterid" />
+        <result column="PLACEPOINTID" property="placepointid" />
+        <result column="COUNTERID" property="counterid" />
+        <result column="REQSUPPLYID" property="reqsupplyid" />
+        <result column="PLACEMETHOD" property="placemethod" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="PLACEMANID" property="placemanid" />
+        <result column="PLACEDATE" property="placedate" />
+        <result column="URGENTFLAG" property="urgentflag" />
+        <result column="DTL_LINES" property="dtlLines" />
+        <result column="TOTAL" property="total" />
+        <result column="PRINTFLAG" property="printflag" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="GENBILLFLAG" property="genbillflag" />
+        <result column="SUPPLYERID" property="supplyerid" />
+        <result column="MEMO" property="memo" />
+        <result column="AGENTID" property="agentid" />
+        <result column="GENPOSTFLAG" property="genpostflag" />
+        <result column="DOCDISCOUNT" property="docdiscount" />
+        <result column="DELIVERMETHOD" property="delivermethod" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="ZX_OLDPLACESUPPLYID" property="zxOldplacesupplyid" />
+        <result column="ZX_BH_FLAG" property="zxBhFlag" />
+        <result column="ZX_ORDERNUMBER" property="zxOrdernumber" />
+        <result column="CMDSETID" property="cmdsetid" />
+        <result column="ZXDOCCOL1" property="zxdoccol1" />
+        <result column="ZXDOCCOL2" property="zxdoccol2" />
+        <result column="ZXDOCCOL3" property="zxdoccol3" />
+        <result column="ZX_SJ" property="zxSj" />
+        <result column="ZX_DH" property="zxDh" />
+        <result column="ZX_YSXL" property="zxYsxl" />
+        <result column="SOURCE_ORDER_NUM" property="sourceOrderNum" />
+        <result column="SOURCE_DESC" property="sourceDesc" />
+        <result column="JD_WRITE_BACK_FLAG" property="jdWriteBackFlag" />
+        <result column="JD_ORDER_ID" property="jdOrderId" />
+        <result column="JD_ORDER_DESC" property="jdOrderDesc" />
+        <result column="JD_TOTAL_MONEY" property="jdTotalMoney" />
+        <result column="JD_DISCOUNT" property="jdDiscount" />
+        <result column="JD_PAY_MONEY" property="jdPayMoney" />
+        <result column="JD_PAY_TYPE" property="jdPayType" />
+        <result column="JD_ORDER_TYPE" property="jdOrderType" />
+        <result column="ZX_KP_FLAG" property="zxKpFlag" />
+        <result column="APPROVEFLAG" property="approveflag" />
+        <result column="APPROVEMANNAME" property="approvemanname" />
+        <result column="APPROVEMANID" property="approvemanid" />
+        <result column="APPROVEDATE" property="approvedate" />
+        <result column="APPROVEMEMO" property="approvememo" />
+        <result column="AUTO_CONFIRM" property="autoConfirm" />
+        <result column="B2B_WRITE_BACK_FLAG" property="b2bWriteBackFlag" />
+        <result column="B2B_ORDER_ID" property="b2bOrderId" />
+        <result column="B2B_AMOUNT_TOTAL" property="b2bAmountTotal" />
+        <result column="B2B_AMOUNT_DISCOUNT" property="b2bAmountDiscount" />
+        <result column="B2B_AMOUNT_PAY" property="b2bAmountPay" />
+        <result column="B2B_AMOUNT_DELIVERY" property="b2bAmountDelivery" />
+        <result column="B2B_ORDER_TYPE" property="b2bOrderType" />
+        <result column="B2B_PAY_TYPE" property="b2bPayType" />
+        <result column="B2B_ORDER_NO" property="b2bOrderNo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PLACESUPPLYID, PLACECENTERID, PLACEPOINTID, COUNTERID, REQSUPPLYID, PLACEMETHOD, USESTATUS, PLACEMANID, PLACEDATE, URGENTFLAG, DTL_LINES, TOTAL, PRINTFLAG, PRINTMANID, PRINTDATE, GENBILLFLAG, SUPPLYERID, MEMO, AGENTID, GENPOSTFLAG, DOCDISCOUNT, DELIVERMETHOD, CONTACTID, ZX_OLDPLACESUPPLYID, ZX_BH_FLAG, ZX_ORDERNUMBER, CMDSETID, ZXDOCCOL1, ZXDOCCOL2, ZXDOCCOL3, ZX_SJ, ZX_DH, ZX_YSXL, SOURCE_ORDER_NUM, SOURCE_DESC, JD_WRITE_BACK_FLAG, JD_ORDER_ID, JD_ORDER_DESC, JD_TOTAL_MONEY, JD_DISCOUNT, JD_PAY_MONEY, JD_PAY_TYPE, JD_ORDER_TYPE, ZX_KP_FLAG, APPROVEFLAG, APPROVEMANNAME, APPROVEMANID, APPROVEDATE, APPROVEMEMO, AUTO_CONFIRM, B2B_WRITE_BACK_FLAG, B2B_ORDER_ID, B2B_AMOUNT_TOTAL, B2B_AMOUNT_DISCOUNT, B2B_AMOUNT_PAY, B2B_AMOUNT_DELIVERY, B2B_ORDER_TYPE, B2B_PAY_TYPE, B2B_ORDER_NO
+    </sql>
+
+</mapper>

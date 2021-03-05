@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsCertDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsCertDoc">
+        <id column="CERTID" property="certid" />
+        <result column="CERTTYPEID" property="certtypeid" />
+        <result column="CERTNO" property="certno" />
+        <result column="CERTDATE" property="certdate" />
+        <result column="DEBITMONEY" property="debitmoney" />
+        <result column="CREDITMONEY" property="creditmoney" />
+        <result column="CERTMANID" property="certmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="USEMM" property="usemm" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="TOZWFLAG" property="tozwflag" />
+        <result column="SKCOSTFLAG" property="skcostflag" />
+        <result column="VOUCHERNO" property="voucherno" />
+        <result column="VOUCHERID" property="voucherid" />
+        <result column="CERTCLASS" property="certclass" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CERTID, CERTTYPEID, CERTNO, CERTDATE, DEBITMONEY, CREDITMONEY, CERTMANID, CREDATE, INPUTMANID, USESTATUS, USEMM, ENTRYID, TOZWFLAG, SKCOSTFLAG, VOUCHERNO, VOUCHERID, CERTCLASS
+    </sql>
+
+</mapper>

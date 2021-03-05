@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSurebToBusidtlidMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSurebToBusidtlid">
+        <result column="SETID" property="setid" />
+        <result column="BUSIDTLID" property="busidtlid" />
+        <result column="SOURCETABLE" property="sourcetable" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SETID, BUSIDTLID, SOURCETABLE
+    </sql>
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubEntrySubscribeSetMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubEntrySubscribeSet">
+        <id column="SUBSCRIBESETID" property="subscribesetid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="DATATYPE" property="datatype" />
+        <result column="SUBSCRIBETYPE" property="subscribetype" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SUBSCRIBESETID, ENTRYID, DATATYPE, SUBSCRIBETYPE, USESTATUS, CREDATE, INPUTMANID
+    </sql>
+
+</mapper>

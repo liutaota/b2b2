@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubEmployeeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubEmployee">
+        <id column="EMPLOYEEID" property="employeeid"/>
+        <result column="OPCODE" property="opcode"/>
+        <result column="EMPLOYEENAME" property="employeename"/>
+        <result column="PINYIN" property="pinyin"/>
+        <result column="WEBPASS" property="webpass"/>
+        <result column="SEX" property="sex"/>
+        <result column="BIRTHDATE" property="birthdate"/>
+        <result column="IDCARD" property="idcard"/>
+        <result column="DEPTID" property="deptid"/>
+        <result column="MEMO" property="memo"/>
+        <result column="USESTATUS" property="usestatus"/>
+        <result column="EMAIL" property="email"/>
+        <result column="PHONE" property="phone"/>
+        <result column="MOBILENO" property="mobileno"/>
+        <result column="ADDRESS" property="address"/>
+        <result column="EDULEVEL" property="edulevel"/>
+        <result column="SPECIALTY" property="specialty"/>
+        <result column="JOBEDU" property="jobedu"/>
+        <result column="STATION" property="station"/>
+        <result column="SELFFLAG" property="selfflag"/>
+        <result column="FINANCENO" property="financeno"/>
+        <result column="GOODSOWNERID" property="goodsownerid"/>
+        <result column="WAREHID" property="warehid"/>
+        <result column="HISCOMPANYID" property="hiscompanyid"/>
+        <result column="BP" property="bp"/>
+        <result column="PDAPASS" property="pdapass"/>
+        <result column="WAREHIDS" property="warehids"/>
+        <result column="POSTID" property="postid"/>
+        <result column="EMPLOYEENO" property="employeeno"/>
+        <result column="ENTRYTIME" property="entrytime"/>
+        <result column="LEAVEJOBDATE" property="leavejobdate"/>
+        <result column="LEAVEJOBSTATUS" property="leavejobstatus"/>
+        <result column="MD5COUNT" property="md5count"/>
+        <result column="USERNAME" property="username"/>
+        <result column="LOGINDATE" property="logindate"/>
+        <result column="LOGINTIMES" property="logintimes"/>
+        <result column="ERRORNUM" property="errornum"/>
+        <result column="INITPWD" property="initpwd"/>
+        <result column="EMAILFLAG" property="emailflag"/>
+        <result column="EMAILDATE" property="emaildate"/>
+        <result column="EMAILMANID" property="emailmanid"/>
+        <result column="ENTRYID" property="entryid"/>
+        <result column="SYS_MODIFYDATE" property="sysModifydate"/>
+        <result column="TOWMSDATE" property="towmsdate"/>
+        <result column="ZX_FLEID" property="zxFleid"/>
+        <result column="ZX_FLNAME" property="zxFlname"/>
+        <result column="ZX_ATYPE" property="zxAtype"/>
+        <result column="ZX_CTYPE" property="zxCtype"/>
+        <result column="ZX_DTYPE" property="zxDtype"/>
+        <result column="ZX_ROLENAME" property="zxRolename"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        EMPLOYEEID, OPCODE, EMPLOYEENAME, PINYIN, WEBPASS, SEX, BIRTHDATE, IDCARD, DEPTID, MEMO, USESTATUS, EMAIL, PHONE, MOBILENO, ADDRESS, EDULEVEL, SPECIALTY, JOBEDU, STATION, SELFFLAG, FINANCENO, GOODSOWNERID, WAREHID, HISCOMPANYID, BP, PDAPASS, WAREHIDS, POSTID, EMPLOYEENO, ENTRYTIME, LEAVEJOBDATE, LEAVEJOBSTATUS, MD5COUNT, USERNAME, LOGINDATE, LOGINTIMES, ERRORNUM, INITPWD, EMAILFLAG, EMAILDATE, EMAILMANID, ENTRYID, SYS_MODIFYDATE, TOWMSDATE, ZX_FLEID, ZX_FLNAME, ZX_ATYPE, ZX_CTYPE, ZX_DTYPE, ZX_ROLENAME
+    </sql>
+    <select id="getEmployeename" resultType="java.lang.String">
+        select employeename from pub_employee where employeeid=#{salerid}
+    </select>
+
+</mapper>

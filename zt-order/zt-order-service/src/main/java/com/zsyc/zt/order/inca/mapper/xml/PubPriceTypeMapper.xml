@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubPriceTypeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubPriceType">
+        <id column="PRICEID" property="priceid" />
+        <result column="OPCODE" property="opcode" />
+        <result column="PRICENAME" property="pricename" />
+        <result column="WHOLERESALEFLAG" property="wholeresaleflag" />
+        <result column="CONTROLFLAG" property="controlflag" />
+        <result column="WORKFLAG" property="workflag" />
+        <result column="PUBLISHFLAG" property="publishflag" />
+        <result column="MODIFYFLAG" property="modifyflag" />
+        <result column="DISCOUNTFLAG" property="discountflag" />
+        <result column="MEMO" property="memo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PRICEID, OPCODE, PRICENAME, WHOLERESALEFLAG, CONTROLFLAG, WORKFLAG, PUBLISHFLAG, MODIFYFLAG, DISCOUNTFLAG, MEMO
+    </sql>
+
+</mapper>

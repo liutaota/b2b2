@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStRgDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStRgDoc">
+        <id column="RGID" property="rgid" />
+        <result column="RGTYPE" property="rgtype" />
+        <result column="FREIGHTBILLNO" property="freightbillno" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="UNQUALIFIEDQTY" property="unqualifiedqty" />
+        <result column="QUALIFIEDQTY" property="qualifiedqty" />
+        <result column="REQUALIFIEDQTY" property="requalifiedqty" />
+        <result column="REUNQUALIFIEDQTY" property="reunqualifiedqty" />
+        <result column="REGOODSQTY" property="regoodsqty" />
+        <result column="SALERID" property="salerid" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="CHECKMANID" property="checkmanid" />
+        <result column="CHECKMANID2" property="checkmanid2" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="CHECKDATE" property="checkdate" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="STORERID" property="storerid" />
+        <result column="REINPUTMANID" property="reinputmanid" />
+        <result column="RECREDATE" property="recredate" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="PRESENTSTORAGEID" property="presentstorageid" />
+        <result column="ERASTORAGEID" property="erastorageid" />
+        <result column="SUCONDTLID" property="sucondtlid" />
+        <result column="FETCHDTLID" property="fetchdtlid" />
+        <result column="PLACERETURNDTLID" property="placereturndtlid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="RGGOODSQTY" property="rggoodsqty" />
+        <result column="GSPUNCONFIRMFLAG" property="gspunconfirmflag" />
+        <result column="REALPRICE" property="realprice" />
+        <result column="REALMONEY" property="realmoney" />
+        <result column="TWOINVOICEINFLAG" property="twoinvoiceinflag" />
+        <result column="SUCONID" property="suconid" />
+        <result column="FETCHID" property="fetchid" />
+        <result column="REDOCID" property="redocid" />
+        <result column="REDTLID" property="redtlid" />
+        <result column="RECHECKSTATUS" property="recheckstatus" />
+        <result column="RECHECKMANID" property="recheckmanid" />
+        <result column="RECHECKDATE" property="recheckdate" />
+        <result column="ZX_PRINTFLAG" property="zxPrintflag" />
+        <result column="ZX_PRINTDATE" property="zxPrintdate" />
+        <result column="ZX_PRINTMANID" property="zxPrintmanid" />
+        <result column="ZX_PRINTNUM" property="zxPrintnum" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        RGID, RGTYPE, FREIGHTBILLNO, GOODSID, UNQUALIFIEDQTY, QUALIFIEDQTY, REQUALIFIEDQTY, REUNQUALIFIEDQTY, REGOODSQTY, SALERID, UNITPRICE, TOTAL_LINE, CHECKMANID, CHECKMANID2, USESTATUS, CHECKDATE, COMPANYID, AGENTID, CONTACTID, STORERID, REINPUTMANID, RECREDATE, STORAGEID, PRESENTSTORAGEID, ERASTORAGEID, SUCONDTLID, FETCHDTLID, PLACERETURNDTLID, ENTRYID, RGGOODSQTY, GSPUNCONFIRMFLAG, REALPRICE, REALMONEY, TWOINVOICEINFLAG, SUCONID, FETCHID, REDOCID, REDTLID, RECHECKSTATUS, RECHECKMANID, RECHECKDATE, ZX_PRINTFLAG, ZX_PRINTDATE, ZX_PRINTMANID, ZX_PRINTNUM
+    </sql>
+
+</mapper>

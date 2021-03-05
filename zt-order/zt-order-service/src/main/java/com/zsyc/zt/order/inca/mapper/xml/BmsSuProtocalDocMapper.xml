@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuProtocalDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuProtocalDoc">
+        <id column="PROTOCALDOCID" property="protocaldocid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="CREDATE" property="credate" />
+        <result column="PROTOCALNO" property="protocalno" />
+        <result column="INVALIDDATE" property="invaliddate" />
+        <result column="INVALIDENDDATE" property="invalidenddate" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="TOTAL" property="total" />
+        <result column="SETTLETYPEID" property="settletypeid" />
+        <result column="REBATEMEMO" property="rebatememo" />
+        <result column="PAYMETHOD" property="paymethod" />
+        <result column="MAINTERMS" property="mainterms" />
+        <result column="RELATEDTERMS" property="relatedterms" />
+        <result column="DESTRIMEDTERMS" property="destrimedterms" />
+        <result column="SECDESTRIMEDTERMS" property="secdestrimedterms" />
+        <result column="TERMINALTERMS" property="terminalterms" />
+        <result column="MEMO" property="memo" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="ISALLOWPREPAID" property="isallowprepaid" />
+        <result column="SUPPLYERID" property="supplyerid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="PAYLIMIT" property="paylimit" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PROTOCALDOCID, ENTRYID, CREDATE, PROTOCALNO, INVALIDDATE, INVALIDENDDATE, SUPPLYID, GOODSQTY, TOTAL, SETTLETYPEID, REBATEMEMO, PAYMETHOD, MAINTERMS, RELATEDTERMS, DESTRIMEDTERMS, SECDESTRIMEDTERMS, TERMINALTERMS, MEMO, INPUTMANID, USESTATUS, ISALLOWPREPAID, SUPPLYERID, AGENTID, CONTACTID, PAYLIMIT
+    </sql>
+
+</mapper>

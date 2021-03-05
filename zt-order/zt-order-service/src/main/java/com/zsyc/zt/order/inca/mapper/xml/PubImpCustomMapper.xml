@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubImpCustomMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubImpCustom">
+        <id column="DTLID" property="dtlid" />
+        <result column="DOCID" property="docid" />
+        <result column="IMPSTATUS" property="impstatus" />
+        <result column="ERRORMESSAGE" property="errormessage" />
+        <result column="NEWID" property="newid" />
+        <result column="CUSTOMNAME" property="customname" />
+        <result column="CUSTOMOPCODE" property="customopcode" />
+        <result column="CUSTOMPINYIN" property="custompinyin" />
+        <result column="CUSTOMNO" property="customno" />
+        <result column="CORPCODE" property="corpcode" />
+        <result column="GSPFLAGNAME" property="gspflagname" />
+        <result column="GSPCATEGORYNAME" property="gspcategoryname" />
+        <result column="MEDICODE" property="medicode" />
+        <result column="TAXNUMBER" property="taxnumber" />
+        <result column="ZONE" property="zone" />
+        <result column="LEGALPERSON" property="legalperson" />
+        <result column="CUSTOMERTYPENAME" property="customertypename" />
+        <result column="CITYNAME" property="cityname" />
+        <result column="COUNTRYNAME" property="countryname" />
+        <result column="REGISTADD" property="registadd" />
+        <result column="ADDRESS" property="address" />
+        <result column="MEMO" property="memo" />
+        <result column="USESTATUSNAME" property="usestatusname" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANNAME" property="inputmanname" />
+        <result column="FMNAME" property="fmname" />
+        <result column="INVCOMPANYNAME" property="invcompanyname" />
+        <result column="INVTAXNO" property="invtaxno" />
+        <result column="INVADDRESS" property="invaddress" />
+        <result column="INVTELEPHONE" property="invtelephone" />
+        <result column="INVBANKNAME" property="invbankname" />
+        <result column="INVBANKNO" property="invbankno" />
+        <result column="INVMEMO" property="invmemo" />
+        <result column="TRANPOSNAME1" property="tranposname1" />
+        <result column="TRANPOSOPCODE1" property="tranposopcode1" />
+        <result column="TRANPOSORDER1" property="tranposorder1" />
+        <result column="TRANPOSADDRESS1" property="tranposaddress1" />
+        <result column="TRANPOSTELEPHONE1" property="tranpostelephone1" />
+        <result column="TRANPOSFAX1" property="tranposfax1" />
+        <result column="TRANPOSPOSTCODE1" property="tranpospostcode1" />
+        <result column="TRANPOSCONTRACTMAN1" property="tranposcontractman1" />
+        <result column="TRANPOSDISTANCE1" property="tranposdistance1" />
+        <result column="TRANSLINENAME1" property="translinename1" />
+        <result column="TRANSORTNO1" property="transortno1" />
+        <result column="TRANPOSNAME2" property="tranposname2" />
+        <result column="TRANPOSOPCODE2" property="tranposopcode2" />
+        <result column="TRANPOSORDER2" property="tranposorder2" />
+        <result column="TRANPOSADDRESS2" property="tranposaddress2" />
+        <result column="TRANPOSTELEPHONE2" property="tranpostelephone2" />
+        <result column="TRANPOSFAX2" property="tranposfax2" />
+        <result column="TRANPOSPOSTCODE2" property="tranpospostcode2" />
+        <result column="TRANPOSCONTRACTMAN2" property="tranposcontractman2" />
+        <result column="TRANPOSDISTANCE2" property="tranposdistance2" />
+        <result column="TRANSLINENAME2" property="translinename2" />
+        <result column="TRANSORTNO2" property="transortno2" />
+        <result column="TRANPOSNAME3" property="tranposname3" />
+        <result column="TRANPOSOPCODE3" property="tranposopcode3" />
+        <result column="TRANPOSORDER3" property="tranposorder3" />
+        <result column="TRANPOSADDRESS3" property="tranposaddress3" />
+        <result column="TRANPOSTELEPHONE3" property="tranpostelephone3" />
+        <result column="TRANPOSFAX3" property="tranposfax3" />
+        <result column="TRANPOSPOSTCODE3" property="tranpospostcode3" />
+        <result column="TRANPOSCONTRACTMAN3" property="tranposcontractman3" />
+        <result column="TRANPOSDISTANCE3" property="tranposdistance3" />
+        <result column="TRANSLINENAME3" property="translinename3" />
+        <result column="TRANSORTNO3" property="transortno3" />
+        <result column="ZXCOLUMN01" property="zxcolumn01" />
+        <result column="ZXCOLUMN02" property="zxcolumn02" />
+        <result column="ZXCOLUMN03" property="zxcolumn03" />
+        <result column="ZXCOLUMN04" property="zxcolumn04" />
+        <result column="ZXCOLUMN05" property="zxcolumn05" />
+        <result column="ZXCOLUMN06" property="zxcolumn06" />
+        <result column="ZXCOLUMN07" property="zxcolumn07" />
+        <result column="ZXCOLUMN08" property="zxcolumn08" />
+        <result column="ZXCOLUMN09" property="zxcolumn09" />
+        <result column="ZXCOLUMN10" property="zxcolumn10" />
+        <result column="ZXCOLUMN11" property="zxcolumn11" />
+        <result column="ZXCOLUMN12" property="zxcolumn12" />
+        <result column="ZXCOLUMN13" property="zxcolumn13" />
+        <result column="ZXCOLUMN14" property="zxcolumn14" />
+        <result column="ZXCOLUMN15" property="zxcolumn15" />
+        <result column="ZXCOLUMN16" property="zxcolumn16" />
+        <result column="ZXCOLUMN17" property="zxcolumn17" />
+        <result column="ZXCOLUMN18" property="zxcolumn18" />
+        <result column="ZXCOLUMN19" property="zxcolumn19" />
+        <result column="ZXCOLUMN20" property="zxcolumn20" />
+        <result column="INVTYPENAME" property="invtypename" />
+        <result column="CATEGORYID" property="categoryid" />
+        <result column="CITYID" property="cityid" />
+        <result column="COUNTRYID" property="countryid" />
+        <result column="CUSTOMERTYPE" property="customertype" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="TRANSLINEID1" property="translineid1" />
+        <result column="TRANSLINEID2" property="translineid2" />
+        <result column="TRANSLINEID3" property="translineid3" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="FMID" property="fmid" />
+        <result column="INVDEMAND" property="invdemand" />
+        <result column="INVMETHOD" property="invmethod" />
+        <result column="INVMONTH" property="invmonth" />
+        <result column="INVDAY" property="invday" />
+        <result column="INVDEMANDID" property="invdemandid" />
+        <result column="INVMETHODID" property="invmethodid" />
+        <result column="INVACCNO" property="invaccno" />
+        <result column="MONOMERPHARMACY" property="monomerpharmacy" />
+        <result column="INVTYPE" property="invtype" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DOCID, DTLID, IMPSTATUS, ERRORMESSAGE, NEWID, CUSTOMNAME, CUSTOMOPCODE, CUSTOMPINYIN, CUSTOMNO, CORPCODE, GSPFLAGNAME, GSPCATEGORYNAME, MEDICODE, TAXNUMBER, ZONE, LEGALPERSON, CUSTOMERTYPENAME, CITYNAME, COUNTRYNAME, REGISTADD, ADDRESS, MEMO, USESTATUSNAME, CREDATE, INPUTMANNAME, FMNAME, INVCOMPANYNAME, INVTAXNO, INVADDRESS, INVTELEPHONE, INVBANKNAME, INVBANKNO, INVMEMO, TRANPOSNAME1, TRANPOSOPCODE1, TRANPOSORDER1, TRANPOSADDRESS1, TRANPOSTELEPHONE1, TRANPOSFAX1, TRANPOSPOSTCODE1, TRANPOSCONTRACTMAN1, TRANPOSDISTANCE1, TRANSLINENAME1, TRANSORTNO1, TRANPOSNAME2, TRANPOSOPCODE2, TRANPOSORDER2, TRANPOSADDRESS2, TRANPOSTELEPHONE2, TRANPOSFAX2, TRANPOSPOSTCODE2, TRANPOSCONTRACTMAN2, TRANPOSDISTANCE2, TRANSLINENAME2, TRANSORTNO2, TRANPOSNAME3, TRANPOSOPCODE3, TRANPOSORDER3, TRANPOSADDRESS3, TRANPOSTELEPHONE3, TRANPOSFAX3, TRANPOSPOSTCODE3, TRANPOSCONTRACTMAN3, TRANPOSDISTANCE3, TRANSLINENAME3, TRANSORTNO3, ZXCOLUMN01, ZXCOLUMN02, ZXCOLUMN03, ZXCOLUMN04, ZXCOLUMN05, ZXCOLUMN06, ZXCOLUMN07, ZXCOLUMN08, ZXCOLUMN09, ZXCOLUMN10, ZXCOLUMN11, ZXCOLUMN12, ZXCOLUMN13, ZXCOLUMN14, ZXCOLUMN15, ZXCOLUMN16, ZXCOLUMN17, ZXCOLUMN18, ZXCOLUMN19, ZXCOLUMN20, INVTYPENAME, CATEGORYID, CITYID, COUNTRYID, CUSTOMERTYPE, USESTATUS, TRANSLINEID1, TRANSLINEID2, TRANSLINEID3, INPUTMANID, FMID, INVDEMAND, INVMETHOD, INVMONTH, INVDAY, INVDEMANDID, INVMETHODID, INVACCNO, MONOMERPHARMACY, INVTYPE
+    </sql>
+
+</mapper>

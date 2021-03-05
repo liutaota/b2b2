@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.DayBillMapper">
+
+    <select id="selectDayBill" resultType="com.zsyc.zt.b2b.entity.DayBill">
+        select
+        sum(oi.order_amount) order_amount,
+        sum(oi.GOODS_AMOUNT) payable_amount,
+        (sum(oi.GOODS_AMOUNT)-sum(oi.ERP_AMOUNT)) reduction_amount,
+        sum(ic.GOODS_AMOUNT) case_amount,
+        sum(im.GOODS_AMOUNT) monthly_amount,
+        (sum(oi.GOODS_AMOUNT)-sum(ic.GOODS_AMOUNT) -sum(im.GOODS_AMOUNT)) online_amount,
+        sum(ir.REFUND_AMOUNT) REFUND_AMOUNT,
+        (sum(oi.order_amount)-sum(oi.GOODS_AMOUNT)) promotion_amount,
+        count(oi.id) order_num,
+        count(ir.id) return_order_num,
+        count(ie.id) EXCEPTION_ORDER_NUM
+        from ORDER_INFO oi
+        left join ORDER_INFO ir on ir.REFUND_STATE!='NO_REFUND' and ir.id=oi.id
+        left join ORDER_INFO ie on ie.EXP_STATUS!='NORMAL'  and ie.id=oi.id
+
+        left join ORDER_INFO ic on ic.pay_method='CASH' and ic.id=oi.id
+        left join ORDER_INFO im on im.pay_method='MONTH'  and im.id=oi.id
+
+        where to_char(oi.CREATE_TIME,'yyyy_mm_dd')=to_char(SYSDATE-1,'yyyy_mm_dd') and oi.ORDER_STATE !='CANCEL' and oi.DELETE_STATE=0
+    </select>
+    <select id="getDayBillList" resultType="com.zsyc.zt.b2b.entity.DayBill">
+        select * from DAY_BILL
+        order by create_time desc
+    </select>
+</mapper>

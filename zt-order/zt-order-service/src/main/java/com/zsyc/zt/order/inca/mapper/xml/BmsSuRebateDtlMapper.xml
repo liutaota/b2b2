@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuRebateDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuRebateDtl">
+        <id column="REBATEDTLID" property="rebatedtlid" />
+        <result column="REBATEDOCID" property="rebatedocid" />
+        <result column="DTLTYPE" property="dtltype" />
+        <result column="JAVACLASSNAME" property="javaclassname" />
+        <result column="JAVANAME" property="javaname" />
+        <result column="PARAMJSTRING" property="paramjstring" />
+        <result column="DESCRIBE" property="describe" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        REBATEDTLID, REBATEDOCID, DTLTYPE, JAVACLASSNAME, JAVANAME, PARAMJSTRING, DESCRIBE
+    </sql>
+
+</mapper>

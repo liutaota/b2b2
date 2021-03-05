@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSaRecDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSaRecDtl">
+        <id column="SARECDTLID" property="sarecdtlid" />
+        <result column="SARECID" property="sarecid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="SALERID" property="salerid" />
+        <result column="SALESDEPTID" property="salesdeptid" />
+        <result column="DTLMEMO" property="dtlmemo" />
+        <result column="CERTID" property="certid" />
+        <result column="CDATE" property="cdate" />
+        <result column="RECSALERID" property="recsalerid" />
+        <result column="RECSALESDEPTID" property="recsalesdeptid" />
+        <result column="EXCHANGE" property="exchange" />
+        <result column="INVALIDFLAG" property="invalidflag" />
+        <result column="INVALIDMANID" property="invalidmanid" />
+        <result column="INVALIDTIME" property="invalidtime" />
+        <result column="PRINTNO" property="printno" />
+        <result column="PRINTLINE" property="printline" />
+        <result column="CORRECTFLAG" property="correctflag" />
+        <result column="TRANSDOCNO" property="transdocno" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SARECID, SARECDTLID, GOODSID, GOODSQTY, UNITPRICE, TOTAL_LINE, SALERID, SALESDEPTID, DTLMEMO, CERTID, CDATE, RECSALERID, RECSALESDEPTID, EXCHANGE, INVALIDFLAG, INVALIDMANID, INVALIDTIME, PRINTNO, PRINTLINE, CORRECTFLAG, TRANSDOCNO
+    </sql>
+
+</mapper>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.HelpTypeMapper">
+    <select id="getHelpTypeList" resultType="com.zsyc.zt.b2b.entity.HelpType">
+        select * from HELP_TYPE where IS_DEL = 0 order by TYPE_SORT desc
+    </select>
+    <select id="getHelpTypeVoList" resultType="com.zsyc.zt.b2b.vo.HelpTypeVo">
+        select * from HELP_TYPE where IS_DEL = 0 and HELP_SHOW='ON'
+        order by TYPE_SORT desc
+    </select>
+</mapper>

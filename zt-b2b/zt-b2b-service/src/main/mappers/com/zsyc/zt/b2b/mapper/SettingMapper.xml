@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.SettingMapper">
+    <select id="getSettingList" resultType="com.zsyc.zt.b2b.entity.Setting">
+        select * from SETTING
+        <where>
+            <if test="setting.type!=null and setting.type!=''">
+                TYPE = #{setting.type}
+            </if>
+            <if test="setting.name!=null and setting.name!=''">
+                and NAME like '%'||#{setting.name}||'%'
+            </if>
+        </where>
+        order by sort desc
+    </select>
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSkDefMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSkDef">
+        <id column="STOCKID" property="stockid" />
+        <result column="STOCKNO" property="stockno" />
+        <result column="STOCKNAME" property="stockname" />
+        <result column="COSTMETHOD" property="costmethod" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="CALCORDER" property="calcorder" />
+        <result column="COSTFLUCOE" property="costflucoe" />
+        <result column="ADJUSTFLAG" property="adjustflag" />
+        <result column="FLUEFLAG" property="flueflag" />
+        <result column="MAXUSEMM" property="maxusemm" />
+        <result column="MINUSEMM" property="minusemm" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        STOCKID, STOCKNO, STOCKNAME, COSTMETHOD, ENTRYID, CALCORDER, COSTFLUCOE, ADJUSTFLAG, FLUEFLAG, MAXUSEMM, MINUSEMM
+    </sql>
+
+</mapper>

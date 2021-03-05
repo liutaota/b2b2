@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsZtlinSuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsZtlinSu">
+        <id column="TAB_ID" property="tabId" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="SUPPLYNAME" property="supplyname" />
+        <result column="SUPPLYERID" property="supplyerid" />
+        <result column="SUPPLYER" property="supplyer" />
+        <result column="DOCTYPE" property="doctype" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="PAYMONEY" property="paymoney" />
+        <result column="CREDATE" property="credate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TAB_ID, SUPPLYID, SUPPLYNAME, SUPPLYERID, SUPPLYER, DOCTYPE, TOTAL_LINE, PAYMONEY, CREDATE
+    </sql>
+
+</mapper>

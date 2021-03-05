@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubCompanyInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubCompanyInfo">
+        <id column="COMPANYINFOID" property="companyinfoid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="COMPANYFUNCTION" property="companyfunction" />
+        <result column="CONTACTMAN" property="contactman" />
+        <result column="TELEPHONE" property="telephone" />
+        <result column="MOBILE" property="mobile" />
+        <result column="EMAIL" property="email" />
+        <result column="FAX" property="fax" />
+        <result column="ADDR" property="addr" />
+        <result column="POSTCODE" property="postcode" />
+        <result column="ZONECODE" property="zonecode" />
+        <result column="MEMO" property="memo" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="PERSONNO" property="personno" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        COMPANYINFOID, COMPANYID, COMPANYFUNCTION, CONTACTMAN, TELEPHONE, MOBILE, EMAIL, FAX, ADDR, POSTCODE, ZONECODE, MEMO, CREDATE, INPUTMANID, PERSONNO
+    </sql>
+
+</mapper>

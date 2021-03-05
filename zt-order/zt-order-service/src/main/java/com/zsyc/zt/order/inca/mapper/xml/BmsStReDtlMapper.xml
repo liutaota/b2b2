@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStReDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStReDtl">
+        <id column="REDTLID" property="redtlid" />
+        <result column="REDOCID" property="redocid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="OLDGOODSQTY" property="oldgoodsqty" />
+        <result column="CANGOODSQTY" property="cangoodsqty" />
+        <result column="QUALIFIEDQTY" property="qualifiedqty" />
+        <result column="UNQUALIFIEDQTY" property="unqualifiedqty" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="HASPERSENDFLAG" property="haspersendflag" />
+        <result column="PERSENDINFO" property="persendinfo" />
+        <result column="SALERID" property="salerid" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="PRESENTSTORAGEID" property="presentstorageid" />
+        <result column="ERASTORAGEID" property="erastorageid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="PACKFALG" property="packfalg" />
+        <result column="UNPACKFALG" property="unpackfalg" />
+        <result column="SUCONDTLID" property="sucondtlid" />
+        <result column="FETCHDTLID" property="fetchdtlid" />
+        <result column="PLACERETURNDTLID" property="placereturndtlid" />
+        <result column="GSPUNCONFIRMFLAG" property="gspunconfirmflag" />
+        <result column="REALPRICE" property="realprice" />
+        <result column="REALMONEY" property="realmoney" />
+        <result column="TWOINVOICEINFLAG" property="twoinvoiceinflag" />
+        <result column="SUCONID" property="suconid" />
+        <result column="FETCHID" property="fetchid" />
+        <result column="UNINVQTY" property="uninvqty" />
+        <result column="FILECOUNT" property="filecount" />
+        <result column="UPLOADQTY" property="uploadqty" />
+        <result column="INVQTY" property="invqty" />
+        <result column="REALQTY" property="realqty" />
+        <result column="ZX_RECMANID" property="zxRecmanid" />
+        <result column="ZX_RECDATE" property="zxRecdate" />
+        <result column="BACKWHYID" property="backwhyid" />
+        <result column="JD_ORDER_ID" property="jdOrderId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        REDOCID, REDTLID, GOODSID, OLDGOODSQTY, CANGOODSQTY, QUALIFIEDQTY, UNQUALIFIEDQTY, GOODSQTY, HASPERSENDFLAG, PERSENDINFO, SALERID, UNITPRICE, TOTAL_LINE, STORAGEID, PRESENTSTORAGEID, ERASTORAGEID, USESTATUS, PACKFALG, UNPACKFALG, SUCONDTLID, FETCHDTLID, PLACERETURNDTLID, GSPUNCONFIRMFLAG, REALPRICE, REALMONEY, TWOINVOICEINFLAG, SUCONID, FETCHID, UNINVQTY, FILECOUNT, UPLOADQTY, INVQTY, REALQTY, ZX_RECMANID, ZX_RECDATE, BACKWHYID, JD_ORDER_ID
+    </sql>
+
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuPlanImpTmpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuPlanImpTmp">
+        <id column="TMPID" property="tmpid" />
+        <result column="DOCID" property="docid" />
+        <result column="ERRMSG" property="errmsg" />
+        <result column="IMPFLAG" property="impflag" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="SUPPLYNAME" property="supplyname" />
+        <result column="AGENTID" property="agentid" />
+        <result column="AGENTNAME" property="agentname" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="PROTOCALDTLID" property="protocaldtlid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="GOODSTYPE" property="goodstype" />
+        <result column="GOODSUNIT" property="goodsunit" />
+        <result column="PROAREA" property="proarea" />
+        <result column="FACTORYNAME" property="factoryname" />
+        <result column="PROTOCALNO" property="protocalno" />
+        <result column="PRICE" property="price" />
+        <result column="PLANID" property="planid" />
+        <result column="CURRENCYNAME" property="currencyname" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="ENTRYNAME" property="entryname" />
+        <result column="PLANDOCID" property="plandocid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DOCID, TMPID, ERRMSG, IMPFLAG, SUPPLYID, SUPPLYNAME, AGENTID, AGENTNAME, UNITPRICE, GOODSQTY, PROTOCALDTLID, GOODSID, GOODSNAME, GOODSTYPE, GOODSUNIT, PROAREA, FACTORYNAME, PROTOCALNO, PRICE, PLANID, CURRENCYNAME, ENTRYID, ENTRYNAME, PLANDOCID
+    </sql>
+
+</mapper>

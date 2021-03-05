@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubImpDataModelDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubImpDataModelDtl">
+        <id column="MODELDTLID" property="modeldtlid" />
+        <result column="MODELID" property="modelid" />
+        <result column="ORDERNO" property="orderno" />
+        <result column="EXCELCOLNAME" property="excelcolname" />
+        <result column="REALCOLNAME" property="realcolname" />
+        <result column="NOTNULL" property="notnull" />
+        <result column="EXPLAIN" property="explain" />
+        <result column="MEMO" property="memo" />
+        <result column="DATATYPE" property="datatype" />
+        <result column="LENGTH" property="length" />
+        <result column="SCALE" property="scale" />
+        <result column="CHECKTYPE" property="checktype" />
+        <result column="CHECKSQL" property="checksql" />
+        <result column="TABSFLAG" property="tabsflag" />
+        <result column="NEWLINEFLAG" property="newlineflag" />
+        <result column="ENTERFLAG" property="enterflag" />
+        <result column="BEFORESPACE" property="beforespace" />
+        <result column="INSPACE" property="inspace" />
+        <result column="BEHINDSPACE" property="behindspace" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        MODELID, MODELDTLID, ORDERNO, EXCELCOLNAME, REALCOLNAME, NOTNULL, EXPLAIN, MEMO, DATATYPE, LENGTH, SCALE, CHECKTYPE, CHECKSQL, TABSFLAG, NEWLINEFLAG, ENTERFLAG, BEFORESPACE, INSPACE, BEHINDSPACE
+    </sql>
+
+</mapper>

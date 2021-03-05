@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.BmsStIoDtlMapper">
+    <insert id="save" parameterType="com.zsyc.zt.inca.entity.BmsStIoDtl">
+ insert into bms_st_io_dtl
+  (iodtlid,
+   inoutid,
+   batchid,
+   lotid,
+   posid,
+   goodsdtlid,
+   goodsstatusid,
+   dtlgoodsqty,
+   pickdocid,
+   dtlprintno,
+   dtlprintline,
+   gsplsflag,
+   gspcallbkflag,
+   gspflag,
+   boxscope,
+   checkmanid,
+   checkdate,
+   checkstatus,
+   boxupflag,
+   chkqty,
+   checkmanid2,
+   wmsproflag,
+   putawayflag,
+   goodsunitflag,
+   pickflag,
+   taskid,
+   erpmergenumber,
+   zx_finishmanid,
+   zx_finishdate,
+   zx_finish2manid,
+   zx_finish2date,
+   zx_pickqty,
+   zx_containerid,
+   zx_containernum,
+   zx_boxno)
+  select iodtlid,
+         inoutid,
+         batchid,
+         lotid,
+         posid,
+         goodsdtlid,
+         goodsstatusid,
+         dtlgoodsqty,
+         pickdocid,
+         dtlprintno,
+         dtlprintline,
+         gsplsflag,
+         gspcallbkflag,
+         gspflag,
+         boxscope,
+         checkmanid,
+         checkdate,
+         checkstatus,
+         boxupflag,
+         chkqty,
+         checkmanid2,
+         wmsproflag,
+         putawayflag,
+         goodsunitflag,
+         pickflag,
+         taskid,
+         erpmergenumber,
+         zx_finishmanid,
+         zx_finishdate,
+         zx_finish2manid,
+         zx_finish2date,
+         zx_pickqty,
+         zx_containerid,
+         zx_containernum,
+         zx_boxno
+    from bms_st_io_dtl_tmp
+   where inoutid = #{inoutId}
+    </insert>
+    <select id="getBySaleDtlId" resultType="java.lang.Long">
+        select c.iodtlid
+        FROM bms_sa_dtl    a,
+             bms_st_io_doc b,
+             bms_st_io_dtl c,
+             bms_batch_def d,
+             bms_lot_def   e
+        WHERE a.salesdtlid = b.sourceid
+          and b.comefrom = 3
+          and b.inoutid = c.inoutid
+          and c.batchid = d.batchid
+          and c.lotid = e.lotid
+          and a.salesdtlid = #{salesdtlid}
+    </select>
+
+</mapper>

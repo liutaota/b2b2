@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsGoodsSortRuleDefMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsGoodsSortRuleDef">
+        <id column="RULEDEFID" property="ruledefid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="GRADE" property="grade" />
+        <result column="BUSITYPE" property="busitype" />
+        <result column="STANDARD" property="standard" />
+        <result column="SCOPESTART" property="scopestart" />
+        <result column="SCOPEEND" property="scopeend" />
+        <result column="PLACEPOINTID" property="placepointid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        RULEDEFID, ENTRYID, GRADE, BUSITYPE, STANDARD, SCOPESTART, SCOPEEND, PLACEPOINTID
+    </sql>
+
+</mapper>

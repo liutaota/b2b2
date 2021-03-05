@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuProtocalDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuProtocalDtl">
+        <id column="PROTOCALDTLID" property="protocaldtlid" />
+        <result column="PROTOCALDOCID" property="protocaldocid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="DTLGOODSQTY" property="dtlgoodsqty" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="UNITMAXSUQTY" property="unitmaxsuqty" />
+        <result column="ACCGOODSQTY" property="accgoodsqty" />
+        <result column="ACCMONEY" property="accmoney" />
+        <result column="PAYMETHOD" property="paymethod" />
+        <result column="PRICE" property="price" />
+        <result column="GOODSUSEUNIT" property="goodsuseunit" />
+        <result column="GOODSUSEQTY" property="goodsuseqty" />
+        <result column="PAYLIMIT" property="paylimit" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PROTOCALDTLID, PROTOCALDOCID, GOODSID, DTLGOODSQTY, TOTAL_LINE, UNITMAXSUQTY, ACCGOODSQTY, ACCMONEY, PAYMETHOD, PRICE, GOODSUSEUNIT, GOODSUSEQTY, PAYLIMIT
+    </sql>
+
+</mapper>

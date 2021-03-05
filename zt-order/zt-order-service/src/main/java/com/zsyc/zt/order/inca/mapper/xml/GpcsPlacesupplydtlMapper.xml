@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.GpcsPlacesupplydtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.GpcsPlacesupplydtl">
+        <id column="PLACESUPPLYDTLID" property="placesupplydtlid" />
+        <result column="PLACESUPPLYID" property="placesupplyid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="GOODSUNIT" property="goodsunit" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="REFUSEQTY" property="refuseqty" />
+        <result column="PLACEPRICEID" property="placepriceid" />
+        <result column="PLACEPRICE" property="placeprice" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="ACCEPTQTY" property="acceptqty" />
+        <result column="TOTALRETURNQTY" property="totalreturnqty" />
+        <result column="PLACESTATUS" property="placestatus" />
+        <result column="RESALEPRICE" property="resaleprice" />
+        <result column="ACCMEMO" property="accmemo" />
+        <result column="DISCOUNT" property="discount" />
+        <result column="OLDPLACEPRICE" property="oldplaceprice" />
+        <result column="CHANGEABLE" property="changeable" />
+        <result column="ZX_SPLIT_TYPE" property="zxSplitType" />
+        <result column="ZX_RELETEID" property="zxReleteid" />
+        <result column="ZX_BHRELETEID" property="zxBhreleteid" />
+        <result column="ZX_CXINFO" property="zxCxinfo" />
+        <result column="JD_SOURCE_NUM" property="jdSourceNum" />
+        <result column="JD_ORDER_ID" property="jdOrderId" />
+        <result column="JD_ORDER_DTL_ID" property="jdOrderDtlId" />
+        <result column="JD_TOTAL_MONEY" property="jdTotalMoney" />
+        <result column="JD_DISCOUNT" property="jdDiscount" />
+        <result column="JD_PAY_MONEY" property="jdPayMoney" />
+        <result column="JD_UNIT_PRICE" property="jdUnitPrice" />
+        <result column="JD_MONEY" property="jdMoney" />
+        <result column="JD_ORDER_TYPE" property="jdOrderType" />
+        <result column="ZX_PRICE_MODIFY_FLAG" property="zxPriceModifyFlag" />
+        <result column="JD_PAY_TYPE" property="jdPayType" />
+        <result column="B2B_ORDER_ID" property="b2bOrderId" />
+        <result column="B2B_ORDER_DTL_ID" property="b2bOrderDtlId" />
+        <result column="B2B_AMOUNT_TOTAL" property="b2bAmountTotal" />
+        <result column="B2B_AMOUNT_DISCOUNT" property="b2bAmountDiscount" />
+        <result column="B2B_AMOUNT_PAY" property="b2bAmountPay" />
+        <result column="B2B_AMOUNT_DELIVERY" property="b2bAmountDelivery" />
+        <result column="B2B_NUM" property="b2bNum" />
+        <result column="B2B_PRICE" property="b2bPrice" />
+        <result column="B2B_PRICE_DISCOUNT" property="b2bPriceDiscount" />
+        <result column="B2B_ORDER_NO" property="b2bOrderNo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PLACESUPPLYDTLID, PLACESUPPLYID, GOODSID, GOODSDTLID, GOODSUNIT, GOODSQTY, REFUSEQTY, PLACEPRICEID, PLACEPRICE, TOTAL_LINE, ACCEPTQTY, TOTALRETURNQTY, PLACESTATUS, RESALEPRICE, ACCMEMO, DISCOUNT, OLDPLACEPRICE, CHANGEABLE, ZX_SPLIT_TYPE, ZX_RELETEID, ZX_BHRELETEID, ZX_CXINFO, JD_SOURCE_NUM, JD_ORDER_ID, JD_ORDER_DTL_ID, JD_TOTAL_MONEY, JD_DISCOUNT, JD_PAY_MONEY, JD_UNIT_PRICE, JD_MONEY, JD_ORDER_TYPE, ZX_PRICE_MODIFY_FLAG, JD_PAY_TYPE, B2B_ORDER_ID, B2B_ORDER_DTL_ID, B2B_AMOUNT_TOTAL, B2B_AMOUNT_DISCOUNT, B2B_AMOUNT_PAY, B2B_AMOUNT_DELIVERY, B2B_NUM, B2B_PRICE, B2B_PRICE_DISCOUNT, B2B_ORDER_NO
+    </sql>
+
+</mapper>

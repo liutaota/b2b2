@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubImpEntryGoodsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubImpEntryGoods">
+        <id column="DTLID" property="dtlid" />
+        <result column="DOCID" property="docid" />
+        <result column="IMPSTATUS" property="impstatus" />
+        <result column="ERRORMESSAGE" property="errormessage" />
+        <result column="NEWID" property="newid" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="CURRENCYNAME" property="currencyname" />
+        <result column="GOODSTYPE" property="goodstype" />
+        <result column="PRODAREA" property="prodarea" />
+        <result column="FACTORYNAME" property="factoryname" />
+        <result column="GOODSUNIT" property="goodsunit" />
+        <result column="ENTRYNAME" property="entryname" />
+        <result column="FINANCENO" property="financeno" />
+        <result column="GOODSINVNAME" property="goodsinvname" />
+        <result column="SUPPLYTAXRATE" property="supplytaxrate" />
+        <result column="SALESTAXRATE" property="salestaxrate" />
+        <result column="LEASTSALEQTY" property="leastsaleqty" />
+        <result column="SUPPLYERNAME" property="supplyername" />
+        <result column="FIRSTSUDATE" property="firstsudate" />
+        <result column="FIRSTAPPROVEDATE" property="firstapprovedate" />
+        <result column="ZXCOLUMN01" property="zxcolumn01" />
+        <result column="ZXCOLUMN02" property="zxcolumn02" />
+        <result column="ZXCOLUMN03" property="zxcolumn03" />
+        <result column="ZXCOLUMN04" property="zxcolumn04" />
+        <result column="ZXCOLUMN05" property="zxcolumn05" />
+        <result column="ZXCOLUMN06" property="zxcolumn06" />
+        <result column="ZXCOLUMN07" property="zxcolumn07" />
+        <result column="ZXCOLUMN08" property="zxcolumn08" />
+        <result column="ZXCOLUMN09" property="zxcolumn09" />
+        <result column="ZXCOLUMN10" property="zxcolumn10" />
+        <result column="ZXCOLUMN11" property="zxcolumn11" />
+        <result column="ZXCOLUMN12" property="zxcolumn12" />
+        <result column="ZXCOLUMN13" property="zxcolumn13" />
+        <result column="ZXCOLUMN14" property="zxcolumn14" />
+        <result column="ZXCOLUMN15" property="zxcolumn15" />
+        <result column="ZXCOLUMN16" property="zxcolumn16" />
+        <result column="ZXCOLUMN17" property="zxcolumn17" />
+        <result column="ZXCOLUMN18" property="zxcolumn18" />
+        <result column="ZXCOLUMN19" property="zxcolumn19" />
+        <result column="ZXCOLUMN20" property="zxcolumn20" />
+        <result column="USEFLAG" property="useflag" />
+        <result column="PURBEFOR" property="purbefor" />
+        <result column="PROBEFOR" property="probefor" />
+        <result column="SUMBEFOR" property="sumbefor" />
+        <result column="LEVELNUM" property="levelnum" />
+        <result column="PLANSTRA" property="planstra" />
+        <result column="AVERRAGETYPE" property="averragetype" />
+        <result column="AVERRAGEINT" property="averrageint" />
+        <result column="PURCHASENUM" property="purchasenum" />
+        <result column="PRODUCENUM" property="producenum" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="SUPPLYERID" property="supplyerid" />
+        <result column="DOUBLERG" property="doublerg" />
+        <result column="DOUBLEPICK" property="doublepick" />
+        <result column="DOUBLECHECK" property="doublecheck" />
+        <result column="BANCASH" property="bancash" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DOCID, DTLID, IMPSTATUS, ERRORMESSAGE, NEWID, GOODSNAME, CURRENCYNAME, GOODSTYPE, PRODAREA, FACTORYNAME, GOODSUNIT, ENTRYNAME, FINANCENO, GOODSINVNAME, SUPPLYTAXRATE, SALESTAXRATE, LEASTSALEQTY, SUPPLYERNAME, FIRSTSUDATE, FIRSTAPPROVEDATE, ZXCOLUMN01, ZXCOLUMN02, ZXCOLUMN03, ZXCOLUMN04, ZXCOLUMN05, ZXCOLUMN06, ZXCOLUMN07, ZXCOLUMN08, ZXCOLUMN09, ZXCOLUMN10, ZXCOLUMN11, ZXCOLUMN12, ZXCOLUMN13, ZXCOLUMN14, ZXCOLUMN15, ZXCOLUMN16, ZXCOLUMN17, ZXCOLUMN18, ZXCOLUMN19, ZXCOLUMN20, USEFLAG, PURBEFOR, PROBEFOR, SUMBEFOR, LEVELNUM, PLANSTRA, AVERRAGETYPE, AVERRAGEINT, PURCHASENUM, PRODUCENUM, GOODSID, ENTRYID, SUPPLYERID, DOUBLERG, DOUBLEPICK, DOUBLECHECK, BANCASH
+    </sql>
+
+</mapper>

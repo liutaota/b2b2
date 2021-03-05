@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubEntrySupplyerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubEntrySupplyer">
+        <id column="ENTRYSUPPLYERID" property="entrysupplyerid" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="GSPUSESTATUS" property="gspusestatus" />
+        <result column="FIRSTAPPROVEDATE" property="firstapprovedate" />
+        <result column="INITFLAG" property="initflag" />
+        <result column="FINANCENO" property="financeno" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="SUBSCRIBESETDTLID" property="subscribesetdtlid" />
+        <result column="ENTRYMEMO" property="entrymemo" />
+        <result column="SUUESSTATUS" property="suuesstatus" />
+        <result column="SYS_MODIFYDATE" property="sysModifydate" />
+        <result column="TOWMSDATE" property="towmsdate" />
+        <result column="ISMUSTAGENT" property="ismustagent" />
+        <result column="ISMUSTCONTACT" property="ismustcontact" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ENTRYSUPPLYERID, SUPPLYID, ENTRYID, GSPUSESTATUS, FIRSTAPPROVEDATE, INITFLAG, FINANCENO, COMEFROM, SUBSCRIBESETDTLID, ENTRYMEMO, SUUESSTATUS, SYS_MODIFYDATE, TOWMSDATE, ISMUSTAGENT, ISMUSTCONTACT
+    </sql>
+
+</mapper>

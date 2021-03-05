@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSaDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSaDoc">
+        <id column="SALESID" property="salesid" />
+        <result column="CREDATE" property="credate" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="CUSTOMNAME" property="customname" />
+        <result column="INVTYPE" property="invtype" />
+        <result column="SETTLETYPEID" property="settletypeid" />
+        <result column="SALERID" property="salerid" />
+        <result column="SALESDEPTID" property="salesdeptid" />
+        <result column="DELIVERMETHOD" property="delivermethod" />
+        <result column="TRANMETHOD" property="tranmethod" />
+        <result column="TARGETPOSID" property="targetposid" />
+        <result column="URGENTFLAG" property="urgentflag" />
+        <result column="TRANPRIORITY" property="tranpriority" />
+        <result column="TARGETDATE" property="targetdate" />
+        <result column="TOTAL" property="total" />
+        <result column="CONFIRMANID" property="confirmanid" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="MEMO" property="memo" />
+        <result column="DTL_LINES" property="dtlLines" />
+        <result column="SATYPEID" property="satypeid" />
+        <result column="INITFLAG" property="initflag" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="STSETID" property="stsetid" />
+        <result column="FMID" property="fmid" />
+        <result column="EXCHANGE" property="exchange" />
+        <result column="CREDITFLAG" property="creditflag" />
+        <result column="CREDIT" property="credit" />
+        <result column="RECMONEY" property="recmoney" />
+        <result column="CREDITDAYSFLAG" property="creditdaysflag" />
+        <result column="CREDITDAYS" property="creditdays" />
+        <result column="RECDATE" property="recdate" />
+        <result column="LOWPRICEFLAG" property="lowpriceflag" />
+        <result column="APPROVEFLAG" property="approveflag" />
+        <result column="APPROVEMANID" property="approvemanid" />
+        <result column="APPROVEDATE" property="approvedate" />
+        <result column="APPROVEMEMO" property="approvememo" />
+        <result column="ASSESSDATE" property="assessdate" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="RECEIVEFLAG" property="receiveflag" />
+        <result column="RECEIVEMANID" property="receivemanid" />
+        <result column="RECEIVEDATE" property="receivedate" />
+        <result column="PRINTCOUNT" property="printcount" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="SACERTID" property="sacertid" />
+        <result column="RGID" property="rgid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="TOEDISTATUS" property="toedistatus" />
+        <result column="INVALIDSTATUS" property="invalidstatus" />
+        <result column="SETDAYS" property="setdays" />
+        <result column="AWARDRATE" property="awardrate" />
+        <result column="PUNISHRATE" property="punishrate" />
+        <result column="PLACESUPPLYID" property="placesupplyid" />
+        <result column="NOWMSFLAG" property="nowmsflag" />
+        <result column="PLANINVDATE" property="planinvdate" />
+        <result column="INVDEMAND" property="invdemand" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="DISCOUNTTYPE" property="discounttype" />
+        <result column="TRANSDOCNO" property="transdocno" />
+        <result column="TWOINVFLAG" property="twoinvflag" />
+        <result column="TWOINVMETHOD" property="twoinvmethod" />
+        <result column="ZX_OLDSALESID" property="zxOldsalesid" />
+        <result column="ZX_BH_FLAG" property="zxBhFlag" />
+        <result column="ZX_ORDERNUMBER" property="zxOrdernumber" />
+        <result column="ZX_MEMO" property="zxMemo" />
+        <result column="INVOICE" property="invoice" />
+        <result column="INVDATE" property="invdate" />
+        <result column="ZX_INITSATUS" property="zxInitsatus" />
+        <result column="INVMETHOD" property="invmethod" />
+        <result column="BAK" property="bak" />
+        <result column="CMDSETID" property="cmdsetid" />
+        <result column="ZXDOCCOL1" property="zxdoccol1" />
+        <result column="ZXDOCCOL2" property="zxdoccol2" />
+        <result column="ZXDOCCOL3" property="zxdoccol3" />
+        <result column="CMDSETID2" property="cmdsetid2" />
+        <result column="ZX_INVSTATUS" property="zxInvstatus" />
+        <result column="ZX_INVBACKDATE" property="zxInvbackdate" />
+        <result column="ZX_INVDATE" property="zxInvdate" />
+        <result column="ZX_ERRORMEMO" property="zxErrormemo" />
+        <result column="ZX_INVNO" property="zxInvno" />
+        <result column="ZX_INVCODE" property="zxInvcode" />
+        <result column="SOURCE_ORDER_NUM" property="sourceOrderNum" />
+        <result column="SOURCE_DESC" property="sourceDesc" />
+        <result column="JD_WRITE_BACK_FLAG" property="jdWriteBackFlag" />
+        <result column="JD_ORDER_ID" property="jdOrderId" />
+        <result column="JD_ORDER_DESC" property="jdOrderDesc" />
+        <result column="JD_TOTAL_MONEY" property="jdTotalMoney" />
+        <result column="JD_DISCOUNT" property="jdDiscount" />
+        <result column="JD_PAY_MONEY" property="jdPayMoney" />
+        <result column="JD_PAY_TYPE" property="jdPayType" />
+        <result column="JD_ORDER_TYPE" property="jdOrderType" />
+        <result column="ZX_KP_FLAG" property="zxKpFlag" />
+        <result column="JD_SHOP_FLAG" property="jdShopFlag" />
+        <result column="AUTO_CONFIRM" property="autoConfirm" />
+        <result column="B2B_WRITE_BACK_FLAG" property="b2bWriteBackFlag" />
+        <result column="B2B_ORDER_ID" property="b2bOrderId" />
+        <result column="B2B_AMOUNT_TOTAL" property="b2bAmountTotal" />
+        <result column="B2B_AMOUNT_DISCOUNT" property="b2bAmountDiscount" />
+        <result column="B2B_AMOUNT_PAY" property="b2bAmountPay" />
+        <result column="B2B_AMOUNT_DELIVERY" property="b2bAmountDelivery" />
+        <result column="B2B_ORDER_TYPE" property="b2bOrderType" />
+        <result column="B2B_PAY_TYPE" property="b2bPayType" />
+        <result column="B2B_ORDER_NO" property="b2bOrderNo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SALESID, CREDATE, CUSTOMID, CUSTOMNAME, INVTYPE, SETTLETYPEID, SALERID, SALESDEPTID, DELIVERMETHOD, TRANMETHOD, TARGETPOSID, URGENTFLAG, TRANPRIORITY, TARGETDATE, TOTAL, CONFIRMANID, CONFIRMDATE, INPUTMANID, MEMO, DTL_LINES, SATYPEID, INITFLAG, ENTRYID, STSETID, FMID, EXCHANGE, CREDITFLAG, CREDIT, RECMONEY, CREDITDAYSFLAG, CREDITDAYS, RECDATE, LOWPRICEFLAG, APPROVEFLAG, APPROVEMANID, APPROVEDATE, APPROVEMEMO, ASSESSDATE, USESTATUS, RECEIVEFLAG, RECEIVEMANID, RECEIVEDATE, PRINTCOUNT, PRINTMANID, PRINTDATE, COMEFROM, SACERTID, RGID, AGENTID, TOEDISTATUS, INVALIDSTATUS, SETDAYS, AWARDRATE, PUNISHRATE, PLACESUPPLYID, NOWMSFLAG, PLANINVDATE, INVDEMAND, CONTACTID, DISCOUNTTYPE, TRANSDOCNO, TWOINVFLAG, TWOINVMETHOD, ZX_OLDSALESID, ZX_BH_FLAG, ZX_ORDERNUMBER, ZX_MEMO, INVOICE, INVDATE, ZX_INITSATUS, INVMETHOD, BAK, CMDSETID, ZXDOCCOL1, ZXDOCCOL2, ZXDOCCOL3, CMDSETID2, ZX_INVSTATUS, ZX_INVBACKDATE, ZX_INVDATE, ZX_ERRORMEMO, ZX_INVNO, ZX_INVCODE, SOURCE_ORDER_NUM, SOURCE_DESC, JD_WRITE_BACK_FLAG, JD_ORDER_ID, JD_ORDER_DESC, JD_TOTAL_MONEY, JD_DISCOUNT, JD_PAY_MONEY, JD_PAY_TYPE, JD_ORDER_TYPE, ZX_KP_FLAG, JD_SHOP_FLAG, AUTO_CONFIRM, B2B_WRITE_BACK_FLAG, B2B_ORDER_ID, B2B_AMOUNT_TOTAL, B2B_AMOUNT_DISCOUNT, B2B_AMOUNT_PAY, B2B_AMOUNT_DELIVERY, B2B_ORDER_TYPE, B2B_PAY_TYPE, B2B_ORDER_NO
+    </sql>
+    <update id="updateCallbackStatus">
+        update BMS_SA_DOC
+        set b2b_write_back_flag = #{b2bWriteBackFlag}
+        <where>
+
+            <choose>
+                <when test="orderIds!=null and orderIds.size() >0">
+                    and b2b_order_id in
+                    <foreach collection="orderIds" open="(" close=")" separator="," item="item">
+                        #{item,jdbcType=INTEGER}
+                    </foreach>
+                </when>
+                <otherwise>
+                    and salesid = 0
+                </otherwise>
+
+            </choose>
+        </where>
+
+
+    </update>
+    <update id="updateSummary">
+        update bms_sa_doc a
+           set a.dtl_lines =
+               (select count(1) from bms_sa_dtl b where b.salesid = a.salesid),
+             a.total =
+               (select sum(b.total_line)
+                  from bms_sa_dtl b
+                 where b.salesid = a.salesid)
+         where a.salesid = #{salesId}
+         and a.entryid = #{entryId}
+
+    </update>
+
+    <select id="selectNotCallbackBy" resultType="java.lang.String">
+        SELECT DISTINCT A.b2b_ORDER_ID
+          FROM BMS_SA_DOC A
+         WHERE 1 = 1
+           AND A.ZX_BH_FLAG = #{zxBhFlag}
+           AND A.USESTATUS = #{useStatus}
+           AND A.b2b_WRITE_BACK_FLAG = #{b2bNotWriteBack}
+           AND A.b2b_ORDER_ID NOT IN
+               (SELECT X.JD_ORDER_ID
+                  FROM BMS_SA_DOC X, BMS_SA_DTL Y
+                 WHERE X.SALESID = Y.SALESID
+                   AND X.ZX_BH_FLAG = #{zxBhFlag}
+                   AND Y.Wmsbackdate is not null)
+    </select>
+    <select id="selectOrderDetails" resultType="com.zsyc.zt.order.vo.OrderDetailVo">
+        select a.goodsid,
+               d.goodsname,
+               d.goodsunit,
+               d.currencyname,
+               d.goodstype goods_spec,
+               d.zx_level,
+               d.prodarea,
+               d.medicinetypename,
+               e.factoryid,
+               e.factoryname,
+               b.dtlgoodsqty num,
+               c.unitprice  price,
+               round(nvl(b.dtlgoodsqty, 0) * nvl(c.unitprice, 0), 4)   amount, --金额
+               f.lotno,
+               f.proddate,
+               f.invaliddate,
+               b.lotid,
+               b.batchid,
+               d.approvedocno,
+               c.b2b_order_id,
+               c.b2b_order_dtl_id,
+               h.batchno
+          from bms_st_io_doc a,
+               bms_st_io_dtl b,
+               bms_sa_dtl    c,
+               pub_goods     d,
+               pub_factory   e,
+               bms_lot_def   f,
+               bms_st_def    g,
+                bms_batch_def h
+         where a.comefrom in (3)
+           and nvl(a.placetable, 0) != 1
+           and a.inoutflag in (0)
+           and b.lotid = f.lotid(+)
+           and d.factoryid = e.factoryid(+)
+           and a.goodsid = d.goodsid(+)
+           and a.entryid = 1
+           and a.sourceid = c.salesdtlid(+)
+           and c.storageid = g.storageid(+)
+           and a.inoutid = b.inoutid
+            and  b.batchid = h.batchid(+)
+           and c.api_order_no = #{orderNo}
+    </select>
+
+</mapper>

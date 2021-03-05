@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubEntryCustomerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubEntryCustomer">
+        <id column="ENTRYCUSTOMERID" property="entrycustomerid" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="GSPUSESTATUS" property="gspusestatus" />
+        <result column="FIRSTAPPROVEDATE" property="firstapprovedate" />
+        <result column="LOWPRICEFLAG" property="lowpriceflag" />
+        <result column="SETTLETYPEID" property="settletypeid" />
+        <result column="TRANPRIORITY" property="tranpriority" />
+        <result column="TRANMETHODID" property="tranmethodid" />
+        <result column="DELIVERMETHOD" property="delivermethod" />
+        <result column="INVTYPE" property="invtype" />
+        <result column="REQPRINTQUFLAG" property="reqprintquflag" />
+        <result column="FINANCENO" property="financeno" />
+        <result column="PRICEID" property="priceid" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="INITFLAG" property="initflag" />
+        <result column="SUBSCRIBESETDTLID" property="subscribesetdtlid" />
+        <result column="SAUSESTATUS" property="sausestatus" />
+        <result column="ENTRYMEMO" property="entrymemo" />
+        <result column="SYS_MODIFYDATE" property="sysModifydate" />
+        <result column="TOWMSDATE" property="towmsdate" />
+        <result column="ISMUSTAGENT" property="ismustagent" />
+        <result column="ISMUSTCONTACT" property="ismustcontact" />
+        <result column="TWOINVFLAG" property="twoinvflag" />
+        <result column="TWOINVMETHOD" property="twoinvmethod" />
+        <result column="ZX_ISFIX" property="zxIsfix" />
+        <result column="ZX_ISPRINT" property="zxIsprint" />
+        <result column="ZX_DZ_DATE" property="zxDzDate" />
+        <result column="ZX_BH_FLAG" property="zxBhFlag" />
+        <result column="ZX_PL_PRICE_FLAG" property="zxPlPriceFlag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ENTRYCUSTOMERID, CUSTOMID, ENTRYID, GSPUSESTATUS, FIRSTAPPROVEDATE, LOWPRICEFLAG, SETTLETYPEID, TRANPRIORITY, TRANMETHODID, DELIVERMETHOD, INVTYPE, REQPRINTQUFLAG, FINANCENO, PRICEID, COMEFROM, INITFLAG, SUBSCRIBESETDTLID, SAUSESTATUS, ENTRYMEMO, SYS_MODIFYDATE, TOWMSDATE, ISMUSTAGENT, ISMUSTCONTACT, TWOINVFLAG, TWOINVMETHOD, ZX_ISFIX, ZX_ISPRINT, ZX_DZ_DATE, ZX_BH_FLAG, ZX_PL_PRICE_FLAG
+    </sql>
+
+</mapper>

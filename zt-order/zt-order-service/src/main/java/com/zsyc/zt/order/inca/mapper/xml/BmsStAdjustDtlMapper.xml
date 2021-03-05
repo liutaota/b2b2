@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStAdjustDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStAdjustDtl">
+        <id column="STADJUSTDTLID" property="stadjustdtlid" />
+        <result column="STADJUSTID" property="stadjustid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="ORIGOODSDTLID" property="origoodsdtlid" />
+        <result column="ORIBATCHID" property="oribatchid" />
+        <result column="ORILOTID" property="orilotid" />
+        <result column="ORIPOSID" property="oriposid" />
+        <result column="ORIGOODSSTATUSID" property="origoodsstatusid" />
+        <result column="NEWGOODSDTLID" property="newgoodsdtlid" />
+        <result column="NEWBATCHID" property="newbatchid" />
+        <result column="NEWLOTID" property="newlotid" />
+        <result column="NEWPOSID" property="newposid" />
+        <result column="NEWGOODSSTATUSID" property="newgoodsstatusid" />
+        <result column="PRINTNO" property="printno" />
+        <result column="PRINTLINE" property="printline" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="DTLMEMO" property="dtlmemo" />
+        <result column="TIMEQTY" property="timeqty" />
+        <result column="SOURCEID" property="sourceid" />
+        <result column="ZX_SENDWMSFLAG" property="zxSendwmsflag" />
+        <result column="ZX_SENDWMSDATE" property="zxSendwmsdate" />
+        <result column="TOWMSDATE" property="towmsdate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        STADJUSTDTLID, STADJUSTID, GOODSID, ORIGOODSDTLID, ORIBATCHID, ORILOTID, ORIPOSID, ORIGOODSSTATUSID, NEWGOODSDTLID, NEWBATCHID, NEWLOTID, NEWPOSID, NEWGOODSSTATUSID, PRINTNO, PRINTLINE, GOODSQTY, DTLMEMO, TIMEQTY, SOURCEID, ZX_SENDWMSFLAG, ZX_SENDWMSDATE, TOWMSDATE
+    </sql>
+
+</mapper>

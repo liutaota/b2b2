@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsTranscontrolDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsTranscontrolDoc">
+        <id column="ROADID" property="roadid" />
+        <result column="VEHICLEID" property="vehicleid" />
+        <result column="DRIVERID" property="driverid" />
+        <result column="DELIDATE" property="delidate" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="DELIMANID" property="delimanid" />
+        <result column="SUMQUANTITY" property="sumquantity" />
+        <result column="SUMCOST" property="sumcost" />
+        <result column="DTLCOUNT" property="dtlcount" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="CONFIRMMANID" property="confirmmanid" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="MEMO" property="memo" />
+        <result column="PRINTFLAG" property="printflag" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="GSPUNCONFIRMFLAG" property="gspunconfirmflag" />
+        <result column="COLDSTORAGEFLAG" property="coldstorageflag" />
+        <result column="TRANSPORTID" property="transportid" />
+        <result column="TRANSPORTTYPE" property="transporttype" />
+        <result column="TRANMETHOD" property="tranmethod" />
+        <result column="STARTDATE" property="startdate" />
+        <result column="EXTERNALDRIVER" property="externaldriver" />
+        <result column="EXTERNALDELIMAN" property="externaldeliman" />
+        <result column="FILECOUNT" property="filecount" />
+        <result column="STARTTEMPERATURE" property="starttemperature" />
+        <result column="ZX_SARECTYPE" property="zxSarectype" />
+        <result column="ZX_DELIVERYUNIT" property="zxDeliveryunit" />
+        <result column="ZX_DELIVERYDATE" property="zxDeliverydate" />
+        <result column="ZX_DELIVERYNUM" property="zxDeliverynum" />
+        <result column="DISPATCHFLAG" property="dispatchflag" />
+        <result column="ZX_PRINTHOMEFLAG" property="zxPrinthomeflag" />
+        <result column="ZX_PRINTTRANSCERTIFLAG" property="zxPrinttranscertiflag" />
+        <result column="ZX_PRINTCCBFLAG" property="zxPrintccbflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ROADID, VEHICLEID, DRIVERID, DELIDATE, USESTATUS, DELIMANID, SUMQUANTITY, SUMCOST, DTLCOUNT, INPUTMANID, CREDATE, CONFIRMMANID, CONFIRMDATE, MEMO, PRINTFLAG, PRINTMANID, PRINTDATE, GSPUNCONFIRMFLAG, COLDSTORAGEFLAG, TRANSPORTID, TRANSPORTTYPE, TRANMETHOD, STARTDATE, EXTERNALDRIVER, EXTERNALDELIMAN, FILECOUNT, STARTTEMPERATURE, ZX_SARECTYPE, ZX_DELIVERYUNIT, ZX_DELIVERYDATE, ZX_DELIVERYNUM, DISPATCHFLAG, ZX_PRINTHOMEFLAG, ZX_PRINTTRANSCERTIFLAG, ZX_PRINTCCBFLAG
+    </sql>
+
+</mapper>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsGroupSaDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsGroupSaDoc">
+        <id column="SALESID" property="salesid" />
+        <result column="CREDATE" property="credate" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="CUSTOMNAME" property="customname" />
+        <result column="INVTYPE" property="invtype" />
+        <result column="SETTLETYPEID" property="settletypeid" />
+        <result column="SALERID" property="salerid" />
+        <result column="SALESDEPTID" property="salesdeptid" />
+        <result column="DELIVERMETHOD" property="delivermethod" />
+        <result column="TRANMETHOD" property="tranmethod" />
+        <result column="TARGETPOSID" property="targetposid" />
+        <result column="URGENTFLAG" property="urgentflag" />
+        <result column="TRANPRIORITY" property="tranpriority" />
+        <result column="TARGETDATE" property="targetdate" />
+        <result column="TOTAL" property="total" />
+        <result column="CONFIRMANID" property="confirmanid" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="MEMO" property="memo" />
+        <result column="DTL_LINES" property="dtlLines" />
+        <result column="SATYPEID" property="satypeid" />
+        <result column="INITFLAG" property="initflag" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="STSETID" property="stsetid" />
+        <result column="FMID" property="fmid" />
+        <result column="EXCHANGE" property="exchange" />
+        <result column="CREDITFLAG" property="creditflag" />
+        <result column="CREDIT" property="credit" />
+        <result column="RECMONEY" property="recmoney" />
+        <result column="CREDITDAYSFLAG" property="creditdaysflag" />
+        <result column="CREDITDAYS" property="creditdays" />
+        <result column="RECDATE" property="recdate" />
+        <result column="LOWPRICEFLAG" property="lowpriceflag" />
+        <result column="APPROVEFLAG" property="approveflag" />
+        <result column="APPROVEMANID" property="approvemanid" />
+        <result column="APPROVEDATE" property="approvedate" />
+        <result column="APPROVEMEMO" property="approvememo" />
+        <result column="ASSESSDATE" property="assessdate" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="RECEIVEFLAG" property="receiveflag" />
+        <result column="RECEIVEMANID" property="receivemanid" />
+        <result column="RECEIVEDATE" property="receivedate" />
+        <result column="PRINTFLAG" property="printflag" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="SACERTID" property="sacertid" />
+        <result column="RGID" property="rgid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="TOEDISTATUS" property="toedistatus" />
+        <result column="INVALIDSTATUS" property="invalidstatus" />
+        <result column="SETDAYS" property="setdays" />
+        <result column="AWARDRATE" property="awardrate" />
+        <result column="PUNISHRATE" property="punishrate" />
+        <result column="NOWMSFLAG" property="nowmsflag" />
+        <result column="APENTRYID" property="apentryid" />
+        <result column="PLANINVDATE" property="planinvdate" />
+        <result column="INVDEMAND" property="invdemand" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="TWOINVFLAG" property="twoinvflag" />
+        <result column="TWOINVMETHOD" property="twoinvmethod" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SALESID, CREDATE, CUSTOMID, CUSTOMNAME, INVTYPE, SETTLETYPEID, SALERID, SALESDEPTID, DELIVERMETHOD, TRANMETHOD, TARGETPOSID, URGENTFLAG, TRANPRIORITY, TARGETDATE, TOTAL, CONFIRMANID, CONFIRMDATE, INPUTMANID, MEMO, DTL_LINES, SATYPEID, INITFLAG, ENTRYID, STSETID, FMID, EXCHANGE, CREDITFLAG, CREDIT, RECMONEY, CREDITDAYSFLAG, CREDITDAYS, RECDATE, LOWPRICEFLAG, APPROVEFLAG, APPROVEMANID, APPROVEDATE, APPROVEMEMO, ASSESSDATE, USESTATUS, RECEIVEFLAG, RECEIVEMANID, RECEIVEDATE, PRINTFLAG, PRINTMANID, PRINTDATE, COMEFROM, SACERTID, RGID, AGENTID, TOEDISTATUS, INVALIDSTATUS, SETDAYS, AWARDRATE, PUNISHRATE, NOWMSFLAG, APENTRYID, PLANINVDATE, INVDEMAND, CONTACTID, TWOINVFLAG, TWOINVMETHOD
+    </sql>
+
+</mapper>

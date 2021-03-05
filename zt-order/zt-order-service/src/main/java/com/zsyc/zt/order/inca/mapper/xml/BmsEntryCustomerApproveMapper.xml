@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsEntryCustomerApproveMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsEntryCustomerApprove">
+        <id column="APPROVEID" property="approveid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="CUSTOMNAME" property="customname" />
+        <result column="CUSTOMTYPE" property="customtype" />
+        <result column="CUSTOMNO" property="customno" />
+        <result column="TAXNUMBER" property="taxnumber" />
+        <result column="ZONE" property="zone" />
+        <result column="LEGALPERSON" property="legalperson" />
+        <result column="REGISTADD" property="registadd" />
+        <result column="ADDRESS" property="address" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="MEMO" property="memo" />
+        <result column="QFLEVELID" property="qflevelid" />
+        <result column="QFAPPMANID" property="qfappmanid" />
+        <result column="QFAPPDATE" property="qfappdate" />
+        <result column="QFMEMO" property="qfmemo" />
+        <result column="QFUSESTATUS" property="qfusestatus" />
+        <result column="APPROVESTATUS" property="approvestatus" />
+        <result column="APPROVEMANID" property="approvemanid" />
+        <result column="APPROVEDATE" property="approvedate" />
+        <result column="APPROVEMEMO" property="approvememo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        APPROVEID, ENTRYID, CUSTOMID, CUSTOMNAME, CUSTOMTYPE, CUSTOMNO, TAXNUMBER, ZONE, LEGALPERSON, REGISTADD, ADDRESS, CREDATE, INPUTMANID, MEMO, QFLEVELID, QFAPPMANID, QFAPPDATE, QFMEMO, QFUSESTATUS, APPROVESTATUS, APPROVEMANID, APPROVEDATE, APPROVEMEMO
+    </sql>
+
+</mapper>

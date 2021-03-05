@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStEraDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStEraDtl">
+        <id column="ERADTLID" property="eradtlid" />
+        <result column="ERAID" property="eraid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="GOODSUSEUNIT" property="goodsuseunit" />
+        <result column="GOODSUSEQTY" property="goodsuseqty" />
+        <result column="PRINTNO" property="printno" />
+        <result column="PRINTLINE" property="printline" />
+        <result column="PRINGFLAG" property="pringflag" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="ERAREASON" property="erareason" />
+        <result column="ERAOUTWAY" property="eraoutway" />
+        <result column="TOTALERAOUTQTY" property="totaleraoutqty" />
+        <result column="FINISHFLAG" property="finishflag" />
+        <result column="DTLMEMO" property="dtlmemo" />
+        <result column="ERADTLINID" property="eradtlinid" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="LOTID" property="lotid" />
+        <result column="POSID" property="posid" />
+        <result column="SUPPLYERID" property="supplyerid" />
+        <result column="SENDFLAG" property="sendflag" />
+        <result column="WMSSTATUS" property="wmsstatus" />
+        <result column="RECST" property="recst" />
+        <result column="RECSTDATE" property="recstdate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ERADTLID, ERAID, GOODSID, GOODSQTY, GOODSUSEUNIT, GOODSUSEQTY, PRINTNO, PRINTLINE, PRINGFLAG, PRINTMANID, PRINTDATE, GOODSDTLID, ERAREASON, ERAOUTWAY, TOTALERAOUTQTY, FINISHFLAG, DTLMEMO, ERADTLINID, GOODSSTATUSID, BATCHID, LOTID, POSID, SUPPLYERID, SENDFLAG, WMSSTATUS, RECST, RECSTDATE
+    </sql>
+
+</mapper>

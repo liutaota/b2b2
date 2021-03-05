@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuImpTmpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuImpTmp">
+        <id column="TMPID" property="tmpid" />
+        <result column="DOCID" property="docid" />
+        <result column="IMPFLAG" property="impflag" />
+        <result column="ERRORMESSAGE" property="errormessage" />
+        <result column="CREDATE" property="credate" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="SUPPLYNAME" property="supplyname" />
+        <result column="AGENTID" property="agentid" />
+        <result column="AGENTNAME" property="agentname" />
+        <result column="DELIVERDATE" property="deliverdate" />
+        <result column="ARRIVEDATE" property="arrivedate" />
+        <result column="TRANSDOCNO" property="transdocno" />
+        <result column="FMID" property="fmid" />
+        <result column="EXCHANGE" property="exchange" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="ENTRYNAME" property="entryname" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="SUPPLYERID" property="supplyerid" />
+        <result column="SUPPLYER" property="supplyer" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="STORAGENAME" property="storagename" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="TAXRATE" property="taxrate" />
+        <result column="COSTPRICE" property="costprice" />
+        <result column="COST" property="cost" />
+        <result column="PAYMODE" property="paymode" />
+        <result column="PAYLIMIT" property="paylimit" />
+        <result column="ZXCOLNUM1" property="zxcolnum1" />
+        <result column="ZXCOLNUM2" property="zxcolnum2" />
+        <result column="ZXCOLNUM3" property="zxcolnum3" />
+        <result column="ZXCOLNUM4" property="zxcolnum4" />
+        <result column="ZXCOLNUM5" property="zxcolnum5" />
+        <result column="ZXCOLNUM6" property="zxcolnum6" />
+        <result column="ZXCOLNUM7" property="zxcolnum7" />
+        <result column="ZXCOLNUM8" property="zxcolnum8" />
+        <result column="ZXCOLNUM9" property="zxcolnum9" />
+        <result column="ZXCOLNUM10" property="zxcolnum10" />
+        <result column="PAYMODENAME" property="paymodename" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TMPID, DOCID, IMPFLAG, ERRORMESSAGE, CREDATE, SUPPLYID, SUPPLYNAME, AGENTID, AGENTNAME, DELIVERDATE, ARRIVEDATE, TRANSDOCNO, FMID, EXCHANGE, ENTRYID, ENTRYNAME, GOODSID, GOODSNAME, SUPPLYERID, SUPPLYER, STORAGEID, STORAGENAME, GOODSQTY, UNITPRICE, TOTAL_LINE, TAXRATE, COSTPRICE, COST, PAYMODE, PAYLIMIT, ZXCOLNUM1, ZXCOLNUM2, ZXCOLNUM3, ZXCOLNUM4, ZXCOLNUM5, ZXCOLNUM6, ZXCOLNUM7, ZXCOLNUM8, ZXCOLNUM9, ZXCOLNUM10, PAYMODENAME
+    </sql>
+
+</mapper>

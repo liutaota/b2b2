@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuRebateRecMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuRebateRec">
+        <id column="RECID" property="recid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="TYPE" property="type" />
+        <result column="REBATEDOCID" property="rebatedocid" />
+        <result column="INSTANCEID" property="instanceid" />
+        <result column="CONFIRMMANID" property="confirmmanid" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="CERTID" property="certid" />
+        <result column="SUCONSTATUS" property="suconstatus" />
+        <result column="SUCONID" property="suconid" />
+        <result column="SUSETDOCID" property="susetdocid" />
+        <result column="SUSETSTATUS" property="susetstatus" />
+        <result column="SUDOCSTATUS" property="sudocstatus" />
+        <result column="SUDOCID" property="sudocid" />
+        <result column="SETTORECID" property="settorecid" />
+        <result column="CREATETYPE" property="createtype" />
+        <result column="MEMO" property="memo" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="EMPLOYEEID" property="employeeid" />
+        <result column="AGENTMANID" property="agentmanid" />
+        <result column="CONFIGCLASS" property="configclass" />
+        <result column="CLUES" property="clues" />
+        <result column="FREQUENCY" property="frequency" />
+        <result column="FORM" property="form" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        RECID, ENTRYID, COMPANYID, TOTAL_LINE, USESTATUS, INPUTMANID, CREDATE, TYPE, REBATEDOCID, INSTANCEID, CONFIRMMANID, CONFIRMDATE, CERTID, SUCONSTATUS, SUCONID, SUSETDOCID, SUSETSTATUS, SUDOCSTATUS, SUDOCID, SETTORECID, CREATETYPE, MEMO, GOODSID, GOODSQTY, EMPLOYEEID, AGENTMANID, CONFIGCLASS, CLUES, FREQUENCY, FORM
+    </sql>
+
+</mapper>

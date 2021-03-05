@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.DeliveryAmountMapper">
+    <select id="getDeliveryAmount" resultType="com.zsyc.zt.b2b.entity.DeliveryAmount">
+        select a.*
+        from DELIVERY_AMOUNT a
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="deliveryAmountVo.daName!=null and deliveryAmountVo.daName!=''">
+                and a.DA_NAME like '%'||#{deliveryAmountVo.daName}||'%'
+            </if>
+            <if test="deliveryAmountVo.areaName!=null and deliveryAmountVo.areaName!=''">
+                and a.AREA_NAME like '%'||#{deliveryAmountVo.areaName}||'%'
+            </if>
+        </trim>
+        order by a.ID
+    </select>
+    <select id="getDeliveryAmountByCustomerId" resultType="java.lang.Long">
+        select
+        sum( nvl(pb.da_amount, 0)+ nvl(cb.da_amount, 0)+ nvl(db.da_amount, 0))  amount
+        from ${erp}.pub_customer a
+        left join ${erp}.pub_city c on a.cityid = c.cityid
+        left join ${erp}.pub_province p on  c.provinceid = p.provinceid
+        left join delivery_amount pb on  pb.area_id=to_char(p.provinceid) and pb.is_use='ON' and pb.type='PROVINCE'
+        left join delivery_amount cb on REGEXP_SUBSTR(cb.area_id, '[^\-]+$') =to_char(c.cityid)  and cb.is_use='ON' and cb.type='CITY'
+        left join delivery_amount db on  REGEXP_SUBSTR(db.area_id, '[^\-]+$') =to_char(a.countryid) and db.is_use='ON' and db.type='DISTRICT'
+        WHERE  a.customid = #{customid}
+    </select>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsRgNoticeDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsRgNoticeDtl">
+        <id column="NOTICEDTLID" property="noticedtlid" />
+        <result column="NOTICEDOCID" property="noticedocid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="SOURCEDTLID" property="sourcedtlid" />
+        <result column="LOTID" property="lotid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="DTLMEMO" property="dtlmemo" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="IODTLID" property="iodtlid" />
+        <result column="PRICEID" property="priceid" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="BATCHFLAG" property="batchflag" />
+        <result column="BATCHPRICE" property="batchprice" />
+        <result column="CANFETCHQTY" property="canfetchqty" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        NOTICEDOCID, NOTICEDTLID, GOODSID, GOODSDTLID, GOODSNAME, GOODSQTY, SOURCEDTLID, LOTID, BATCHID, USESTATUS, DTLMEMO, GOODSSTATUSID, IODTLID, PRICEID, UNITPRICE, BATCHFLAG, BATCHPRICE, CANFETCHQTY
+    </sql>
+
+</mapper>

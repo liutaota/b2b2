@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.BmsSaSettorecMapper">
+
+    <select id="selectBySaRecId" resultType="com.zsyc.zt.inca.vo.BmsSaSettorecVo">
+        select a.*,b.salesdtlid
+        from BMS_SA_SETTOREC a,Bms_Sa_Doctoset b
+        where a.sasettledtlid = b.sasettledtlid
+          and  exists (select 1
+                     from bms_sa_rec_dtl b
+                     where a.sarecdtlid = b.sarecdtlid
+                       and b.sarecid = #{sarecid})
+    </select>
+</mapper>

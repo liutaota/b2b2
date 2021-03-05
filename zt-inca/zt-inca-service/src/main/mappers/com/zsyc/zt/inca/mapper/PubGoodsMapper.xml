@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.PubGoodsMapper">
+
+    <select id="selectGoodsIdList" resultType="java.lang.Long">
+        select goodsid FROM pub_goods <where>${ew.sqlSegment}</where>
+    </select>
+    <select id="getDetail" resultType="com.zsyc.zt.inca.vo.GoodsVo">
+            select a.goodsid,
+                   b.goodsname,
+                   b.goodsunit,
+                   b.factoryid,
+                   c.factoryname,
+                   b.medicinetype,
+                   b.medicinetypename,
+                   b.currencyname,
+                   b.goodstype,
+                   b.accflag,
+        (CASE
+        WHEN a.zx_b2b_num_limit*10000 IS NULL THEN
+        10000
+        ELSE
+        a.zx_b2b_num_limit*10000
+        END) zx_b2b_num_limit,
+        b.classn_row_1,
+                   b.classn_row_2,
+                   b.classn_row_3,
+                   b.classname_1,
+                   b.classname_2,
+                   b.classname_3,
+                   b.opcode,
+
+                   a.entryid
+              from pub_entry_goods a,
+                   pub_goods b,
+                   pub_factory c
+             where 1 = 1
+               and a.goodsid = b.goodsid
+               and b.factoryid = c.factoryid(+)
+               and a.entryId = #{entryId}
+               and a.goodsid = #{goodsId}
+
+
+    </select>
+    <select id="selectPriceBy" resultType="java.lang.Double">
+        SELECT PRICE
+          FROM BMS_ENTRY_GOODS_PRICE A
+         WHERE A.GOODSID = #{goodsId}
+           AND A.ENTRYID = #{entryId}
+           AND A.PRICEID = #{priceId}
+    </select>
+
+    <select id="selectGoodsList" resultType="com.zsyc.zt.inca.vo.GoodsVo">
+        select a.goodsid,
+               a.goodsname,
+               a.factoryid,
+               b.factoryname,
+               a.goodstype,
+               a.goodsunit,
+               a.medicinetypename,
+               a.prodarea
+          from pub_goods a, pub_factory b
+         where a.factoryid = b.factoryid(+)
+            <if test="goodsVo.goodsId != null and goodsVo.goodsId > 0">
+            and a.goodsid = #{goodsVo.goodsId}
+            </if>
+            <if test="goodsVo.goodsName != null and goodsVo.goodsName != ''">
+            and a.goodsname like '%'||#{goodsVo.goodsName}||'%'
+            </if>
+            <if test="goodsVo.factoryId != null">
+            and a.factoryid = #{goodsVo.factoryId}
+            </if>
+            <if test="goodsVo.factoryName != null">
+            and b.factoryname like '%'||#{goodsVo.factoryName}||'%'
+            </if>
+            and accflag != 5
+    </select>
+
+    <select id="selectExistsChineseMedicineIds" resultType="java.lang.Long">
+        select a.goodsid
+          from pub_goods a
+         where a.goodsid in
+        <foreach item="item" collection="goodsIds" separator="," open="(" close=")" index="">
+            #{item, jdbcType=NUMERIC}
+        </foreach>
+           and exists (select goodsid
+                  from pub_goods_class b, pub_goods_class_dtl c
+                 where b.classid = c.classid
+                   and b.classtypeid = 107
+                   and (b.classno like '003%')
+                   and c.goodsid = a.goodsid)
+    </select>
+    <select id="selectPlanGoodsList" resultType="com.zsyc.zt.inca.vo.GoodsVo">
+        select
+            a.goodsid,
+            a.goodsname,
+            a.goodsunit
+            from
+            pub_goods a
+            where
+             a.goodsid in
+        <foreach item="item" collection="goodsIds" separator="," open="(" close=")" index="">
+            #{item, jdbcType=NUMERIC}
+        </foreach>
+    </select>
+</mapper>

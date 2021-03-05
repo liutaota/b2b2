@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsRealsellAccountDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsRealsellAccountDtl">
+        <id column="REALSELLDTLID" property="realselldtlid" />
+        <result column="REALSELLID" property="realsellid" />
+        <result column="BUSIDATE" property="busidate" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="DOCUMENTTYPE" property="documenttype" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="THISQTY" property="thisqty" />
+        <result column="THISMONEY" property="thismoney" />
+        <result column="NOSETTLEQTY" property="nosettleqty" />
+        <result column="NOSETTLEMONEY" property="nosettlemoney" />
+        <result column="SUQTY" property="suqty" />
+        <result column="SUPRICE" property="suprice" />
+        <result column="SUMONEY" property="sumoney" />
+        <result column="PAYMOTHOD" property="paymothod" />
+        <result column="PAYPARAM" property="payparam" />
+        <result column="SUDOCID" property="sudocid" />
+        <result column="SUDTLID" property="sudtlid" />
+        <result column="SETTLEDTLIDS" property="settledtlids" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        REALSELLDTLID, REALSELLID, BUSIDATE, CONFIRMDATE, DOCUMENTTYPE, GOODSID, THISQTY, THISMONEY, NOSETTLEQTY, NOSETTLEMONEY, SUQTY, SUPRICE, SUMONEY, PAYMOTHOD, PAYPARAM, SUDOCID, SUDTLID, SETTLEDTLIDS
+    </sql>
+
+</mapper>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsForbidSalesMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsForbidSales">
+        <id column="FORBIDID" property="forbidid" />
+        <result column="CUSTOMSETID" property="customsetid" />
+        <result column="GOODSSETID" property="goodssetid" />
+        <result column="FORBIDFLAG" property="forbidflag" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="MEMO" property="memo" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="CONTACTID" property="contactid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        FORBIDID, CUSTOMSETID, GOODSSETID, FORBIDFLAG, USESTATUS, MEMO, INPUTMANID, CREDATE, ENTRYID, AGENTID, CONTACTID
+    </sql>
+    <select id="selectForbidBy" resultType="com.zsyc.zt.order.entity.BmsForbidSales">
+      select *
+              from BMS_FORBID_SALES a
+             where 1=1
+               and usestatus = #{useStatus}
+               and entryid = #{entryId}
+               and forbidflag = 1
+               and exists
+             (
+                    select *
+                      from PUB_ENTRY_GOODS_SET_ENUM_DTL b, PUB_ENTRY_GOODS_SET c
+                     where c.setid = b.setid
+                       and a.goodssetid = a.goodssetid
+                       and c.entryid =  #{entryId}
+                       and c.usestatus = #{useStatus}
+                       and b.goodsid = #{goodsId}
+                    )
+               and exists (select *
+                      from pub_custom_set_dtl b, pub_custom_set c
+                     where b.setid = c.setid
+                       and a.goodssetid = b.SETDTLID
+                       and c.entryid = #{entryId}
+                       and c.usestatus = #{useStatus}
+                       and b.customid = #{customId})
+    </select>
+    <select id="selectRestrictBy" resultType="com.zsyc.zt.order.entity.BmsForbidSales">
+              select *
+              from BMS_FORBID_SALES a
+             where 1=1
+               and usestatus = #{useStatus}
+               and entryid = #{entryId}
+               and forbidflag = 2
+               and exists
+             (
+                    select *
+                      from PUB_ENTRY_GOODS_SET_ENUM_DTL b, PUB_ENTRY_GOODS_SET c
+                     where c.setid = b.setid
+                       and a.goodssetid = a.goodssetid
+                       and c.entryid =  #{entryId}
+                       and c.usestatus = #{useStatus}
+                       and b.goodsid = #{goodsId}
+                    )
+               and not exists (select *
+                      from pub_custom_set_dtl b, pub_custom_set c
+                     where b.setid = c.setid
+                       and a.goodssetid = b.SETDTLID
+                       and c.entryid = #{entryId}
+                       and c.usestatus = #{useStatus}
+                       and b.customid = #{customId})
+
+    </select>
+    <select id="selectForbidGoods" resultType="java.lang.Long">
+                select  distinct j.goodsid
+                  from bms_forbid_sales             x,
+                       pub_custom_set               y,
+                       Pub_Entry_Goods_Set          z,
+                       pub_entry_goods_set_enum_dtl j,
+                       pub_custom_set_dtl           g
+                 where x.customsetid = y.setid
+                   and x.goodssetid = z.setid
+                   and x.usestatus = y.usestatus
+                   and y.usestatus = z.usestatus
+
+                   and x.entryid = #{entryId}
+                   and y.entryid = #{entryId}
+                   and z.entryid = #{entryId}
+                   and x.usestatus = #{useStatus}
+                   and y.usestatus = #{useStatus}
+                   and z.usestatus = #{useStatus}
+                   and x.forbidflag = 1
+                   and z.setid = j.setid
+                   and y.setid = g.setid
+                   and g.customid = #{customId}
+
+    </select>
+    <select id="selectRestrictGoods" resultType="java.lang.Long">
+        select distinct j.goodsid
+                  from bms_forbid_sales             x,
+                       pub_custom_set               y,
+                       Pub_Entry_Goods_Set          z,
+                       pub_entry_goods_set_enum_dtl j,
+                       pub_custom_set_dtl           g
+                 where x.customsetid = y.setid
+                   and x.goodssetid = z.setid
+                   and x.usestatus = y.usestatus
+                   and y.usestatus = z.usestatus
+                   and x.entryid = #{entryId}
+                   and y.entryid = #{entryId}
+                   and z.entryid = #{entryId}
+                   and x.usestatus = #{useStatus}
+                   and y.usestatus = #{useStatus}
+                   and z.usestatus = #{useStatus}
+                   and x.forbidflag = 2
+                   and z.setid = j.setid
+                   and y.setid = g.setid
+                   and g.customid = #{customId}
+    </select>
+    <select id="selectRestrictGoodsForOther" resultType="java.lang.Long">
+        select distinct j.goodsid
+                  from bms_forbid_sales             x,
+                       pub_custom_set               y,
+                       Pub_Entry_Goods_Set          z,
+                       pub_entry_goods_set_enum_dtl j,
+                       pub_custom_set_dtl           g
+                 where x.customsetid = y.setid
+                   and x.goodssetid = z.setid
+                   and x.usestatus = y.usestatus
+                   and y.usestatus = z.usestatus
+                   and x.entryid = #{entryId}
+                   and y.entryid = #{entryId}
+                   and z.entryid = #{entryId}
+                   and x.usestatus = #{useStatus}
+                   and y.usestatus = #{useStatus}
+                   and z.usestatus = #{useStatus}
+                   and x.forbidflag = 2
+                   and z.setid = j.setid
+                   and y.setid = g.setid
+                   and g.customid != #{customId}
+    </select>
+
+</mapper>

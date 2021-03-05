@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsGmOosrecMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsGmOosrec">
+        <id column="OOSRECID" property="oosrecid" />
+        <result column="OOSRECNO" property="oosrecno" />
+        <result column="DEPTID" property="deptid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="REGISTERMANID" property="registermanid" />
+        <result column="OOSGOODSQTY" property="oosgoodsqty" />
+        <result column="OOSREASON" property="oosreason" />
+        <result column="MEMO" property="memo" />
+        <result column="PROCFLAG" property="procflag" />
+        <result column="REACHDATE" property="reachdate" />
+        <result column="CREDATE" property="credate" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="PROCMANID" property="procmanid" />
+        <result column="PROCDATE" property="procdate" />
+        <result column="STOREDEPTID" property="storedeptid" />
+        <result column="USETYPE" property="usetype" />
+        <result column="APPLYFLAG" property="applyflag" />
+        <result column="APPLYTYPE" property="applytype" />
+        <result column="QUALITY" property="quality" />
+        <result column="ACCFLAG" property="accflag" />
+        <result column="ZX_ENDDATE" property="zxEnddate" />
+        <result column="ZX_REDATE" property="zxRedate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        OOSRECID, OOSRECNO, DEPTID, GOODSID, COMPANYID, REGISTERMANID, OOSGOODSQTY, OOSREASON, MEMO, PROCFLAG, REACHDATE, CREDATE, ENTRYID, PROCMANID, PROCDATE, STOREDEPTID, USETYPE, APPLYFLAG, APPLYTYPE, QUALITY, ACCFLAG, ZX_ENDDATE, ZX_REDATE
+    </sql>
+
+</mapper>

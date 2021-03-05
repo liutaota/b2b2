@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>zt-b2b-pay-service</artifactId>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>com.zsyc.zt-b2b</groupId>
+        <artifactId>zt-b2b-pay</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.zsyc.framework</groupId>
+            <artifactId>zsyc-framework</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zsyc.framework</groupId>
+            <artifactId>zsyc-framework-dubbo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+         <dependency>
+             <groupId>com.alibaba</groupId>
+             <artifactId>fastjson</artifactId>
+         </dependency>
+        <dependency>
+            <groupId>org.dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>fluent-hc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zsyc.zt-b2b</groupId>
+            <artifactId>zt-b2b-pay-interface</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.abc.ebusclient</groupId>
+            <artifactId>ebusclient</artifactId>
+            <version>V3.1.8</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../lib/TrustPayClient-V3.1.8.jar
+            </systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.abc.ebusclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>V3.1.8</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../lib/commons-httpclient-3.0.1.jar
+            </systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.zsyc.zt-b2b</groupId>
+            <artifactId>zt-b2b-interface</artifactId>
+        </dependency>
+    </dependencies>
+
+
+<!--    <build>-->
+<!--        <finalName>${project.artifactId}</finalName>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>boot-repackage</id>-->
+<!--                        <goals>-->
+<!--                            <goal>repackage</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>boot-build-info</id>-->
+<!--                        <goals>-->
+<!--                            <goal>build-info</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
+
+</project>
+

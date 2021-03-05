@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubGoodsUnitImpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubGoodsUnitImp">
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSUNIT" property="goodsunit" />
+        <result column="BASEFLAG" property="baseflag" />
+        <result column="SUBGOODSUNIT" property="subgoodsunit" />
+        <result column="SUBGOODSQTY" property="subgoodsqty" />
+        <result column="BASEUNITQTY" property="baseunitqty" />
+        <result column="GOODSUNITWEIGHT" property="goodsunitweight" />
+        <result column="GOODSUNITVOL" property="goodsunitvol" />
+        <result column="GOODSDTLFLAG" property="goodsdtlflag" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="SEQID" property="seqid" />
+        <result column="COLORSTRING" property="colorstring" />
+        <result column="GOODSLENGTH" property="goodslength" />
+        <result column="GOODSWIDTH" property="goodswidth" />
+        <result column="GOODSHEIGHT" property="goodsheight" />
+        <result column="GOODSUNITID" property="goodsunitid" />
+        <result column="SUBGOODSUNITID" property="subgoodsunitid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GOODSID, GOODSUNIT, BASEFLAG, SUBGOODSUNIT, SUBGOODSQTY, BASEUNITQTY, GOODSUNITWEIGHT, GOODSUNITVOL, GOODSDTLFLAG, GOODSDTLID, SEQID, COLORSTRING, GOODSLENGTH, GOODSWIDTH, GOODSHEIGHT, GOODSUNITID, SUBGOODSUNITID
+    </sql>
+
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsPresOutDtlHisMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsPresOutDtlHis">
+        <result column="PRESOUTID" property="presoutid" />
+        <result column="PRESOUTDTLID" property="presoutdtlid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="GOODSUSEQTY" property="goodsuseqty" />
+        <result column="GOODSUSEUNIT" property="goodsuseunit" />
+        <result column="LOTID" property="lotid" />
+        <result column="POSID" property="posid" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="RECST" property="recst" />
+        <result column="RECSTDATE" property="recstdate" />
+        <result column="INVALIDFLAG" property="invalidflag" />
+        <result column="INVALIDMANID" property="invalidmanid" />
+        <result column="INVALIDDATE" property="invaliddate" />
+        <result column="MEMO" property="memo" />
+        <result column="SOURCETABLE" property="sourcetable" />
+        <result column="SOURCEID" property="sourceid" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="POLICYID" property="policyid" />
+        <result column="PLACESUPPLYDTLSTID" property="placesupplydtlstid" />
+        <result column="SENDWMSFLAG" property="sendwmsflag" />
+        <result column="SENDWMSDATE" property="sendwmsdate" />
+        <result column="WMSBACKDATE" property="wmsbackdate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PRESOUTID, PRESOUTDTLID, STORAGEID, GOODSID, GOODSDTLID, GOODSQTY, GOODSUSEQTY, GOODSUSEUNIT, LOTID, POSID, GOODSSTATUSID, BATCHID, RECST, RECSTDATE, INVALIDFLAG, INVALIDMANID, INVALIDDATE, MEMO, SOURCETABLE, SOURCEID, COMEFROM, POLICYID, PLACESUPPLYDTLSTID, SENDWMSFLAG, SENDWMSDATE, WMSBACKDATE
+    </sql>
+
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsCusDiscountDefMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsCusDiscountDef">
+        <id column="CUSDISCDEFID" property="cusdiscdefid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="CUSTOMERID" property="customerid" />
+        <result column="DISCOUNT" property="discount" />
+        <result column="INVALIDDATE" property="invaliddate" />
+        <result column="INVALIDENDDATE" property="invalidenddate" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="MEMO" property="memo" />
+        <result column="FACTORY_DISCOUNT" property="factoryDiscount" />
+        <result column="FACTORY_ID" property="factoryId" />
+        <result column="FACTORY_NAME" property="factoryName" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CUSDISCDEFID, ENTRYID, CUSTOMERID, DISCOUNT, INVALIDDATE, INVALIDENDDATE, USESTATUS, CREDATE, INPUTMANID, MEMO, FACTORY_DISCOUNT, FACTORY_ID, FACTORY_NAME
+    </sql>
+
+</mapper>

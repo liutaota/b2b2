@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.BmsTranscontrolDocMapper">
+
+    <select id="getRoadidOfLastest" resultType="java.lang.Long">
+        select roadid
+        from (select a.roadid, rank() over(order by a.credate desc) as rank_no
+              from bms_transcontrol_doc a
+              where exists (select 1
+                            from bms_transcontrol_dtl b
+                            where b.roadid = a.roadid
+                              and b.companyid = #{customId}
+                        )) x
+        where x.rank_no = 1
+    </select>
+</mapper>

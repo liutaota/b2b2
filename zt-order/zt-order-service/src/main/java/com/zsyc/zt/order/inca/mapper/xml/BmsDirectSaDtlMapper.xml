@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsDirectSaDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsDirectSaDtl">
+        <id column="DTLID" property="dtlid" />
+        <result column="DOCID" property="docid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="SUPRICE" property="suprice" />
+        <result column="SAPRICE" property="saprice" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="SUTAXRATE" property="sutaxrate" />
+        <result column="SATAXRATE" property="sataxrate" />
+        <result column="LOTID" property="lotid" />
+        <result column="LOTNO" property="lotno" />
+        <result column="PRODDATE" property="proddate" />
+        <result column="INVALIDDATE" property="invaliddate" />
+        <result column="SUCONDOCID" property="sucondocid" />
+        <result column="SUCONDTLID" property="sucondtlid" />
+        <result column="STRGDOCID" property="strgdocid" />
+        <result column="STRGDTLID" property="strgdtlid" />
+        <result column="SUDOCID" property="sudocid" />
+        <result column="SUDTLID" property="sudtlid" />
+        <result column="STINDOCID" property="stindocid" />
+        <result column="STINDTLID" property="stindtlid" />
+        <result column="SALESID" property="salesid" />
+        <result column="SALEDTLID" property="saledtlid" />
+        <result column="STOUTDOCID" property="stoutdocid" />
+        <result column="STOUTDTLID" property="stoutdtlid" />
+        <result column="FINISHFLAG" property="finishflag" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="GOODSUSEQTY" property="goodsuseqty" />
+        <result column="GOODSUSEUNIT" property="goodsuseunit" />
+        <result column="SUTOTALLINE" property="sutotalline" />
+        <result column="SATOTALLINE" property="satotalline" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="SAPRICEID" property="sapriceid" />
+        <result column="TRID" property="trid" />
+        <result column="TRDTLID" property="trdtlid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DTLID, DOCID, GOODSID, SUPRICE, SAPRICE, GOODSQTY, SUTAXRATE, SATAXRATE, LOTID, LOTNO, PRODDATE, INVALIDDATE, SUCONDOCID, SUCONDTLID, STRGDOCID, STRGDTLID, SUDOCID, SUDTLID, STINDOCID, STINDTLID, SALESID, SALEDTLID, STOUTDOCID, STOUTDTLID, FINISHFLAG, GOODSDTLID, GOODSUSEQTY, GOODSUSEUNIT, SUTOTALLINE, SATOTALLINE, GOODSSTATUSID, BATCHID, SAPRICEID, TRID, TRDTLID
+    </sql>
+
+</mapper>

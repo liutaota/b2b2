@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStIoDtlTmpHisMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStIoDtlTmpHis">
+        <result column="IODTLID" property="iodtlid" />
+        <result column="INOUTID" property="inoutid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="LOTID" property="lotid" />
+        <result column="POSID" property="posid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="DTLGOODSQTY" property="dtlgoodsqty" />
+        <result column="PICKDOCID" property="pickdocid" />
+        <result column="DTLPRINTNO" property="dtlprintno" />
+        <result column="DTLPRINTLINE" property="dtlprintline" />
+        <result column="GSPLSFLAG" property="gsplsflag" />
+        <result column="GSPCALLBKFLAG" property="gspcallbkflag" />
+        <result column="GSPFLAG" property="gspflag" />
+        <result column="BOXSCOPE" property="boxscope" />
+        <result column="CHECKMANID" property="checkmanid" />
+        <result column="CHECKDATE" property="checkdate" />
+        <result column="CHECKSTATUS" property="checkstatus" />
+        <result column="BOXUPFLAG" property="boxupflag" />
+        <result column="CHKQTY" property="chkqty" />
+        <result column="CHECKMANID2" property="checkmanid2" />
+        <result column="WMSPROFLAG" property="wmsproflag" />
+        <result column="PUTAWAYFLAG" property="putawayflag" />
+        <result column="GOODSUNITFLAG" property="goodsunitflag" />
+        <result column="PICKFLAG" property="pickflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        IODTLID, INOUTID, BATCHID, LOTID, POSID, GOODSDTLID, GOODSSTATUSID, DTLGOODSQTY, PICKDOCID, DTLPRINTNO, DTLPRINTLINE, GSPLSFLAG, GSPCALLBKFLAG, GSPFLAG, BOXSCOPE, CHECKMANID, CHECKDATE, CHECKSTATUS, BOXUPFLAG, CHKQTY, CHECKMANID2, WMSPROFLAG, PUTAWAYFLAG, GOODSUNITFLAG, PICKFLAG
+    </sql>
+
+</mapper>

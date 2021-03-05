@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.report.mapper.GoodsSalesPlanDocMapper">
+
+    <select id="selectPlanListPage" resultType="com.zsyc.zt.report.vo.GoodsSalesPlanDocVo">
+        select  a.plan_id,
+                a.plan_name,
+                a.plan_num,
+                a.statistics_units,
+                a.plan_start_date,
+                a.plan_end_date,
+                a.use_status,
+                a.input_id,
+                a.input_name,
+                a.create_date,
+                a.confirm_id,
+                a.confirm_name,
+                a.confirm_date,
+                a.un_confirm_id,
+                a.un_confirm_name,
+                a.un_confirm_date,
+                a.remark
+        from goods_sales_plan_doc a
+        where a.is_delete = 2
+            <if test="goodsSalesPlanDocVo.useStatus != null and goodsSalesPlanDocVo.useStatus !=0">
+            and a.use_status = #{goodsSalesPlanDocVo.useStatus}
+            </if>
+            <if test="goodsSalesPlanDocVo.planName != null and goodsSalesPlanDocVo.planName != '' ">
+            and a.plan_name like '%'||#{goodsSalesPlanDocVo.planName}||'%'
+            </if>
+            <if test="goodsSalesPlanDocVo.startDate != null and goodsSalesPlanDocVo.endDate != null">
+            and a.create_date between #{goodsSalesPlanDocVo.startDate} and #{goodsSalesPlanDocVo.endDate}
+            </if>
+            <if test="goodsId != null">
+                and exists(
+                select b.plan_id from goods_sales_plan_dtl b
+                where b.plan_id = a.plan_id and b.goods_id = #{goodsId})
+            </if>
+        order by a.plan_id,a.use_status,a.create_date desc
+    </select>
+
+    <select id="getUseStatusById" resultType="java.lang.Integer">
+        select use_status from goods_sales_plan_doc where plan_id = #{planId} and is_delete = 2
+    </select>
+
+    <select id="selectReportPage" resultType="com.zsyc.zt.report.vo.GoodsSalesPlanDocVo">
+        select a.plan_id,
+               a.plan_name,
+               a.statistics_units,
+               a.plan_num,
+               nvl(d.complete_goods_qty,0) complete_goods_qty,
+               a.plan_start_date,
+               a.plan_end_date,
+               a.use_status,
+               a.input_id,
+               a.create_date,
+               a.confirm_id,
+               a.confirm_date,
+               a.un_confirm_id,
+               a.un_confirm_date,
+               a.remark,
+               a.is_delete,
+               a.input_name,
+               a.confirm_name,
+               a.un_confirm_name
+          from goods_sales_plan_doc a,
+               (select c.plan_id, sum(sum_goods_qty) complete_goods_qty
+                  from goods_sales_report b, goods_sales_plan_dtl c
+                 where b.goods_id = c.goods_id
+                   and exists
+                 (select *
+                          from goods_sales_plan_doc x
+                         where x.plan_id = c.plan_id
+                           and x.is_delete = 2
+                           and x.use_status = 2
+                           and to_date(b.statistics_scope, 'yyyy-mm-dd') between
+                               x.plan_start_date and x.plan_end_date)
+                 group by c.plan_id) d
+         where a.plan_id = d.plan_id(+)
+           and a.is_delete = 2
+           and a.use_status = 2
+            <if test="goodsSalesPlanDocVo.startDate != null and goodsSalesPlanDocVo.endDate != null">
+            and a.create_date &gt;= #{goodsSalesPlanDocVo.startDate}
+            </if>
+        <if test="goodsSalesPlanDocVo.endDate != null">
+            and a.create_date &lt;= #{goodsSalesPlanDocVo.endDate}
+        </if>
+            order by a.plan_id,a.create_date desc
+    </select>
+</mapper>

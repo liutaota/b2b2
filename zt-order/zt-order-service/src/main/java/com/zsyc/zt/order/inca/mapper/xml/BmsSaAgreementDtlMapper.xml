@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSaAgreementDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSaAgreementDtl">
+        <id column="AGRCONDTLID" property="agrcondtlid" />
+        <result column="AGRCONID" property="agrconid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="PRICEID" property="priceid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="GOODSQTY1" property="goodsqty1" />
+        <result column="GOODSUNIT1" property="goodsunit1" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="EXECCOUNT" property="execcount" />
+        <result column="FINDATE" property="findate" />
+        <result column="WHOLESALEPRICE" property="wholesaleprice" />
+        <result column="RESALEPRICE" property="resaleprice" />
+        <result column="DISCOUNT" property="discount" />
+        <result column="ACCSTQTY" property="accstqty" />
+        <result column="ACCSTBAKQTY" property="accstbakqty" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="STRICTEXECFLAG" property="strictexecflag" />
+        <result column="TOTALOUTQTY" property="totaloutqty" />
+        <result column="TOTALOUTBACKQTY" property="totaloutbackqty" />
+        <result column="DTLMEMO" property="dtlmemo" />
+        <result column="WTOFLG" property="wtoflg" />
+        <result column="NEEDTRACFLG" property="needtracflg" />
+        <result column="INNORDQTY" property="innordqty" />
+        <result column="NEEDTRACKFLG" property="needtrackflg" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="PRODUSESTATUS" property="produsestatus" />
+        <result column="GOODSUSEUNIT" property="goodsuseunit" />
+        <result column="GOODSUSEQTY" property="goodsuseqty" />
+        <result column="DEADLINE" property="deadline" />
+        <result column="PRODINDATE" property="prodindate" />
+        <result column="INVPRICE" property="invprice" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        AGRCONID, AGRCONDTLID, GOODSID, PRICEID, GOODSQTY, GOODSQTY1, GOODSUNIT1, UNITPRICE, TOTAL_LINE, EXECCOUNT, FINDATE, WHOLESALEPRICE, RESALEPRICE, DISCOUNT, ACCSTQTY, ACCSTBAKQTY, USESTATUS, STRICTEXECFLAG, TOTALOUTQTY, TOTALOUTBACKQTY, DTLMEMO, WTOFLG, NEEDTRACFLG, INNORDQTY, NEEDTRACKFLG, GOODSDTLID, PRODUSESTATUS, GOODSUSEUNIT, GOODSUSEQTY, DEADLINE, PRODINDATE, INVPRICE
+    </sql>
+
+</mapper>

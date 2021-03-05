@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsOfDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsOfDtl">
+        <id column="OFDTLID" property="ofdtlid" />
+        <result column="OFID" property="ofid" />
+        <result column="PRINTNO" property="printno" />
+        <result column="PRINTLINE" property="printline" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="GOODSUSEUNIT" property="goodsuseunit" />
+        <result column="GOODSUSEQTY" property="goodsuseqty" />
+        <result column="LOTID" property="lotid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="POSID" property="posid" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="OFREASON" property="ofreason" />
+        <result column="CALCFLAG" property="calcflag" />
+        <result column="COSTINGPRICE" property="costingprice" />
+        <result column="COSTINGMONEY" property="costingmoney" />
+        <result column="STIFLAG" property="stiflag" />
+        <result column="STIDATE" property="stidate" />
+        <result column="DTLMEMO" property="dtlmemo" />
+        <result column="SKCERTID" property="skcertid" />
+        <result column="INVALIDFLAG" property="invalidflag" />
+        <result column="INVALIDMANID" property="invalidmanid" />
+        <result column="INVALIDTIME" property="invalidtime" />
+        <result column="SENDWMSFLAG" property="sendwmsflag" />
+        <result column="SENDWMSDATE" property="sendwmsdate" />
+        <result column="WMSBACKDATE" property="wmsbackdate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        OFID, OFDTLID, PRINTNO, PRINTLINE, STORAGEID, GOODSID, GOODSDTLID, GOODSQTY, GOODSUSEUNIT, GOODSUSEQTY, LOTID, BATCHID, POSID, GOODSSTATUSID, OFREASON, CALCFLAG, COSTINGPRICE, COSTINGMONEY, STIFLAG, STIDATE, DTLMEMO, SKCERTID, INVALIDFLAG, INVALIDMANID, INVALIDTIME, SENDWMSFLAG, SENDWMSDATE, WMSBACKDATE
+    </sql>
+
+</mapper>

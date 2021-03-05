@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.CkCarTaskDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.inca.entity.CkCarTaskDtl">
+        <id column="TASK_DTL_ID" property="taskDtlId"/>
+        <result column="TASK_ID" property="taskId"/>
+        <result column="SCHEDULE_ID" property="scheduleId"/>
+        <result column="CUSTOM_ID" property="customId"/>
+        <result column="CUSTOM_NAME" property="customName"/>
+        <result column="transortno" property="tranSortNo"/>
+        <result column="TASK_DATE" property="taskDate"/>
+        <result column="USESTATUS" property="usestatus"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TASK_DTL_ID, TASK_ID, SCHEDULE_ID, CUSTOM_ID, CUSTOM_NAME, TASK_DATE, USESTATUS
+    </sql>
+
+    <insert id="insertTaskDtl" parameterType="com.zsyc.zt.inca.vo.CkCarTaskDtlVo">
+        insert into ck_car_task_dtl(TASK_ID,SCHEDULE_ID,SALES_ID,CUSTOM_ID,CUSTOM_NAME,TASK_DATE,USESTATUS)
+        VALUES(#{ckCarTaskDtlVo.taskId},#{ckCarTaskDtlVo.scheduleId},#{ckCarTaskDtlVo.customId},
+        #{ckCarTaskDtlVo.customName},#{ckCarTaskDtlVo.taskDate},#{ckCarTaskDtlVo.usestatus})
+    </insert>
+
+    <!--  根据出车调度单id查询出车任务细单  -->
+    <select id="selectByObj" resultType="com.zsyc.zt.inca.vo.CkCarTaskDtlVo">
+        select
+        dtl.task_dtl_id,
+        dtl.task_id,
+        dtl.task_date,
+        dtl.custom_id,
+        dtl.custom_name,
+        dtl.transortno,
+        dtl.schedule_id
+        from
+        ck_car_task_dtl dtl,
+        ck_car_task_doc doc,
+        ck_car_schedule_doc a
+        where
+        dtl.schedule_id=a.schedule_id(+)
+        and dtl.task_id=doc.task_id(+)
+        and dtl.schedule_id = #{ckCarTaskDtlDto.scheduleId}
+    </select>
+
+    <!--  根据出车任务细单id查找信息  -->
+    <select id="getByTaskDtlId" resultType="com.zsyc.zt.inca.vo.CkCarTaskDtlVo">
+        select
+        dtl.task_dtl_id,
+        dtl.task_id,
+        dtl.task_date,
+        dtl.custom_id,
+        dtl.custom_name,
+        dtl.schedule_id,
+        a.schedule_date
+        from
+        ck_car_task_dtl dtl,
+        ck_car_schedule_doc a
+        where
+        dtl.schedule_id=a.schedule_id(+)
+        and dtl.task_dtl_id = #{ckCarTaskDtlDto.taskDtlId}
+    </select>
+
+    <resultMap id="CarTaskDtlListVoMap" type="com.zsyc.zt.inca.vo.CkCarTaskDtlVo">
+        <id column="TASK_DTL_ID" property="taskDtlId"/>
+        <result column="TASK_ID" property="taskId"/>
+        <result column="SCHEDULE_ID" property="scheduleId"/>
+        <result column="CUSTOM_ID" property="customId"/>
+        <result column="CUSTOM_NAME" property="customName"/>
+        <result column="transortno" property="tranSortNo"/>
+        <result column="TASK_DATE" property="taskDate"/>
+        <result column="USESTATUS" property="usestatus"/>
+        <collection property="ckCarTaskBoxList"
+                    select="com.gdztyy.inca.plus.upms.inca.mapper.CkCarTaskBoxMapper.getCkCarTaskBoxByTaskDtlId"
+                    column="TASK_DTL_ID">
+        </collection>
+    </resultMap>
+
+    <!--  根据任务总单ID查询所有细单信息  -->
+    <select id="getCarTaskDtlList" resultMap="CarTaskDtlListVoMap">
+         select
+           a.task_dtl_id,
+           a.task_id,
+           a.schedule_id,
+           a.custom_id,
+           a.custom_name,
+           d.transortno,
+           a.task_date,
+           a.usestatus
+         from
+         ck_car_task_dtl a,
+         bms_tr_pos_def d
+         where a.custom_id = d.companyid and a.task_id = #{taskId}
+    </select>
+
+    <!--  查询客户ID对应的任务细单  -->
+    <select id="getCustomByPackId" resultMap="CarTaskDtlListVoMap">
+        select
+           a.task_dtl_id,
+           a.task_id,
+           a.schedule_id,
+           a.custom_id,
+           a.custom_name,
+           a.transortno,
+           a.task_date,
+           a.usestatus
+       from
+           ck_car_task_dtl a
+       where
+           a.custom_id=#{customId}
+           and a.task_id = #{taskId}
+           and a.usestatus = 1
+    </select>
+
+    <!--  查询细单是否存在  -->
+    <select id="getDtlCount" parameterType="com.zsyc.zt.inca.vo.CkCarTaskDtlVo" resultType="java.lang.Integer">
+        select count(0) from ck_car_task_dtl a where a.task_dtl_id=#{ckCarTaskDtlDto.taskDtlId}
+    </select>
+
+    <!--  根据任务ID更新任务细单状态  -->
+    <update id="updateDtlStatus">
+        update ck_car_task_dtl set usestatus=2 where task_id = #{taskId} and usestatus=1
+    </update>
+
+    <!--  删除细单  -->
+    <delete id="deleteTaskDtlById" >
+        delete from ck_car_task_dtl a where a.task_dtl_id = #{taskDtlId} and a.usestatus = 1
+    </delete>
+
+    <!--  查询细单状态  -->
+    <select id="queryUseStatus" resultType="java.lang.Integer">
+        select usestatus from ck_car_task_dtl a where a.task_dtl_id = #{taskDtlId}
+    </select>
+
+    <!--  查询当前客户所属任务ID  -->
+    <select id="getTaskByCustomId" resultType="java.lang.Long">
+        select
+         a.task_id
+        from
+         ck_car_task_dtl a
+        where
+         a.custom_id = #{currentCustomId} and
+         to_char(a.task_date,'YYYY/MM/DD') = to_char(sysdate,'YYYY/MM/DD')
+    </select>
+
+    <!-- 查询当前车辆需要运输的所有客户信息 -->
+    <select id="getCustomList" resultType="com.zsyc.zt.inca.vo.CkCarTaskDtlVo">
+        select
+         a.task_dtl_id,
+         a.task_id,
+         a.schedule_id,
+         a.custom_id,
+         a.custom_name,
+         a.task_date,
+         a.transortno
+        from
+         ck_car_task_dtl a
+        where
+         a.usestatus = 2 and
+         a.schedule_id = #{scheduleId}
+        order by a.transortno nulls last
+    </select>
+
+    <!-- 客户ID：搜索客户信息   -->
+    <select id="searchCustom" resultType="com.zsyc.zt.inca.vo.CkCarTaskDtlVo">
+        select
+         a.task_dtl_id,
+         a.task_id,
+         a.schedule_id,
+         a.custom_id,
+         a.custom_name,
+         a.task_date,
+         a.transortno
+        from
+         ck_car_task_dtl a
+        where
+         a.usestatus = 2 and
+         a.schedule_id = #{scheduleId}
+        <choose>
+            <when test="scheduleId > 0 and  searchStr ==''">
+                and a.custom_id like concat(concat('%',#{searchCustomId}),'%')
+            </when>
+            <otherwise>
+                and a.custom_name like concat(concat('%',#{searchStr}),'%')
+            </otherwise>
+        </choose>
+        order by a.transortno nulls last
+    </select>
+
+    <!--  根据客户ID 查询任务细单信息  -->
+    <select id="getDtlByCustomId" resultType="com.zsyc.zt.inca.vo.CkCarTaskDtlVo">
+        select
+         a.task_dtl_id,
+         a.task_id,
+         a.schedule_id,
+         a.custom_id,
+         a.custom_name,
+         a.task_date,
+         a.transortno
+        from
+         ck_car_task_dtl a
+        where
+         a.task_id = #{taskId} and
+         a.custom_id = #{customId}
+    </select>
+
+</mapper>

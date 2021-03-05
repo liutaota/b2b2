@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.PdaVersionUpdateMapper">
+
+    <select id="getPdaVersionDesList" resultType="com.zsyc.zt.inca.vo.PdaVersionUpdateVo">
+        select
+            a.id,
+            a.version,
+            a.file_path,
+            a.create_time,
+            a.update_time,
+            a.create_user_id,
+            a.update_user_id,
+            a.remark,
+            a.is_del
+        from
+            b2b.pda_version_update a
+        where
+          1=1
+          <if test="pdaVersionUpdateVo.startDate != null and pdaVersionUpdateVo.endDate != null">
+              and a.create_time between startDate and endDate
+          </if>
+        order by a.create_time desc
+    </select>
+    <select id="getPdaNewestVersion" resultType="com.zsyc.zt.inca.entity.PdaVersionUpdate">
+        select * from b2b.pda_version_update a
+        where a.create_time=(select max(b.create_time) from b2b.pda_version_update b)
+    </select>
+</mapper>

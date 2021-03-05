@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included scan="true" scanPeriod="300 seconds" debug="false">
+    <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+    <springProperty name="SPRING_APP_NAME" source="spring.application.name" defaultValue="app"/>
+    <property name="APP_NAME" value="${APP_NAME:-${SPRING_APP_NAME}}" />
+    <property name="LOG_HOME" value="${LOG_HOME:-${log.path:-/data/logs}}" />
+
+    <!--    <property name="MAX_SIZE" value="100MB" />-->
+    <!--    <property name="MAX_HIST" value="10" />-->
+    <!--
+	<property name="LOG_HOME" value="/tmp/logs" />
+    -->
+    <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+    <!--参考ch.qos.logback.classic.PatternLayout -->
+    <!--  property name="LOG_FORMAT" value="%d{MM-dd HH:mm:ss.SSS} [%thread] %-5level %class.%method\\(%F:%L\\) - %msg%n" / -->
+    <!--<property name="LOG_FORMAT" value="%d{yyyy-MM-dd HH:mm:ss.SSS}|%-5level [%thread] %class.%method\\(%F:%L\\) - %msg%n" />-->
+
+    <property name="LOG_FORMAT" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p - [%-18t] %-40.40logger{39} : %m%n" />
+
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8" >
+            <pattern>${LOG_FORMAT}</pattern>
+        </encoder>
+
+        <!--        <withJansi>true</withJansi>-->
+    </appender>
+    <!--    class="com.zsyc.admin.client.innerlog.LogAppender"-->
+    <appender name="ZSYC_ADMIN" class="com.zsyc.framework.base.EmptyAppender" >
+<!--        <encoder charset="UTF-8" >-->
+<!--            <pattern>${CONSOLE_LOG_PATTERN}</pattern>-->
+<!--        </encoder>-->
+        <!--        <bufSize>1kb</bufSize>-->
+    </appender>
+    <springProfile name="logfile">
+        <!-- 按照每天生成日志文件 -->
+        <appender name="DAILY" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <encoder charset="UTF-8">
+                <pattern>${LOG_FORMAT}</pattern>
+            </encoder>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_HOME}/${APP_NAME}_%d{yyyyMMdd}_CORE.%i.log</fileNamePattern>
+                <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                    <maxFileSize>${MAX_SIZE:-100MB}</maxFileSize>
+                </timeBasedFileNamingAndTriggeringPolicy>
+                <maxHistory>${MAX_HIST:-10}}</maxHistory>
+            </rollingPolicy>
+        </appender>
+
+        <appender name="DAILY_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>ERROR</level>
+            </filter>
+            <encoder charset="UTF-8">
+                <pattern>${LOG_FORMAT}</pattern>
+            </encoder>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_HOME}/${APP_NAME}_%d{yyyyMMdd}_ERROR.%i.log</fileNamePattern>
+                <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                    <maxFileSize>${MAX_SIZE:-100MB}</maxFileSize>
+                </timeBasedFileNamingAndTriggeringPolicy>
+                <maxHistory>${MAX_HIST:-10}}</maxHistory>
+            </rollingPolicy>
+        </appender>
+    </springProfile>
+</included>

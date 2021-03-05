@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubGoodsMultiVarietyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubGoodsMultiVariety">
+        <id column="VARIETYID" property="varietyid" />
+        <result column="PARENTVARIETYID" property="parentvarietyid" />
+        <result column="VARIETYNAME" property="varietyname" />
+        <result column="VARIETYNO" property="varietyno" />
+        <result column="VARIETYOPCODE" property="varietyopcode" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="MEMO" property="memo" />
+        <result column="CLASSNO" property="classno" />
+        <result column="VARLEVEL" property="varlevel" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CATEGORY" property="category" />
+        <result column="ISLEAF" property="isleaf" />
+        <result column="ENTRYFLAG" property="entryflag" />
+        <result column="CLASSID" property="classid" />
+        <result column="CLASSDESC" property="classdesc" />
+        <result column="EDITFLAG" property="editflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        VARIETYID, PARENTVARIETYID, VARIETYNAME, VARIETYNO, VARIETYOPCODE, ENTRYID, MEMO, CLASSNO, VARLEVEL, CREDATE, INPUTMANID, CATEGORY, ISLEAF, ENTRYFLAG, CLASSID, CLASSDESC, EDITFLAG
+    </sql>
+
+</mapper>

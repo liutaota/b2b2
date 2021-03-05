@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsCreditAdjustDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsCreditAdjustDtl">
+        <id column="CREDIT_ADJUST_DTL_ID" property="creditAdjustDtlId" />
+        <result column="CREDIT_ADJUST_DOC_ID" property="creditAdjustDocId" />
+        <result column="ADJUSTITEM" property="adjustitem" />
+        <result column="CUSTOMFLAG" property="customflag" />
+        <result column="SALERDEPTFLAG" property="salerdeptflag" />
+        <result column="SALERFLAG" property="salerflag" />
+        <result column="AGENTFLAG" property="agentflag" />
+        <result column="CONTACTFLAG" property="contactflag" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="SALERDEPTID" property="salerdeptid" />
+        <result column="SALERID" property="salerid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="CREDIT" property="credit" />
+        <result column="DAYS" property="days" />
+        <result column="ORIGINAL_CREDIT" property="originalCredit" />
+        <result column="ORIGINAL_DAYS" property="originalDays" />
+        <result column="DTLMEMO" property="dtlmemo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CREDIT_ADJUST_DTL_ID, CREDIT_ADJUST_DOC_ID, ADJUSTITEM, CUSTOMFLAG, SALERDEPTFLAG, SALERFLAG, AGENTFLAG, CONTACTFLAG, CUSTOMID, SALERDEPTID, SALERID, AGENTID, CONTACTID, CREDIT, DAYS, ORIGINAL_CREDIT, ORIGINAL_DAYS, DTLMEMO
+    </sql>
+
+</mapper>

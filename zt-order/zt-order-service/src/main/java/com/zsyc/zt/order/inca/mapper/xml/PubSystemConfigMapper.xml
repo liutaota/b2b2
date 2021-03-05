@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubSystemConfigMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubSystemConfig">
+        <id column="SYSCONFIGID" property="sysconfigid" />
+        <result column="INTERTYPE" property="intertype" />
+        <result column="INTERNAME" property="intername" />
+        <result column="INTERVERSION" property="interversion" />
+        <result column="RELEASEDATE" property="releasedate" />
+        <result column="ISUSED" property="isused" />
+        <result column="INSTALLSTATUS" property="installstatus" />
+        <result column="INSTALLDATE" property="installdate" />
+        <result column="INSTALLMANID" property="installmanid" />
+        <result column="MEMO" property="memo" />
+        <result column="CREDATE" property="credate" />
+        <result column="USEFORPROVERSION" property="useforproversion" />
+        <result column="ID" property="id" />
+        <result column="NDBINAME" property="ndbiname" />
+        <result column="UNZIPPATH" property="unzippath" />
+        <result column="UPDATEDATE" property="updatedate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SYSCONFIGID, INTERTYPE, INTERNAME, INTERVERSION, RELEASEDATE, ISUSED, INSTALLSTATUS, INSTALLDATE, INSTALLMANID, MEMO, CREDATE, USEFORPROVERSION, ID, NDBINAME, UNZIPPATH, UPDATEDATE
+    </sql>
+
+</mapper>

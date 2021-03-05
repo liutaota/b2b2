@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.CkCarScheduleDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.inca.entity.CkCarScheduleDoc">
+        <id column="SCHEDULE_ID" property="scheduleId" />
+        <result column="DRIVER_ID" property="driverId" />
+        <result column="TRANSLINE_ID" property="translineId" />
+        <result column="VEHICLE_ID" property="vehicleId" />
+        <result column="INPUTMAN_ID" property="inputmanId" />
+        <result column="CREDATE" property="credate" />
+        <result column="CONFIRMMAN_ID" property="confirmmanId" />
+        <result column="CONFIRM_DATE" property="confirmDate" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="SCHEDULE_DATE" property="scheduleDate" />
+        <result column="UNCONFIRM_ID" property="unconfirmId" />
+        <result column="UNCONFIRM_DATE" property="unconfirmDate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SCHEDULE_ID, DRIVER_ID, TRANSLINE_ID, VEHICLE_ID, INPUTMAN_ID, CREDATE, CONFIRMMAN_ID, CONFIRM_DATE, USESTATUS, SCHEDULE_DATE, UNCONFIRM_ID, UNCONFIRM_DATE
+    </sql>
+    <select id="selectByObj" resultType="com.zsyc.zt.inca.vo.CkCarScheduleDocVo">
+        select a.schedule_id,
+               a.schedule_date,
+               b.licenseno       license_no,
+               b.licensetype,
+               a.driver_id,
+               g.employeename    driver_name,
+               a.vehicle_id,
+               d.vehiclenum      vehicle_num,
+               d.vehiclemodel    vehicle_model,
+               a.transline_id,
+               c.translineopcode,
+               c.translinename   transline_name,
+               a.usestatus
+          from ck_car_schedule_doc a,
+               pub_driver_def      b,
+               pub_transline_def   c,
+               pub_vehicle_def     d,
+               pub_employee g
+         where a.driver_id = b.driverid(+)
+           and b.driverid = g.employeeid(+)
+           and a.transline_id = c.translineid(+)
+           and a.vehicle_id = d.vehicleid(+)
+           and a.usestatus = 2
+           and to_char(a.schedule_date, 'YYYY/MM/DD') = to_char(sysdate, 'YYYY/MM/DD')
+    </select>
+
+    <!--  根据车牌号码或者姓名查找信息  -->
+    <select id="selectByObjOption" resultType="com.zsyc.zt.inca.vo.CkCarScheduleDocVo">
+        select a.schedule_id,
+       a.schedule_date,
+       b.licenseno       license_no,
+       b.licensetype,
+       a.driver_id,
+       g.employeename    driver_name,
+       a.vehicle_id,
+       d.vehiclenum      vehicle_num,
+       d.vehiclemodel    vehicle_model,
+       a.transline_id,
+       c.translineopcode,
+       c.translinename   transline_name,
+       a.usestatus
+  from ck_car_schedule_doc a,
+       pub_driver_def      b,
+       pub_transline_def   c,
+       pub_vehicle_def     d,
+       pub_employee        g
+ where a.driver_id = b.driverid(+)
+   and b.driverid = g.employeeid(+)
+   and a.transline_id = c.translineid(+)
+   and a.vehicle_id = d.vehicleid(+)
+   <if test="ckCarScheduleDocDto!=null">
+    and (d.vehiclenum like concat(concat('%',#{ckCarScheduleDocDto.option}),'%')
+       or g.employeename like concat(concat('%',#{ckCarScheduleDocDto.option}),'%')
+       or c.translinename like concat(concat('%',#{ckCarScheduleDocDto.option}),'%'))
+   </if>
+    </select>
+    <!--根据调度id或者姓名查找信息    -->
+    <select id="getByScheduleId" resultType="com.zsyc.zt.inca.vo.CkCarScheduleDocVo">
+        select a.schedule_id,
+        a.schedule_date,
+        b.licenseno       license_no,
+        b.licensetype,
+        a.driver_id,
+        g.employeename    driver_name,
+        a.vehicle_id,
+        d.vehiclenum      vehicle_num,
+        d.vehiclemodel    vehicle_model,
+        a.transline_id,
+        c.translineopcode,
+        c.translinename   transline_name,
+        a.usestatus
+        from ck_car_schedule_doc a,
+        pub_driver_def      b,
+        pub_transline_def   c,
+        pub_vehicle_def     d,
+        pub_employee        g
+        where a.driver_id = b.driverid(+)
+        and b.driverid = g.employeeid(+)
+        and a.transline_id = c.translineid(+)
+        and a.vehicle_id = d.vehicleid(+)
+        <if test="ckCarScheduleDocDto!=null and ckCarScheduleDocDto.scheduleId!=null">
+            and a.schedule_id = #{ckCarScheduleDocDto.scheduleId}
+        </if>
+    </select>
+
+    <!-- 车辆ID匹配当天出车调度单信息 -->
+    <select id="getByScheduleBill" resultType="com.zsyc.zt.inca.vo.CkCarScheduleDocVo">
+        select
+              a.schedule_id,
+              a.schedule_date,
+              b.licenseno       license_no,
+              b.licensetype,
+              a.driver_id,
+              g.employeename    driver_name,
+              a.vehicle_id,
+              d.vehiclenum      vehicle_num,
+              d.vehiclemodel    vehicle_model,
+              a.transline_id,
+              c.translineopcode,
+              c.translinename   transline_name,
+              a.usestatus
+        from ck_car_schedule_doc a,
+             pub_driver_def      b,
+             pub_transline_def   c,
+             pub_vehicle_def     d,
+             pub_employee        g
+        where a.driver_id = b.driverid(+)
+              and b.driverid = g.employeeid(+)
+              and a.transline_id = c.translineid(+)
+              and a.vehicle_id = d.vehicleid(+)
+              and a.vehicle_id = #{vehicleId}
+              and a.usestatus = 2
+              and to_char(a.schedule_date, 'YYYY/MM/DD') = to_char(sysdate, 'YYYY/MM/DD')
+    </select>
+</mapper>

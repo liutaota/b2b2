@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.GspCompanyManagerageMapper">
+
+
+    <select id="selectBy" resultType="com.zsyc.zt.inca.vo.CustomManageScopeVo">
+        select *
+          from gsp_company_license a, gsp_company_managerage b
+         where a.licenseid = b.licenseid
+           and a.entryid = #{entryId}
+           and a.usestatus = #{useStatus}
+           and a.companyid = #{customId}
+           and b.scopedefid = #{bussinessScope}
+    </select>
+</mapper>

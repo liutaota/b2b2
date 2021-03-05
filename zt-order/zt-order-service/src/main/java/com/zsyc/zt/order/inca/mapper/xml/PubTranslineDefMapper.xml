@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubTranslineDefMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubTranslineDef">
+        <id column="TRANSLINEID" property="translineid" />
+        <result column="TRANSLINEOPCODE" property="translineopcode" />
+        <result column="TRANSLINENAME" property="translinename" />
+        <result column="MEMO" property="memo" />
+        <result column="SYS_MODIFYDATE" property="sysModifydate" />
+        <result column="TOWMSDATE" property="towmsdate" />
+        <result column="ZX_A_PE" property="zxAPe" />
+        <result column="ZX_C_PE" property="zxCPe" />
+        <result column="ZX_D_PE" property="zxDPe" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TRANSLINEID, TRANSLINEOPCODE, TRANSLINENAME, MEMO, SYS_MODIFYDATE, TOWMSDATE, ZX_A_PE, ZX_C_PE, ZX_D_PE
+    </sql>
+
+</mapper>

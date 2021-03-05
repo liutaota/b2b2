@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuDtlHisMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuDtlHis">
+        <result column="SUDOCID" property="sudocid" />
+        <result column="SUDOCDTLID" property="sudocdtlid" />
+        <result column="PRINTNO" property="printno" />
+        <result column="PRINTLINE" property="printline" />
+        <result column="SUPPLYERID" property="supplyerid" />
+        <result column="DEPTID" property="deptid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="TAXRATE" property="taxrate" />
+        <result column="GOODSUSEUNIT" property="goodsuseunit" />
+        <result column="GOODSUSEQTY" property="goodsuseqty" />
+        <result column="ORGQTY" property="orgqty" />
+        <result column="COSTINGPRICE" property="costingprice" />
+        <result column="COSTINGMONEY" property="costingmoney" />
+        <result column="PAYLIMIT" property="paylimit" />
+        <result column="PLNPAYDATE" property="plnpaydate" />
+        <result column="BACKWHYID" property="backwhyid" />
+        <result column="BACKPROID" property="backproid" />
+        <result column="WHOLESALEPRICE" property="wholesaleprice" />
+        <result column="RESALEPRICE" property="resaleprice" />
+        <result column="MEMO" property="memo" />
+        <result column="SETTLEFLAG" property="settleflag" />
+        <result column="RECST" property="recst" />
+        <result column="RECSTDATE" property="recstdate" />
+        <result column="SETTLEDQTY" property="settledqty" />
+        <result column="SETTLEDMONEY" property="settledmoney" />
+        <result column="INVALIDMANID" property="invalidmanid" />
+        <result column="INVALIDTIME" property="invalidtime" />
+        <result column="ORGDOCNO" property="orgdocno" />
+        <result column="CORRECTFLAG" property="correctflag" />
+        <result column="LASTPRICE" property="lastprice" />
+        <result column="BATCHID" property="batchid" />
+        <result column="LOTID" property="lotid" />
+        <result column="POSID" property="posid" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="SKCERTID" property="skcertid" />
+        <result column="INVALIDFLAG" property="invalidflag" />
+        <result column="GENTIMELYREBATE" property="gentimelyrebate" />
+        <result column="LOWESTPRICE" property="lowestprice" />
+        <result column="SUPPLYLASTPRICE" property="supplylastprice" />
+        <result column="PAYMETHOD" property="paymethod" />
+        <result column="CONSIGNERID" property="consignerid" />
+        <result column="CONPRICE" property="conprice" />
+        <result column="LIMITID" property="limitid" />
+        <result column="PLACESUPPLYDTLSTID" property="placesupplydtlstid" />
+        <result column="HASPRESENDFLAG" property="haspresendflag" />
+        <result column="PRESENDINFO" property="presendinfo" />
+        <result column="LIMITCUSTOMSETID" property="limitcustomsetid" />
+        <result column="OLDSUDTLID" property="oldsudtlid" />
+        <result column="SALESDTLID" property="salesdtlid" />
+        <result column="USEPACKSIZE" property="usepacksize" />
+        <result column="GENFACSINGLEREBFLAG" property="genfacsinglerebflag" />
+        <result column="GENSUPSINGLEREBFLAG" property="gensupsinglerebflag" />
+        <result column="GENFACTOTALREBFLAG" property="genfactotalrebflag" />
+        <result column="GENSUPTOTALREBFLAG" property="gensuptotalrebflag" />
+        <result column="GENFROZXSABKDTLID" property="genfrozxsabkdtlid" />
+        <result column="GENFROZXSADTLID" property="genfrozxsadtlid" />
+        <result column="ORISTORAGEID" property="oristorageid" />
+        <result column="TOTAL_LINE_NAT" property="totalLineNat" />
+        <result column="COSTINGMONEY_NAT" property="costingmoneyNat" />
+        <result column="TOTALPAYMONEY" property="totalpaymoney" />
+        <result column="TOTALPOSTMONEY" property="totalpostmoney" />
+        <result column="BANNEDCUSTOMERID" property="bannedcustomerid" />
+        <result column="BANNEDCUSTOMERSETID" property="bannedcustomersetid" />
+        <result column="OLDISSETTLE" property="oldissettle" />
+        <result column="OLDISPAY" property="oldispay" />
+        <result column="ADJUSTPRICEDOCID" property="adjustpricedocid" />
+        <result column="IMPDTLID" property="impdtlid" />
+        <result column="SENDWMSFLAG" property="sendwmsflag" />
+        <result column="SENDWMSDATE" property="sendwmsdate" />
+        <result column="WMSBACKDATE" property="wmsbackdate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SUDOCID, SUDOCDTLID, PRINTNO, PRINTLINE, SUPPLYERID, DEPTID, GOODSID, GOODSDTLID, STORAGEID, GOODSQTY, UNITPRICE, TOTAL_LINE, TAXRATE, GOODSUSEUNIT, GOODSUSEQTY, ORGQTY, COSTINGPRICE, COSTINGMONEY, PAYLIMIT, PLNPAYDATE, BACKWHYID, BACKPROID, WHOLESALEPRICE, RESALEPRICE, MEMO, SETTLEFLAG, RECST, RECSTDATE, SETTLEDQTY, SETTLEDMONEY, INVALIDMANID, INVALIDTIME, ORGDOCNO, CORRECTFLAG, LASTPRICE, BATCHID, LOTID, POSID, GOODSSTATUSID, SKCERTID, INVALIDFLAG, GENTIMELYREBATE, LOWESTPRICE, SUPPLYLASTPRICE, PAYMETHOD, CONSIGNERID, CONPRICE, LIMITID, PLACESUPPLYDTLSTID, HASPRESENDFLAG, PRESENDINFO, LIMITCUSTOMSETID, OLDSUDTLID, SALESDTLID, USEPACKSIZE, GENFACSINGLEREBFLAG, GENSUPSINGLEREBFLAG, GENFACTOTALREBFLAG, GENSUPTOTALREBFLAG, GENFROZXSABKDTLID, GENFROZXSADTLID, ORISTORAGEID, TOTAL_LINE_NAT, COSTINGMONEY_NAT, TOTALPAYMONEY, TOTALPOSTMONEY, BANNEDCUSTOMERID, BANNEDCUSTOMERSETID, OLDISSETTLE, OLDISPAY, ADJUSTPRICEDOCID, IMPDTLID, SENDWMSFLAG, SENDWMSDATE, WMSBACKDATE
+    </sql>
+
+</mapper>

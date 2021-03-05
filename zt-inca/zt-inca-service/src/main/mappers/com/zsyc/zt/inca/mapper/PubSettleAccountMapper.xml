@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.PubSettleAccountMapper">
+
+    <select id="checkBusinessOperationIsPermit" resultType="java.lang.Boolean">
+          select count(1)
+            from (select x.*,
+            nvl(trunc(y.enddate + 1) - 1 / (24 * 60 * 60),
+            x.enddate - 10000) startdate
+            from pub_settle_account x, pub_settle_account y
+            where x.logicmm - 1 = y.logicmm(+)
+            and x.entryid = y.entryid(+)) t
+           <![CDATA[ where t.startdate < #{dateTime}
+            and t.enddate > #{dateTime}
+            ]]>
+            and t.entryid = #{entryId}
+    </select>
+</mapper>

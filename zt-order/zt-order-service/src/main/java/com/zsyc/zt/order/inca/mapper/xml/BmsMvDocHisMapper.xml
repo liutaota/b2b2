@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsMvDocHisMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsMvDocHis">
+        <result column="MOVEID" property="moveid" />
+        <result column="CREDATE" property="credate" />
+        <result column="FROMSTORAGEID" property="fromstorageid" />
+        <result column="FROMCOMPANYID" property="fromcompanyid" />
+        <result column="TOSTORAGEID" property="tostorageid" />
+        <result column="TOCOMPANYID" property="tocompanyid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="MVDIR" property="mvdir" />
+        <result column="DELIVERMETHOD" property="delivermethod" />
+        <result column="TRANMETHOD" property="tranmethod" />
+        <result column="MIDPOSID" property="midposid" />
+        <result column="TARGETPOSID" property="targetposid" />
+        <result column="URGENTFLAG" property="urgentflag" />
+        <result column="TRANPRIORITY" property="tranpriority" />
+        <result column="TARGETDATE" property="targetdate" />
+        <result column="PLACEMOVEFLAG" property="placemoveflag" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="MEMO" property="memo" />
+        <result column="DTL_LINES" property="dtlLines" />
+        <result column="PRINTCOUNT" property="printcount" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="CONFIRMMANID" property="confirmmanid" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="INOUTREASON" property="inoutreason" />
+        <result column="PLACESUPPLYID" property="placesupplyid" />
+        <result column="MOREMFLAG" property="moremflag" />
+        <result column="MOTYPE" property="motype" />
+        <result column="PROJECTID" property="projectid" />
+        <result column="DEALMANID" property="dealmanid" />
+        <result column="NOWMSFLAG" property="nowmsflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        MOVEID, CREDATE, FROMSTORAGEID, FROMCOMPANYID, TOSTORAGEID, TOCOMPANYID, COMPANYID, MVDIR, DELIVERMETHOD, TRANMETHOD, MIDPOSID, TARGETPOSID, URGENTFLAG, TRANPRIORITY, TARGETDATE, PLACEMOVEFLAG, INPUTMANID, MEMO, DTL_LINES, PRINTCOUNT, PRINTMANID, PRINTDATE, USESTATUS, CONFIRMMANID, CONFIRMDATE, INOUTREASON, PLACESUPPLYID, MOREMFLAG, MOTYPE, PROJECTID, DEALMANID, NOWMSFLAG
+    </sql>
+
+</mapper>

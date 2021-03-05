@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.ActivityGiftMapper">
+
+    <select id="getActivityGiftVoList" resultType="com.zsyc.zt.b2b.vo.ActivityGiftVo">
+        select a.*,
+        ast.GIFT_NUM as as_gift_num,
+        ast.GIFT_STRATEGY,
+        g.GOODS_IMG,
+        p.medicinetypename,
+        p.goodsunit,
+        p.approvedocno,
+        p.goodstype,
+        p.goodsid_gps,
+        p.barcode,
+        p.currencyname,
+        p.credate,
+        p.otcflag,
+        p.prodarea,
+        p.dosage,
+        p.usegoodstime,
+        p.diagnosticinfo,
+        p.treatment,
+        p.memo,
+        p.accflag,
+        f.factoryname,
+        (CASE
+        WHEN peg.zx_b2b_num_limit IS NULL THEN
+        1
+        ELSE
+        peg.zx_b2b_num_limit
+        END) zx_b2b_num_limit
+
+        from activity_gift a
+        inner join ACTIVITY_STRATEGY ast on ast.id=a.AS_ID and ast.IS_USE=1
+        left join ${erp}.pub_goods p on p.goodsid=a.ERP_GOODS_ID
+        left join ${erp}.pub_entry_goods peg on peg.goodsid = a.ERP_GOODS_ID  and entryId=1
+        left join goods g on g.erp_goods_id=a.ERP_GOODS_ID
+        left join ${erp}.pub_factory f on f.factoryid=p.factoryid
+        where a.as_id=#{asId} and a.IS_USE=1
+    </select>
+</mapper>

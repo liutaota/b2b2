@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsTranscontrolDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsTranscontrolDtl">
+        <id column="ROADDTLID" property="roaddtlid" />
+        <result column="ROADID" property="roadid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="TRANPOSID" property="tranposid" />
+        <result column="TRANSORTNO" property="transortno" />
+        <result column="TOTALPACKQTY" property="totalpackqty" />
+        <result column="DTLCOST" property="dtlcost" />
+        <result column="RECEIPTMAN" property="receiptman" />
+        <result column="RECEIPTDATE" property="receiptdate" />
+        <result column="RETURNFLAG" property="returnflag" />
+        <result column="TRID" property="trid" />
+        <result column="SOURCEID" property="sourceid" />
+        <result column="SOURCETYPE" property="sourcetype" />
+        <result column="MEMO" property="memo" />
+        <result column="RECEMONEY" property="recemoney" />
+        <result column="TRDTLID" property="trdtlid" />
+        <result column="SALESID" property="salesid" />
+        <result column="BOXQTY" property="boxqty" />
+        <result column="SPEDRUGFLAG" property="spedrugflag" />
+        <result column="STARTTEMPERATURE" property="starttemperature" />
+        <result column="REACHTEMPERATURE" property="reachtemperature" />
+        <result column="COLDSTORAGEFLAG" property="coldstorageflag" />
+        <result column="ZX_SARECTYPE" property="zxSarectype" />
+        <result column="ZX_UNDELIFLAG" property="zxUndeliflag" />
+        <result column="UNDELIFLAG" property="undeliflag" />
+        <result column="SWIFTNUMBER" property="swiftnumber" />
+        <result column="ZX_ERRORMSG" property="zxErrormsg" />
+        <result column="ZX_APPPAYFLAG" property="zxApppayflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ROADDTLID, ROADID, COMPANYID, TRANPOSID, TRANSORTNO, TOTALPACKQTY, DTLCOST, RECEIPTMAN, RECEIPTDATE, RETURNFLAG, TRID, SOURCEID, SOURCETYPE, MEMO, RECEMONEY, TRDTLID, SALESID, BOXQTY, SPEDRUGFLAG, STARTTEMPERATURE, REACHTEMPERATURE, COLDSTORAGEFLAG, ZX_SARECTYPE, ZX_UNDELIFLAG, UNDELIFLAG, SWIFTNUMBER, ZX_ERRORMSG, ZX_APPPAYFLAG
+    </sql>
+
+</mapper>

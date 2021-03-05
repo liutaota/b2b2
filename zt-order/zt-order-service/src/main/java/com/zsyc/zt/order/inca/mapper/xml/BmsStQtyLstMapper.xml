@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStQtyLstMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStQtyLst">
+        <id column="GOODSID" property="goodsid" />
+        <result column="GOODSDETAILID" property="goodsdetailid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="LOTID" property="lotid" />
+        <result column="POSID" property="posid" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="GOODSQTY" property="goodsqty" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GOODSID, GOODSDETAILID, STORAGEID, BATCHID, LOTID, POSID, GOODSSTATUSID, GOODSQTY
+    </sql>
+    <select id="getStockBy" resultType="java.lang.Integer">
+        SELECT SUM(A.GOODSQTY - DECODE(D.QTY_TMP, NULL, 0, D.QTY_TMP)) allqty
+        FROM BMS_ST_QTY_LST A,
+        BMS_LOT_DEF B,
+        BMS_BATCH_DEF C,
+        (SELECT SUM(DTLGOODSQTY) QTY_TMP,
+        D.GOODSDTLID,
+        D.LOTID,
+        D.BATCHID,
+        D.POSID
+        FROM BMS_ST_IO_DTL_TMP D
+        GROUP BY D.LOTID,
+        D.BATCHID,
+        D.POSID,
+        D.GOODSDTLID) D
+        WHERE 1 = 1
+        AND A.LOTID = B.LOTID
+        AND A.BATCHID = C.BATCHID
+        AND A.GOODSID = C.GOODSID
+        AND A.LOTID = D.LOTID(+)
+        AND A.BATCHID = D.BATCHID(+)
+        AND A.POSID = D.POSID(+)
+        AND A.GOODSDETAILID = D.GOODSDTLID(+)
+        AND A.GOODSQTY - DECODE(D.QTY_TMP, NULL, 0, D.QTY_TMP) > 0
+        <if test="lotNo!=null and  lotNo.length>0">
+            AND B.lotno = #{lotNo}
+        </if>
+        <if test="goodsType == 1">
+            AND B.INVALIDDATE IS NOT NULL
+        </if>
+
+        AND A.GOODSSTATUSID = 1
+        AND ((C.LIMITID IS NULL) OR (C.LIMITID IS NOT NULL AND C.LIMITID = #{customId}))
+        AND A.STORAGEID = #{storageId}
+        AND A.GOODSID = #{goodsId}
+
+    </select>
+    <select id="selectStockBy" resultType="com.zsyc.zt.order.entity.BmsStQtyLst">
+        SELECT A.GOODSID,
+        A.GOODSDETAILID,
+        A.STORAGEID,
+        A.BATCHID,
+        A.LOTID,
+        A.POSID,
+        A.GOODSSTATUSID,
+        A.GOODSQTY,
+        DECODE(D.QTY_TMP,NULL,0,D.qty_tmp) QTY_TMP,
+        A.GOODSQTY - DECODE(D.QTY_TMP, NULL, 0, D.QTY_TMP) QTY_FACT,
+        B.PRODDATE,
+        B.INVALIDDATE
+        FROM BMS_ST_QTY_LST A,
+        BMS_LOT_DEF B,
+        BMS_BATCH_DEF C,
+        (SELECT SUM(DTLGOODSQTY) QTY_TMP,
+        D.GOODSDTLID,
+        D.LOTID,
+        D.BATCHID,
+        D.POSID
+        FROM BMS_ST_IO_DTL_TMP D
+        GROUP BY D.LOTID,
+        D.BATCHID,
+        D.POSID,
+        D.GOODSDTLID) D
+        WHERE 1 = 1
+        AND A.LOTID = B.LOTID
+        AND A.BATCHID = C.BATCHID
+        AND A.GOODSID = C.GOODSID
+        AND A.LOTID = D.LOTID(+)
+        AND A.BATCHID = D.BATCHID(+)
+        AND A.POSID = D.POSID(+)
+        AND A.GOODSDETAILID = D.GOODSDTLID(+)
+        <if test="lotNo!=null and  lotNo.length>0">
+            AND B.lotno = #{lotNo}
+        </if>
+
+        <if test="goodsType == 1">
+            AND B.INVALIDDATE IS NOT NULL
+        </if>
+        AND A.GOODSSTATUSID = 1
+        AND A.GOODSQTY - DECODE(D.QTY_TMP, NULL, 0, D.QTY_TMP) >0
+        AND ((C.LIMITID IS NULL) OR (C.LIMITID IS NOT NULL AND C.LIMITID = #{customId}))
+        AND A.GOODSID = #{goodsId}
+        and STORAGEID = #{storageId}
+        ORDER BY B.INVALIDDATE
+    </select>
+    <select id="selectQtyBy" resultType="com.zsyc.zt.order.entity.GpcsPlacereturndtl">
+         select
+        a.goodsid,
+        a.goodsdtlid,
+        a.goodsunit,
+        a.goodsqty,
+        a.lotid,
+        a.batchid,
+        a.posid,
+        a.goodsstatusid,
+        a.usestatus
+   from resa_stqty_sum_v a
+   where a.goodsid=#{goodsId}
+     and a.lotid=#{lotId}
+     and a.batchid=#{batchId}
+     and invaliddays > 0
+     and statususeflag = 1
+     and storageid =#{storageId}
+    </select>
+    <select id="selectListBy" resultType="com.zsyc.zt.order.inca.vo.DataGiftVo">
+        select rowid,
+        goodsqty,
+        nvl((select min(x.baseunitqty)
+        from pub_goods_unit x
+        where x.baseunitqty &lt; 1
+        and x.goodsid = bms_st_qty_lst.goodsid),
+        0) breakqty
+        from bms_st_qty_lst
+        where storageid = #{phystoreid}
+        and goodsid = #{goodsId}
+        and goodsdetailid = #{goodsdtlId}
+        and batchid = #{batchid}
+        and lotid = #{lotid}
+        and posid =#{posid}
+        and goodsstatusid = 1
+        for update
+    </select>
+
+</mapper>

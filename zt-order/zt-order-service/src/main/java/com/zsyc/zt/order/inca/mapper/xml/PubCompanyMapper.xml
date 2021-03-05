@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubCompanyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubCompany">
+        <id column="COMPANYID" property="companyid" />
+        <result column="COMPANYOPCODE" property="companyopcode" />
+        <result column="COMPANYPINYIN" property="companypinyin" />
+        <result column="COMPANYNAME" property="companyname" />
+        <result column="PARENTCOMPANYID" property="parentcompanyid" />
+        <result column="CORPCODE" property="corpcode" />
+        <result column="SELFFLAG" property="selfflag" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="REFERENCEDCOUNT" property="referencedcount" />
+        <result column="COMPANYMEMO" property="companymemo" />
+        <result column="SUPPLYERFLAG" property="supplyerflag" />
+        <result column="CUSTOMFLAG" property="customflag" />
+        <result column="FACTFLAG" property="factflag" />
+        <result column="TRANSPORTFLAG" property="transportflag" />
+        <result column="DEPTSUPPLY" property="deptsupply" />
+        <result column="DEPTSALESFLAG" property="deptsalesflag" />
+        <result column="DEPTSTORERFLAG" property="deptstorerflag" />
+        <result column="BANKFLAG" property="bankflag" />
+        <result column="MANAGERAGE" property="managerage" />
+        <result column="QUDEPTFLAG" property="qudeptflag" />
+        <result column="ISOTCFLAG" property="isotcflag" />
+        <result column="ISDISTRIBUTORFLAG" property="isdistributorflag" />
+        <result column="ISHOSPOTALFLAG" property="ishospotalflag" />
+        <result column="ISOTHERFLAG" property="isotherflag" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="FINANCENO" property="financeno" />
+        <result column="PRODUCERFLAG" property="producerflag" />
+        <result column="COMPANYNO" property="companyno" />
+        <result column="COMPANYSHORTNAME" property="companyshortname" />
+        <result column="COMPANYTYPE" property="companytype" />
+        <result column="LEGALPERSON" property="legalperson" />
+        <result column="ZONE" property="zone" />
+        <result column="COMPANYCREDATE" property="companycredate" />
+        <result column="PUBFLAG" property="pubflag" />
+        <result column="DEPTPRODUCERFLAG" property="deptproducerflag" />
+        <result column="COPYDATA" property="copydata" />
+        <result column="TAXNUMBER" property="taxnumber" />
+        <result column="MEMBERID" property="memberid" />
+        <result column="QUONDAMID" property="quondamid" />
+        <result column="LEADERID" property="leaderid" />
+        <result column="COUNTRYID" property="countryid" />
+        <result column="ISCLINIQUE" property="isclinique" />
+        <result column="ISOTCLINIQUE" property="isotclinique" />
+        <result column="SYS_MODIFYDATE" property="sysModifydate" />
+        <result column="MEDICODE" property="medicode" />
+        <result column="TOWMSDATE" property="towmsdate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        COMPANYID, COMPANYOPCODE, COMPANYPINYIN, COMPANYNAME, PARENTCOMPANYID, CORPCODE, SELFFLAG, CREDATE, INPUTMANID, REFERENCEDCOUNT, COMPANYMEMO, SUPPLYERFLAG, CUSTOMFLAG, FACTFLAG, TRANSPORTFLAG, DEPTSUPPLY, DEPTSALESFLAG, DEPTSTORERFLAG, BANKFLAG, MANAGERAGE, QUDEPTFLAG, ISOTCFLAG, ISDISTRIBUTORFLAG, ISHOSPOTALFLAG, ISOTHERFLAG, USESTATUS, FINANCENO, PRODUCERFLAG, COMPANYNO, COMPANYSHORTNAME, COMPANYTYPE, LEGALPERSON, ZONE, COMPANYCREDATE, PUBFLAG, DEPTPRODUCERFLAG, COPYDATA, TAXNUMBER, MEMBERID, QUONDAMID, LEADERID, COUNTRYID, ISCLINIQUE, ISOTCLINIQUE, SYS_MODIFYDATE, MEDICODE, TOWMSDATE
+    </sql>
+
+</mapper>

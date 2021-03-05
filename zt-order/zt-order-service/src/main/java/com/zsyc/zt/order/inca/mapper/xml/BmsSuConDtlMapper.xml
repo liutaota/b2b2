@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuConDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuConDtl">
+        <id column="SUCONDTLID" property="sucondtlid" />
+        <result column="SUCONID" property="suconid" />
+        <result column="SUPPLYERID" property="supplyerid" />
+        <result column="DEPTID" property="deptid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="GOODSUSEUNIT" property="goodsuseunit" />
+        <result column="GOODSUSEQTY" property="goodsuseqty" />
+        <result column="TAXRATE" property="taxrate" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="CUSTOMSTAX" property="customstax" />
+        <result column="CUSTOMSMONEY" property="customsmoney" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="FINDATE" property="findate" />
+        <result column="ACCQTY" property="accqty" />
+        <result column="MEMO" property="memo" />
+        <result column="INVALIDMANID" property="invalidmanid" />
+        <result column="INVALIDDATE" property="invaliddate" />
+        <result column="AGREEDOCFLAG" property="agreedocflag" />
+        <result column="LASTPRICE" property="lastprice" />
+        <result column="PRINTNO" property="printno" />
+        <result column="PRINTLINE" property="printline" />
+        <result column="LOWESTPRICE" property="lowestprice" />
+        <result column="SUPPLYLASTPRICE" property="supplylastprice" />
+        <result column="PAYMETHOD" property="paymethod" />
+        <result column="PAYLIMIT" property="paylimit" />
+        <result column="RECEIVEQTY" property="receiveqty" />
+        <result column="WHOLESALEPRICE" property="wholesaleprice" />
+        <result column="RETAILPRICE" property="retailprice" />
+        <result column="CRETAILPRICE" property="cretailprice" />
+        <result column="LIMITID" property="limitid" />
+        <result column="PROTOCALDTLID" property="protocaldtlid" />
+        <result column="HASPRESENDFLAG" property="haspresendflag" />
+        <result column="PRESENDINFO" property="presendinfo" />
+        <result column="LIMITCUSTOMSETID" property="limitcustomsetid" />
+        <result column="USEPACKSIZE" property="usepacksize" />
+        <result column="BANNEDCUSTOMERID" property="bannedcustomerid" />
+        <result column="BANNEDCUSTOMERSETID" property="bannedcustomersetid" />
+        <result column="IMPDTLID" property="impdtlid" />
+        <result column="INQTY" property="inqty" />
+        <result column="REFUSEQTY" property="refuseqty" />
+        <result column="INTRUSTQTY" property="intrustqty" />
+        <result column="COLDEQUIP" property="coldequip" />
+        <result column="SENDWMSFLAG" property="sendwmsflag" />
+        <result column="SENDWMSDATE" property="sendwmsdate" />
+        <result column="WMSBACKDATE" property="wmsbackdate" />
+        <result column="REQUIREDDATE" property="requireddate" />
+        <result column="EXPECTEDDATE" property="expecteddate" />
+        <result column="LIMITAGENTID" property="limitagentid" />
+        <result column="BANNEDAGENTID" property="bannedagentid" />
+        <result column="LIMITCONTACTID" property="limitcontactid" />
+        <result column="BANNEDCONTACTID" property="bannedcontactid" />
+        <result column="UNQUALIFIEDQTY" property="unqualifiedqty" />
+        <result column="REUSESTATUS" property="reusestatus" />
+        <result column="RGUSESTATUS" property="rgusestatus" />
+        <result column="ZX_LOTNO" property="zxLotno" />
+        <result column="ZX_PRODDATE" property="zxProddate" />
+        <result column="ZX_INVALIDDATE" property="zxInvaliddate" />
+        <result column="ZX_LOTID" property="zxLotid" />
+        <result column="BACKQTY" property="backqty" />
+        <result column="BACKMEMO" property="backmemo" />
+        <result column="ZX_KP_FLAG" property="zxKpFlag" />
+        <result column="SU_FLAG" property="suFlag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SUCONDTLID, SUCONID, SUPPLYERID, DEPTID, GOODSID, GOODSDTLID, GOODSQTY, GOODSUSEUNIT, GOODSUSEQTY, TAXRATE, UNITPRICE, TOTAL_LINE, CUSTOMSTAX, CUSTOMSMONEY, USESTATUS, FINDATE, ACCQTY, MEMO, INVALIDMANID, INVALIDDATE, AGREEDOCFLAG, LASTPRICE, PRINTNO, PRINTLINE, LOWESTPRICE, SUPPLYLASTPRICE, PAYMETHOD, PAYLIMIT, RECEIVEQTY, WHOLESALEPRICE, RETAILPRICE, CRETAILPRICE, LIMITID, PROTOCALDTLID, HASPRESENDFLAG, PRESENDINFO, LIMITCUSTOMSETID, USEPACKSIZE, BANNEDCUSTOMERID, BANNEDCUSTOMERSETID, IMPDTLID, INQTY, REFUSEQTY, INTRUSTQTY, COLDEQUIP, SENDWMSFLAG, SENDWMSDATE, WMSBACKDATE, REQUIREDDATE, EXPECTEDDATE, LIMITAGENTID, BANNEDAGENTID, LIMITCONTACTID, BANNEDCONTACTID, UNQUALIFIEDQTY, REUSESTATUS, RGUSESTATUS, ZX_LOTNO, ZX_PRODDATE, ZX_INVALIDDATE, ZX_LOTID, BACKQTY, BACKMEMO, ZX_KP_FLAG, SU_FLAG
+    </sql>
+
+</mapper>

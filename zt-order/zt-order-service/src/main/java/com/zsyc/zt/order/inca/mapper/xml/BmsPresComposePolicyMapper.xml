@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsPresComposePolicyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsPresComposePolicy">
+        <id column="POLICYID" property="policyid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="TYPEID" property="typeid" />
+        <result column="STARTDATE" property="startdate" />
+        <result column="ENDDATE" property="enddate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="MODIFYMANID" property="modifymanid" />
+        <result column="MODIFYDATE" property="modifydate" />
+        <result column="TOTAL" property="total" />
+        <result column="PRESGOODSID" property="presgoodsid" />
+        <result column="PRESGOODSQTY" property="presgoodsqty" />
+        <result column="INVALIDDATE" property="invaliddate" />
+        <result column="INVALIDMANID" property="invalidmanid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="MEMO" property="memo" />
+        <result column="COMFRIMDATE" property="comfrimdate" />
+        <result column="COMFRIMMANID" property="comfrimmanid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        POLICYID, ENTRYID, COMPANYID, TYPEID, STARTDATE, ENDDATE, INPUTMANID, CREDATE, MODIFYMANID, MODIFYDATE, TOTAL, PRESGOODSID, PRESGOODSQTY, INVALIDDATE, INVALIDMANID, USESTATUS, MEMO, COMFRIMDATE, COMFRIMMANID
+    </sql>
+
+</mapper>

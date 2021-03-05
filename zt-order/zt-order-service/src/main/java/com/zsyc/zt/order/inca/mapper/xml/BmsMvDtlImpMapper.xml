@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsMvDtlImpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsMvDtlImp">
+        <result column="MOVEDTLID" property="movedtlid" />
+        <result column="MOVEID" property="moveid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSUSEUNIT" property="goodsuseunit" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="LOTID" property="lotid" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="GOODSUSEQTY" property="goodsuseqty" />
+        <result column="COSTINGPRICE" property="costingprice" />
+        <result column="COSTINGMONEY" property="costingmoney" />
+        <result column="STOFLAG" property="stoflag" />
+        <result column="COSTCALCFLAG" property="costcalcflag" />
+        <result column="STIFLAG" property="stiflag" />
+        <result column="INVALIDFLAG" property="invalidflag" />
+        <result column="INSENDWMSFLAG" property="insendwmsflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        MOVEDTLID, MOVEID, GOODSID, GOODSUSEUNIT, GOODSDTLID, LOTID, GOODSSTATUSID, GOODSQTY, GOODSUSEQTY, COSTINGPRICE, COSTINGMONEY, STOFLAG, COSTCALCFLAG, STIFLAG, INVALIDFLAG, INSENDWMSFLAG
+    </sql>
+
+</mapper>

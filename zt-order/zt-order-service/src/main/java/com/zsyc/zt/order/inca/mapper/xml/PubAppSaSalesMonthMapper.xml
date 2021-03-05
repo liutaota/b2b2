@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubAppSaSalesMonthMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubAppSaSalesMonth">
+        <id column="SEQID" property="seqid" />
+        <result column="CREDATE" property="credate" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="SATYPEID" property="satypeid" />
+        <result column="TRADECOUNT" property="tradecount" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="MONEY" property="money" />
+        <result column="BATCHGROSS" property="batchgross" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SEQID, CREDATE, ENTRYID, SATYPEID, TRADECOUNT, GOODSQTY, MONEY, BATCHGROSS
+    </sql>
+
+</mapper>

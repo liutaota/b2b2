@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubDeptSalesMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubDeptSales">
+        <id column="SADEPTID" property="sadeptid" />
+        <result column="SADEPTOPCODE" property="sadeptopcode" />
+        <result column="SADEPTNO" property="sadeptno" />
+        <result column="SADEPTNAME" property="sadeptname" />
+        <result column="MASTERID" property="masterid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SADEPTID, SADEPTOPCODE, SADEPTNO, SADEPTNAME, MASTERID, USESTATUS, INPUTMANID, CREDATE
+    </sql>
+
+</mapper>

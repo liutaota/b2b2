@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsPresInDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsPresInDoc">
+        <id column="PRESINID" property="presinid" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="SUPPLYNAME" property="supplyname" />
+        <result column="POLICYTYPE" property="policytype" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="DTL_LINES" property="dtlLines" />
+        <result column="ARRIVEDATE" property="arrivedate" />
+        <result column="PRINTFLAG" property="printflag" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="CONFIRMMANID" property="confirmmanid" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="MEMO" property="memo" />
+        <result column="PLACEPOINTID" property="placepointid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PRESINID, CREDATE, INPUTMANID, ENTRYID, SUPPLYID, SUPPLYNAME, POLICYTYPE, COMEFROM, DTL_LINES, ARRIVEDATE, PRINTFLAG, PRINTMANID, PRINTDATE, CONFIRMMANID, CONFIRMDATE, USESTATUS, MEMO, PLACEPOINTID
+    </sql>
+
+</mapper>

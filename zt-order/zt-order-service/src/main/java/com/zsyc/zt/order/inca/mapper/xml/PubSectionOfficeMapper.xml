@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubSectionOfficeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubSectionOffice">
+        <id column="OFFICEID" property="officeid" />
+        <result column="OFFICEOPCODE" property="officeopcode" />
+        <result column="OFFICEPINYIN" property="officepinyin" />
+        <result column="OFFICENAME" property="officename" />
+        <result column="MEMO" property="memo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        OFFICEID, OFFICEOPCODE, OFFICEPINYIN, OFFICENAME, MEMO
+    </sql>
+
+</mapper>

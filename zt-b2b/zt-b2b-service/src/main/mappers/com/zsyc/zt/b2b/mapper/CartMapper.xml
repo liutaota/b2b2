@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.CartMapper">
+    <update id="isPitchOnCart">
+        update cart set PITCH_ON=#{pitchOn} where MEMBER_ID=#{memberId}
+    </update>
+    <update id="updateCartSetNull">
+        update cart set ACTIVITY_ID=null where id =#{id}
+    </update>
+    <update id="updateCartActivityId">
+        update cart set ACTIVITY_ID=#{activityId} where id =#{id}
+    </update>
+    <delete id="delCartPitchOnGoods">
+        delete from cart where MEMBER_ID=#{memberId} and PITCH_ON=#{pitchOn}
+    </delete>
+
+    <select id="getMemberCartList" resultType="com.zsyc.zt.b2b.vo.CartVo">
+        SELECT DISTINCT c.ID,
+        c.MEMBER_ID ,
+        c.ERP_GOODS_ID ,
+        c.GOODS_ID,
+        c.GOODS_NAME,
+        c.GOODS_PRICE ,
+        c.GOODS_NUM ,
+        c.BL_ID ,
+        c.CREATE_TIME ,
+        c.GC_ID,
+        c.PRICE_ID,
+        c.STORAGE_ID,
+        c.ACCFLAG,
+        c.LOT_NO ,
+        c.LOT_ID ,
+        c.GOOD_TYPE,
+        c.AS_ID ,
+        c.ACTIVITY_ID ,
+        c.GIFT_ID,
+        c.PITCH_ON ,
+        c.STORE_ID,
+        gv.classname,
+        gv.classname_3,
+        gv.medicinetypename,
+        gv.goodsname,
+        gv.goodspinyin,
+        gv.goodsunit,
+        gv.price_2,
+        gv.price_try,
+        gv.approvedocno,
+        gv.factoryname,
+        gv.factoryid,
+        gv.goodsid,
+        gv.goodstype,
+        gv.goodsid_gps,
+        gv.barcode,
+        gv.currencyname,
+        gv.credate,
+        gv.classn_row_1,
+        gv.classname_1,
+        gv.classname_2,
+        gv.classn_row_2,
+        gv.classn_row_3,
+        gv.busiscope,
+        gv.busiscope_name,
+        gv.goodsqty,
+        (CASE
+        WHEN gv.zx_b2b_num_limit IS NULL THEN
+        1
+        ELSE
+        gv.zx_b2b_num_limit
+        END) zx_b2b_num_limit,
+        <!--gv.storageid,-->
+        gv.storagename,
+        b.factory_short,cf.id is_favorites,
+        g.ERP_ACC_FLAG,
+        g.INTEGRAL_GOODS,
+        g.GOODS_IMG GOODS_IMAGE,
+        g.CONVERTIBLE_INTEGRAL,
+        (select ag.top_limit from activity_goods ag where ag.erp_goods_id=c.erp_goods_id and
+        ag.activity_id=c.activity_id and rownum=1) top_limit
+        FROM cart c
+        LEFT JOIN goods g ON c.erp_goods_id = g.erp_goods_id
+        LEFT JOIN ERP_GOODS_V gv ON gv.goodsid = c.erp_goods_id and gv.storageid=c.STORAGE_ID
+        LEFT JOIN factory b ON b.id = gv.factoryid
+        LEFT JOIN favorites cf ON cf.fav_id = c.erp_goods_id AND cf.fav_type = 'goods' and cf.member_id=c.member_id
+        WHERE c.member_id =#{cartVo.memberId}
+        <if test="cartVo.goodsName!=null and cartVo.goodsName!=''">
+            and (c.goods_name like '%'||#{cartVo.goodsName}||'%'
+            or gv.factoryname like '%'||#{cartVo.goodsName}||'%'
+            or c.ERP_GOODS_ID like '%'||#{cartVo.goodsName}||'%'
+            )
+        </if>
+        order by c.create_time desc
+    </select>
+
+    <select id="getCartList" resultType="com.zsyc.zt.b2b.vo.CartVo">
+        select * from CART
+    </select>
+    <select id="getPitchOnList" resultType="com.zsyc.zt.b2b.vo.CartVo">
+        SELECT DISTINCT
+        c.ID,
+        c.MEMBER_ID,
+        c.ERP_GOODS_ID,
+        c.GOODS_ID,
+        c.GOODS_NAME,
+        c.GOODS_PRICE,
+        c.GOODS_NUM,
+        c.BL_ID,
+        c.CREATE_TIME,
+        c.GC_ID,
+        c.PRICE_ID,
+        c.STORAGE_ID,
+        c.ACCFLAG,
+        c.LOT_NO,
+        c.LOT_ID,
+        c.GOOD_TYPE,
+        c.AS_ID,
+        c.ACTIVITY_ID,
+        c.GIFT_ID,
+        c.PITCH_ON,
+        c.STORE_ID,
+        c.SRC_ORDER_DTL_ID,
+        b.goodsname,
+        b.goodsunit,
+        b.factoryid,
+        f.factoryname,
+        b.medicinetype,
+        b.medicinetypename,
+        b.currencyname,
+        b.goodstype,
+
+        (CASE
+        WHEN a.zx_b2b_num_limit IS NULL THEN
+        1
+        ELSE
+        a.zx_b2b_num_limit
+        END) zx_b2b_num_limit,
+        b.classn_row_1,
+        b.classn_row_2,
+        b.classn_row_3,
+        b.classname_1,
+        b.classname_2,
+        b.classname_3,
+        b.opcode,
+        b.B2B_NOT_SALE_FLAG,
+
+        f.id is_favorites,
+        g.ERP_ACC_FLAG,
+        g.INTEGRAL_GOODS,
+        g.GOODS_IMG GOODS_IMAGE,
+        g.CONVERTIBLE_INTEGRAL,
+        (select ag.top_limit from activity_goods ag where ag.erp_goods_id=c.erp_goods_id and
+        ag.activity_id=c.activity_id and rownum=1) top_limit
+        FROM
+        cart c
+        LEFT JOIN ${erp}.pub_entry_goods a on a.goodsid = c.erp_goods_id
+        LEFT JOIN ${erp}.pub_goods b on b.goodsid = c.erp_goods_id
+        LEFT JOIN ${erp}.pub_factory f on f.factoryid = b.factoryid
+        LEFT JOIN goods g ON g.ERP_GOODS_ID = c.erp_goods_id
+        LEFT JOIN FAVORITES f ON f.member_id = c.MEMBER_ID
+        AND f.fav_id = c.erp_goods_id
+        WHERE
+        a.entryId = 1 and c.MEMBER_ID = #{memberId} and (b.B2B_NOT_SALE_FLAG is null or b.B2B_NOT_SALE_FLAG=0)
+        <if test="pitchOn!=null and pitchOn>0">
+            and c.PITCH_ON=#{pitchOn}
+        </if>
+        <if test="storageId!=null and storageId!=1">
+            and c.storage_id=#{storageId}
+        </if>
+        <if test="storageId==1">
+            and c.storage_id in (1,732)
+        </if>
+        <if test="goodType>0">
+            and c.GOOD_TYPE=#{goodType}
+        </if>
+        order by c.id desc
+    </select>
+    <select id="getCartExpiredActivity" resultType="com.zsyc.zt.b2b.entity.Cart">
+
+        select * from cart where ACTIVITY_ID in
+        (select a.id from ACTIVITY a
+        where
+
+        sysdate not BETWEEN a.START_TIME and a.END_TIME
+
+        and a.id in
+        ( select ACTIVITY_ID from cart where ACTIVITY_ID is not null ))
+    </select>
+
+    <delete id="delMemberStoreCart">
+        delete from cart where MEMBER_ID = #{memberId} and STORE_ID = #{storeId}
+    </delete>
+</mapper>

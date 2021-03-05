@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuPlanMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuPlan">
+        <id column="PLANID" property="planid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="SUPPLYERID" property="supplyerid" />
+        <result column="PLANDATE" property="plandate" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="ARRIVEDATE" property="arrivedate" />
+        <result column="PAYLIMIT" property="paylimit" />
+        <result column="CLAUSE" property="clause" />
+        <result column="MEMO" property="memo" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="SUCONDTLID" property="sucondtlid" />
+        <result column="GOODSUSEQTY" property="goodsuseqty" />
+        <result column="PROTOCALDTLID" property="protocaldtlid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="PLANDOCID" property="plandocid" />
+        <result column="ASKPRICEID" property="askpriceid" />
+        <result column="SOURCEID" property="sourceid" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="PAYMETHOD" property="paymethod" />
+        <result column="SETTLETYPEID" property="settletypeid" />
+        <result column="RULE" property="rule" />
+        <result column="VALIDITY" property="validity" />
+        <result column="HYCOUNT" property="hycount" />
+        <result column="UPQTY" property="upqty" />
+        <result column="DOWNQTY" property="downqty" />
+        <result column="COLLIGATEAVGSALEQTY" property="colligateavgsaleqty" />
+        <result column="CANSALEQTY" property="cansaleqty" />
+        <result column="REBATEPOLICY" property="rebatepolicy" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="DEPTID" property="deptid" />
+        <result column="SUMONEY" property="sumoney" />
+        <result column="COSTINGPRICE" property="costingprice" />
+        <result column="COSTINGMONEY" property="costingmoney" />
+        <result column="GOODSUSEUNIT" property="goodsuseunit" />
+        <result column="SUPPLYTAXRATE" property="supplytaxrate" />
+        <result column="ISPROTOCAL" property="isprotocal" />
+        <result column="USEPACKSIZE" property="usepacksize" />
+        <result column="PLANQTY" property="planqty" />
+        <result column="EMPID" property="empid" />
+        <result column="INVALIDMANID" property="invalidmanid" />
+        <result column="INVALIDDATE" property="invaliddate" />
+        <result column="HYEXPIRYDATE" property="hyexpirydate" />
+        <result column="PAYPARAM" property="payparam" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PLANID, GOODSID, SUPPLYID, SUPPLYERID, PLANDATE, GOODSQTY, UNITPRICE, ARRIVEDATE, PAYLIMIT, CLAUSE, MEMO, USESTATUS, SUCONDTLID, GOODSUSEQTY, PROTOCALDTLID, AGENTID, PLANDOCID, ASKPRICEID, SOURCEID, CONTACTID, PAYMETHOD, SETTLETYPEID, RULE, VALIDITY, HYCOUNT, UPQTY, DOWNQTY, COLLIGATEAVGSALEQTY, CANSALEQTY, REBATEPOLICY, COMEFROM, DEPTID, SUMONEY, COSTINGPRICE, COSTINGMONEY, GOODSUSEUNIT, SUPPLYTAXRATE, ISPROTOCAL, USEPACKSIZE, PLANQTY, EMPID, INVALIDMANID, INVALIDDATE, HYEXPIRYDATE, PAYPARAM
+    </sql>
+
+</mapper>

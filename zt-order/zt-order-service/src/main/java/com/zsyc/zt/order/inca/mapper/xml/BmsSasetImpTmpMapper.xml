@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSasetImpTmpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSasetImpTmp">
+        <id column="TMPID" property="tmpid" />
+        <result column="DOCID" property="docid" />
+        <result column="IMPFLAG" property="impflag" />
+        <result column="ERRORMESSAGE" property="errormessage" />
+        <result column="CREDATE" property="credate" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="CUSTOMNAME" property="customname" />
+        <result column="AGENTID" property="agentid" />
+        <result column="AGENTNAME" property="agentname" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="ENTRYNAME" property="entryname" />
+        <result column="SETTLETYPEID" property="settletypeid" />
+        <result column="SETTLETYPE" property="settletype" />
+        <result column="INVTYPE" property="invtype" />
+        <result column="INVTYPENAME" property="invtypename" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="TAXRATE" property="taxrate" />
+        <result column="TAXMONEY" property="taxmoney" />
+        <result column="NOTAXMONEY" property="notaxmoney" />
+        <result column="SALERID" property="salerid" />
+        <result column="SALERNAME" property="salername" />
+        <result column="SALESDEPTID" property="salesdeptid" />
+        <result column="INVNO" property="invno" />
+        <result column="INVDATE" property="invdate" />
+        <result column="ZXCOLNUM1" property="zxcolnum1" />
+        <result column="ZXCOLNUM2" property="zxcolnum2" />
+        <result column="ZXCOLNUM3" property="zxcolnum3" />
+        <result column="ZXCOLNUM4" property="zxcolnum4" />
+        <result column="ZXCOLNUM5" property="zxcolnum5" />
+        <result column="ZXCOLNUM6" property="zxcolnum6" />
+        <result column="ZXCOLNUM7" property="zxcolnum7" />
+        <result column="ZXCOLNUM8" property="zxcolnum8" />
+        <result column="ZXCOLNUM9" property="zxcolnum9" />
+        <result column="ZXCOLNUM10" property="zxcolnum10" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TMPID, DOCID, IMPFLAG, ERRORMESSAGE, CREDATE, CUSTOMID, CUSTOMNAME, AGENTID, AGENTNAME, ENTRYID, ENTRYNAME, SETTLETYPEID, SETTLETYPE, INVTYPE, INVTYPENAME, GOODSID, GOODSNAME, GOODSQTY, UNITPRICE, TOTAL_LINE, TAXRATE, TAXMONEY, NOTAXMONEY, SALERID, SALERNAME, SALESDEPTID, INVNO, INVDATE, ZXCOLNUM1, ZXCOLNUM2, ZXCOLNUM3, ZXCOLNUM4, ZXCOLNUM5, ZXCOLNUM6, ZXCOLNUM7, ZXCOLNUM8, ZXCOLNUM9, ZXCOLNUM10
+    </sql>
+
+</mapper>

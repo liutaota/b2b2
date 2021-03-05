@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuDoc">
+        <id column="SUDOCID" property="sudocid" />
+        <result column="CREDATE" property="credate" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="SUPPLYNAME" property="supplyname" />
+        <result column="TOTALCOST" property="totalcost" />
+        <result column="TOTAL" property="total" />
+        <result column="DTL_LINES" property="dtlLines" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="ARRIVEDATE" property="arrivedate" />
+        <result column="DELIVERDATE" property="deliverdate" />
+        <result column="TRANSDOCNO" property="transdocno" />
+        <result column="MEMO" property="memo" />
+        <result column="SUTYPEID" property="sutypeid" />
+        <result column="INITFLAG" property="initflag" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="TRANMETHOD" property="tranmethod" />
+        <result column="MIDPOSID" property="midposid" />
+        <result column="TARGETPOSID" property="targetposid" />
+        <result column="URGENFLAG" property="urgenflag" />
+        <result column="TRANPRIORITY" property="tranpriority" />
+        <result column="TARGETDATE" property="targetdate" />
+        <result column="DELIVERMETHOD" property="delivermethod" />
+        <result column="FMID" property="fmid" />
+        <result column="EXCHANGE" property="exchange" />
+        <result column="PRINTCOUNT" property="printcount" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="CONFIRMMANID" property="confirmmanid" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="PLACEPOINTID" property="placepointid" />
+        <result column="WFUSESTATUS" property="wfusestatus" />
+        <result column="WFPROCESS" property="wfprocess" />
+        <result column="WFMEMO" property="wfmemo" />
+        <result column="AGENTID" property="agentid" />
+        <result column="ADJDATE" property="adjdate" />
+        <result column="PLACESUPPLYID" property="placesupplyid" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="NOWMSFLAG" property="nowmsflag" />
+        <result column="GSPUNCONFIRMFLAG" property="gspunconfirmflag" />
+        <result column="WMSDESCR" property="wmsdescr" />
+        <result column="WMSDATE" property="wmsdate" />
+        <result column="CMSFLAG" property="cmsflag" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="TAXMONEY" property="taxmoney" />
+        <result column="TWOINVOICEINFLAG" property="twoinvoiceinflag" />
+        <result column="BMS_SU_DOC" property="bmsSuDoc" />
+        <result column="ZX_INITSATUS" property="zxInitsatus" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SUDOCID, CREDATE, SUPPLYID, SUPPLYNAME, TOTALCOST, TOTAL, DTL_LINES, INPUTMANID, ARRIVEDATE, DELIVERDATE, TRANSDOCNO, MEMO, SUTYPEID, INITFLAG, ENTRYID, TRANMETHOD, MIDPOSID, TARGETPOSID, URGENFLAG, TRANPRIORITY, TARGETDATE, DELIVERMETHOD, FMID, EXCHANGE, PRINTCOUNT, PRINTMANID, PRINTDATE, CONFIRMMANID, CONFIRMDATE, USESTATUS, PLACEPOINTID, WFUSESTATUS, WFPROCESS, WFMEMO, AGENTID, ADJDATE, PLACESUPPLYID, COMEFROM, NOWMSFLAG, GSPUNCONFIRMFLAG, WMSDESCR, WMSDATE, CMSFLAG, CONTACTID, TAXMONEY, TWOINVOICEINFLAG, BMS_SU_DOC, ZX_INITSATUS
+    </sql>
+
+</mapper>

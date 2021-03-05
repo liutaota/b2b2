@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.ActivitySetMapper">
+
+    <select id="getActivitySetList" resultType="com.zsyc.zt.b2b.vo.ActivitySetVo">
+        select a.*,e.EMPLOYEENAME,p.SETNAME from ACTIVITY_SET a
+        left join user_info u on a.USER_ID=u.id
+        left join ${erp}.pub_employee e on e.EMPLOYEEID=u.ERP_EMPLOYEE_ID
+        left join ${erp}.pub_custom_set p on p.INPUTMANID = e.EMPLOYEEID and a.CUSTOM_SET_ID=p.SETID
+        where p.entryid=1 and a.ACTIVITY_ID=#{activityId}
+        order by a.CREATE_TIME desc
+    </select>
+    <select id="getActivitySetByCustomId" resultType="java.lang.Long">
+        SELECT
+        DISTINCT a.CUSTOMID
+        FROM ACTIVITY  ac
+        INNER JOIN ACTIVITY_SET acs ON ac.ID=acs.ACTIVITY_ID
+        INNER JOIN  ${erp}.pub_custom_set_dtl a on a.SETID=acs.CUSTOM_SET_ID
+        WHERE
+        ac.ID=#{activityId}
+        AND	a.customid = #{customId}
+
+    </select>
+</mapper>

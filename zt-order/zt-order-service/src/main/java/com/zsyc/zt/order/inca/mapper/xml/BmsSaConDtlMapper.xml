@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSaConDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSaConDtl">
+        <id column="CONDTLID" property="condtlid" />
+        <result column="CONID" property="conid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="PRICEID" property="priceid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="GOODSUSEUNIT" property="goodsuseunit" />
+        <result column="GOODSUSEQTY" property="goodsuseqty" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="WHOLESALEPRICE" property="wholesaleprice" />
+        <result column="RESALEPRICE" property="resaleprice" />
+        <result column="DISCOUNT" property="discount" />
+        <result column="TIMEPRICEID" property="timepriceid" />
+        <result column="TIMEPRICE" property="timeprice" />
+        <result column="ACCSTQTY" property="accstqty" />
+        <result column="DTLMEMO" property="dtlmemo" />
+        <result column="INVALIDFLAG" property="invalidflag" />
+        <result column="INVALIDMANID" property="invalidmanid" />
+        <result column="INVALIDTIME" property="invalidtime" />
+        <result column="SPECIALLOTFLAG" property="speciallotflag" />
+        <result column="LOTMEMO" property="lotmemo" />
+        <result column="PRINTNO" property="printno" />
+        <result column="PRINTLINE" property="printline" />
+        <result column="LOWERFLAG" property="lowerflag" />
+        <result column="SAPLACEQTY" property="saplaceqty" />
+        <result column="CUSTOMLASTPRICE" property="customlastprice" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="USEPACKSIZE" property="usepacksize" />
+        <result column="REQPRINTQUFLAG" property="reqprintquflag" />
+        <result column="AGREEMENTFLAG" property="agreementflag" />
+        <result column="AGRCONDTLID" property="agrcondtlid" />
+        <result column="OLDUNITPRICE" property="oldunitprice" />
+        <result column="OOSREC_FLAG" property="oosrecFlag" />
+        <result column="ZX_CMDID" property="zxCmdid" />
+        <result column="SALESDTLID" property="salesdtlid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CONID, CONDTLID, GOODSID, GOODSDTLID, PRICEID, GOODSQTY, GOODSUSEUNIT, GOODSUSEQTY, UNITPRICE, TOTAL_LINE, WHOLESALEPRICE, RESALEPRICE, DISCOUNT, TIMEPRICEID, TIMEPRICE, ACCSTQTY, DTLMEMO, INVALIDFLAG, INVALIDMANID, INVALIDTIME, SPECIALLOTFLAG, LOTMEMO, PRINTNO, PRINTLINE, LOWERFLAG, SAPLACEQTY, CUSTOMLASTPRICE, USESTATUS, USEPACKSIZE, REQPRINTQUFLAG, AGREEMENTFLAG, AGRCONDTLID, OLDUNITPRICE, OOSREC_FLAG, ZX_CMDID, SALESDTLID
+    </sql>
+    <select id="selectListBy" resultType="com.zsyc.zt.order.entity.BmsSaConDtl">
+        select * from bms_sa_dtl a where a.salesid=#{salesId}
+    </select>
+
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubDataExportItemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubDataExportItem">
+        <id column="EXPORTID" property="exportid" />
+        <result column="FIELDCODE" property="fieldcode" />
+        <result column="FIELDCODECH" property="fieldcodech" />
+        <result column="DEFFIELDCODE" property="deffieldcode" />
+        <result column="DEFFIELDCODECH" property="deffieldcodech" />
+        <result column="ISEXPORT" property="isexport" />
+        <result column="ISMODELCOL" property="ismodelcol" />
+        <result column="NUMFORMATER" property="numformater" />
+        <result column="DATEFORMATER" property="dateformater" />
+        <result column="MAXLENGTH" property="maxlength" />
+        <result column="ORDERNO" property="orderno" />
+        <result column="COLTYPE" property="coltype" />
+        <result column="ISEXPORTFLAG" property="isexportflag" />
+        <result column="EXPORTFLAGVALUE" property="exportflagvalue" />
+        <result column="ISMASTERCOL" property="ismastercol" />
+        <result column="MATCHMAP" property="matchmap" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        EXPORTID, FIELDCODE, FIELDCODECH, DEFFIELDCODE, DEFFIELDCODECH, ISEXPORT, ISMODELCOL, NUMFORMATER, DATEFORMATER, MAXLENGTH, ORDERNO, COLTYPE, ISEXPORTFLAG, EXPORTFLAGVALUE, ISMASTERCOL, MATCHMAP
+    </sql>
+
+</mapper>

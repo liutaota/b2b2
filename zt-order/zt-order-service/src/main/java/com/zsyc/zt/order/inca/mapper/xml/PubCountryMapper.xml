@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubCountryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubCountry">
+        <id column="COUNTRYID" property="countryid" />
+        <result column="COUNTRYNAME" property="countryname" />
+        <result column="COUNTRYPINYIN" property="countrypinyin" />
+        <result column="COUNTRYOPCODE" property="countryopcode" />
+        <result column="CITYID" property="cityid" />
+        <result column="HOSGRADE" property="hosgrade" />
+        <result column="OTCGRADE" property="otcgrade" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        COUNTRYID, COUNTRYNAME, COUNTRYPINYIN, COUNTRYOPCODE, CITYID, HOSGRADE, OTCGRADE
+    </sql>
+
+</mapper>

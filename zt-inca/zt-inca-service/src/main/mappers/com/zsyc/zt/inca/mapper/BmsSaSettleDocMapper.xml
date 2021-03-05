@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.BmsSaSettleDocMapper">
+    <update id="updateZxTotalRecmoney">
+    update bms_sa_settle_doc a set a.zx_totalrecmoney = #{totalLine,jdbcType=NUMERIC} where a.sasettleid = #{sasettledtlid,jdbcType=NUMERIC}
+    </update>
+</mapper>

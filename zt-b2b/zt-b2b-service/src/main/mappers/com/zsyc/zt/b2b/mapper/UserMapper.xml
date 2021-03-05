@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.UserMapper">
+    <select id="getUserNameFromInca" resultType="java.lang.String">
+        select name
+        from USer_info
+        union
+        select GOODSID
+        from ${erp}.AA
+
+    </select>
+    <select id="getUserList" resultType="com.zsyc.zt.b2b.vo.UserVo">
+        select u.id,u.USER_NAME,u.ERP_EMPLOYEE_ID,u.NAME,u.ROLE,u.CREATE_TIME,u.EMAIL,u.translinename,
+        u.END_TIME,u.IS_USE,u.TELEPHONE,PE.EMPLOYEENAME EMPLOYEE_NAME,PE.EMPLOYEENO EMPLOYEE_NO
+        from user_info u
+        left join ${erp}.pub_employee pe on pe.EMPLOYEEID=u.ERP_EMPLOYEE_ID
+        where u.is_del=0
+        <if test="userVo.role!=null and userVo.role!=''">
+            and u.ROLE like '%'||#{userVo.role}||'%'
+        </if>
+        <if test="userVo.translinename!=null and userVo.translinename!=''">
+            and u.translinename like '%'||#{userVo.translinename}||'%'
+        </if>
+        <if test="userVo.userName!=null and userVo.userName!=''">
+            and u.USER_NAME like '%'||#{userVo.userName}||'%'
+        </if>
+        <if test="userVo.name!=null and userVo.name!=''">
+            and u.name like '%'||#{userVo.name}||'%'
+        </if>
+        <if test="userVo.employeeName!=null and userVo.employeeName!=''">
+            and PE.EMPLOYEENAME like '%'||#{userVo.employeeName}||'%'
+        </if>
+        <if test="userVo.erpEmployeeId!=null and userVo.erpEmployeeId!=''">
+            and u.ERP_EMPLOYEE_ID like '%'||#{userVo.erpEmployeeId}||'%'
+        </if>
+        <if test="userVo.employeeNo!=null and userVo.employeeNo!=''">
+            and PE.EMPLOYEENO like '%'||#{userVo.employeeNo}||'%'
+        </if>
+        order by u.create_time desc
+    </select>
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="300 seconds" debug="false">
+    <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
+
+<!--    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>-->
+
+<!--    <springProperty name="APP_NAME" source="spring.application.name" defaultValue="app"/>-->
+<!--    <property name="APP_NAME" value="GG" />-->
+<!--    <property name="LOG_HOME" value="${log.path:-/tmp/gg}" />-->
+<!--    -->
+    <include  resource="zsyc-logback.xml" />
+
+
+
+    <!-- 日志输出级别 -->
+    <!-- OFF, ERROR, WARN, INFO, DEBUG, TRACE, ALL. -->
+    <springProfile name="logfile">
+        <logger name="com.zsyc" level="DEBUG" />
+        <root level="INFO">
+            <appender-ref ref="STDOUT" />
+            <appender-ref ref="ZSYC_ADMIN" />
+<!--            <appender-ref ref="CONSOLE" />-->
+            <appender-ref ref="DAILY" />
+            <appender-ref ref="DAILY_ERROR" />
+        </root>
+    </springProfile>
+    <springProfile name="!logfile">
+        <logger name="com.zsyc" level="DEBUG" />
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+        </root>
+    </springProfile>
+</configuration>

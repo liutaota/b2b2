@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubCustomerImpTmpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubCustomerImpTmp">
+        <id column="TMPID" property="tmpid" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="CUSTOMOPCODE" property="customopcode" />
+        <result column="CUSTOMNO" property="customno" />
+        <result column="CUSTOMPINYIN" property="custompinyin" />
+        <result column="CORPCODE" property="corpcode" />
+        <result column="CUSTOMNAME" property="customname" />
+        <result column="DEFAULTPRICEID" property="defaultpriceid" />
+        <result column="CREDITFLAG" property="creditflag" />
+        <result column="CREDIT" property="credit" />
+        <result column="CREDITDAYSFLAG" property="creditdaysflag" />
+        <result column="CREDITDAYS" property="creditdays" />
+        <result column="LOWPRICEFLAG" property="lowpriceflag" />
+        <result column="TRANPRIORITY" property="tranpriority" />
+        <result column="DELIVERMETHOD" property="delivermethod" />
+        <result column="DEFAULTTRANMETHODID" property="defaulttranmethodid" />
+        <result column="DEFAULTTRANMETH" property="defaulttranmeth" />
+        <result column="DELIVERMETHODID" property="delivermethodid" />
+        <result column="DEFAULTINVOICETYPEID" property="defaultinvoicetypeid" />
+        <result column="DEFAULTINVOICETYPE" property="defaultinvoicetype" />
+        <result column="RECMONEY" property="recmoney" />
+        <result column="RECDATE" property="recdate" />
+        <result column="CITY" property="city" />
+        <result column="COUNTRY" property="country" />
+        <result column="CITYID" property="cityid" />
+        <result column="COUNTRYID" property="countryid" />
+        <result column="CUSTOMERTYPE" property="customertype" />
+        <result column="CUSTOMERTYPEID" property="customertypeid" />
+        <result column="IMPFLAG" property="impflag" />
+        <result column="ERRORMESSAGE" property="errormessage" />
+        <result column="DEFAULTPRICE" property="defaultprice" />
+        <result column="FINANCENO" property="financeno" />
+        <result column="ZXCOLNUM1" property="zxcolnum1" />
+        <result column="ZXCOLNUM2" property="zxcolnum2" />
+        <result column="ZXCOLNUM3" property="zxcolnum3" />
+        <result column="ZXCOLNUM4" property="zxcolnum4" />
+        <result column="ZXCOLNUM5" property="zxcolnum5" />
+        <result column="ZXCOLNUM6" property="zxcolnum6" />
+        <result column="ZXCOLNUM7" property="zxcolnum7" />
+        <result column="ZXCOLNUM8" property="zxcolnum8" />
+        <result column="ZXCOLNUM9" property="zxcolnum9" />
+        <result column="ZXCOLNUM10" property="zxcolnum10" />
+        <result column="DOCID" property="docid" />
+        <result column="PAYWAY" property="payway" />
+        <result column="PAYWAYID" property="paywayid" />
+        <result column="REGISTADD" property="registadd" />
+        <result column="ADDRESS" property="address" />
+        <result column="GSPFLAG" property="gspflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TMPID, CUSTOMID, CUSTOMOPCODE, CUSTOMNO, CUSTOMPINYIN, CORPCODE, CUSTOMNAME, DEFAULTPRICEID, CREDITFLAG, CREDIT, CREDITDAYSFLAG, CREDITDAYS, LOWPRICEFLAG, TRANPRIORITY, DELIVERMETHOD, DEFAULTTRANMETHODID, DEFAULTTRANMETH, DELIVERMETHODID, DEFAULTINVOICETYPEID, DEFAULTINVOICETYPE, RECMONEY, RECDATE, CITY, COUNTRY, CITYID, COUNTRYID, CUSTOMERTYPE, CUSTOMERTYPEID, IMPFLAG, ERRORMESSAGE, DEFAULTPRICE, FINANCENO, ZXCOLNUM1, ZXCOLNUM2, ZXCOLNUM3, ZXCOLNUM4, ZXCOLNUM5, ZXCOLNUM6, ZXCOLNUM7, ZXCOLNUM8, ZXCOLNUM9, ZXCOLNUM10, DOCID, PAYWAY, PAYWAYID, REGISTADD, ADDRESS, GSPFLAG
+    </sql>
+
+</mapper>

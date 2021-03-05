@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsMvPosDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsMvPosDtl">
+        <id column="MVPOSDTLID" property="mvposdtlid" />
+        <result column="MVPOSID" property="mvposid" />
+        <result column="PRINTNO" property="printno" />
+        <result column="PRINTLINE" property="printline" />
+        <result column="PRINTTIME" property="printtime" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="LOTID" property="lotid" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="FROMPOSID" property="fromposid" />
+        <result column="TOPOSID" property="toposid" />
+        <result column="DTLMEMO" property="dtlmemo" />
+        <result column="TIMEQTY" property="timeqty" />
+        <result column="QUONDAMID" property="quondamid" />
+        <result column="PLACEPOINTID" property="placepointid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="QUBUFFID" property="qubuffid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        MVPOSID, MVPOSDTLID, PRINTNO, PRINTLINE, PRINTTIME, GOODSID, BATCHID, GOODSDTLID, LOTID, GOODSSTATUSID, GOODSQTY, FROMPOSID, TOPOSID, DTLMEMO, TIMEQTY, QUONDAMID, PLACEPOINTID, STORAGEID, QUBUFFID
+    </sql>
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsCertTypeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsCertType">
+        <id column="CERTTYPEID" property="certtypeid" />
+        <result column="CERTTYPENAME" property="certtypename" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="BUSITYPE" property="busitype" />
+        <result column="SERIALNOID" property="serialnoid" />
+        <result column="GENMETHODEMPDEPT" property="genmethodempdept" />
+        <result column="GENMETHODBILL" property="genmethodbill" />
+        <result column="GENMETHODDAYMONTH" property="genmethoddaymonth" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CERTTYPEID, CERTTYPENAME, ENTRYID, BUSITYPE, SERIALNOID, GENMETHODEMPDEPT, GENMETHODBILL, GENMETHODDAYMONTH
+    </sql>
+
+</mapper>

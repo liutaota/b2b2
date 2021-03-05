@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubGoodsTmpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubGoodsTmp">
+        <id column="GOODSID" property="goodsid" />
+        <result column="OPCODE" property="opcode" />
+        <result column="GOODSPINYIN" property="goodspinyin" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="CURRENCYNAME" property="currencyname" />
+        <result column="GOODSENGNAME" property="goodsengname" />
+        <result column="GOODSINVNAME" property="goodsinvname" />
+        <result column="GOODSSHORTNAME" property="goodsshortname" />
+        <result column="GOODSFORMALNAME" property="goodsformalname" />
+        <result column="GOODSFORMALPY" property="goodsformalpy" />
+        <result column="GOODSNO" property="goodsno" />
+        <result column="STANDARDNO" property="standardno" />
+        <result column="BARCODE" property="barcode" />
+        <result column="GOODSTYPE" property="goodstype" />
+        <result column="GOODSUNIT" property="goodsunit" />
+        <result column="FIRSTAPPROVEDOCNO" property="firstapprovedocno" />
+        <result column="APPROVEDOCNO" property="approvedocno" />
+        <result column="REGISTDOCNO" property="registdocno" />
+        <result column="STANDARDTYPE" property="standardtype" />
+        <result column="FACTORYID" property="factoryid" />
+        <result column="VALIDPERIOD" property="validperiod" />
+        <result column="RESPPERIOD" property="respperiod" />
+        <result column="PERIODUNIT" property="periodunit" />
+        <result column="TRADEMARK" property="trademark" />
+        <result column="PRODAREA" property="prodarea" />
+        <result column="SUPPLYTAXRATE" property="supplytaxrate" />
+        <result column="SALESTAXRATE" property="salestaxrate" />
+        <result column="FIXPRICETYPE" property="fixpricetype" />
+        <result column="ACCFLAG" property="accflag" />
+        <result column="DEFAULTAGTFLAG" property="defaultagtflag" />
+        <result column="STORAGECONDITION" property="storagecondition" />
+        <result column="TRANSCONDITION" property="transcondition" />
+        <result column="COMBINFLAG" property="combinflag" />
+        <result column="CUSTOMSTAX" property="customstax" />
+        <result column="MINREQGOODSQTY" property="minreqgoodsqty" />
+        <result column="FINANCENO" property="financeno" />
+        <result column="OTCFLAG" property="otcflag" />
+        <result column="GMPFLAG" property="gmpflag" />
+        <result column="PATENTFLAG" property="patentflag" />
+        <result column="SECURITYFLAG" property="securityflag" />
+        <result column="CHINESEFLAG" property="chineseflag" />
+        <result column="MEDICINETYPE" property="medicinetype" />
+        <result column="IMPORTFLAG" property="importflag" />
+        <result column="DRUGFLAG" property="drugflag" />
+        <result column="POISONFLAG" property="poisonflag" />
+        <result column="BIOMEDFLAG" property="biomedflag" />
+        <result column="BACTERINFLAG" property="bacterinflag" />
+        <result column="COMMONFLAG" property="commonflag" />
+        <result column="MEDICINEFLAG" property="medicineflag" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="MEMO" property="memo" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="NMRMSCLASSID" property="nmrmsclassid" />
+        <result column="PRICE" property="price" />
+        <result column="BUSISCOPE" property="busiscope" />
+        <result column="BOXFLAG" property="boxflag" />
+        <result column="INTEGERNX" property="integernx" />
+        <result column="FUNCTION" property="function" />
+        <result column="FAMILYPLANFLAG" property="familyplanflag" />
+        <result column="AGAINCHKFLAG" property="againchkflag" />
+        <result column="KEYCONSERVEFLAG" property="keyconserveflag" />
+        <result column="MEDICINESORT" property="medicinesort" />
+        <result column="TOINVDAYSWARN" property="toinvdayswarn" />
+        <result column="LIMITEDSALEFLAG" property="limitedsaleflag" />
+        <result column="LEASTSALEQTY" property="leastsaleqty" />
+        <result column="ENTRYSET" property="entryset" />
+        <result column="FINANCENO2" property="financeno2" />
+        <result column="EPHEDRINE" property="ephedrine" />
+        <result column="ISEGGPEPTIDE" property="iseggpeptide" />
+        <result column="GSPFLAG" property="gspflag" />
+        <result column="ECODEFLAG" property="ecodeflag" />
+        <result column="ZHL" property="zhl" />
+        <result column="GOODSGROUPCODE" property="goodsgroupcode" />
+        <result column="MPGID" property="mpgid" />
+        <result column="DRUGTABOO" property="drugtaboo" />
+        <result column="GOODSPROPERTIES" property="goodsproperties" />
+        <result column="GSPCATEGORYID" property="gspcategoryid" />
+        <result column="UNEDITEDFLAG" property="uneditedflag" />
+        <result column="QLOGID" property="qlogid" />
+        <result column="PKID" property="pkid" />
+        <result column="DIRECTION" property="direction" />
+        <result column="TRANFLAG" property="tranflag" />
+        <result column="TRANDATE" property="trandate" />
+        <result column="EXPORTDATE" property="exportdate" />
+        <result column="IMPORTDATE" property="importdate" />
+        <result column="SYS_MODIFYDATE" property="sysModifydate" />
+        <result column="INITFLAG" property="initflag" />
+        <result column="TRANSPORTTIME" property="transporttime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GOODSID, OPCODE, GOODSPINYIN, GOODSNAME, CURRENCYNAME, GOODSENGNAME, GOODSINVNAME, GOODSSHORTNAME, GOODSFORMALNAME, GOODSFORMALPY, GOODSNO, STANDARDNO, BARCODE, GOODSTYPE, GOODSUNIT, FIRSTAPPROVEDOCNO, APPROVEDOCNO, REGISTDOCNO, STANDARDTYPE, FACTORYID, VALIDPERIOD, RESPPERIOD, PERIODUNIT, TRADEMARK, PRODAREA, SUPPLYTAXRATE, SALESTAXRATE, FIXPRICETYPE, ACCFLAG, DEFAULTAGTFLAG, STORAGECONDITION, TRANSCONDITION, COMBINFLAG, CUSTOMSTAX, MINREQGOODSQTY, FINANCENO, OTCFLAG, GMPFLAG, PATENTFLAG, SECURITYFLAG, CHINESEFLAG, MEDICINETYPE, IMPORTFLAG, DRUGFLAG, POISONFLAG, BIOMEDFLAG, BACTERINFLAG, COMMONFLAG, MEDICINEFLAG, CREDATE, INPUTMANID, MEMO, USESTATUS, NMRMSCLASSID, PRICE, BUSISCOPE, BOXFLAG, INTEGERNX, FUNCTION, FAMILYPLANFLAG, AGAINCHKFLAG, KEYCONSERVEFLAG, MEDICINESORT, TOINVDAYSWARN, LIMITEDSALEFLAG, LEASTSALEQTY, ENTRYSET, FINANCENO2, EPHEDRINE, ISEGGPEPTIDE, GSPFLAG, ECODEFLAG, ZHL, GOODSGROUPCODE, MPGID, DRUGTABOO, GOODSPROPERTIES, GSPCATEGORYID, UNEDITEDFLAG, QLOGID, PKID, DIRECTION, TRANFLAG, TRANDATE, EXPORTDATE, IMPORTDATE, SYS_MODIFYDATE, INITFLAG, TRANSPORTTIME
+    </sql>
+
+</mapper>

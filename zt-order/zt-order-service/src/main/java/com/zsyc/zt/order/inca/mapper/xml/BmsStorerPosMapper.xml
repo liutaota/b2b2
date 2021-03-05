@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStorerPosMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStorerPos">
+        <id column="POSID" property="posid" />
+        <result column="POSNO" property="posno" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="STHOUSEID" property="sthouseid" />
+        <result column="MASTERID" property="masterid" />
+        <result column="MEMO" property="memo" />
+        <result column="XPOINT" property="xpoint" />
+        <result column="YPOINT" property="ypoint" />
+        <result column="GOODSNUM" property="goodsnum" />
+        <result column="LOTNUM" property="lotnum" />
+        <result column="EXISTSPERCENT" property="existspercent" />
+        <result column="EXISTSGOODSNUM" property="existsgoodsnum" />
+        <result column="EXISTSLOTSNUM" property="existslotsnum" />
+        <result column="ZPOINT" property="zpoint" />
+        <result column="WPOINT" property="wpoint" />
+        <result column="POSTYPEID" property="postypeid" />
+        <result column="SORTNO" property="sortno" />
+        <result column="GOODSUNITFLAG" property="goodsunitflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        POSID, POSNO, USESTATUS, STHOUSEID, MASTERID, MEMO, XPOINT, YPOINT, GOODSNUM, LOTNUM, EXISTSPERCENT, EXISTSGOODSNUM, EXISTSLOTSNUM, ZPOINT, WPOINT, POSTYPEID, SORTNO, GOODSUNITFLAG
+    </sql>
+
+</mapper>

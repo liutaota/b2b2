@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsTrFetchDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsTrFetchDtl">
+        <id column="FETCHDTLID" property="fetchdtlid" />
+        <result column="FETCHID" property="fetchid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="INVALIDMANID" property="invalidmanid" />
+        <result column="INVALIDDATE" property="invaliddate" />
+        <result column="SALEDTLID" property="saledtlid" />
+        <result column="LOTID" property="lotid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="DTLMEMO" property="dtlmemo" />
+        <result column="IODTLID" property="iodtlid" />
+        <result column="PRICEID" property="priceid" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="BATCHFLAG" property="batchflag" />
+        <result column="BATCHPRICE" property="batchprice" />
+        <result column="SUCONDTLID" property="sucondtlid" />
+        <result column="WMSPRINTDATE" property="wmsprintdate" />
+        <result column="DRIVERGETBACKDATE" property="drivergetbackdate" />
+        <result column="DRIVERGETBACKDEMO" property="drivergetbackdemo" />
+        <result column="BACKWHYID" property="backwhyid" />
+        <result column="BACKWAYID" property="backwayid" />
+        <result column="INQTY" property="inqty" />
+        <result column="REFUSEQTY" property="refuseqty" />
+        <result column="INTRUSTQTY" property="intrustqty" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="COLDEQUIP" property="coldequip" />
+        <result column="RECEIVEQTY" property="receiveqty" />
+        <result column="SENDWMSDATE" property="sendwmsdate" />
+        <result column="WMSBACKDATE" property="wmsbackdate" />
+        <result column="SENDWMSFLAG" property="sendwmsflag" />
+        <result column="ACCQTY" property="accqty" />
+        <result column="UNQUALIFIEDQTY" property="unqualifiedqty" />
+        <result column="REUSESTATUS" property="reusestatus" />
+        <result column="RGUSESTATUS" property="rgusestatus" />
+        <result column="ZX_SALESDOCID" property="zxSalesdocid" />
+        <result column="ZX_SALECREDATE" property="zxSalecredate" />
+        <result column="ZX_TAXRATE" property="zxTaxrate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        FETCHID, FETCHDTLID, GOODSID, GOODSDTLID, GOODSNAME, GOODSQTY, INVALIDMANID, INVALIDDATE, SALEDTLID, LOTID, BATCHID, USESTATUS, DTLMEMO, IODTLID, PRICEID, UNITPRICE, BATCHFLAG, BATCHPRICE, SUCONDTLID, WMSPRINTDATE, DRIVERGETBACKDATE, DRIVERGETBACKDEMO, BACKWHYID, BACKWAYID, INQTY, REFUSEQTY, INTRUSTQTY, TOTAL_LINE, COLDEQUIP, RECEIVEQTY, SENDWMSDATE, WMSBACKDATE, SENDWMSFLAG, ACCQTY, UNQUALIFIEDQTY, REUSESTATUS, RGUSESTATUS, ZX_SALESDOCID, ZX_SALECREDATE, ZX_TAXRATE
+    </sql>
+
+</mapper>

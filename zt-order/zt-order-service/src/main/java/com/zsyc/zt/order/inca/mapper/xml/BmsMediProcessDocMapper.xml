@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsMediProcessDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsMediProcessDoc">
+        <id column="PROCESSDOCID" property="processdocid" />
+        <result column="FORMULADOCID" property="formuladocid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="TOSTOREID" property="tostoreid" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="EXCHANGEMANID" property="exchangemanid" />
+        <result column="EXCHANGEDATE" property="exchangedate" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="BATCHID" property="batchid" />
+        <result column="LOTID" property="lotid" />
+        <result column="POSID" property="posid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="TOTAL_LINE" property="totalLine" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="PROCESS_TOTAL" property="processTotal" />
+        <result column="MEMO" property="memo" />
+        <result column="PLACEPOINTID" property="placepointid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PROCESSDOCID, FORMULADOCID, STORAGEID, TOSTOREID, UNITPRICE, USESTATUS, EXCHANGEMANID, EXCHANGEDATE, ENTRYID, INPUTMANID, CREDATE, GOODSQTY, BATCHID, LOTID, POSID, GOODSDTLID, GOODSID, TOTAL_LINE, GOODSSTATUSID, PROCESS_TOTAL, MEMO, PLACEPOINTID
+    </sql>
+
+</mapper>

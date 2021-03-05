@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsCertClassDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsCertClassDtl">
+        <id column="CERTCLASSID" property="certclassid" />
+        <result column="BMSENTRYID" property="bmsentryid" />
+        <result column="CERTGENID" property="certgenid" />
+        <result column="QUONDAMID" property="quondamid" />
+        <result column="PLACEPOINTID" property="placepointid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="QUBUFFID" property="qubuffid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CERTCLASSID, BMSENTRYID, CERTGENID, QUONDAMID, PLACEPOINTID, STORAGEID, QUBUFFID
+    </sql>
+
+</mapper>

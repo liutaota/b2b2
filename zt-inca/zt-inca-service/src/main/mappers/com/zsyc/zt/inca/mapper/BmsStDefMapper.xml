@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.BmsStDefMapper">
+
+    <select id="getUseWms" resultType="java.lang.Integer">
+        select usewms
+          from bms_st_def a, pub_storer b
+         where a.phystoreid = b.storerid
+           and a.storageid = #{storageId}
+           and a.entryid = #{entryId}
+    </select>
+</mapper>

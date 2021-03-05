@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.ScoreRecordMapper">
+    <select id="getScoreRecordList" resultType="com.zsyc.zt.b2b.vo.ScoreRecordVo">
+        select
+        s.*,
+        m.USER_NAME as memberName,
+        m.TELEPHONE as telephone,
+        m.ERP_USER_ID
+        from SCORE_RECORD s
+        left join MEMBER m on s.MEMBER_ID = m.ID
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="scoreRecordVo.memberId !=null">
+                s.MEMBER_ID = #{scoreRecordVo.memberId}
+            </if>
+            <if test="scoreRecordVo.memberName != null">
+                and m.USER_NAME like '%'||#{scoreRecordVo.memberName}||'%'
+            </if>
+            <if test="scoreRecordVo.telephone != null">
+                and m.TELEPHONE = #{scoreRecordVo.telephone}
+            </if>
+            <if test="scoreRecordVo.startTime!=null and scoreRecordVo.endTime!=null ">
+                and s.CREATE_TIME &gt;= #{scoreRecordVo.startTime} and s.CREATE_TIME &lt;= #{scoreRecordVo.endTime}
+            </if>
+        </trim>
+        order by s.CREATE_TIME desc,s.ORIGN_SCORE desc
+    </select>
+</mapper>

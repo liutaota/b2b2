@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.FloorMapper">
+    <select id="getFloorList" resultType="com.zsyc.zt.b2b.vo.FloorVo">
+        select * from FLOOR a
+        where a.is_del=0
+        <if test="title!=null and title!=''">
+            and a.TITLE like '%'||#{title}||'%'
+        </if>
+        <if test="type!=null and type!=''">
+            and a.TYPE = #{type}
+        </if>
+        order by a.FLOOR_SORT desc nulls last,a.CREATE_TIME desc
+    </select>
+    <select id="getFloorListAll" resultType="com.zsyc.zt.b2b.vo.FloorVo">
+        select a.* from FLOOR a
+        where a.is_del=0
+        <if test="floorVo.title!=null and floorVo.title!=''">
+            and a.TITLE like '%'||#{floorVo.title}||'%'
+        </if>
+        <if test="floorVo.type!=null and floorVo.type!=''">
+            and a.TYPE = #{floorVo.type}
+        </if>
+        order by a.CREATE_TIME desc
+    </select>
+    <select id="isExistMemberSet" resultType="java.lang.Integer">
+        select count(CUSTOMID) from	${erp}.pub_custom_set_dtl where  CUSTOMID=#{customerId}  and SETID in
+        <foreach collection="memberList" item="item" open="(" close=")" separator=",">
+            (#{item})
+        </foreach>
+    </select>
+    <select id="getAvailableFloor" resultType="com.zsyc.zt.b2b.entity.Floor">
+        select flr.*
+        from FLOOR flr
+        where flr.id = #{id}
+          and flr.IS_USE = 'ON'
+          and flr.id in (
+            select tmp.id
+            from (
+                     select b.FLOOR_ID id
+                     from FLOOR_CUSTOMER_SET b,
+                          ${erp}.pub_custom_set_dtl d
+                     where b.CUSTOMER_SET_ID = d.SETID(+)
+                       and d.CUSTOMID = #{customerId}
+                     union all
+                     select a.FLOOR_ID id
+                     from FLOOR_CUSTOMER_SET a
+                     where TYPE = 'ALL_VISIBLE'
+                 ) tmp
+        )
+    </select>
+</mapper>

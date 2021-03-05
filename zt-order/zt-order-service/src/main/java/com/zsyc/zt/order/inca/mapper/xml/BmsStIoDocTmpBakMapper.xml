@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStIoDocTmpBakMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStIoDocTmpBak">
+        <result column="INOUTID" property="inoutid" />
+        <result column="TRDTLID" property="trdtlid" />
+        <result column="PRINTNO" property="printno" />
+        <result column="PRINTLINE" property="printline" />
+        <result column="CREDATE" property="credate" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="SOURCETABLE" property="sourcetable" />
+        <result column="SOURCEID" property="sourceid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="COMPANYNAME" property="companyname" />
+        <result column="KEEPDATE" property="keepdate" />
+        <result column="KEEPMANID" property="keepmanid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="INOUTFLAG" property="inoutflag" />
+        <result column="INQTY" property="inqty" />
+        <result column="OUTQTY" property="outqty" />
+        <result column="OLDQTY" property="oldqty" />
+        <result column="GOODSUNIT" property="goodsunit" />
+        <result column="GOODSWEIGHT" property="goodsweight" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="PREPARESTATUS" property="preparestatus" />
+        <result column="PLACETABLE" property="placetable" />
+        <result column="PLACEDTLID" property="placedtlid" />
+        <result column="PLACEPOINTID" property="placepointid" />
+        <result column="MEMO" property="memo" />
+        <result column="GROUPTABLE" property="grouptable" />
+        <result column="GROUPDTLID" property="groupdtlid" />
+        <result column="GROUPCUSTOMERID" property="groupcustomerid" />
+        <result column="WMSPROFLAG" property="wmsproflag" />
+        <result column="GSPUNCONFIRMFLAG" property="gspunconfirmflag" />
+        <result column="UPSTATUS" property="upstatus" />
+        <result column="RGDTLID" property="rgdtlid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="CTRLTWOINVFLAG" property="ctrltwoinvflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        INOUTID, TRDTLID, PRINTNO, PRINTLINE, CREDATE, COMEFROM, SOURCETABLE, SOURCEID, COMPANYID, COMPANYNAME, KEEPDATE, KEEPMANID, GOODSID, STORAGEID, INOUTFLAG, INQTY, OUTQTY, OLDQTY, GOODSUNIT, GOODSWEIGHT, USESTATUS, ENTRYID, PREPARESTATUS, PLACETABLE, PLACEDTLID, PLACEPOINTID, MEMO, GROUPTABLE, GROUPDTLID, GROUPCUSTOMERID, WMSPROFLAG, GSPUNCONFIRMFLAG, UPSTATUS, RGDTLID, AGENTID, CONTACTID, CTRLTWOINVFLAG
+    </sql>
+
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.BmsTrPickDocMapper">
+
+    <update id="updateBy" parameterType="java.lang.Long">
+        update bms_tr_pick_doc a
+   set a.totalpackqty =
+       (select nvl(sum(trunc(b.dtlgoodsqty / c.packsize)), 0)
+          from bms_st_io_dtl_tmp b, PUB_GOODS_DETAIL c, bms_storer_pos e
+         where b.goodsdtlid = c.goodsdtlid
+           and b.posid = e.posid
+           and e.goodsunitflag = 1
+           and b.pickdocid = a.pickdocid)
+ where a.pickdocid = #{pickdocid}
+
+    </update>
+</mapper>

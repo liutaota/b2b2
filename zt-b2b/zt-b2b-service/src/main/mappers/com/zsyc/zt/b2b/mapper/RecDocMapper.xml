@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.RecDocMapper">
+
+    <select id="getRecDocList" resultType="com.zsyc.zt.b2b.vo.RecDocVo">
+        select rd.*,m.user_name,m.telephone,m.erp_user_id,oi.order_no,rr.apply_no,ur.user_name refund_name,oi.PAY_FLOW_NO,oi.order_state,oi.EXP_STATUS,oi.EXP_REMARK,
+        uf.user_name finance_name,oi.PAY_METHOD,oi.PAY_TYPE_DOC,oi.PAY_TYPE,uc.ERP_EMPLOYEE_ID confirm_erp_id,uc.name confirm_name,rr.REFUND_STATE refund_status
+        from REC_DOC rd
+        left join member m on m.id=rd.MEMBER_ID
+        left join order_info oi on oi. id=rd.order_id
+        left join REFUND_RETURN rr on rr.id=rd.refund_id
+        left join user_info ur on ur.id=rd.refund_user_id
+        left join user_info uf on uf.id=rd.finance_user_id
+        left join user_info uc on uc.id=rd.confirm_user_id
+        <where>
+            <if test="recDocVo.id!=null">
+                rd.id=#{recDocVo.id}
+            </if>
+            <if test="recDocVo.confirm==1">
+                and rd.CONFIRM_DATE is null
+            </if>
+            <if test="recDocVo.confirm==2">
+                and rd.CONFIRM_DATE is not null
+            </if>
+            <if test="recDocVo.confirmName!=null and recDocVo.confirmName!=''">
+                and uc.name like '%'||#{recDocVo.confirmName}||'%'
+            </if>
+            <if test="recDocVo.erpUserId!=null">
+               and m.erp_user_id=#{recDocVo.erpUserId}
+            </if>
+            <if test="recDocVo.orderState!=null and recDocVo.orderState!=''">
+                and oi.order_state=#{recDocVo.orderState}
+            </if>
+            <if test="recDocVo.expStatus!=null and recDocVo.expStatus!=''">
+                and rd.REC_METHOD=#{recDocVo.expStatus}
+            </if>
+            <if test="recDocVo.financeTrues!=null and recDocVo.financeTrues!=''">
+                and rd.FINANCE_TRUE=#{recDocVo.financeTrues}
+            </if>
+            <if test="recDocVo.memberId!=null">
+                and rd.MEMBER_ID=#{recDocVo.memberId}
+            </if>
+            <if test="recDocVo.payFlowNo!=null and recDocVo.payFlowNo!=''">
+                and oi.PAY_FLOW_NO=#{recDocVo.payFlowNo}
+            </if>
+            <if test="recDocVo.isTrue!=null and recDocVo.isTrue==1">
+                and rd.IS_TRUE=#{recDocVo.isTrue}
+            </if>
+            <if test="recDocVo.isTrue!=null and recDocVo.isTrue==2">
+                and rd.IS_TRUE=0
+                and rd.STATUS='TO_PAY'
+            </if>
+            <if test="recDocVo.userName!=null and recDocVo.userName!=''">
+                and m.user_name  like '%'||#{recDocVo.userName}||'%'
+            </if>
+            <if test="recDocVo.orderId!=null and recDocVo.orderId!=''">
+                and oi.id  like '%'||#{recDocVo.orderId}||'%'
+            </if>
+            <if test="recDocVo.payMethod!=null and recDocVo.payMethod!=''">
+                and oi.PAY_METHOD  like '%'||#{recDocVo.payMethod}||'%'
+            </if>
+            <if test="recDocVo.payTypeDoc!=null and recDocVo.payTypeDoc!=''">
+                and oi.PAY_TYPE_DOC  like '%'||#{recDocVo.payTypeDoc}||'%'
+            </if>
+            <if test="recDocVo.orderNo!=null and recDocVo.orderNo!=''">
+                and oi.order_no  like '%'||#{recDocVo.orderNo}||'%'
+            </if>
+            <if test="recDocVo.applyNo!=null and recDocVo.applyNo!=''">
+                and rr.apply_no  like '%'||#{recDocVo.applyNo}||'%'
+            </if>
+            <if test="recDocVo.telephone!=null and recDocVo.telephone!=''">
+                and m.telephone  like '%'||#{recDocVo.telephone}||'%'
+            </if>
+            <if test="recDocVo.status!=null and recDocVo.status!=''">
+                and rd.status=#{recDocVo.status}
+            </if>
+            <if test="recDocVo.recType!=null and recDocVo.recType!=''">
+                and rd.REC_TYPE=#{recDocVo.recType}
+            </if>
+            <if test="recDocVo.recDocNo!=null and recDocVo.recDocNo!=''">
+                and rd.REC_DOC_NO=#{recDocVo.recDocNo}
+            </if>
+            <if test="recDocVo.recMethod!=null and recDocVo.recMethod!='' and recDocVo.recMethod=='PAY_ORDER' ">
+                and rd.REC_METHOD in ('PAY_ORDER')
+            </if>
+            <if test="recDocVo.recMethod!=null and recDocVo.recMethod!='' and recDocVo.recMethod=='REFUND' ">
+                and rd.REC_METHOD in ('REFUND','SHORT','NO_ORDER','REFUND_GOODS')
+            </if>
+            <if test="recDocVo.startTime!=null and recDocVo.endTime!=null">
+                and rd.create_time &gt;= #{recDocVo.startTime} and rd.create_time &lt;= #{recDocVo.endTime}
+            </if>
+        </where>
+        order by rd.CREATE_TIME desc
+    </select>
+    <select id="getMyRecDocList" resultType="com.zsyc.zt.b2b.vo.RecDocVo">
+        select rd.*,m.user_name,m.telephone,m.erp_user_id,oi.order_no from REC_DOC rd
+        inner join order_info  oi on oi.id=rd.order_id
+        left join member m on m.id=rd.MEMBER_ID
+        where rd.MEMBER_ID=#{recDocVo.memberId}
+            <if test="recDocVo.id!=null">
+                rd.id=#{recDocVo.id}
+            </if>
+            <if test="recDocVo.erpUserId!=null">
+                and m.erp_user_id=#{recDocVo.erpUserId}
+            </if>
+            <if test="recDocVo.userName!=null and recDocVo.userName!=''">
+                and m.user_name  like '%'||#{recDocVo.userName}||'%'
+            </if>
+            <if test="recDocVo.telephone!=null and recDocVo.telephone!=''">
+                and m.telephone  like '%'||#{recDocVo.telephone}||'%'
+            </if>
+            <if test="recDocVo.status!=null and recDocVo.status!=''">
+                and rd.status=#{recDocVo.status}
+            </if>
+            <if test="recDocVo.recType!=null and recDocVo.recType!=''">
+                and rd.REC_TYPE=#{recDocVo.recType}
+            </if>
+            <if test="recDocVo.recMethod!=null and recDocVo.recMethod!='' and recDocVo.recMethod=='PAY_ORDER' ">
+                and rd.REC_METHOD in ('PAY_ORDER')
+            </if>
+            <if test="recDocVo.recMethod!=null and recDocVo.recMethod!='' and recDocVo.recMethod=='REFUND' ">
+                and rd.REC_METHOD in ('REFUND','SHORT','NO_ORDER','REFUND_GOODS')
+            </if>
+            <if test="recDocVo.startTime!=null and recDocVo.endTime!=null">
+                and rd.create_time &gt;= #{recDocVo.startTime} and rd.create_time &lt;= #{recDocVo.endTime}
+            </if>
+        order by rd.CREATE_TIME desc
+    </select>
+    <select id="getMyRecDocAll" resultType="com.zsyc.zt.b2b.vo.RecDocVo">
+        select RD.*,oi.order_no from statement_rec_doc sr
+        inner join REC_DOC rd on RD."ID"=SR.REC_DOC_ID
+        inner join order_info  oi on oi.id=rd.order_id
+        where sr.STATEMENT_ID=#{id}
+    </select>
+    <select id="getMyNoPayTotal" resultType="java.lang.Long">
+        select sum(RD.TOTAL) from REC_DOC rd
+        where
+        rd.STATUS='TO_PAY'
+        and rd.IS_TRUE=0
+        and rd.MEMBER_ID=#{memberId}
+    </select>
+    <select id="getStatementOrderNum" resultType="java.lang.Long">
+        select count(oi.id) from statement_rec_doc sr
+        inner join rec_doc rd on RD.id=SR.rec_doc_id
+        inner join order_info oi on oi.id=rd.order_id
+        where SR.statement_id=#{id}
+    </select>
+    <select id="getMyRecDocListById" resultType="com.zsyc.zt.b2b.vo.RecDocVo">
+        select RD.*,oi.order_no from statement_rec_doc sr
+        inner join REC_DOC rd on RD."ID"=SR.REC_DOC_ID
+        inner join order_info  oi on oi.id=rd.order_id
+        where sr.STATEMENT_ID=#{id}
+        <if test="startTime!=null and endTime!=null">
+            and rd.create_time &gt;= #{startTime} and rd.create_time &lt;= #{endTime}
+        </if>
+    </select>
+    <select id="getRecDocByMemberId" resultType="com.zsyc.zt.b2b.entity.RecDoc">
+        select r.* from REC_DOC r where r.IS_TRUE=0
+        and r.order_id in
+        (select id from order_info where order_state ='TO_DELIVERY'  and sent_time is  null and member_id=#{memberId})
+    </select>
+</mapper>

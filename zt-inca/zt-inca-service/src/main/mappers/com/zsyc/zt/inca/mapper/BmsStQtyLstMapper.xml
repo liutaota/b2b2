@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.BmsStQtyLstMapper">
+
+    <select id="getStockBy" resultType="java.lang.Integer">
+            SELECT SUM(A.GOODSQTY - DECODE(D.QTY_TMP, NULL, 0, D.QTY_TMP)) allqty
+                      FROM BMS_ST_QTY_LST A,
+                           BMS_LOT_DEF B,
+                           BMS_BATCH_DEF C,
+                           (SELECT SUM(DTLGOODSQTY) QTY_TMP,
+                                   D.GOODSDTLID,
+                                   D.LOTID,
+                                   D.BATCHID,
+                                   D.POSID
+                              FROM BMS_ST_IO_DTL_TMP D
+                             GROUP BY D.LOTID,
+                                      D.BATCHID,
+                                      D.POSID,
+                                      D.GOODSDTLID) D
+                     WHERE 1 = 1
+                       AND A.LOTID = B.LOTID
+                       AND A.BATCHID = C.BATCHID
+                       AND A.GOODSID = C.GOODSID
+                       AND A.LOTID = D.LOTID(+)
+                       AND A.BATCHID = D.BATCHID(+)
+                       AND A.POSID = D.POSID(+)
+                       AND A.GOODSDETAILID = D.GOODSDTLID(+)
+                       AND A.GOODSQTY - DECODE(D.QTY_TMP, NULL, 0, D.QTY_TMP) > 0
+                       <if test="lotNo!=null and  lotNo.length>0">
+                            AND B.lotno = #{lotNo}
+                       </if>
+                       <if test="goodsType == 1">
+                           AND B.INVALIDDATE IS NOT NULL
+                       </if>
+
+                       AND A.GOODSSTATUSID = 1
+                       AND ((C.LIMITID IS NULL) OR (C.LIMITID IS NOT NULL AND C.LIMITID = #{customId}))
+                       AND A.STORAGEID = #{storageId}
+                       AND A.GOODSID = #{goodsId}
+
+    </select>
+    <select id="selectStockBy" resultType="com.zsyc.zt.inca.entity.BmsStQtyLst">
+        SELECT A.GOODSID,
+        A.GOODSDETAILID,
+        A.STORAGEID,
+        A.BATCHID,
+        A.LOTID,
+        A.POSID,
+        A.GOODSSTATUSID,
+        A.GOODSQTY,
+        DECODE(D.QTY_TMP,NULL,0,D.qty_tmp) QTY_TMP,
+        A.GOODSQTY - DECODE(D.QTY_TMP, NULL, 0, D.QTY_TMP) QTY_FACT,
+        B.PRODDATE,
+        B.INVALIDDATE
+        FROM BMS_ST_QTY_LST A,
+            BMS_LOT_DEF B,
+            BMS_BATCH_DEF C,
+            (SELECT SUM(DTLGOODSQTY) QTY_TMP,
+            D.GOODSDTLID,
+            D.LOTID,
+            D.BATCHID,
+            D.POSID
+            FROM BMS_ST_IO_DTL_TMP D
+            GROUP BY D.LOTID,
+            D.BATCHID,
+            D.POSID,
+            D.GOODSDTLID) D
+        WHERE 1 = 1
+            AND A.LOTID = B.LOTID
+            AND A.BATCHID = C.BATCHID
+            AND A.GOODSID = C.GOODSID
+            AND A.LOTID = D.LOTID(+)
+            AND A.BATCHID = D.BATCHID(+)
+            AND A.POSID = D.POSID(+)
+            AND A.GOODSDETAILID = D.GOODSDTLID(+)
+            <if test="lotNo!=null and  lotNo.length>0">
+                AND B.lotno = #{lotNo}
+            </if>
+
+            <if test="goodsType == 1">
+                AND B.INVALIDDATE IS NOT NULL
+            </if>
+            AND A.GOODSSTATUSID = 1
+            AND A.GOODSQTY - DECODE(D.QTY_TMP, NULL, 0, D.QTY_TMP) >0
+            AND ((C.LIMITID IS NULL) OR (C.LIMITID IS NOT NULL AND C.LIMITID = #{customId}))
+            AND A.GOODSID = #{goodsId}
+            and STORAGEID = #{storageId}
+            ORDER BY B.INVALIDDATE
+    </select>
+
+    <select id="selectListBy" resultType="com.zsyc.zt.inca.vo.DataGiftVo">
+        select rowid,
+        goodsqty,
+        nvl((select min(x.baseunitqty)
+        from pub_goods_unit x
+        where x.baseunitqty &lt; 1
+        and x.goodsid = bms_st_qty_lst.goodsid),
+        0) breakqty
+        from bms_st_qty_lst
+        where storageid = #{phystoreid}
+        and goodsid = #{goodsId}
+        and goodsdetailid = #{goodsdtlId}
+        and batchid = #{batchid}
+        and lotid = #{lotid}
+        and posid =#{posid}
+        and goodsstatusid = 1
+    </select>
+    <select id="selectCanBackStock" resultType="java.lang.Long">
+        select qty - tmp_qty
+        from (select nvl(sum(a.goodsqty), 0) qty
+              from bms_st_qty_lst a,
+                   bms_batch_def  b,
+                   bms_lot_def    c,
+                   --pub_goods        d,
+                   pub_goods_detail e
+              where 1 = 1
+                and a.goodsstatusid = 1
+                and a.batchid = b.batchid
+                and a.lotid = c.lotid
+                and a.goodsdetailid = e.goodsdtlid
+                --and d.goodsid = 4229
+                and e.goodsdtlid = #{goodsDtlId}
+                and a.storageid = #{placepointStorageId}
+                and c.lotid = #{lotId}) a,
+             (select nvl(sum(b.dtlgoodsqty), 0) tmp_qty
+              from bms_st_io_doc_tmp a,
+                   bms_st_io_dtl_tmp b,
+                   bms_batch_def     c,
+                   bms_lot_def       d,
+                   pub_goods_detail  f
+              where 1 = 1
+                and a.inoutid = b.inoutid
+                and a.inoutflag = 0
+                and b.goodsstatusid = 1
+                and b.batchid = c.batchid
+                and b.lotid = d.lotid
+                and b.goodsdtlid = f.goodsdtlid
+                and f.goodsdtlid = #{goodsDtlId}
+                and a.storageid = #{placepointStorageId}
+                and b.lotid = #{lotId}
+                 ) b
+        where 1 = 1
+    </select>
+    <select id="selectPlacepointStQtyList" resultType="com.zsyc.zt.inca.entity.BmsStQtyLst">
+        select x.goodsid,
+               x.goodsdetailid,
+               x.storageid,
+               x.batchid,
+               x.lotid,
+               x.posid,
+               x.goodsstatusid,
+               z.goodsunit,
+               x.goodsqty - nvl(y.tmp_qty, 0) goodsqty
+        from bms_st_qty_lst x,
+             (select b.goodsdtlid,
+                     b.lotid,
+                     b.batchid,
+                     nvl(sum(b.dtlgoodsqty), 0) tmp_qty
+              from bms_st_io_doc_tmp a,
+                   bms_st_io_dtl_tmp b,
+                   bms_batch_def     c,
+                   bms_lot_def       d,
+                   pub_goods_detail  f
+              where 1 = 1
+                and a.inoutid = b.inoutid
+                and a.inoutflag = 0
+                and b.goodsstatusid = 1
+                and b.batchid = c.batchid
+                and b.lotid = d.lotid
+                and b.goodsdtlid = f.goodsdtlid
+                and f.goodsdtlid = #{goodsDtlId}
+                and a.storageid = #{placepointStorageId}
+                and b.lotid = #{lotId}
+              group by b.goodsdtlid, b.lotid, b.batchid) y,
+              pub_goods z
+        where x.goodsdetailid = y.goodsdtlid(+)
+          and x.lotid = y.lotid(+)
+          and x.batchid = y.batchid(+)
+          and x.goodsid = z.goodsid
+          and x.goodsdetailid = #{goodsDtlId}
+          and x.storageid = #{placepointStorageId}
+          and x.lotid = #{lotId}
+    </select>
+</mapper>

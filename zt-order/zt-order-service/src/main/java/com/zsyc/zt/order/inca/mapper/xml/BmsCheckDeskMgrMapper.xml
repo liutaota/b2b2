@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsCheckDeskMgrMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsCheckDeskMgr">
+        <id column="DESKID" property="deskid" />
+        <result column="DESKNO" property="deskno" />
+        <result column="ORDERSEQ" property="orderseq" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="LASTCHECKDATE" property="lastcheckdate" />
+        <result column="CHECKAREASID" property="checkareasid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DESKID, DESKNO, ORDERSEQ, USESTATUS, LASTCHECKDATE, CHECKAREASID
+    </sql>
+
+</mapper>

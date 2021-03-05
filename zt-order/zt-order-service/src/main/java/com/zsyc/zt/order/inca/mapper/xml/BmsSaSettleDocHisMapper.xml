@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSaSettleDocHisMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSaSettleDocHis">
+        <result column="SASETTLEID" property="sasettleid" />
+        <result column="CREDATE" property="credate" />
+        <result column="SA_MODE" property="saMode" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="CUSTOMNAME" property="customname" />
+        <result column="TOTAL" property="total" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="DTL_LINES" property="dtlLines" />
+        <result column="MEMO" property="memo" />
+        <result column="SETTLETYPEID" property="settletypeid" />
+        <result column="CERTID" property="certid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="INVTYPE" property="invtype" />
+        <result column="INITFLAG" property="initflag" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="FMID" property="fmid" />
+        <result column="EXCHANGE" property="exchange" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="CONFIRMMANID" property="confirmmanid" />
+        <result column="ASSESSDATE" property="assessdate" />
+        <result column="INFOID" property="infoid" />
+        <result column="PRINTFLAG" property="printflag" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="SETTYPE" property="settype" />
+        <result column="SACERTID" property="sacertid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="RECEIPTMANID" property="receiptmanid" />
+        <result column="RECEIPTDATE" property="receiptdate" />
+        <result column="RECEIPTSTATUS" property="receiptstatus" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SASETTLEID, CREDATE, SA_MODE, CUSTOMID, CUSTOMNAME, TOTAL, INPUTMANID, DTL_LINES, MEMO, SETTLETYPEID, CERTID, USESTATUS, INVTYPE, INITFLAG, ENTRYID, FMID, EXCHANGE, CONFIRMDATE, CONFIRMMANID, ASSESSDATE, INFOID, PRINTFLAG, PRINTMANID, PRINTDATE, SETTYPE, SACERTID, AGENTID, RECEIPTMANID, RECEIPTDATE, RECEIPTSTATUS
+    </sql>
+
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsCreditTmpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsCreditTmp">
+        <result column="CUSTOMID" property="customid" />
+        <result column="SALERID" property="salerid" />
+        <result column="SALERDEPTID" property="salerdeptid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="CREDIT" property="credit" />
+        <result column="BEGINDATE" property="begindate" />
+        <result column="ENDDATE" property="enddate" />
+        <result column="OWEMONEY" property="owemoney" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CUSTOMID, SALERID, SALERDEPTID, AGENTID, CONTACTID, ENTRYID, CREDIT, BEGINDATE, ENDDATE, OWEMONEY
+    </sql>
+
+</mapper>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.inca.mapper.BmsSaDtlMapper">
+    <update id="updateTotalRecMoney">
+        update
+            bms_sa_dtl
+        set
+            totalRecMoney = (
+                select
+                    sum(b.total_line)
+                from
+                    bms_sa_doctoset a,
+                    bms_sa_settorec b
+                where
+                    a.salesdtlid = #{saleDtlId,jdbcType=NUMERIC}
+                and
+                    a.sasettledtlid = b.sasettledtlid)
+        where
+            salesdtlid = #{saleDtlId,jdbcType=NUMERIC}
+    </update>
+    <select id="selectListBy" resultType="com.zsyc.zt.inca.entity.BmsSaDtl">
+        <choose >
+            <when test="sourceType==1">
+                select a.salesdtlid,a.goodsid from bms_sa_dtl a where a.salesid=#{salesId}
+            </when>
+            <when test="sourceType==2">
+                select a.salesdtlid,a.goodsid from bms_sa_dtl a where
+                exists(
+                    select 1 from bms_sa_doc b
+                    where b.comefrom= 3
+                    and a.salesid = b.salesid
+                    and      b.placesupplyid =#{salesId}
+                )
+            </when>
+            <when test="sourceType==3">
+                select a.salesdtlid,a.goodsid from bms_sa_dtl a where a.salesid=#{salesId}
+            </when>
+        </choose>
+
+    </select>
+
+
+    <select id="getSalesdtlid" resultType="long">
+         select a.salesdtlid from bms_sa_dtl  a left join gpcs_placesupplydtl_st b
+            on a.placesupplydtlstid = b.placesupplydtlstid
+            where b.placesupplydtlid =  #{placespplyDtlId} and a.salesid = #{salesId}
+    </select>
+
+    <select id="getBmsSaDtlByErpOrderDtlId" resultType="com.zsyc.zt.inca.entity.BmsSaDtl">
+        select * from bms_sa_dtl where b2b_src_erp_order_id =  #{srcErpOrderId} and b2b_src_erp_order_dtl_id = #{srcErpOrderDtlId}
+
+       <![CDATA[
+
+       and total_line < 0
+
+       ]]>
+        and rownum=1
+    </select>
+    <select id="selectBySalesId" resultType="com.zsyc.zt.inca.entity.BmsSaDtl">
+
+        <choose>
+            <when test="psCustom">
+                select * from bms_sa_dtl a where exists (
+                        select 1 from gpcs_placesupplydtl_st x where x.placesupplydtlstid = a.placesupplydtlstid and x.placesupplydtlid = #{srcErpOrderDtlId}
+                )
+            </when>
+            <otherwise>
+                select * from bms_sa_dtl a where a.salesdtlid = #{srcErpOrderDtlId}
+            </otherwise>
+        </choose>
+    </select>
+
+
+</mapper>

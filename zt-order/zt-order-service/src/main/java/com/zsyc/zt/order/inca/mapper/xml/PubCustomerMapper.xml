@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubCustomerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubCustomer">
+        <id column="CUSTOMID" property="customid" />
+        <result column="CUSTOMOPCODE" property="customopcode" />
+        <result column="CUSTOMNO" property="customno" />
+        <result column="CUSTOMPINYIN" property="custompinyin" />
+        <result column="CORPCODE" property="corpcode" />
+        <result column="CUSTOMNAME" property="customname" />
+        <result column="MEMO" property="memo" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="CITYID" property="cityid" />
+        <result column="COUNTRYID" property="countryid" />
+        <result column="CUSTOMERTYPE" property="customertype" />
+        <result column="REGISTADD" property="registadd" />
+        <result column="ADDRESS" property="address" />
+        <result column="GSPFLAG" property="gspflag" />
+        <result column="TAXNUMBER" property="taxnumber" />
+        <result column="ZONE" property="zone" />
+        <result column="LEGALPERSON" property="legalperson" />
+        <result column="GSPCATEGORYID" property="gspcategoryid" />
+        <result column="MEDICODE" property="medicode" />
+        <result column="INITFLAG" property="initflag" />
+        <result column="CONFIRMMANID" property="confirmmanid" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="FMID" property="fmid" />
+        <result column="INVDEMAND" property="invdemand" />
+        <result column="INVMETHOD" property="invmethod" />
+        <result column="INVMONTH" property="invmonth" />
+        <result column="INVDAY" property="invday" />
+        <result column="INVTYPE" property="invtype" />
+        <result column="SYS_MODIFYDATE" property="sysModifydate" />
+        <result column="TOWMSDATE" property="towmsdate" />
+        <result column="MONOMERPHARMACY" property="monomerpharmacy" />
+        <result column="ZX_ISFIX" property="zxIsfix" />
+        <result column="ZX_ISPRINT" property="zxIsprint" />
+        <result column="ZX_DZ_DATE" property="zxDzDate" />
+        <result column="ZX_PH_ORDER1" property="zxPhOrder1" />
+        <result column="ZX_KPMANID" property="zxKpmanid" />
+        <result column="ZX_KPMAN" property="zxKpman" />
+        <result column="ZX_ACCOUNTID" property="zxAccountid" />
+        <result column="ZX_ACCOUNT" property="zxAccount" />
+        <result column="ZX_QY_SALERID" property="zxQySalerid" />
+        <result column="ZX_QY_SALER" property="zxQySaler" />
+        <result column="ZX_BH_FLAG" property="zxBhFlag" />
+        <result column="ZX_QY" property="zxQy" />
+        <result column="ZX_PH_ORDER" property="zxPhOrder" />
+        <result column="ZX_OTCFLAG0" property="zxOtcflag0" />
+        <result column="ZX_OTCFLAG1" property="zxOtcflag1" />
+        <result column="ZX_OTCFLAG2" property="zxOtcflag2" />
+        <result column="ZX_OTCFLAG3" property="zxOtcflag3" />
+        <result column="XSTRANSLINEID" property="xstranslineid" />
+        <result column="XSTRANSNAME" property="xstransname" />
+        <result column="ZX_MEMO" property="zxMemo" />
+        <result column="ZX_EMAIL" property="zxEmail" />
+        <result column="ZX_WARNDAY" property="zxWarnday" />
+        <result column="CUSTOMERTYPE_DOC" property="customertypeDoc" />
+        <result column="ZX_PHONE" property="zxPhone" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CUSTOMID, CUSTOMOPCODE, CUSTOMNO, CUSTOMPINYIN, CORPCODE, CUSTOMNAME, MEMO, CREDATE, INPUTMANID, USESTATUS, CITYID, COUNTRYID, CUSTOMERTYPE, REGISTADD, ADDRESS, GSPFLAG, TAXNUMBER, ZONE, LEGALPERSON, GSPCATEGORYID, MEDICODE, INITFLAG, CONFIRMMANID, CONFIRMDATE, FMID, INVDEMAND, INVMETHOD, INVMONTH, INVDAY, INVTYPE, SYS_MODIFYDATE, TOWMSDATE, MONOMERPHARMACY, ZX_ISFIX, ZX_ISPRINT, ZX_DZ_DATE, ZX_PH_ORDER1, ZX_KPMANID, ZX_KPMAN, ZX_ACCOUNTID, ZX_ACCOUNT, ZX_QY_SALERID, ZX_QY_SALER, ZX_BH_FLAG, ZX_QY, ZX_PH_ORDER, ZX_OTCFLAG0, ZX_OTCFLAG1, ZX_OTCFLAG2, ZX_OTCFLAG3, XSTRANSLINEID, XSTRANSNAME, ZX_MEMO, ZX_EMAIL, ZX_WARNDAY, CUSTOMERTYPE_DOC, ZX_PHONE
+    </sql>
+    <select id="getLongestOverdraftDay" resultType="java.lang.Integer">
+        SELECT ROUND(SYSDATE - NVL(MIN(g.credate),SYSDATE)) day_max
+                 FROM BMS_SA_SETTLE_DOC G
+                WHERE NOT EXISTS (
+                       SELECT 1
+                         FROM BMS_SA_SETTLE_DOC X,
+                               BMS_SA_SETTLE_DTL Y,
+                               (SELECT SUM(T.TOTAL_LINE) TOTAL_REC,
+                                       U.SASETTLEDTLID
+                                  FROM BMS_SA_REC_DTL  T,
+                                       BMS_SA_SETTOREC U
+                                 WHERE T.SARECDTLID = U.SARECDTLID
+                                 GROUP BY U.SASETTLEDTLID) W
+                        WHERE X.CUSTOMID = #{customId}
+                          AND X.ENTRYID = #{entryId}
+                          AND X.SASETTLEID = Y.SASETTLEID
+                          AND Y.SASETTLEDTLID = W.SASETTLEDTLID
+                          AND X.SASETTLEID = G.SASETTLEID
+                          AND Y.TOTAL_LINE - W.TOTAL_REC = 0)
+                  AND G.CUSTOMID = #{customId}
+                  AND G.ENTRYID = #{entryId}
+    </select>
+    <select id="getAmountNoSettle" resultType="java.lang.Double">
+        SELECT nvl(SUM(A.TOTAL),0) total_no_settle
+                         FROM BMS_SA_DOC A,
+                        BMS_SA_DTL B
+                        WHERE A.SALESID = B.SALESID
+                          AND A.ENTRYID = #{entryId}
+                          AND A.CUSTOMID = #{customId}
+                          AND A.USESTATUS = 1
+                          AND NOT EXISTS (SELECT 1
+                                 FROM BMS_SA_DOCTOSET X
+                                WHERE X.SALESDTLID = B.SALESDTLID)
+
+
+    </select>
+    <select id="getAmountSettle" resultType="java.lang.Double">
+        SELECT NVL(SUM(B.TOTAL_LINE), 0) TOTAL
+                       FROM BMS_SA_SETTLE_DOC A,
+                            BMS_SA_SETTLE_DTL B
+                      WHERE A.SASETTLEID = B.SASETTLEID
+                        AND A.ENTRYID = #{entryId}
+                        AND A.CUSTOMID = #{customId}
+    </select>
+    <select id="getAmountWriteOff" resultType="java.lang.Double">
+         SELECT SUM(A.TOTAL_LINE) TOTAL_REC
+                         FROM BMS_SA_REC_DTL A
+                        WHERE EXISTS
+                        (SELECT 1
+                                 FROM BMS_SA_SETTLE_DOC X,
+                                      BMS_SA_SETTLE_DTL Y,
+                                      BMS_SA_SETTOREC   Z
+                                WHERE X.SASETTLEID = Y.SASETTLEID
+                                  AND Y.SASETTLEDTLID = Z.SASETTLEDTLID
+                                  AND A.SARECDTLID = Z.SARECDTLID
+                                  AND X.ENTRYID =#{entryId}
+                                  AND X.CUSTOMID =#{customId})
+
+    </select>
+    <select id="getCustomInfo"  parameterType="Long"  resultType="com.zsyc.zt.order.vo.CustomerVo">
+    select
+        customid,
+        customname,
+        fmid,
+        fmrate,
+        settletypeid
+    from
+        pub_entry_customer_v
+    where
+        nvl(gspusestatus,0)=1
+        and
+        entryid=1
+        and customid=#{customId}
+    </select>
+
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsStIoInitMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsStIoInit">
+        <id column="INITID" property="initid" />
+        <result column="CREDATE" property="credate" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="BATCHID" property="batchid" />
+        <result column="LOTID" property="lotid" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="POSID" property="posid" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="SKINITFLAG" property="skinitflag" />
+        <result column="COSTINGPRICE" property="costingprice" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="SUPPLYERID" property="supplyerid" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="SUPPLYTAXRATE" property="supplytaxrate" />
+        <result column="IMPORTID" property="importid" />
+        <result column="SUDATE" property="sudate" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="LOTNO" property="lotno" />
+        <result column="MEMO" property="memo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        INITID, CREDATE, STORAGEID, GOODSID, BATCHID, LOTID, GOODSSTATUSID, POSID, INPUTMANID, GOODSDTLID, GOODSQTY, SKINITFLAG, COSTINGPRICE, SUPPLYID, AGENTID, SUPPLYERID, UNITPRICE, USESTATUS, SUPPLYTAXRATE, IMPORTID, SUDATE, CONTACTID, LOTNO, MEMO
+    </sql>
+
+</mapper>

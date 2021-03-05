@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubCompanyToContactMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubCompanyToContact">
+        <id column="CONTACTPANYID" property="contactpanyid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="TYPE" property="type" />
+        <result column="CTRLTYPE" property="ctrltype" />
+        <result column="FORBIDBUSINESS" property="forbidbusiness" />
+        <result column="FORBIDRETURN" property="forbidreturn" />
+        <result column="MEMO" property="memo" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CONTACTPANYID, ENTRYID, COMPANYID, CONTACTID, TYPE, CTRLTYPE, FORBIDBUSINESS, FORBIDRETURN, MEMO, INPUTMANID, CREDATE
+    </sql>
+
+</mapper>

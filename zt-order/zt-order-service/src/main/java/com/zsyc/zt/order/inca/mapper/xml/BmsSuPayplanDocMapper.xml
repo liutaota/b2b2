@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuPayplanDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuPayplanDoc">
+        <id column="PAYPLANID" property="payplanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="SUPPLYERID" property="supplyerid" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="EXECUTEMANID" property="executemanid" />
+        <result column="EXECUTEDATE" property="executedate" />
+        <result column="MEMO" property="memo" />
+        <result column="SETTLETYPEID" property="settletypeid" />
+        <result column="EXCHANGE" property="exchange" />
+        <result column="THISPAY" property="thispay" />
+        <result column="TOTAL_EXEC" property="totalExec" />
+        <result column="FMID" property="fmid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="PRINTCOUNT" property="printcount" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="SUNOSETTLE" property="sunosettle" />
+        <result column="BACKNOSETTLE" property="backnosettle" />
+        <result column="SETTLENOPAY" property="settlenopay" />
+        <result column="PRE_TOTAL_LINE" property="preTotalLine" />
+        <result column="CONFIRMMANID" property="confirmmanid" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="SUPPLYNAME" property="supplyname" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PAYPLANID, CREDATE, ENTRYID, INPUTMANID, COMEFROM, SUPPLYID, SUPPLYERID, USESTATUS, EXECUTEMANID, EXECUTEDATE, MEMO, SETTLETYPEID, EXCHANGE, THISPAY, TOTAL_EXEC, FMID, AGENTID, PRINTCOUNT, PRINTMANID, PRINTDATE, CONTACTID, SUNOSETTLE, BACKNOSETTLE, SETTLENOPAY, PRE_TOTAL_LINE, CONFIRMMANID, CONFIRMDATE, SUPPLYNAME
+    </sql>
+
+</mapper>

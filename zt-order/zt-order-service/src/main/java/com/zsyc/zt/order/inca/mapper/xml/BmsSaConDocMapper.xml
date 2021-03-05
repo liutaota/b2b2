@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSaConDocMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSaConDoc">
+        <id column="CONID" property="conid" />
+        <result column="CONNO" property="conno" />
+        <result column="CONTYPE" property="contype" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="CUSTOMNAME" property="customname" />
+        <result column="SALERID" property="salerid" />
+        <result column="SALESDEPTID" property="salesdeptid" />
+        <result column="SIGNDATE" property="signdate" />
+        <result column="SIGNADDRESS" property="signaddress" />
+        <result column="SIGNMANID" property="signmanid" />
+        <result column="VALIDBEGINDATE" property="validbegindate" />
+        <result column="VALIDENDDATE" property="validenddate" />
+        <result column="SUMMARY" property="summary" />
+        <result column="INVTYPE" property="invtype" />
+        <result column="SETTLETYPEID" property="settletypeid" />
+        <result column="DELIVERMETHOD" property="delivermethod" />
+        <result column="TRANMETHOD" property="tranmethod" />
+        <result column="TARGETPOSID" property="targetposid" />
+        <result column="URGENTFLAG" property="urgentflag" />
+        <result column="TRANPRIORITY" property="tranpriority" />
+        <result column="TARGETDATE" property="targetdate" />
+        <result column="TOTAL" property="total" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="DTL_LINES" property="dtlLines" />
+        <result column="MEMO" property="memo" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="FMID" property="fmid" />
+        <result column="EXCHANGE" property="exchange" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="CREDITFLAG" property="creditflag" />
+        <result column="CREDIT" property="credit" />
+        <result column="RECMONEY" property="recmoney" />
+        <result column="CREDITDAYSFLAG" property="creditdaysflag" />
+        <result column="CREDITDAYS" property="creditdays" />
+        <result column="RECDATE" property="recdate" />
+        <result column="LOWPRICEFLAG" property="lowpriceflag" />
+        <result column="APPROVEFLAG" property="approveflag" />
+        <result column="APPROVEMANID" property="approvemanid" />
+        <result column="APPROVEDATE" property="approvedate" />
+        <result column="APPROVEMEMO" property="approvememo" />
+        <result column="CONFIRMANID" property="confirmanid" />
+        <result column="CONFIRMDATE" property="confirmdate" />
+        <result column="PRINTCOUNT" property="printcount" />
+        <result column="PRINTMANID" property="printmanid" />
+        <result column="PRINTDATE" property="printdate" />
+        <result column="COMEFROM" property="comefrom" />
+        <result column="ASSESSDATE" property="assessdate" />
+        <result column="WFUSESTATUS" property="wfusestatus" />
+        <result column="WFPROCESS" property="wfprocess" />
+        <result column="WFMEMO" property="wfmemo" />
+        <result column="AGENTID" property="agentid" />
+        <result column="CNSCOMMITFLAG" property="cnscommitflag" />
+        <result column="FINISHFLAG" property="finishflag" />
+        <result column="NOWMSFLAG" property="nowmsflag" />
+        <result column="PLANINVDATE" property="planinvdate" />
+        <result column="INVDEMAND" property="invdemand" />
+        <result column="PREDESPDATE" property="predespdate" />
+        <result column="PAYFLAG" property="payflag" />
+        <result column="WEBTOTALPRICE" property="webtotalprice" />
+        <result column="ACCOUNT" property="account" />
+        <result column="PAYDATE" property="paydate" />
+        <result column="WEBFLAG" property="webflag" />
+        <result column="CONTACTID" property="contactid" />
+        <result column="TWOINVFLAG" property="twoinvflag" />
+        <result column="TWOINVMETHOD" property="twoinvmethod" />
+        <result column="SALESID" property="salesid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CONID, CONNO, CONTYPE, CUSTOMID, CUSTOMNAME, SALERID, SALESDEPTID, SIGNDATE, SIGNADDRESS, SIGNMANID, VALIDBEGINDATE, VALIDENDDATE, SUMMARY, INVTYPE, SETTLETYPEID, DELIVERMETHOD, TRANMETHOD, TARGETPOSID, URGENTFLAG, TRANPRIORITY, TARGETDATE, TOTAL, INPUTMANID, CREDATE, DTL_LINES, MEMO, ENTRYID, FMID, EXCHANGE, USESTATUS, CREDITFLAG, CREDIT, RECMONEY, CREDITDAYSFLAG, CREDITDAYS, RECDATE, LOWPRICEFLAG, APPROVEFLAG, APPROVEMANID, APPROVEDATE, APPROVEMEMO, CONFIRMANID, CONFIRMDATE, PRINTCOUNT, PRINTMANID, PRINTDATE, COMEFROM, ASSESSDATE, WFUSESTATUS, WFPROCESS, WFMEMO, AGENTID, CNSCOMMITFLAG, FINISHFLAG, NOWMSFLAG, PLANINVDATE, INVDEMAND, PREDESPDATE, PAYFLAG, WEBTOTALPRICE, ACCOUNT, PAYDATE, WEBFLAG, CONTACTID, TWOINVFLAG, TWOINVMETHOD, SALESID
+    </sql>
+
+</mapper>

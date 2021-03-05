@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsEntryFactoryApproveMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsEntryFactoryApprove">
+        <id column="APPROVEID" property="approveid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="FACTORYID" property="factoryid" />
+        <result column="FACTORYNAME" property="factoryname" />
+        <result column="FACTORYTYPE" property="factorytype" />
+        <result column="FACTORYNO" property="factoryno" />
+        <result column="TAXNUMBER" property="taxnumber" />
+        <result column="ZONE" property="zone" />
+        <result column="LEGALPERSON" property="legalperson" />
+        <result column="CREDATE" property="credate" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="MEMO" property="memo" />
+        <result column="QFLEVELID" property="qflevelid" />
+        <result column="QFMEMO" property="qfmemo" />
+        <result column="QFUSESTATUS" property="qfusestatus" />
+        <result column="QFAPPMANID" property="qfappmanid" />
+        <result column="QFAPPDATE" property="qfappdate" />
+        <result column="APPROVESTATUS" property="approvestatus" />
+        <result column="APPROVEMANID" property="approvemanid" />
+        <result column="APPROVEDATE" property="approvedate" />
+        <result column="APPROVEMEMO" property="approvememo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        APPROVEID, ENTRYID, FACTORYID, FACTORYNAME, FACTORYTYPE, FACTORYNO, TAXNUMBER, ZONE, LEGALPERSON, CREDATE, INPUTMANID, MEMO, QFLEVELID, QFMEMO, QFUSESTATUS, QFAPPMANID, QFAPPDATE, APPROVESTATUS, APPROVEMANID, APPROVEDATE, APPROVEMEMO
+    </sql>
+
+</mapper>

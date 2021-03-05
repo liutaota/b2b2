@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubZtlinWwwMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubZtlinWww">
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="GOODSTYPE" property="goodstype" />
+        <result column="GOODSUNIT" property="goodsunit" />
+        <result column="PACKSIAE_B" property="packsiaeB" />
+        <result column="PACKSIZE_M" property="packsizeM" />
+        <result column="AGENT" property="agent" />
+        <result column="PRICE_NEW" property="priceNew" />
+        <result column="PRICE_M" property="priceM" />
+        <result column="PRICE_B" property="priceB" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GOODSID, GOODSNAME, GOODSTYPE, GOODSUNIT, PACKSIAE_B, PACKSIZE_M, AGENT, PRICE_NEW, PRICE_M, PRICE_B
+    </sql>
+
+</mapper>

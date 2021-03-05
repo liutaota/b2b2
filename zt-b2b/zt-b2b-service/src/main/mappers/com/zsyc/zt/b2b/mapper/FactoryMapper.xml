@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.FactoryMapper">
+
+    <select id="getFactoryList" resultType="com.zsyc.zt.b2b.vo.FactoryVo">
+        SELECT * FROM ${erp}.pub_factory pf
+        LEFT JOIN factory f ON pf.factoryid = f.erp_supply_id
+        WHERE pf.usestatus = 1
+        <if test="factory.isImg">
+            and f.FACTORY_PIC is null
+        </if>
+        <if test="factory.factoryname!=null and factory.factoryname!=''">
+            and pf.factoryname like '%'||#{factory.factoryname}||'%'
+        </if>
+        order by f.FACTORY_RECOMMEND desc nulls last,f.FACTORY_SORT desc nulls last,pf.FACTORYID asc
+    </select>
+    <select id="getFactoryVoList" resultType="com.zsyc.zt.b2b.vo.FactoryVo">
+        SELECT DISTINCT gv.factoryid, gv.factoryname, gv.goodsqty
+        ,bf.FACTORY_SHORT,bf.FACTORY_PIC,bf.FACTORY_SORT,bf.FACTORY_RECOMMEND,gv.goodsid_gps
+
+        ,REGEXP_SUBSTR( gv.classname_1, '[^\-]+$' ) classname_1
+        ,REGEXP_SUBSTR( gv.classname_2, '[^\-]+$' ) classname_2
+        ,REGEXP_SUBSTR( gv.classname_3, '[^\-]+$' ) classname_3
+
+        from ERP_GOODS_V gv
+        LEFT JOIN erp_goods_price_v gpv ON gpv.goodsid=gv.goodsid and gpv.customid=#{goodsInfoVo.memberId}
+        left join factory bf on bf.ERP_SUPPLY_ID=gv.factoryid
+        <!--  left JOIN ACTIVITY_SET acs ON gv.ACTIVITY_ID=acs.ACTIVITY_ID and gpv.customid in (select customid from
+          ${erp}.pub_custom_set_dtl p where p.SETID=acs.CUSTOM_SET_ID)-->
+        where
+        gv.factoryid is not null
+
+            and gv.GOODSID in (
+            select c.goods_id from CACHE_CUSTOMER_GOODS c where c.customer_id=gpv.customid )
+
+        <if test="goodsInfoVo.AdvGoodsId!=null and goodsInfoVo.AdvGoodsId!=''">
+            and gv.GOODSID in (${goodsInfoVo.AdvGoodsId})
+        </if>
+        <if test="goodsInfoVo.goodsidGps!=null and goodsInfoVo.goodsidGps!=''">
+            and gv.goodsid_gps = #{goodsInfoVo.goodsidGps}
+        </if>
+        <if test="goodsInfoVo.classname!=null and goodsInfoVo.classname!=''">
+            and gv.classname_3 like '%'||#{goodsInfoVo.classname}||'%'
+        </if>
+        <if test="goodsInfoVo.classnRow3!=null">
+            and gv.classn_row_3=#{goodsInfoVo.classnRow3}
+        </if>
+        <if test="goodsInfoVo.classnRow2!=null">
+            and gv.classn_row_2=#{goodsInfoVo.classnRow2}
+        </if>
+        <if test="goodsInfoVo.classnRow1!=null">
+            and gv.classn_row_1=#{goodsInfoVo.classnRow1}
+        </if>
+        <if test="goodsInfoVo.factoryname!=null and goodsInfoVo.factoryname!=''">
+            and gv.factoryname like '%'||#{goodsInfoVo.factoryname}||'%'
+        </if>
+        <if test="goodsInfoVo.factoryid!=null">
+            and gv.factoryid =#{goodsInfoVo.factoryid}
+        </if>
+        <if test="goodsInfoVo.startTime!=null and goodsInfoVo.startTime!=''and goodsInfoVo.endTime!=null and goodsInfoVo.endTime!=''">
+            <!-- and gv.invaliddate BETWEEN to_date(#{goodsInfoVo.startTime}, 'yyyy-MM-dd') and to_date(#{goodsInfoVo.endTime}, 'yyyy-MM-dd')-->
+            and gv.invaliddate >=to_char(#{goodsInfoVo.startTime})
+            AND to_char(#{goodsInfoVo.endTime}) >= gv.invaliddate
+        </if>
+
+        <if test="goodsInfoVo.goodspinyin!=null and goodsInfoVo.goodspinyin!=''">
+            and (
+            gv.goodspinyin like '%'|| UPPER(#{goodsInfoVo.goodspinyin})||'%'
+            or gv.currencyname like '%'||#{goodsInfoVo.goodspinyin}||'%'
+            or gv.goodsname like '%'||#{goodsInfoVo.goodspinyin}||'%'
+            or gv.goodsid like '%'||#{goodsInfoVo.goodspinyin}||'%'
+            <!--or gv.classname_3 like '%'||#{goodsInfoVo.goodspinyin}||'%'-->
+            or gv.barcode like '%'||#{goodsInfoVo.goodspinyin}||'%'
+            or gv.factoryname like '%'||#{goodsInfoVo.goodspinyin}||'%')
+
+            <!--  order by (CASE
+              when gv.goodspinyin = #{goodsInfoVo.goodspinyin} then 7
+              when gv.currencyname = #{goodsInfoVo.goodspinyin} then 6
+              when gv.goodsname = #{goodsInfoVo.goodspinyin} then 5
+              WHEN gv.goodsid = nvl2(translate(gv.GOODSID,concat('\' ,#{goodsInfoVo.goodspinyin}),'0'),'0',#{goodsInfoVo.goodspinyin})  THEN 4
+              when gv.classname_3 = #{goodsInfoVo.goodspinyin} then 3
+              when gv.barcode = #{goodsInfoVo.goodspinyin} then 2
+              when gv.factoryname = #{goodsInfoVo.goodspinyin} then 1
+              ELSE
+              0
+              END) DESC, gv.goodsqty desc-->
+        </if>
+        ORDER BY gv.goodsqty DESC
+    </select>
+    <select id="getWebPageFactoryVoList" resultType="com.zsyc.zt.b2b.vo.FactoryVo">
+        select
+        DISTINCT gv.factoryid, gv.factoryname, gv.goodsqty,w.title
+        ,bf.FACTORY_SHORT,bf.FACTORY_PIC,bf.FACTORY_SORT,bf.FACTORY_RECOMMEND
+        ,REGEXP_SUBSTR( gv.classname_1, '[^\-]+$' ) classname_1
+        ,REGEXP_SUBSTR( gv.classname_2, '[^\-]+$' ) classname_2
+        ,REGEXP_SUBSTR( gv.classname_3, '[^\-]+$' ) classname_3
+
+        from WEB_PAGE_SEARCH w
+        left join ERP_GOODS_V gv on gv.goodsid=w.erp_goods_id
+        LEFT JOIN erp_goods_price_v gpv ON gpv.goodsid=gv.goodsid and gpv.CUSTOMID=#{goodsInfoVo.memberId}
+        left join factory bf on bf.ERP_SUPPLY_ID=gv.factoryid
+        where w.WEB_PAGE_ID =#{goodsInfoVo.webPageId}
+
+        and gv.factoryid is not null
+
+            and gv.GOODSID in (
+            select c.goods_id from CACHE_CUSTOMER_GOODS c where c.customer_id=gpv.customid )
+
+        <if test="goodsInfoVo.floorId!=null and goodsInfoVo.floorId!=''">
+            and w.FLOOR_ID =#{goodsInfoVo.floorId}
+        </if>
+        <if test="goodsInfoVo.title!=null and goodsInfoVo.title!=''">
+            and w.title = #{goodsInfoVo.title}
+        </if>
+        <if test="goodsInfoVo.stairClassify!=null and goodsInfoVo.stairClassify!=''">
+            and w.CLASS_NAME_1 like '%'||#{goodsInfoVo.stairClassify}||'%'
+        </if>
+        <if test="goodsInfoVo.accessName!=null and goodsInfoVo.accessName!=''">
+            and w.CLASS_NAME_2 like '%'||#{goodsInfoVo.accessName}||'%'
+        </if>
+        <if test="goodsInfoVo.classname!=null and goodsInfoVo.classname!=''">
+            and gv.classname_3 like '%'||#{goodsInfoVo.classname}||'%'
+        </if>
+        <if test="goodsInfoVo.classnRow3!=null">
+            and gv.classn_row_3=#{goodsInfoVo.classnRow3}
+        </if>
+        <if test="goodsInfoVo.classnRow2!=null">
+            and gv.classn_row_2=#{goodsInfoVo.classnRow2}
+        </if>
+        <if test="goodsInfoVo.classnRow1!=null">
+            and gv.classn_row_1=#{goodsInfoVo.classnRow1}
+        </if>
+        <if test="goodsInfoVo.factoryname!=null and goodsInfoVo.factoryname!=''">
+            and gv.factoryname like '%'||#{goodsInfoVo.factoryname}||'%'
+        </if>
+        <if test="goodsInfoVo.goodspinyin!=null and goodsInfoVo.goodspinyin!=''">
+            and (
+            gv.goodspinyin like '%'|| UPPER(#{goodsInfoVo.goodspinyin})||'%'
+            or gv.currencyname like '%'||#{goodsInfoVo.goodspinyin}||'%'
+            or gv.goodsname like '%'||#{goodsInfoVo.goodspinyin}||'%'
+            or gv.goodsid like '%'||#{goodsInfoVo.goodspinyin}||'%'
+            <!-- or gv.classname_3 like '%'||#{goodsInfoVo.goodspinyin}||'%'-->
+            or gv.barcode like '%'||#{goodsInfoVo.goodspinyin}||'%'
+            or gv.factoryname like '%'||#{goodsInfoVo.goodspinyin}||'%')
+        </if>
+        ORDER BY gv.goodsqty DESC, w.title DESC
+    </select>
+    <select id="getHoldFactoryVoList" resultType="com.zsyc.zt.b2b.vo.FactoryVo">
+        select * from FACTORY where erp_supply_id is not null and FACTORY_RECOMMEND=1 and 13>ROWNUM
+        order by FACTORY_SORT desc
+    </select>
+    <select id="getValidityFactoryVoList" resultType="com.zsyc.zt.b2b.vo.FactoryVo">
+        select
+        DISTINCT gv.factoryid, gv.factoryname, gv.goodsqty
+        ,bf.FACTORY_SHORT,bf.FACTORY_PIC,bf.FACTORY_SORT,bf.FACTORY_RECOMMEND
+        ,REGEXP_SUBSTR( gv.classname_1, '[^\-]+$' ) classname_1
+        ,REGEXP_SUBSTR( gv.classname_2, '[^\-]+$' ) classname_2
+        ,REGEXP_SUBSTR( gv.classname_3, '[^\-]+$' ) classname_3
+
+        from ERP_validity_goods_v gv
+        left join factory bf on bf.ERP_SUPPLY_ID=gv.factoryid
+        where gv.factoryid is not null
+        ORDER BY gv.goodsqty DESC
+    </select>
+</mapper>
+

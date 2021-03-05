@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsPrAdjustDtlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsPrAdjustDtl">
+        <id column="ADJUSTPRICEDTLID" property="adjustpricedtlid" />
+        <result column="ADJUSTPRICEDOCID" property="adjustpricedocid" />
+        <result column="SALESDTLID" property="salesdtlid" />
+        <result column="CREATEDATE" property="createdate" />
+        <result column="CUSTOMID" property="customid" />
+        <result column="AGENTID" property="agentid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="OLDBATCHID" property="oldbatchid" />
+        <result column="OLDSAPRICE" property="oldsaprice" />
+        <result column="OLDSAQTY" property="oldsaqty" />
+        <result column="ADJUSTSQTY" property="adjustsqty" />
+        <result column="DTLADJUSTPRICE" property="dtladjustprice" />
+        <result column="DTLMEMO" property="dtlmemo" />
+        <result column="SALERID" property="salerid" />
+        <result column="SABACKQTY" property="sabackqty" />
+        <result column="LOTID" property="lotid" />
+        <result column="CONTACTID" property="contactid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ADJUSTPRICEDTLID, ADJUSTPRICEDOCID, SALESDTLID, CREATEDATE, CUSTOMID, AGENTID, GOODSID, OLDBATCHID, OLDSAPRICE, OLDSAQTY, ADJUSTSQTY, DTLADJUSTPRICE, DTLMEMO, SALERID, SABACKQTY, LOTID, CONTACTID
+    </sql>
+
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsCreditLevel2Mapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsCreditLevel2">
+        <id column="SALERID" property="salerid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="CREDIT" property="credit" />
+        <result column="EXEC_ORDER_ID" property="execOrderId" />
+        <result column="OWEMONEY" property="owemoney" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SALERID, ENTRYID, CREDIT, EXEC_ORDER_ID, OWEMONEY
+    </sql>
+
+</mapper>

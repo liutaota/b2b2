@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubStqtyImpTmpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubStqtyImpTmp">
+        <id column="TMPID" property="tmpid" />
+        <result column="DOCID" property="docid" />
+        <result column="IMPFLAG" property="impflag" />
+        <result column="ERRORMESSAGE" property="errormessage" />
+        <result column="STORAGEID" property="storageid" />
+        <result column="STORAGENAME" property="storagename" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="BATCHCREDATE" property="batchcredate" />
+        <result column="UNITPRICE" property="unitprice" />
+        <result column="LOTNO" property="lotno" />
+        <result column="PRODATE" property="prodate" />
+        <result column="INVALIDDATE" property="invaliddate" />
+        <result column="GOODSQTY" property="goodsqty" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="SUPPLYNAME" property="supplyname" />
+        <result column="POSID" property="posid" />
+        <result column="POSNO" property="posno" />
+        <result column="BATCHID" property="batchid" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="ENTRYNAME" property="entryname" />
+        <result column="DEPUTYID" property="deputyid" />
+        <result column="DEPUTYNAME" property="deputyname" />
+        <result column="GOODSSTATUSID" property="goodsstatusid" />
+        <result column="GOODSSTATUS" property="goodsstatus" />
+        <result column="GOODSTYPE" property="goodstype" />
+        <result column="GOODSUNIT" property="goodsunit" />
+        <result column="PRODAREA" property="prodarea" />
+        <result column="FACTORYID" property="factoryid" />
+        <result column="FACTORYNAME" property="factoryname" />
+        <result column="PACKNAME" property="packname" />
+        <result column="PACKSIZE" property="packsize" />
+        <result column="GOODSDTLID" property="goodsdtlid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TMPID, DOCID, IMPFLAG, ERRORMESSAGE, STORAGEID, STORAGENAME, GOODSID, GOODSNAME, BATCHCREDATE, UNITPRICE, LOTNO, PRODATE, INVALIDDATE, GOODSQTY, SUPPLYID, SUPPLYNAME, POSID, POSNO, BATCHID, ENTRYID, ENTRYNAME, DEPUTYID, DEPUTYNAME, GOODSSTATUSID, GOODSSTATUS, GOODSTYPE, GOODSUNIT, PRODAREA, FACTORYID, FACTORYNAME, PACKNAME, PACKSIZE, GOODSDTLID
+    </sql>
+
+</mapper>

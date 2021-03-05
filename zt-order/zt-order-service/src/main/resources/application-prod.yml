@@ -1,0 +1,76 @@
+
+spring:
+  application:
+    name: zt-order-service
+  autoconfigure:
+    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+  datasource:
+    url: jdbc:oracle:thin:@//172.168.220.10:1521/orcl
+    username: gdztzs2
+    password: gdztzs2
+    driver-class-name: oracle.jdbc.OracleDriver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      stat-view-servlet:
+        enabled: true
+        loginUsername: admin
+        loginPassword: 123456
+        allow:
+      web-stat-filter:
+        enabled: true
+  aop:
+    proxy-target-class: true
+  redis:
+    host: localhost
+    port: 6379
+    #password: zt2020
+    database: 1
+  security:
+    user:
+      name: admin
+      password: admin
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+mybatis-plus:
+  mapper-locations: classpath*:com/zsyc/**/xml/*Mapper.xml
+  configuration:
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  global-config:
+    # 关闭MP3.0自带的banner
+    banner: false
+    db-config:
+      #主键类型  0:"数据库ID自增",1:"该类型为未设置主键类型", 2:"用户输入ID",3:"全局唯一ID (数字类型唯一ID)", 4:"全局唯一ID UUID",5:"字符串全局唯一ID (idWorker 的字符串表示)";
+      id-type: 2
+      # 默认数据库表下划线命名
+      table-underline: true
+## resision \u5206\u5E03\u5F0F\u9501
+
+redisson:
+  address: redis://localhost:6379
+  #password: zt2020
+  database: 2
+  ## jetcache
+jetcache:
+  address: localhost
+  port: 6379
+  #password: zt2020
+  database: 3
+server:
+  port: 9988
+
+dubbo.application.name: zt-order-service
+dubbo.registry.address: zookeeper://172.168.200.223:2182?timeout=60000
+dubbo.metadata-report.address: zookeeper://172.168.200.223:2182
+dubbo.protocol.name: dubbo
+dubbo.protocol.port: 9112
+dubbo.provider.version: 1.0.1-oucs
+dubbo.provider.host=: 127.0.0.1
+dubbo.provider.filter: -default,dubboExceptionFilter
+dubbo.provider.timeout: 30000
+dubbo.scan.base-packages: com.zsyc
+dubbo.monitor.protocol: registry
+dubbo.consumer.check: false
+dubbo.consumer.version: 1.0.1-oucs
+

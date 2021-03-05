@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.GspCompanyLicenseMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.GspCompanyLicense">
+        <id column="LICENSEID" property="licenseid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="RELATCOMPANY" property="relatcompany" />
+        <result column="LICENSETYPEID" property="licensetypeid" />
+        <result column="LICENSECODE" property="licensecode" />
+        <result column="RELATGOODS" property="relatgoods" />
+        <result column="MAINCONTENT" property="maincontent" />
+        <result column="SIGNDATE" property="signdate" />
+        <result column="SIGNDEPARTMENT" property="signdepartment" />
+        <result column="VALIDONDATE" property="validondate" />
+        <result column="VALIDENDDATE" property="validenddate" />
+        <result column="FILESOPCODE" property="filesopcode" />
+        <result column="USESTATUS" property="usestatus" />
+        <result column="GOODSBUSISCOPE" property="goodsbusiscope" />
+        <result column="GOODSCLASSCOPE" property="goodsclasscope" />
+        <result column="MEMO" property="memo" />
+        <result column="GOODSBUSISCOPEIDS" property="goodsbusiscopeids" />
+        <result column="GOODSCLASSCOPEIDS" property="goodsclasscopeids" />
+        <result column="STOPREASON" property="stopreason" />
+        <result column="MEMO2" property="memo2" />
+        <result column="OLD_LICENSEID" property="oldLicenseid" />
+        <result column="SYS_MODIFYDATE" property="sysModifydate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        LICENSEID, COMPANYID, INPUTMANID, CREDATE, ENTRYID, RELATCOMPANY, LICENSETYPEID, LICENSECODE, RELATGOODS, MAINCONTENT, SIGNDATE, SIGNDEPARTMENT, VALIDONDATE, VALIDENDDATE, FILESOPCODE, USESTATUS, GOODSBUSISCOPE, GOODSCLASSCOPE, MEMO, GOODSBUSISCOPEIDS, GOODSCLASSCOPEIDS, STOPREASON, MEMO2, OLD_LICENSEID, SYS_MODIFYDATE
+    </sql>
+
+</mapper>

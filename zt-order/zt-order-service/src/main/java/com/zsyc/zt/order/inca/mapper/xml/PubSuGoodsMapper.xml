@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubSuGoodsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubSuGoods">
+        <id column="PU_SU_ID" property="puSuId" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GOODSNAME" property="goodsname" />
+        <result column="CURRENCYNAME" property="currencyname" />
+        <result column="GOODSTYPE" property="goodstype" />
+        <result column="GOODSUNIT" property="goodsunit" />
+        <result column="PRODAREA" property="prodarea" />
+        <result column="WBZDW" property="wbzdw" />
+        <result column="BASEUNITQTY" property="baseunitqty" />
+        <result column="APPROVEDOCNO" property="approvedocno" />
+        <result column="BARCODE" property="barcode" />
+        <result column="PFRJ" property="pfrj" />
+        <result column="PFJJ" property="pfjj" />
+        <result column="MESSAGE" property="message" />
+        <result column="EMPLOYEENAME" property="employeename" />
+        <result column="EMPLOYEEID" property="employeeid" />
+        <result column="SUPPLYID" property="supplyid" />
+        <result column="CREDATE" property="credate" />
+        <result column="MEMO" property="memo" />
+        <result column="SUPPLYNAME" property="supplyname" />
+        <result column="LASTPRICE" property="lastprice" />
+        <result column="FACTORYID" property="factoryid" />
+        <result column="FACTORYNAME" property="factoryname" />
+        <result column="SU_GOODSQTY" property="suGoodsqty" />
+        <result column="LAST_FACTORYNAME" property="lastFactoryname" />
+        <result column="JH_GOODSQTY" property="jhGoodsqty" />
+        <result column="LAST_PRICE" property="lastPrice" />
+        <result column="LAST_FACTORYID" property="lastFactoryid" />
+        <result column="DAY" property="day" />
+        <result column="GOODSID_GPS" property="goodsidGps" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ENTRYID, GOODSID, GOODSNAME, CURRENCYNAME, GOODSTYPE, GOODSUNIT, PRODAREA, WBZDW, BASEUNITQTY, APPROVEDOCNO, BARCODE, PFRJ, PFJJ, MESSAGE, EMPLOYEENAME, EMPLOYEEID, SUPPLYID, CREDATE, MEMO, SUPPLYNAME, LASTPRICE, FACTORYID, FACTORYNAME, SU_GOODSQTY, LAST_FACTORYNAME, JH_GOODSQTY, LAST_PRICE, LAST_FACTORYID, DAY, PU_SU_ID, GOODSID_GPS
+    </sql>
+
+</mapper>

@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.MemberMapper">
+    <update id="updateMemberOpenidSetNull">
+        update member set OPENID=null where id !=#{id} and OPENID=#{openid}
+    </update>
+    <select id="getPhone" resultType="com.zsyc.zt.b2b.vo.CustomerVo">
+        select c.gspusestatus,c.customid,c.zx_phone,c.CUSTOMNAME,c.sausestatus from erp_customer_v c
+        <!-- where c.zx_phone =#{phone}-->
+        where c.customid=#{customid}
+    </select>
+    <select id="getCustomerVoInfo" resultType="com.zsyc.zt.b2b.vo.CustomerVo">
+        select * from erp_customer_v v
+        left join member m on m.erp_user_id=v.customid
+        where  v.customid= #{id}
+    </select>
+    <select id="getCustomerByCustomerInfoVo" resultType="com.zsyc.zt.b2b.vo.CustomerVo">
+        select v.*,m.*,
+        (select sum(s.totel) from statement s where s.member_id=m.id  and s.STATUS='UNPAID' ) to_total,
+        (select sum(r.total) from rec_doc r where r.IS_TRUE=0 and r.MEMBER_ID=m.id  and r.STATUS='TO_PAY') not_total
+        from erp_customer_v v
+        left join member m on m.erp_user_id=v.customid
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="customerInfoVo.id!=null">
+                and v.customid =#{customerInfoVo.id}
+            </if>
+            <if test="customerInfoVo.memberId!=null">
+                and m.id =#{customerInfoVo.memberId}
+            </if>
+            <if test="customerInfoVo.erpUserId!=null">
+                and m.ERP_USER_ID is not null
+                and m.ERP_USER_ID>0
+            </if>
+            <if test="customerInfoVo.zxPhone!=null and customerInfoVo.zxPhone!=''">
+                and v.zx_Phone = #{customerInfoVo.zxPhone}
+            </if>
+            <if test="customerInfoVo.telephone!=null and customerInfoVo.telephone!=''">
+                and m.TELEPHONE = #{customerInfoVo.telephone}
+            </if>
+            <if test="customerInfoVo.name!=null and customerInfoVo.name!=''">
+                and v.customname like '%'||#{customerInfoVo.name}||'%'
+            </if>
+            <if test="customerInfoVo.settletype!=null and customerInfoVo.settletype!=''">
+                and v.settletype like '%'||#{customerInfoVo.settletype}||'%'
+            </if>
+            <if test="customerInfoVo.userName!=null and customerInfoVo.userName!=''">
+                and (v.customname like '%'||#{customerInfoVo.userName}||'%' or v.customid like
+                '%'||#{customerInfoVo.userName}||'%')
+            </if>
+            <if test="customerInfoVo.startTime!=null and customerInfoVo.endTime!=null ">
+                and v.credate &gt;= #{customerInfoVo.startTime} and v.credate &lt;= #{customerInfoVo.endTime}
+            </if>
+        </trim>
+        <!--order by v.credate desc-->
+    </select>
+    <select id="getCustomIdList" resultType="java.lang.Long">
+        select customid from erp_customer_v
+    </select>
+    <select id="getCustomerListInfoById" resultType="com.zsyc.zt.b2b.vo.CustomerVo">
+        select * from erp_customer_v  where customid = #{customid}
+    </select>
+    <select id="getMyBmsTrPosDef" resultType="com.zsyc.zt.b2b.vo.BmsTrPosDefVo">
+        select  v.*,p.zx_ph_order from ${erp}.BMS_TR_POS_DEF_V v
+        left join ${erp}.pub_customer_v  p on p.customid=v.companyid
+        where v.companyid=#{memberId} and v.usestatus = 1
+    </select>
+    <select id="getMemberLicense" resultType="com.zsyc.zt.b2b.vo.CustomerLicenseVo">
+        select DISTINCT cl.LICENSEID,cl.CUSTOMERID,cl.LICENSENAME,cl.SIGNDATE,cl.VALIDENDDATE,cs.companyname, '启用' status,
+        listagg(cs.SCOPENAME,',')within  group(order by 1)over(partition by cl.LICENSEID) scope_name
+
+        FROM ERP_CUSTOMER_LICENSE_V cl  LEFT JOIN ERP_CUSTOMER_SCOPE_V  cs on
+        cl.LICENSEID = cs.LICENSEID  WHERE cl.CUSTOMERID = #{customerVo.customid}
+        order by cl.VALIDENDDATE desc, scope_name desc nulls last
+    </select>
+    <select id="getMemberPubGoodsPriceList" resultType="com.zsyc.zt.b2b.vo.PubGoodsPriceVo">
+        select * from ERP_CUSTOMER_PRID_V  v where v.CUSTOMID=#{customid}
+    </select>
+
+    <select id="getAdminMemberList" resultType="com.zsyc.zt.b2b.vo.BannedVo">
+        select b.SETID as customsetid,
+        b.SETNAME as customsetname,
+        d.entryname as entryname,
+        c.EMPLOYEENAME as inputmaname,
+        b.USESTATUS as usestatus,
+        b.CREDATE as credate
+        from ${erp}.pub_custom_set b, ${erp}.pub_employee c,${erp}.pub_entry d --客户集合总单
+        where b.INPUTMANID = c.EMPLOYEEID
+        and b.entryid = d.entryid
+        <if test="bannedVo.customsetname!=null and bannedVo.customsetname!=''">
+            and b.setname like '%'||#{bannedVo.customsetname}||'%'
+        </if>
+        <if test="bannedVo.customsetid!=null">
+            and b.setid = #{bannedVo.customsetid}
+        </if>
+    </select>
+
+    <select id="getAdminMemberListById" resultType="com.zsyc.zt.b2b.vo.BannedVo">
+        select a.CUSTOMID as customid,
+        c.CUSTOMNAME as customname,
+        c.CUSTOMNO as customno,
+        d.gspusestatus as gspusestatus
+        from ${erp}.pub_custom_set_dtl a,
+        ${erp}.PUB_CUSTOM_SET b,
+        ${erp}.pub_customer c,
+        ${erp}.pub_entry_customer d --客户集合细单
+        where a.SETID = b.SETID
+        and a.customid = c.customid
+        and c.customid = d.customid
+        and d.entryid = 1
+        <if test="bannedVo.customsetid!=null">
+            and b.setid = #{bannedVo.customsetid}
+        </if>
+    </select>
+    <select id="getAdminMemberListByIdIsNotPage" resultType="com.zsyc.zt.b2b.vo.BannedVo">
+        select distinct a.CUSTOMID as customid,
+        c.CUSTOMNAME as customname,
+        c.CUSTOMNO as customno,
+        d.gspusestatus as gspusestatus
+        from ${erp}.pub_custom_set_dtl a,
+        ${erp}.PUB_CUSTOM_SET b,
+        ${erp}.pub_customer c,
+        ${erp}.pub_entry_customer d, --客户集合细单-->平台客户
+        member m
+        where a.SETID = b.SETID
+        and a.customid = c.customid
+        and c.customid = d.customid
+        and d.customid = m.ERP_USER_ID
+        and d.entryid = 1
+        and d.gspusestatus = 1
+        and b.setid in
+        <foreach collection="setIdList" item="item" open="(" close=")" separator=",">
+            (#{item})
+        </foreach>
+    </select>
+    <select id="getMemberLicenseAll" resultType="com.zsyc.zt.b2b.vo.CustomerLicenseVo">
+        select CUSTOMERID,COMPANYNAME,SCOPEDEFID scope_id,SCOPENAME scope_name from ERP_CUSTOMER_SCOPE_V where CUSTOMERID=#{customerId}
+    </select>
+    <select id="getMyBmsSaInvInfo" resultType="com.zsyc.zt.inca.entity.BmsSaInvInfo">
+        select * from  ${erp}.bms_sa_inv_info where companyid=#{memberId}
+    </select>
+    <select id="getCustomerGspusestatus" resultType="java.lang.Long">
+        select customid  from ${erp}.pub_entry_customer where gspusestatus=1 and entryid=1
+    </select>
+    <select id="getMemberInfo" resultType="com.zsyc.zt.b2b.vo.CustomerVo">
+        select m.*,a.ADDRESS,a.AREA_NAME,a.COMPANY_NAME,a.COMPANY_TYPE,a.CONTACT_PHONE,a.GOODSBUSISCOPE,a.GOODSBUSISCOPEIDS,a.REASON,a.REMARK,a.STATUS from member m
+        left join MEMBER_APPLY a on a.id=m.APPLY
+        where m.id=#{id}
+    </select>
+    <select id="getAdminMember" resultType="com.zsyc.zt.b2b.vo.BannedVo">
+        select b.SETID as customsetid,
+        b.SETNAME as customsetname,
+        d.entryname as entryname,
+        c.EMPLOYEENAME as inputmaname,
+        b.USESTATUS as usestatus,
+        b.CREDATE as credate
+        from ${erp}.pub_custom_set b, ${erp}.pub_employee c,${erp}.pub_entry d --客户集合总单
+        where b.INPUTMANID = c.EMPLOYEEID
+        and b.entryid = d.entryid
+        and b.SETID = #{customSetId}
+    </select>
+    <select id="getMemberLicenceList" resultType="com.zsyc.zt.b2b.vo.MemberLicenceVo">
+        select DISTINCT
+        lv.*,la.LICENCE_CODE   licenceCode,   --b2b证照编码
+        l.STATUS         licenceStatus, --证件状态
+        la.STATUS        auditStatus,   --审核状态
+        la.LICENCE_IMAGES,   --证件图片
+        la.REASON
+        from (select c.companyid    memberId,--客户ID
+                     c.COMPANYNAME  memberName,--客户名称
+                     c.licenseid    licenseId,--证照ID
+                     c.licensename  licenseName,--证照名称
+                     c.signdate     signTime,--签发日期
+                     c.validondate  validBeginTime,--发证日期
+                     c.validenddate validEndTime,
+                     c.LICENSECODE  erpLicenceCode --erp证照编码
+               from (
+               select a.licenseid,
+                      a.companyid,
+                      case
+                          when a.licensename is null then
+                              'null '
+                          else
+                              a.licensename
+                          end            licensename,
+                      a.signdate,
+                      a.validondate,
+                      a.validenddate + 1 validenddate,
+                      c.approvedate,
+                      a.sys_modifydate,
+                      a.LICENSECODE,
+                      a.COMPANYNAME
+               from ${erp}.gsp_company_license_v a,
+                    (select a.licenseid,
+                            a.approvedate
+                     from ${erp}.gsp_license_alter_approve a,
+                          (select b.licenseid,
+                                  max(b.approvedate) approvedate
+                           from ${erp}.gsp_license_alter_approve b
+                           where b.entryid in (1, 3)
+                           group by b.licenseid) c
+                     where a.entryid in (1, 3)
+                       and a.licenseid = c.licenseid(+)
+                       and a.approvedate = c.approvedate) c
+               where a.entryid = 1
+                     and a.licenseid = c.licenseid(+)
+                     and a.companyid not in (select placepointid from ${erp}.gpcs_placepoint)
+                     and a.usestatus = 1
+                     and a.validenddate is not null
+               union all
+               select a.licenseid,
+                      a.companyid,
+                      case
+                          when a.licensename is null then
+                              'null '
+                          else
+                              a.licensename
+                          end            licensename,
+                      a.signdate,
+                      a.validondate,
+                      a.validenddate + 1 validenddate,
+                      c.approvedate,
+                      a.sys_modifydate,
+                      a.LICENSECODE,
+                      a.COMPANYNAME
+               from ${erp}.gsp_company_license_v a,
+                    (select a.licenseid, a.approvedate
+                     from ${erp}.gsp_license_alter_approve a,
+                          (select b.licenseid,
+                                  max(b.approvedate) approvedate
+                           from ${erp}.gsp_license_alter_approve b
+                           where b.entryid in (1, 3)
+                           group by b.licenseid) c
+                     where a.entryid in (1, 3)
+                       and a.licenseid = c.licenseid(+)
+                       and a.approvedate = c.approvedate) c
+               where a.entryid = 3
+                 and a.licenseid = c.licenseid(+)
+                 and a.companyid in (select placepointid from ${erp}.gpcs_placepoint)
+                 and a.usestatus = 1
+                 and a.validenddate is not null) c) lv
+        left join LICENCE l on l.ERP_CUSTOMER_ID = lv.memberId and l.ERP_LICENCE_ID =lv.licenseId
+        left join LICENCE_APPLY la on la.ERP_CUSTOMER_ID=lv.memberId and la.LICENCE_ID = lv.licenseId
+        where lv.memberId = #{memberId}
+        order by lv.validEndTime asc
+    </select>
+    <select id="getPCMemberLicenceList" resultType="com.zsyc.zt.b2b.vo.MemberLicenceVo">
+        select
+        la.MEMBER_ID,
+        la.LICENCE_ID licenseId,
+        la.LICENCE_CODE   licenceCode,
+        la.LICENCE_NAME,
+        la.SIGN_TIME,
+        la.LICENCE_TYPE_ID,
+        la.STATUS        auditStatus,
+        la.LICENCE_IMAGES,
+        l.STATUS         licenceStatus,
+        la.REASON,
+        la.VALID_ON_TIME  VALID_ON_TIME,
+        la.VALID_END_TIME
+        from LICENCE_APPLY la
+        left join LICENCE l on l.apply_id =la.id
+        where la.MEMBER_ID = #{memberId} and la.LICENCE_TYPE_ID!=562
+
+        union all
+        select
+        lv.memberId,--客户ID
+        --lv.memberName,--客户名称
+        lv.licenseId ,--证照ID
+        lv.licenceCode, --erp证照编码
+        lv.licenseName, --证照名称
+        lv.signTime, --签发日期
+        lv.licensetypeid,
+        l.STATUS  licenceStatus,
+        l.LICENCE_IMAGES,
+        ''  auditStatus ,
+        '' REASON,
+        TO_CHAR(lv.validBeginTime,'YYYY-MM-DD') , --发证日期
+        TO_CHAR(lv.validEndTime,'YYYY-MM-DD HH24:MI:SS')
+        from  (select c.companyid    memberId,--客户ID
+        c.COMPANYNAME  memberName,--客户名称
+        c.licenseid    licenseId,--证照ID
+        c.licensename  licenseName,--证照名称
+        c.signdate     signTime,--签发日期
+        c.validondate  validBeginTime,--发证日期
+        c.validenddate validEndTime,
+        c.LICENSECODE  licenceCode --erp证照编码
+        ,c.licensetypeid
+        from (
+        select a.licenseid,
+        a.companyid,
+        case
+        when a.licensename is null then
+        'null '
+        else
+        a.licensename
+        end            licensename,
+        a.signdate,
+        a.validondate,
+        a.validenddate + 1 validenddate,
+        c.approvedate,
+        a.sys_modifydate,
+        a.LICENSECODE,
+        a.COMPANYNAME
+        ,a.licensetypeid
+        from ${erp}.gsp_company_license_v a,
+        (select a.licenseid,
+        a.approvedate
+        from ${erp}.gsp_license_alter_approve a,
+        (select b.licenseid,
+        max(b.approvedate) approvedate
+        from ${erp}.gsp_license_alter_approve b
+        where b.entryid in (1, 3)
+        group by b.licenseid) c
+        where a.entryid in (1, 3)
+        and a.licenseid = c.licenseid(+)
+        and a.approvedate = c.approvedate) c
+        where a.entryid = 1
+        and a.licenseid = c.licenseid(+)
+        and a.companyid not in (select placepointid from ${erp}.gpcs_placepoint)
+        and a.usestatus = 1
+        and a.validenddate is not null
+        union all
+        select a.licenseid,
+        a.companyid,
+        case
+        when a.licensename is null then
+        'null '
+        else
+        a.licensename
+        end            licensename,
+        a.signdate,
+        a.validondate,
+        a.validenddate + 1 validenddate,
+        c.approvedate,
+        a.sys_modifydate,
+        a.LICENSECODE,
+        a.COMPANYNAME
+        ,a.licensetypeid
+        from ${erp}.gsp_company_license_v a,
+        (select a.licenseid, a.approvedate
+        from ${erp}.gsp_license_alter_approve a,
+        (select b.licenseid,
+        max(b.approvedate) approvedate
+        from ${erp}.gsp_license_alter_approve b
+        where b.entryid in (1, 3)
+        group by b.licenseid) c
+        where a.entryid in (1, 3)
+        and a.licenseid = c.licenseid(+)
+        and a.approvedate = c.approvedate) c
+        where a.entryid = 3
+        and a.licenseid = c.licenseid(+)
+        and a.companyid in (select placepointid from ${erp}.gpcs_placepoint)
+        and a.usestatus = 1
+        and a.validenddate is not null) c) lv
+        left join LICENCE l on l.ERP_CUSTOMER_ID = lv.memberId and l.ERP_LICENCE_ID =lv.licenseId
+        where lv.memberId = #{erpUserId} and lv.licensetypeid!=562
+
+
+    </select>
+    <select id="getCustomerVoByName" resultType="com.zsyc.zt.inca.vo.CustomerVo">
+        select * from ${erp}.pub_customer
+        <where>
+            <if test="userName!=null and userName!=''">
+                customname  like '%'||#{userName}||'%'
+            </if>
+        </where>
+    </select>
+    <select id="selectApiMemberVoPage" resultType="com.zsyc.zt.b2b.vo.ApiMemberVo">
+        select a.id,
+            a.user_name,
+            a.name,
+            a.sex,
+            a.create_time,
+            a.erp_user_id,
+            a.telephone
+            from b2b.member a
+            where 1=1
+            <if test="apiMemberVo.id != null">
+                and a.id = #{apiMemberVo.id}
+            </if>
+            <if test="apiMemberVo.userName != null and apiMemberVo.userName !=''">
+                and a.user_name like '%'||#{apiMemberVo.userName}||'%'
+            </if>
+            <if test="apiMemberVo.startDate != null and apiMemberVo.endDate != null">
+                and a.create_time between #{apiMemberVo.startDate} and #{apiMemberVo.endDate}
+            </if>
+            <if test="apiMemberVo.erpUserId != null">
+                and a.erp_user_id = #{apiMemberVo.erpUserId}
+            </if>
+    </select>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.BmsSuProtTotalMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.BmsSuProtTotal">
+        <id column="PROTID" property="protid" />
+        <result column="COMPANYID" property="companyid" />
+        <result column="REBATERATE" property="rebaterate" />
+        <result column="STARTDATE" property="startdate" />
+        <result column="ENDDATE" property="enddate" />
+        <result column="ENTRYID" property="entryid" />
+        <result column="EMPLOYEEID" property="employeeid" />
+        <result column="INPUTMANID" property="inputmanid" />
+        <result column="CREDATE" property="credate" />
+        <result column="MEMO" property="memo" />
+        <result column="AGENTMANID" property="agentmanid" />
+        <result column="CLUES" property="clues" />
+        <result column="FREQUENCY" property="frequency" />
+        <result column="FORM" property="form" />
+        <result column="TYPE" property="type" />
+        <result column="LIMITCUSTOMERSETID" property="limitcustomersetid" />
+        <result column="GOODSLIMIT" property="goodslimit" />
+        <result column="CONFIGCLASS" property="configclass" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PROTID, COMPANYID, REBATERATE, STARTDATE, ENDDATE, ENTRYID, EMPLOYEEID, INPUTMANID, CREDATE, MEMO, AGENTMANID, CLUES, FREQUENCY, FORM, TYPE, LIMITCUSTOMERSETID, GOODSLIMIT, CONFIGCLASS
+    </sql>
+
+</mapper>

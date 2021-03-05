@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubEntryGoodsImpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubEntryGoodsImp">
+        <result column="ENTRYID" property="entryid" />
+        <result column="GOODSID" property="goodsid" />
+        <result column="GSPUSESTATUS" property="gspusestatus" />
+        <result column="SUUESSTATUS" property="suuesstatus" />
+        <result column="SAUSESTATUS" property="sausestatus" />
+        <result column="ZX_FLAG_LIN" property="zxFlagLin" />
+        <result column="ENTRYGOODSID" property="entrygoodsid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ENTRYID, GOODSID, GSPUSESTATUS, SUUESSTATUS, SAUSESTATUS, ZX_FLAG_LIN, ENTRYGOODSID
+    </sql>
+
+</mapper>

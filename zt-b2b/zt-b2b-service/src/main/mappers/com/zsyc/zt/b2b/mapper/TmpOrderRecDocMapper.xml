@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.TmpOrderRecDocMapper">
+
+    <select id="getTmpOrderRecDoc" resultType="com.zsyc.zt.b2b.entity.TmpOrderRecDoc">
+        select * from ERP_B2B_ORDER_REC_Dtl where tmp_no=#{tmpNo} and rownum=1
+    </select>
+    <select id="getTmpOrderRecDocList" resultType="com.zsyc.zt.b2b.vo.TmpOrderRecDocVo">
+        select e.*,o.pay_type from ERP_B2B_ORDER_REC_Dtl  e
+        inner join erp_b2b_order_rec_doc o on o.id=e.erp_b2b_order_rec_doc_id
+        where e.ERP_USER_ID=#{tmpOrderRecDoc.erpUserId} and e.is_del=0 and e.pay_time is not null
+        <if test="tmpOrderRecDoc.startTime!=null and tmpOrderRecDoc.endTime!=null">
+            and e.pay_time &gt;= #{tmpOrderRecDoc.startTime} and e.pay_time &lt;= #{tmpOrderRecDoc.endTime}
+        </if>
+        order by e.id desc
+    </select>
+</mapper>

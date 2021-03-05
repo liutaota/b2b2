@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.NoticeMapper">
+    <select id="getAdminNoticeList" resultType="com.zsyc.zt.b2b.entity.Notice">
+        select * from NOTICE
+        where IS_DEL = 0
+        <if test="content!=null and content!=''">
+            and CONTENT like '%'||#{content}||'%'
+        </if>
+        order by SORT desc,CREATE_TIME desc
+    </select>
+    <select id="getPcNoticeList" resultType="com.zsyc.zt.b2b.entity.Notice">
+        select * from NOTICE
+        where IS_DEL = 0 and IS_USE = 'ON'
+        and START_TIME &lt; sysdate and END_TIME &gt; sysdate
+        order by SORT desc,CREATE_TIME desc
+    </select>
+</mapper>

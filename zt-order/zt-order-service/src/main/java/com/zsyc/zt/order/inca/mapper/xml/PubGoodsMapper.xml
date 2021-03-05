@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.order.inca.mapper.PubGoodsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zsyc.zt.order.entity.PubGoods">
+        <id column="GOODSID" property="goodsid"/>
+        <result column="OPCODE" property="opcode"/>
+        <result column="GOODSPINYIN" property="goodspinyin"/>
+        <result column="GOODSNAME" property="goodsname"/>
+        <result column="CURRENCYNAME" property="currencyname"/>
+        <result column="GOODSENGNAME" property="goodsengname"/>
+        <result column="GOODSINVNAME" property="goodsinvname"/>
+        <result column="GOODSSHORTNAME" property="goodsshortname"/>
+        <result column="GOODSFORMALNAME" property="goodsformalname"/>
+        <result column="GOODSFORMALPY" property="goodsformalpy"/>
+        <result column="GOODSNO" property="goodsno"/>
+        <result column="STANDARDNO" property="standardno"/>
+        <result column="BARCODE" property="barcode"/>
+        <result column="GOODSTYPE" property="goodstype"/>
+        <result column="GOODSUNIT" property="goodsunit"/>
+        <result column="FIRSTAPPROVEDOCNO" property="firstapprovedocno"/>
+        <result column="APPROVEDOCNO" property="approvedocno"/>
+        <result column="REGISTDOCNO" property="registdocno"/>
+        <result column="STANDARDTYPE" property="standardtype"/>
+        <result column="FACTORYID" property="factoryid"/>
+        <result column="VALIDPERIOD" property="validperiod"/>
+        <result column="RESPPERIOD" property="respperiod"/>
+        <result column="PERIODUNIT" property="periodunit"/>
+        <result column="TRADEMARK" property="trademark"/>
+        <result column="PRODAREA" property="prodarea"/>
+        <result column="SUPPLYTAXRATE" property="supplytaxrate"/>
+        <result column="SALESTAXRATE" property="salestaxrate"/>
+        <result column="FIXPRICETYPE" property="fixpricetype"/>
+        <result column="ACCFLAG" property="accflag"/>
+        <result column="DEFAULTAGTFLAG" property="defaultagtflag"/>
+        <result column="STORAGECONDITION" property="storagecondition"/>
+        <result column="TRANSCONDITION" property="transcondition"/>
+        <result column="COMBINFLAG" property="combinflag"/>
+        <result column="CUSTOMSTAX" property="customstax"/>
+        <result column="MINREQGOODSQTY" property="minreqgoodsqty"/>
+        <result column="FINANCENO" property="financeno"/>
+        <result column="OTCFLAG" property="otcflag"/>
+        <result column="SECURITYFLAG" property="securityflag"/>
+        <result column="CHINESEFLAG" property="chineseflag"/>
+        <result column="MEDICINETYPE" property="medicinetype"/>
+        <result column="IMPORTFLAG" property="importflag"/>
+        <result column="MEDICINEFLAG" property="medicineflag"/>
+        <result column="CREDATE" property="credate"/>
+        <result column="INPUTMANID" property="inputmanid"/>
+        <result column="MEMO" property="memo"/>
+        <result column="USESTATUS" property="usestatus"/>
+        <result column="NMRMSCLASSID" property="nmrmsclassid"/>
+        <result column="PRICE" property="price"/>
+        <result column="BUSISCOPE" property="busiscope"/>
+        <result column="BOXFLAG" property="boxflag"/>
+        <result column="INTEGERNX" property="integernx"/>
+        <result column="FUNCTION" property="function"/>
+        <result column="MEDICINESORT" property="medicinesort"/>
+        <result column="LIMITEDSALEFLAG" property="limitedsaleflag"/>
+        <result column="LEASTSALEQTY" property="leastsaleqty"/>
+        <result column="ENTRYSET" property="entryset"/>
+        <result column="FINANCENO2" property="financeno2"/>
+        <result column="GSPFLAG" property="gspflag"/>
+        <result column="ECODEFLAG" property="ecodeflag"/>
+        <result column="ZHL" property="zhl"/>
+        <result column="GOODSGROUPCODE" property="goodsgroupcode"/>
+        <result column="MPGID" property="mpgid"/>
+        <result column="DRUGTABOO" property="drugtaboo"/>
+        <result column="GOODSPROPERTIES" property="goodsproperties"/>
+        <result column="GSPCATEGORYID" property="gspcategoryid"/>
+        <result column="QLOGID" property="qlogid"/>
+        <result column="PKID" property="pkid"/>
+        <result column="DIRECTION" property="direction"/>
+        <result column="TRANFLAG" property="tranflag"/>
+        <result column="TRANDATE" property="trandate"/>
+        <result column="EXPORTDATE" property="exportdate"/>
+        <result column="IMPORTDATE" property="importdate"/>
+        <result column="SYS_MODIFYDATE" property="sysModifydate"/>
+        <result column="INITFLAG" property="initflag"/>
+        <result column="NEWGOODSID" property="newgoodsid"/>
+        <result column="VARIETYID" property="varietyid"/>
+        <result column="ALONEPACKFLAG" property="alonepackflag"/>
+        <result column="MEDICINETYPENAME" property="medicinetypename"/>
+        <result column="BUSISCOPENAME" property="busiscopename"/>
+        <result column="KEYSPHYCONSERVEDAYS" property="keysphyconservedays"/>
+        <result column="SPECIALDRUG" property="specialdrug"/>
+        <result column="COLDFLAG" property="coldflag"/>
+        <result column="TEMPERATUREDOWN" property="temperaturedown"/>
+        <result column="TEMPERATUREUP" property="temperatureup"/>
+        <result column="SPECIALCTRL" property="specialctrl"/>
+        <result column="TRANSPORTTIME" property="transporttime"/>
+        <result column="TREATMENT" property="treatment"/>
+        <result column="DOSAGE" property="dosage"/>
+        <result column="PERMITNO" property="permitno"/>
+        <result column="TOWMSDATE" property="towmsdate"/>
+        <result column="RETAILNOLOT" property="retailnolot"/>
+        <result column="USEGOODSTIME" property="usegoodstime"/>
+        <result column="DIAGNOSTICINFO" property="diagnosticinfo"/>
+        <result column="BRANDID" property="brandid"/>
+        <result column="AGAINCHKFLAG" property="againchkflag"/>
+        <result column="LOTFLAG" property="lotflag"/>
+        <result column="FACTORYFLAG" property="factoryflag"/>
+        <result column="PRODAREAFLAG" property="prodareaflag"/>
+        <result column="SPECIALCONTROL" property="specialcontrol"/>
+        <result column="TOZJBDATE" property="tozjbdate"/>
+        <result column="ZX_LIMITDAYS" property="zxLimitdays"/>
+        <result column="TKRSFLAG" property="tkrsflag"/>
+        <result column="FAKEGOODSID" property="fakegoodsid"/>
+        <result column="ZX_LIMITQTY" property="zxLimitqty"/>
+        <result column="ZX_INVALIDDAYS" property="zxInvaliddays"/>
+        <result column="TOFSYJDATE" property="tofsyjdate"/>
+        <result column="ZX_MINSALEQTY" property="zxMinsaleqty"/>
+        <result column="YJ_GOODSTYPE" property="yjGoodstype"/>
+        <result column="WMSCW" property="wmscw"/>
+        <result column="PRODUCTGROUP" property="productgroup"/>
+        <result column="ZX_BH_FLAG" property="zxBhFlag"/>
+        <result column="FLCODE" property="flcode"/>
+        <result column="JCNAME" property="jcname"/>
+        <result column="PROLICENSE" property="prolicense"/>
+        <result column="FLGOODS" property="flgoods"/>
+        <result column="LXNAMEID" property="lxnameid"/>
+        <result column="ZX_SPLIT_TYPE" property="zxSplitType"/>
+        <result column="ZX_TYPECODE" property="zxTypecode"/>
+        <result column="ZX_KPOPCODE" property="zxKpopcode"/>
+        <result column="ZX_YPCODE" property="zxYpcode"/>
+        <result column="ZX_BZ_TYPE" property="zxBzType"/>
+        <result column="ZX_LEVEL" property="zxLevel"/>
+        <result column="ZX_DLTYPE" property="zxDltype"/>
+        <result column="ZX_GOODS_TYPE" property="zxGoodsType"/>
+        <result column="ZX_UNITCONVERSIONRATIO" property="zxUnitconversionratio"/>
+        <result column="ZX_ISRAW" property="zxIsraw"/>
+        <result column="ZX_OPCODE" property="zxOpcode"/>
+        <result column="ZX_HPTYPEID" property="zxHptypeid"/>
+        <result column="ZX_HPTYPENAME" property="zxHptypename"/>
+        <result column="ZX_MEMO" property="zxMemo"/>
+        <result column="ZX_TAG" property="zxTag"/>
+        <result column="ZX_DAY" property="zxDay"/>
+        <result column="ZX_REDATE" property="zxRedate"/>
+        <result column="ZX_LACKFLAG" property="zxLackflag"/>
+        <result column="ZX_REBATE" property="zxRebate"/>
+        <result column="ZX_GOODS_ID" property="zxGoodsId"/>
+        <result column="YJC_SHOP_FLAG" property="yjcShopFlag"/>
+        <result column="B2B_SHOP_FLAG" property="b2bShopFlag"/>
+        <result column="ZX_CON_SA" property="zxConSa"/>
+        <result column="ZX_DECODE" property="zxDecode"/>
+        <result column="GOODSID_GPS" property="goodsidGps"/>
+        <result column="CLASSN_ROW_2" property="classnRow2"/>
+        <result column="CLASSNAME_1" property="classname1"/>
+        <result column="CLASSN_ROW_3" property="classnRow3"/>
+        <result column="CLASSNAME_3" property="classname3"/>
+        <result column="CLASSNAME_2" property="classname2"/>
+        <result column="CLASSN_ROW_1" property="classnRow1"/>
+        <result column="JD_PRICE_FLOAT" property="jdPriceFloat"/>
+        <result column="ZX_DL_PACK" property="zxDlPack"/>
+        <result column="CLASSN_ROW" property="classnRow"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GOODSID, OPCODE, GOODSPINYIN, GOODSNAME, CURRENCYNAME, GOODSENGNAME, GOODSINVNAME, GOODSSHORTNAME, GOODSFORMALNAME, GOODSFORMALPY, GOODSNO, STANDARDNO, BARCODE, GOODSTYPE, GOODSUNIT, FIRSTAPPROVEDOCNO, APPROVEDOCNO, REGISTDOCNO, STANDARDTYPE, FACTORYID, VALIDPERIOD, RESPPERIOD, PERIODUNIT, TRADEMARK, PRODAREA, SUPPLYTAXRATE, SALESTAXRATE, FIXPRICETYPE, ACCFLAG, DEFAULTAGTFLAG, STORAGECONDITION, TRANSCONDITION, COMBINFLAG, CUSTOMSTAX, MINREQGOODSQTY, FINANCENO, OTCFLAG, SECURITYFLAG, CHINESEFLAG, MEDICINETYPE, IMPORTFLAG, MEDICINEFLAG, CREDATE, INPUTMANID, MEMO, USESTATUS, NMRMSCLASSID, PRICE, BUSISCOPE, BOXFLAG, INTEGERNX, FUNCTION, MEDICINESORT, LIMITEDSALEFLAG, LEASTSALEQTY, ENTRYSET, FINANCENO2, GSPFLAG, ECODEFLAG, ZHL, GOODSGROUPCODE, MPGID, DRUGTABOO, GOODSPROPERTIES, GSPCATEGORYID, QLOGID, PKID, DIRECTION, TRANFLAG, TRANDATE, EXPORTDATE, IMPORTDATE, SYS_MODIFYDATE, INITFLAG, NEWGOODSID, VARIETYID, ALONEPACKFLAG, MEDICINETYPENAME, BUSISCOPENAME, KEYSPHYCONSERVEDAYS, SPECIALDRUG, COLDFLAG, TEMPERATUREDOWN, TEMPERATUREUP, SPECIALCTRL, TRANSPORTTIME, TREATMENT, DOSAGE, PERMITNO, TOWMSDATE, RETAILNOLOT, USEGOODSTIME, DIAGNOSTICINFO, BRANDID, AGAINCHKFLAG, LOTFLAG, FACTORYFLAG, PRODAREAFLAG, SPECIALCONTROL, TOZJBDATE, ZX_LIMITDAYS, TKRSFLAG, FAKEGOODSID, ZX_LIMITQTY, ZX_INVALIDDAYS, TOFSYJDATE, ZX_MINSALEQTY, YJ_GOODSTYPE, WMSCW, PRODUCTGROUP, ZX_BH_FLAG, FLCODE, JCNAME, PROLICENSE, FLGOODS, LXNAMEID, ZX_SPLIT_TYPE, ZX_TYPECODE, ZX_KPOPCODE, ZX_YPCODE, ZX_BZ_TYPE, ZX_LEVEL, ZX_DLTYPE, ZX_GOODS_TYPE, ZX_UNITCONVERSIONRATIO, ZX_ISRAW, ZX_OPCODE, ZX_HPTYPEID, ZX_HPTYPENAME, ZX_MEMO, ZX_TAG, ZX_DAY, ZX_REDATE, ZX_LACKFLAG, ZX_REBATE, ZX_GOODS_ID, YJC_SHOP_FLAG, B2B_SHOP_FLAG, ZX_CON_SA, ZX_DECODE, GOODSID_GPS, CLASSN_ROW_2, CLASSNAME_1, CLASSN_ROW_3, CLASSNAME_3, CLASSNAME_2, CLASSN_ROW_1, JD_PRICE_FLOAT, ZX_DL_PACK, CLASSN_ROW
+    </sql>
+    <select id="selectGoodsIdList" resultType="java.lang.Long">
+        select * FROM pub_goods
+        <where>${ew.sqlSegment}</where>
+    </select>
+    <select id="selectPageList" resultType="com.zsyc.zt.order.vo.GoodsVo">
+          select a.goodsid goods_id,
+               a.goodsname goods_name,
+               a.currencyname currency_name,
+               a.goodsunit goods_unit,
+               a.barcode,
+               a.approvedocno approve_doc_no,
+               a.goodstype goods_type,
+               a.yj_goodstype yj_goods_type,
+               a.prodarea prod_area,
+               a.medicinetype medicine_type,
+               a.medicinetypename medicine_type_name,
+               b.possessor,
+               b.factoryid factory_id,
+               b.factoryname factory_name,
+               d.priceid price_id,
+               d.price,
+                 nvl(c.storageid,0) storageid,
+               nvl(c.goodsqty,0) goodsqty
+          from pub_goods a,
+               pub_factory b,
+               (SELECT A.storageId,
+                       a.goodsid,
+                       SUM(A.GOODSQTY - DECODE(D.QTY_TMP, NULL, 0, D.QTY_TMP)) goodsqty
+                  FROM BMS_ST_QTY_LST A,
+                       BMS_LOT_DEF B,
+                       BMS_BATCH_DEF C,
+                       (SELECT SUM(DTLGOODSQTY) QTY_TMP,
+                               D.GOODSDTLID,
+                               D.LOTID,
+                               D.BATCHID,
+                               D.POSID
+                          FROM BMS_ST_IO_DTL_TMP D
+                         GROUP BY D.LOTID, D.BATCHID, D.POSID, D.GOODSDTLID) D
+                 WHERE 1 = 1
+                   AND A.LOTID = B.LOTID
+                   AND A.BATCHID = C.BATCHID
+                   AND A.GOODSID = C.GOODSID
+                   AND A.LOTID = D.LOTID(+)
+                   AND A.BATCHID = D.BATCHID(+)
+                   AND A.POSID = D.POSID(+)
+                   AND A.GOODSDETAILID = D.GOODSDTLID(+)
+                   AND A.GOODSQTY - DECODE(D.QTY_TMP, NULL, 0, D.QTY_TMP) > 0
+                   AND A.GOODSSTATUSID = 1
+                   AND ((C.LIMITID IS NULL) OR
+                       (C.LIMITID IS NOT NULL AND C.LIMITID = #{customId}))
+                   AND A.STORAGEID in (1, 732)
+                 group by a.goodsid,a.storageid) c,
+               (select a.customid,
+                               a.goodsid,
+                               a.entryid,
+                               CASE
+                                 WHEN sign(nvl(c.price, 0)) = 0 THEN
+                                  a.priceid
+                                 ELSE
+                                  3
+                               END priceid,
+                               CASE
+
+                                 WHEN sign(nvl(c.price, 0)) = 0 THEN
+                                  a.price
+                                 ELSE
+                                  c.price
+                               END price
+                          from (SELECT a.price,
+                                       a.priceid,
+                                       b.customid,
+                                       a.goodsid,
+                                       a.entryid
+                                  FROM bms_entry_goods_price a, pub_entry_customer b
+
+                                 WHERE 1 = 1
+                                   AND a.entryid = b.entryid
+
+                                   AND a.priceid = b.priceid
+
+                                   AND a.entryid = 1) a
+                          left join bms_pr_custom c
+                            on a.customid = c.customid
+                           AND a.goodsid = c.goodsid
+                           AND a.entryid = c.entryid
+                           and c.enddate >= trunc(sysdate)
+                           AND c.usestatus = 1
+                 ) d
+         where a.factoryid = b.factoryid
+           and a.goodsid = c.goodsid(+)
+           and a.goodsid = d.goodsid
+           and d.customId = #{customId}
+
+            <if test="goodsIdList!=null and goodsIdList.size()>0">
+                and a.goodsId in
+                <foreach  collection="goodsIdList" separator="," item="goodsId" open="(" close=")">
+                    #{goodsId}
+                </foreach>
+            </if>
+            <if test="goodsName!=null">
+                and a.goodsname like '%'||#{goodsName}||'%'
+            </if>
+            <if test="factoryName!=null">
+                and b.factoryName like '%'||#{factoryName}||'%'
+            </if>
+            and a.b2b_shop_flag = 1
+
+    </select>
+    <select id="getPrice" resultType="java.lang.Double">
+        select price from (select a.customid,
+                               a.goodsid,
+                               a.entryid,
+                               CASE
+                                 WHEN sign(nvl(c.price, 0)) = 0 THEN
+                                  a.priceid
+                                 ELSE
+                                  3
+                               END priceid,
+                               CASE
+
+                                 WHEN sign(nvl(c.price, 0)) = 0 THEN
+                                  a.price
+                                 ELSE
+                                  c.price
+                               END price
+                          from (SELECT a.price,
+                                       a.priceid,
+                                       b.customid,
+                                       a.goodsid,
+                                       a.entryid
+                                  FROM bms_entry_goods_price a, pub_entry_customer b
+
+                                 WHERE 1 = 1
+                                   AND a.entryid = b.entryid
+
+                                   AND a.priceid = b.priceid
+
+                                   AND a.entryid = #{entryId}) a
+                          left join bms_pr_custom c
+                            on a.customid = c.customid
+                           AND a.goodsid = c.goodsid
+                           AND a.entryid = c.entryid
+                           and c.enddate >= trunc(sysdate)
+                           AND c.usestatus = 1) where customid = #{customId} and goodsid = #{goodsId}
+    </select>
+
+</mapper>

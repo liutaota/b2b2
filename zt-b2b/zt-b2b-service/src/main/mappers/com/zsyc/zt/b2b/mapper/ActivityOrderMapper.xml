@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsyc.zt.b2b.mapper.ActivityOrderMapper">
+    <update id="updateActivityOrderByOrderId">
+        update ACTIVITY_ORDER set status='CANCEL' where order_id=#{orderId}
+    </update>
+
+    <select id="getActivityOrderByMemberId" resultType="com.zsyc.zt.b2b.entity.ActivityOrder">
+        select * from ACTIVITY_ORDER where member_id=#{memberId} and ACTIVITY_ID=#{activityId}
+        and status!='CANCEL'
+        <if test="times!=null and times!='' and times!='D'">
+            and create_time like '%'||#{times}||'%'
+        </if>
+        <if test="times=='D'">
+            and create_time > sysdate - (to_char(sysdate-1,'D'))
+        </if>
+    </select>
+</mapper>
